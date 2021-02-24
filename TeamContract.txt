@@ -1,0 +1,30 @@
+As a team discuss 3 ways that you can help set expectations
+1) Be clear on our goals and expectations and detail what each member is expected to contribute.
+2) Set weekly meetings to catch up on where each member is from a progress perspective.
+3) If a team member is struggling, be open and honest with the rest of the team to get assistance.
+
+
+As a team, find one thing about each team member that is unique
+Jordan: Web Development/Deployment, Database, Worked San Francisco Startup
+Ryan: Transferred from ECC, C++ experience, involved in building Teamspeak bot.
+Jake: Experience in Zenhub, Python, and C. Worked at UPS.
+Christian: Back End Development, Python, C, C++ experience, interns at Northrop Grumman.
+Andy: Some experience with web development in Python (Django, Flask), Experience with Zenhub (CSE442), Some experience with front end development (Adobe XD).
+
+
+As a team, how will you communicate?
+Communication: Discord, Zoom, Breakout rooms, and Phone Number as last resort.
+
+
+How will you resolve conflict?
+Firstly as a group we will talk through the conflict and discuss pros and cons. If a resolution is still not reached, we will discuss with our PM to weigh their
+input and hopefully realize the better course of action. If all else fails, we will play rock, paper scissors????
+
+
+Github Username:
+Christian Palladino: chrispalla129
+Jordan DiLapo: jtdilapo
+Jake Fitzpatrick: jefitzpa
+Ryan Doohan: RyanDoohan
+Andy Shi: andyshi0419
+ 

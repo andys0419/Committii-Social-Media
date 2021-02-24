@@ -1,0 +1,30 @@
+Project Description
+
+Team name: Elmas Eugenieia
+
+Team members: Ryan Doohan, Jacob Fitzpatrick, Jordan Dilapo, Andy Shi, Christian Palladino
+
+Team GitHub repo: https://https://github.com/CSE410HCI/elmas
+
+Team Zenhub: https://app.zenhub.com/workspaces/committii-polling-app-6025432490ef4c000e1daa47/board?repos=337268230
+
+
+Project Vision and Demographics
+
+Vision:
+
+Summary: This app is for people who seem to always be looking for others to make decisions for them. Maybe you wake up one morning
+and just can't decide which shirt matches your pants best. Maybe you want opinions on what picture to post on Instagram or even you're stuck
+in between names for a new pet, Committii will give you the decisiveness you need.
+
+Project Idea: A social media site dedicated to polling.
+Name: “Committii”
+Slogan: "Life by committee"
+Technical points of focus: Charts (Pie and Bar), Polling, Result Timing
+Users: Individuals who vote on polls called committees/committers
+
+Demographics:
+
+Sex: Male or Female
+Age: 14 - 45
+Adjectives: Indecisive, Impressionable, Influential, Curious
