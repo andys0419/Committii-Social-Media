@@ -1,30 +1,21 @@
 Project Description
 
 Team name: Elmas Eugenieia
-
 Team members: Ryan Doohan, Jacob Fitzpatrick, Jordan Dilapo, Andy Shi, Christian Palladino
-
 Team GitHub repo: https://https://github.com/CSE410HCI/elmas
-
 Team Zenhub: https://app.zenhub.com/workspaces/committii-polling-app-6025432490ef4c000e1daa47/board?repos=337268230
 
 
 Project Vision and Demographics
 
 Vision:
+This app is for people who seem to always be looking for others to make decisions for them. Maybe you wake up one morning
+and just can't decide which shirt matches your pants best. Maybe you want opinions on what picture to post on Instagram or even you're stuck in between names for a new pet, Committii will give you the decisiveness you need. Individuals who vote on polls called committees/committers.
 
-Summary: This app is for people who seem to always be looking for others to make decisions for them. Maybe you wake up one morning
-and just can't decide which shirt matches your pants best. Maybe you want opinions on what picture to post on Instagram or even you're stuck
-in between names for a new pet, Committii will give you the decisiveness you need.
-
-Project Idea: A social media site dedicated to polling.
-Name: “Committii”
-Slogan: "Life by committee"
-Technical points of focus: Charts (Pie and Bar), Polling, Result Timing
-Users: Individuals who vote on polls called committees/committers
+The app will be named 'Committii', and the slogan of the app will be "Life by Committee". Technical points of focus include charts (e.g, pie, bar, and dot graphs), polling (e.g, upvote and downvote), and result timing (e.g, expiration times)
 
 Demographics:
+A typical user (Committee member) of our app are those who are well acquainted with using social media as a tool to drive their decision making. Our demographic includes 'Gen X' (born between 1965 and 1970/80), and generations earlier than this (e.g, Gen Y, Millennials). These are generations of people who are well acquainted with social media. 
 
-Sex: Male or Female
-Age: 14 - 45
-Adjectives: Indecisive, Impressionable, Influential, Curious
+A typical user (Comittee member) may be indecisive or curious. They may even seek to be influential with a controversial poll topic, or be impressionable with their thoughts. They will use the 'Committii' app as a means to spread their ideas, take in new ideas, and allow their voices be heard.
+
