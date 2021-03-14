@@ -13,6 +13,7 @@ import Profile from "./Component/Profile.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Navbar from "./Component/Navbar.jsx";
+import ProfilePage from "./Component/profile-page.jsx";
 import {
   BrowserRouter as Router, Route, Switch
 } from 'react-router-dom';
@@ -71,10 +72,10 @@ class App extends React.Component {
 
           <div className="maincontent" id="mainContent">
             <Switch>
-            <Route path="/settings">
+            <Route path="/ProfilePage">
               <div className="settings">
-                <p>Settings</p>
-                <Profile userid={sessionStorage.getItem("user")} />
+                <p>Test</p>
+                {/* <Profile userid={sessionStorage.getItem("user")} /> */}
               </div>
             </Route>
             <Route path="/friends">
