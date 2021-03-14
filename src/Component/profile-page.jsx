@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 import prof from './prof.png';
-import '../App.css';
+import "./profile-page.css";
 
-class ProfilePage extends React.Component {
+export default class ProfilePage extends React.Component {
   constructor() {
     super();
 
@@ -12,10 +12,6 @@ class ProfilePage extends React.Component {
       followers: 0
     };
   }
-  componentDidMount () {
-    
-  }
-
   render() {
     return (
       <div className="App">
@@ -51,5 +47,3 @@ class ProfilePage extends React.Component {
     );
   }
 }
-
-export default ProfilePage;

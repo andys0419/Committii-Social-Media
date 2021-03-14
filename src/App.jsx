@@ -14,6 +14,7 @@ import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Navbar from "./Component/Navbar.jsx";
 import ProfilePage from "./Component/profile-page.jsx";
+import StyleGuide from "./Component/styleguide";
 import {
   BrowserRouter as Router, Route, Switch
 } from 'react-router-dom';
@@ -69,20 +70,16 @@ class App extends React.Component {
         <header className="App-header">
 
           <Navbar toggleModal={e => toggleModal(this, e)} />
-
           <div className="maincontent" id="mainContent">
             <Switch>
-            <Route path="/ProfilePage">
+            <Route path="/settings">
               <div className="settings">
-                <p>Test</p>
-                {/* <Profile userid={sessionStorage.getItem("user")} /> */}
+                <ProfilePage userid={sessionStorage.getItem("user")} />
               </div>
             </Route>
             <Route path="/friends">
               <div>
-                <p>Friends</p>
-                <FriendForm userid={sessionStorage.getItem("user")} />
-                <FriendList userid={sessionStorage.getItem("user")} />
+                <StyleGuide userid={sessionStorage.getItem("user")} />
               </div>
             </Route>
             <Route path={["/posts","/"]}>
@@ -97,7 +94,7 @@ class App extends React.Component {
         </header>
 
         <Modal show={this.state.openModal} onClose={e => toggleModal(this, e)}>
-          This is a modal dialog!
+          This is a test!!
         </Modal>
       </div>
       </Router>
