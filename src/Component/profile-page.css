@@ -1,0 +1,218 @@
+.prof_pic {
+  display: flex;
+  height: 140px;
+  width: 140px;
+  position: relative;
+  top: -200px;
+  border-radius: 50%;
+}
+
+#logo {
+  display: flex;
+  position: relative;
+  top: -610px;
+  left: -880px;
+}
+
+#logo_text {
+  display: flex;
+  position: relative;
+  top: -660px;
+  left: -750px;
+}
+
+#welcome {
+  display: flex;
+  position: relative;
+  top: -220px;
+  font-size: 28px;
+  font-family: 'Poppins';
+}
+
+#edit_prof {
+  position: relative;
+  top: -313px;
+  left: 450px;
+  background-color: #282c34;
+  border: none;
+  color: white;
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#edit_priv {
+  position: relative;
+  top: -304px;
+  left: 431px;
+  background-color: #282c34;
+  border: none;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#following {
+  display: flex;
+  position: relative;
+  top: -200px;
+  right: 450px;
+  font-size: 20px;
+}
+
+#followers {
+  display: flex;
+  position: relative;
+  top: -230px;
+  right: 450px;
+  font-size: 20px;
+}
+
+.Feed {
+  position: relative;
+  background-color: #282c34;
+  color: #282c34;
+}
+
+#Polls {
+  display: flex;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  margin: auto;
+  top: -700px;
+  width: 700px;
+  height: 900px;
+}
+
+#my-polls {
+  background-color: rgb(216, 216, 216);
+  width: 700px;
+  text-align: center;
+  font-size: 40px;
+  color: black;
+  position: relative;
+  top: -735px;
+  left: 602px;
+}
+
+#curr_polls {
+  display: inline-block;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  position: relative;
+  background-color: rgb(216, 216, 216);
+  top: -1605px;
+  left: 620px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#prev_polls {
+  display: inline-block;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  position: relative;
+  background-color: rgb(216, 216, 216);
+  top: -1240px;
+  left: 470px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#poll1 {
+  display: inline-block;
+  width: 660px;
+  height: 35px;
+  text-align: left;
+  position: relative;
+  background-color: rgb(216, 216, 216);
+  top: -1558px;
+  left: 320px;
+  font-size: 20px;
+}
+
+#view_res {
+  position: relative;
+  top: -1557px;
+  left: 145px;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: black;
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#del_post {
+  position: relative;
+  top: -1557px;
+  left: 154px;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: rgb(214, 5, 5);
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#poll2 {
+  display: inline-block;
+  width: 660px;
+  height: 35px;
+  text-align: left;
+  position: relative;
+  background-color: rgb(216, 216, 216);
+  top: -1193px;
+  left: -494px;
+  font-size: 20px;
+}
+
+#view_res2 {
+  position: relative;
+  top: -1192px;
+  left: -669px;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: black;
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#del_post2 {
+  position: relative;
+  top: -1243px;
+  left: 1214px;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: rgb(214, 5, 5);
+  padding: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
