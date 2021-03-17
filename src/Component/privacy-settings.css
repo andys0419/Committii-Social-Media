@@ -1,6 +1,6 @@
 #priv {
     position: relative;
-    top: -800px;
+    top: -807px;
     color: black;
     font-weight: bold;
     font-size: 150%;
@@ -19,6 +19,6 @@
 #back {
     display: flex;
     position: relative;
-    top: -835px;
-    left: 620px;
+    top: -864px;
+    left: 615px;
 }
