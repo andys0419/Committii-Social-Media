@@ -89,9 +89,6 @@ class App extends React.Component {
         </Route>
         <Route path="/privacy-settings" component={PrivacySettings}>
         </Route>
-        <Route path="/privacy-settings" component={PrivacySettings}>
-        </Route>
-
       </Switch>
         <Switch>
           <Route path="/login">
