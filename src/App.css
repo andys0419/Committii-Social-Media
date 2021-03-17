@@ -7,7 +7,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #000000;
   min-height: 100vh;
   display: flex;
   flex-direction: row;
@@ -92,9 +92,45 @@
 }
 
 .profileform label{
+   background-color: #00000000;
    display:block;
 
 }
+
+.general-text {
+  color: rgb(0, 0, 0);
+  margin-left: auto;
+}
+
+.text-box {
+  border-color: #000000;
+  border-radius: 20px;
+  padding:10px;
+  margin:20px;
+  width:30%;
+  display:inline-block;
+  align-content:center;
+}
+
+.back-button {
+  max-width: 5%;
+  max-height: 5%;
+  margin-left: -40%;
+}
+
+.square {
+  height: 500px;
+  width: 600px;
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  display:block;
+  padding-top: 200px;
+  padding-bottom: 50px;
+}
+
 
 .App-link {
   color: #09d3ac;
@@ -102,7 +138,7 @@
 
 .postlist {
   text-align: left;
-  background: blue;
+  background: rgb(0, 0, 0);
   border-radius: 20px;
   padding:30px;
   margin:10px;
@@ -113,7 +149,7 @@
 
 .userlist {
   text-align: left;
-  background: blue;
+  background: rgb(0, 0, 0);
   border-radius: 20px;
   padding:30px;
   margin:10px;
@@ -194,7 +230,7 @@
   align-items: center;
   justify-content: flex-start;
 
-  background-color: blue;
+  background-color: rgb(0, 0, 0);
 }
 
 .sidenav ul{
