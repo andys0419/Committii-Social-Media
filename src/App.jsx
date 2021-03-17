@@ -13,8 +13,13 @@ import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
+<<<<<<< HEAD
 import ProfileSettings from "./Component/ProfileSettings.jsx"
 import Register from "./Component/Register.jsx"
+=======
+import profilesettings from "./Component/ProfileSettings.jsx"
+import PrivacySettings from "./Component/privacy-settings.jsx";
+>>>>>>> 80da599... UserStory #56 Task#64 - Added button functionality
 import {
   BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
@@ -74,6 +79,8 @@ class App extends React.Component {
       <Switch>
         <Route path="/register">
           <Register toggleModal={e => toggleModal(this, e)}></Register>
+        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}>
         </Route>
       </Switch>
         <Switch>
