@@ -13,13 +13,9 @@ import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
-<<<<<<< HEAD
-import ProfileSettings from "./Component/ProfileSettings.jsx"
-import Register from "./Component/Register.jsx"
-=======
-import profilesettings from "./Component/ProfileSettings.jsx"
+import ProfileSettings from "./Component/ProfileSettings.jsx";
+import Register from "./Component/Register.jsx";
 import PrivacySettings from "./Component/privacy-settings.jsx";
->>>>>>> 80da599... UserStory #56 Task#64 - Added button functionality
 import {
   BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';

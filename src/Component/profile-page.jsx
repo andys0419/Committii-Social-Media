@@ -23,8 +23,8 @@ export default class ProfilePage extends React.Component {
           <p id="welcome">Hello, {this.state.username}</p>
           <p id="following">{this.state.following} Following</p>
           <p id="followers">{this.state.followers} Followers</p>
-          <button id="edit_prof">Edit Profile</button>
 
+          <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
           <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
 
           <svg id="logo" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
