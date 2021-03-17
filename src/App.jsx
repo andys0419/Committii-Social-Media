@@ -12,6 +12,8 @@ import LoginForm from "./Component/LoginForm.jsx";
 import Profile from "./Component/Profile.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
+import ProfilePage from "./Component/profile-page.jsx";
+import StyleGuide from "./Component/styleguide";
 import {
   BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
@@ -77,7 +79,12 @@ class App extends React.Component {
               <LoginForm toggleModal={e => toggleModal(this, e)}></LoginForm>
             </login>
           </Route>
-          </Switch>
+        </Switch>
+        <Switch>
+          <Route path="/profile">
+            <Profile toggleModal={e => toggleModal(this, e)}></Profile>
+          </Route>
+        </Switch>
           <Route exact path="/">
             <homepage>
               <div id="navbar" className="navbar">
