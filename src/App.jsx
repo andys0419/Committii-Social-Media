@@ -9,10 +9,9 @@ import "./App.css";
 import PostForm from "./Component/PostForm.jsx";
 import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
-import Profile from "./Component/Profile.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
-import ProfilePage from "./Component/profile-page.jsx";
+import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
 import {
   BrowserRouter as Router, Route, Switch, Link
@@ -83,6 +82,11 @@ class App extends React.Component {
         <Switch>
           <Route path="/profile">
             <Profile toggleModal={e => toggleModal(this, e)}></Profile>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/styleguide">
+            <StyleGuide toggleModal={e => toggleModal(this, e)}></StyleGuide>
           </Route>
         </Switch>
           <Route exact path="/">
