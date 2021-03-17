@@ -13,8 +13,9 @@ import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
-import ProfileSettings from "./Component/ProfileSettings.jsx"
-import Register from "./Component/Register.jsx"
+import ProfileSettings from "./Component/ProfileSettings.jsx";
+import Register from "./Component/Register.jsx";
+import PrivacySettings from "./Component/privacy-settings.jsx";
 import {
   BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
@@ -84,6 +85,8 @@ class App extends React.Component {
               </div>
               <Register toggleModal={e => toggleModal(this, e)}></Register>
             </register>
+        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}>
         </Route>
       </Switch>
         <Switch>
