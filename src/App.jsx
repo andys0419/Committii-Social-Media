@@ -13,7 +13,8 @@ import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
-import profilesettings from "./Component/ProfileSettings.jsx"
+import ProfileSettings from "./Component/ProfileSettings.jsx"
+import Register from "./Component/Register.jsx"
 import {
   BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
@@ -67,7 +68,12 @@ class App extends React.Component {
       <Router>
       <Switch>
         <Route path="/profilesettings">
-          <profilesettings toggleModal={e => toggleModal(this, e)}></profilesettings>
+          <ProfileSettings toggleModal={e => toggleModal(this, e)}></ProfileSettings>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/register">
+          <Register toggleModal={e => toggleModal(this, e)}></Register>
         </Route>
       </Switch>
         <Switch>
