@@ -414,12 +414,18 @@
   margin-bottom: 1%;
 }
 #LoginPassword{
+  margin-top: 1%;
   margin-left: 2%;
+  margin-bottom: 1%;
 }
-#LoginSubmit{
+#SubmitButton{
+  background-color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
   width: 25%;
   margin-top: 1%;
   margin-left: 36%;
+  margin-bottom: 3%;
 }
 #ForgotP {
   color: gray;
@@ -447,4 +453,17 @@
 #LoginForm {
   width: 96%;
   height: 3em;
+}
+#MicImage {
+  align-items: flex-start;
+  height: fit-content;
+}
+
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+c {
+  font-family: 'Oswald', sans-serif;
 }

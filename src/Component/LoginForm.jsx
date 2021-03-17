@@ -95,7 +95,7 @@ export default class LoginForm extends React.Component {
     if (!sessionStorage.getItem("token")) {
       return (
         <form id="Login" onSubmit={this.submitHandler}>
-          <a id="LoginLabel">SIGN IN</a>
+          <h1 id="LoginLabel">SIGN IN</h1>
           <div id="LoginUsername">
             <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
           </div>
@@ -104,7 +104,7 @@ export default class LoginForm extends React.Component {
           </div>
           <Link to="/forgotpassword"><a id="ForgotP">Forget your password? CLick here.</a></Link>
           <Link to="/register" id="RegisterinLog">New? Register here.</Link>
-          <input id="LoginSubmit" type="submit" value="Submit" />
+          <input id="SubmitButton" type="submit" value="Submit" />
           <p>{this.state.alanmessage}</p>
         </form>
       );

@@ -73,7 +73,17 @@ class App extends React.Component {
       </Switch>
       <Switch>
         <Route path="/register">
-          <Register toggleModal={e => toggleModal(this, e)}></Register>
+          <register>
+              <div className="navbar">
+                <Link to="/">
+                  <cz id="MicImage">
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>COMMITTII</c>
+                  </cz>
+                </Link>
+              </div>
+              <Register toggleModal={e => toggleModal(this, e)}></Register>
+            </register>
         </Route>
       </Switch>
         <Switch>
@@ -83,7 +93,7 @@ class App extends React.Component {
                 <Link to="/">
                   <cz>
                     <img src="Images/committii logo.jpg"></img>
-                    <c>Committii</c>
+                    <c>COMMITTII</c>
                   </cz>
                 </Link>
               </div>
@@ -105,7 +115,7 @@ class App extends React.Component {
             <homepage>
               <div id="navbar" className="navbar">
                 <img src="Images/committii logo.jpg"></img>
-                <c>Committii</c>
+                <c>COMMITTII</c>
                 <Link to="/login"><ld>Login</ld></Link>
               </div>
               <div className="homebody" id="homebody">
