@@ -16,8 +16,9 @@ import StyleGuide from "./Component/styleguide";
 import ProfileSettings from "./Component/ProfileSettings.jsx";
 import Register from "./Component/Register.jsx";
 import PrivacySettings from "./Component/privacy-settings.jsx";
+
 import {
-  BrowserRouter as Router, Route, Switch, Link
+  BrowserRouter as Router, Route, Switch, Link 
 } from 'react-router-dom';
 
 // toggleModal will both show and hide the modal dialog, depending on current state.  Note that the
@@ -90,6 +91,7 @@ class App extends React.Component {
         </Route>
         <Route path="/privacy-settings" component={PrivacySettings}>
         </Route>
+
       </Switch>
         <Switch>
           <Route path="/login">
@@ -122,6 +124,7 @@ class App extends React.Component {
                 <img src="Images/committii logo.jpg"></img>
                 <c>COMMITTII</c>
                 <Link to="/login"><ld>Login</ld></Link>
+                <Link to="/styleguide"><ld>Style Guide</ld></Link>
               </div>
               <div className="homebody" id="homebody">
                  <div class="text">
