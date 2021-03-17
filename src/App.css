@@ -382,7 +382,7 @@
   float: left;
   text-align: left;
   color: #f2f2f2;
-  padding: 14px 16px; 
+  padding: 14px 16px;
   text-decoration: none;
   font-size: large;
 }
@@ -412,10 +412,10 @@
   margin-top: 1%;
   margin-left: 2%;
   margin-bottom: 1%;
-} 
+}
 #LoginPassword{
   margin-left: 2%;
-} 
+}
 #LoginSubmit{
   width: 25%;
   margin-top: 1%;
@@ -443,4 +443,8 @@
   text-decoration: none;
   font-size: x-large;
   font-weight: bold;
+}
+#LoginForm {
+  width: 96%;
+  height: 3em;
 }
