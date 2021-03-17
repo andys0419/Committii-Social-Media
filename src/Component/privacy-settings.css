@@ -2,6 +2,8 @@
     position: relative;
     top: -800px;
     color: black;
+    font-weight: bold;
+    font-size: 150%;
 }
 
 #Box {
