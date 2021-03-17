@@ -13,6 +13,7 @@ import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
+import profilesettings from "./Component/ProfileSettings.jsx"
 import {
   BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
@@ -64,6 +65,11 @@ class App extends React.Component {
       // expressions, and would otherwise capture all the routes.  Ask me how I
       // know this.
       <Router>
+      <Switch>
+        <Route path="/profilesettings">
+          <profilesettings toggleModal={e => toggleModal(this, e)}></profilesettings>
+        </Route>
+      </Switch>
         <Switch>
           <Route path="/login">
             <login>
