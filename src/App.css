@@ -382,7 +382,7 @@
   float: left;
   text-align: left;
   color: #f2f2f2;
-  padding: 14px 16px; 
+  padding: 14px 16px;
   text-decoration: none;
   font-size: large;
 }
@@ -412,14 +412,20 @@
   margin-top: 1%;
   margin-left: 2%;
   margin-bottom: 1%;
-} 
+}
 #LoginPassword{
+  margin-top: 1%;
   margin-left: 2%;
-} 
-#LoginSubmit{
+  margin-bottom: 1%;
+}
+#SubmitButton{
+  background-color: #FFFFFF;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
   width: 25%;
   margin-top: 1%;
   margin-left: 36%;
+  margin-bottom: 3%;
 }
 #ForgotP {
   color: gray;
@@ -443,4 +449,21 @@
   text-decoration: none;
   font-size: x-large;
   font-weight: bold;
+}
+#LoginForm {
+  width: 96%;
+  height: 3em;
+}
+#MicImage {
+  align-items: flex-start;
+  height: fit-content;
+}
+
+
+body, h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', sans-serif;
+}
+
+c {
+  font-family: 'Oswald', sans-serif;
 }

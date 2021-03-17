@@ -1,12 +1,8 @@
 import React from "react";
 import "../App.css";
 import {
-    Link
- } from 'react-router-dom';
-import {
     Redirect
 } from 'react-router';
-import backIcon from "../assets/back.png";
 //import Autocomplete from "./Autocomplete.jsx";
 
 export default class Register extends React.Component {
@@ -94,42 +90,35 @@ export default class Register extends React.Component {
             });
           }
         },
-        error => {
+        _error => {
           alert("error!");
         }
       );
   };
 
   render() {
+    const LoginFormStyle = {
+      width: "96%",
+      height: "3em"
+    }; 
+
     if (this.state.redir) return <Redirect to='/'/>
     else return (
     <div>
-        <Link to="/login">
-            <img
-            src= {backIcon}
-            className = "back-button"
-            alt="Back"
-            title="Back"
-            />
-        </Link>
-      <div class = "square">
-        <form onSubmit={this.submitHandler} className="profileform">
-            <label className="general-text">
-                E-Mail:     
-                <input type="text" className="text-box" onChange={this.myChangeHandler} />
-            </label>
-            <label className="general-text">
-                Password: 
-                <input type="text" className="password" onChange={this.passwordChangeHandler} />
-            </label>
-            <label className="general-text">
-                Password (Confirm): 
-                <input type="text" className="password" onChange={this.confirmPasswordChangeHandler} />
-            </label>
-            <input type="submit" value="submit" className/>
-            {this.state.responseMessage}
+        <form id = "Login" onSubmit={this.submitHandler} className="profileform">
+          <h1 id="LoginLabel">REGISTER</h1>
+          <div id="LoginUsername">    
+              <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
+          </div>
+          <div id="LoginUsername">
+              <input id="LoginForm" type="password" placeholder="Password" onChange={this.passwordChangeHandler} />
+          </div>
+          <div id="LoginPassword">
+              <input id="LoginForm" type="password" placeholder="Password (Confirm)" onChange={this.confirmPasswordChangeHandler} />
+          </div>
+          <input id="SubmitButton" type="Submit" value="submit" className/>
+          {this.state.responseMessage}
         </form>
-      </div>
       </div>
     );
   }
