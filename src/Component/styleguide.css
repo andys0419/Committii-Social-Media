@@ -1,8 +1,9 @@
 #title {
     position: relative;
-    top: -440px;
-    font-weight:500;
+    top: -425px;
     color: white;
+    font-size: xx-large;
+    font-weight: bold;
 }
 
 #logo_title {
@@ -25,7 +26,7 @@
 }
 
 .App-header {
-    background-color: #282c34;
+    background-color: black;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -33,4 +34,23 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+  }
+  #GeneralLayout {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 25%
+  }
+  #SectionTitle {
+    font-weight: bold;
+    font-size: xx-large;
+  }
+  #genTitles {
+    font-weight: bold;
+    margin-left: 2%;
+  }
+  #genText{
+    margin-left: 4%;
+    margin-right: 25%;
   }
