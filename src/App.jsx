@@ -14,6 +14,7 @@ import Modal from "./Component/Modal.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
 import profilesettings from "./Component/ProfileSettings.jsx"
+import PrivacySettings from "./Component/privacy-settings.jsx";
 import {
   BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
@@ -68,6 +69,8 @@ class App extends React.Component {
       <Switch>
         <Route path="/profilesettings">
           <profilesettings toggleModal={e => toggleModal(this, e)}></profilesettings>
+        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}>
         </Route>
       </Switch>
         <Switch>

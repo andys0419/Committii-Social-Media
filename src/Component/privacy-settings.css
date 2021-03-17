@@ -1,0 +1,22 @@
+#priv {
+    position: relative;
+    top: -800px;
+    color: black;
+}
+
+#Box {
+    display: flex;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    top: 100px;
+    width: 700px;
+    height: 900px;
+}
+
+#back {
+    display: flex;
+    position: relative;
+    top: -865px;
+    left: 10px;
+}
