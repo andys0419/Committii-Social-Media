@@ -12,9 +12,8 @@ import LoginForm from "./Component/LoginForm.jsx";
 import Profile from "./Component/Profile.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
-import Navbar from "./Component/Navbar.jsx";
 import {
-  BrowserRouter as Router, Route, Switch
+  BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
 
 // toggleModal will both show and hide the modal dialog, depending on current state.  Note that the
@@ -63,42 +62,38 @@ class App extends React.Component {
       // the same effect as /posts, needs to go last, because it uses regular
       // expressions, and would otherwise capture all the routes.  Ask me how I
       // know this.
-      <Router basename={process.env.PUBLIC_URL}>
-      <div className="App">
-        <header className="App-header">
-
-          <Navbar toggleModal={e => toggleModal(this, e)} />
-
-          <div className="maincontent" id="mainContent">
-            <Switch>
-            <Route path="/settings">
-              <div className="settings">
-                <p>Settings</p>
-                <Profile userid={sessionStorage.getItem("user")} />
+      <Router>
+        <Switch>
+          <Route path="/login">
+            <login>
+              <div id="navbar" className="navbar">
+                <Link to="/">
+                  <cz>
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>Committii</c>
+                  </cz>
+                </Link>
               </div>
-            </Route>
-            <Route path="/friends">
-              <div>
-                <p>Friends</p>
-                <FriendForm userid={sessionStorage.getItem("user")} />
-                <FriendList userid={sessionStorage.getItem("user")} />
+              <LoginForm toggleModal={e => toggleModal(this, e)}></LoginForm>
+            </login>
+          </Route>
+          </Switch>
+          <Route exact path="/">
+            <homepage>
+              <div id="navbar" className="navbar">
+                <img src="Images/committii logo.jpg"></img>
+                <c>Committii</c>
+                <Link to="/login"><ld>Login</ld></Link>
               </div>
-            </Route>
-            <Route path={["/posts","/"]}>
-              <div>
-                <p>Social Media Test Harness</p>
-                <LoginForm refreshPosts={this.doRefreshPosts}  />
-                <PostForm refresh={this.state.refreshPosts}/>
+              <div className="homebody" id="homebody">
+                 <div class="text">
+                  <t>LIFE, BY COMMITTII.</t>
+                  <b>Create your own polls, View other user polls, and Vote on a Poll of your choice.</b>
               </div>
-            </Route>
-            </Switch>
-          </div>
-        </header>
-
-        <Modal show={this.state.openModal} onClose={e => toggleModal(this, e)}>
-          This is a modal dialog!
-        </Modal>
-      </div>
+                <img src="Images\graphs.jpg"></img>
+              </div>
+            </homepage>
+          </Route>
       </Router>
     );
   }
