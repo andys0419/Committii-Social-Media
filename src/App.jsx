@@ -13,8 +13,10 @@ import Profile from "./Component/Profile.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Navbar from "./Component/Navbar.jsx";
+
 import ProfilePage from "./Component/profile-page.jsx";
-import StyleGuide from "./Component/styleguide";
+import StyleGuide from "./Component/styleguide.jsx";
+import PrivacySettings from "./Component/privacy-settings.jsx";
 import {
   BrowserRouter as Router, Route, Switch
 } from 'react-router-dom';
@@ -69,7 +71,7 @@ class App extends React.Component {
       <div className="App">
         <header className="App-header">
 
-          <Navbar toggleModal={e => toggleModal(this, e)} />
+          <Navbar toggleModal={e => toggleModal(this, e)}/>
           <div className="maincontent" id="mainContent">
             <Switch>
             <Route path="/settings">
@@ -82,14 +84,16 @@ class App extends React.Component {
                 <StyleGuide userid={sessionStorage.getItem("user")} />
               </div>
             </Route>
-            <Route path={["/posts","/"]}>
+            <Route path="/privacy-settings" component={PrivacySettings}>
+            </Route>
+            </Switch>
+            {/* <Route path={["/posts","/"]}>
               <div>
                 <p>Social Media Test Harness</p>
                 <LoginForm refreshPosts={this.doRefreshPosts}  />
                 <PostForm refresh={this.state.refreshPosts}/>
               </div>
-            </Route>
-            </Switch>
+            </Route> */}
           </div>
         </header>
 

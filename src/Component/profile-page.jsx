@@ -1,4 +1,7 @@
 import React from "react";
+import {
+  Link
+} from 'react-router-dom';
 import prof from './prof.png';
 import "./profile-page.css";
 
@@ -21,7 +24,8 @@ export default class ProfilePage extends React.Component {
           <p id="following">{this.state.following} Following</p>
           <p id="followers">{this.state.followers} Followers</p>
           <button id="edit_prof">Edit Profile</button>
-          <button id="edit_priv">Privacy Settings</button>
+
+          <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
 
           <svg id="logo" width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M45.4441 39.9534L36.3011 49.0965C35.3631 50.0343 33.8425 50.0345 32.9043 49.0965C31.9663 48.1586 31.9663 46.6377 32.9043 45.6997L42.0473 36.5566C39.8248 33.8673 38.2458 30.8216 37.3119 27.6255L2.61194 64.4013C-0.953099 68.2066 -0.857344 74.0754 2.82955 77.7623L4.23881 79.1716C7.92586 82.859 13.7951 82.9538 17.6059 79.3834L54.3751 44.6888C51.179 43.755 48.1334 42.1759 45.4441 39.9534Z" fill="#FFFCFC"/>

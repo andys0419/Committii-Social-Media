@@ -31,7 +31,7 @@ class Navbar extends React.Component {
         <li className="pm admin">
           <Link to="/friends">
             <img
-              src={friendIcon}
+              src={settingIcon}
               className="sidenav-icon"
               alt="Friends"
               title="Friends"
@@ -41,10 +41,10 @@ class Navbar extends React.Component {
         <li className="pm admin">
           <Link to="/settings">
             <img
-              src={settingIcon}
+              src={friendIcon}
               className="sidenav-icon"
               alt="Settings"
-              title="Settings"
+              title="Profile Page"
             />
           </Link>
         </li>
