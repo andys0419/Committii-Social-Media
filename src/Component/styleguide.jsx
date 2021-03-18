@@ -2,6 +2,10 @@ import React from "react";
 import "./styleguide.css";
 import logo from "../assets/logo.svg";
 import color from "../assets/color_palette.png";
+import backarrow from "../assets/back_arrow.svg";
+import {
+  Link
+} from 'react-router-dom';
 
 
 export default class StyleGuide extends React.Component {
@@ -14,6 +18,9 @@ export default class StyleGuide extends React.Component {
         <header className="App-header">
             <p id="title">Committii Style Guide</p>
         </header>
+        <Link to="/">
+          <img src={backarrow} id="back-button"></img>
+        </Link>
         <p id="logo_title">The <i>Committii</i> Logo</p>
         <p id="logo_desc">The logo is formed by Committi's icon, the microphone as well as our brand name, Committi shown beside our icon in the Oswald font.</p>
         <img src={logo} className="logo_photo"/>

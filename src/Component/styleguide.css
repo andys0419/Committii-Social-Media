@@ -47,8 +47,14 @@
     color: white;
 }
 
+#back-button {
+    position: absolute;
+    top: 2%;
+    left: 0.5%;
+}
+
 .App-header {
-    background-color: #282c34;
+    background-color: black;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

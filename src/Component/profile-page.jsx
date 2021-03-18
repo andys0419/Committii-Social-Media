@@ -62,8 +62,9 @@ export default class ProfilePage extends React.Component {
 
         <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
         <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-
-        <img id="committii-logo" src={committiilogo}></img>
+        <Link to="/">
+          <img id="committii-logo" src={committiilogo}></img>
+        </Link>
         <canvas id="Polls"></canvas>
         <p id="curr_polls">Current Polls:</p>
         <p id="prev_polls">Previous Polls:</p>
