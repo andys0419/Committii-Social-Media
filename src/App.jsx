@@ -9,12 +9,18 @@ import "./App.css";
 import PostForm from "./Component/PostForm.jsx";
 import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
-import Profile from "./Component/Profile.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
-import Navbar from "./Component/Navbar.jsx";
+import Profile from "./Component/profile-page.jsx";
+import StyleGuide from "./Component/styleguide";
+import ProfileSettings from "./Component/ProfileSettings.jsx";
+import Register from "./Component/Register.jsx";
+import PrivacySettings from "./Component/privacy-settings.jsx";
+import ForgotPassword from "./Component/ForgotPassword.jsx"
+import CheckEmail from "./Component/CheckEmail.jsx"
+
 import {
-  BrowserRouter as Router, Route, Switch
+  BrowserRouter as Router, Route, Switch, Link 
 } from 'react-router-dom';
 
 // toggleModal will both show and hide the modal dialog, depending on current state.  Note that the
@@ -64,41 +70,96 @@ class App extends React.Component {
       // expressions, and would otherwise capture all the routes.  Ask me how I
       // know this.
       <Router>
-      <div className="App">
-        <header className="App-header">
-
-          <Navbar toggleModal={e => toggleModal(this, e)} />
-
-          <div className="maincontent" id="mainContent">
-            <Switch>
-            <Route path="/settings">
-              <div className="settings">
-                <p>Settings</p>
-                <Profile userid={sessionStorage.getItem("user")} />
+      <Switch>
+        <Route path="/profilesettings">
+          <ProfileSettings toggleModal={e => toggleModal(this, e)}></ProfileSettings>
+        </Route>
+      </Switch>
+      <Switch>
+        <Route path="/register">
+          <register>
+              <div className="navbar">
+                <Link to="/">
+                  <cz id="MicImage">
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>COMMITTII</c>
+                  </cz>
+                </Link>
               </div>
-            </Route>
-            <Route path="/friends">
-              <div>
-                <p>Friends</p>
-                <FriendForm userid={sessionStorage.getItem("user")} />
-                <FriendList userid={sessionStorage.getItem("user")} />
+              <Register toggleModal={e => toggleModal(this, e)}></Register>
+            </register>
+        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}>
+        </Route>
+      </Switch>
+        <Switch>
+          <Route path="/login">
+            <login>
+              <div id="navbar" className="navbar">
+                <Link to="/">
+                  <cz>
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>COMMITTII</c>
+                  </cz>
+                </Link>
               </div>
-            </Route>
-            <Route path={["/posts","/"]}>
-              <div>
-                <p>Social Media Test Harness</p>
-                <LoginForm refreshPosts={this.doRefreshPosts}  />
-                <PostForm refresh={this.state.refreshPosts}/>
+              <LoginForm toggleModal={e => toggleModal(this, e)}></LoginForm>
+            </login>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/forgotpassword">
+            <div id="navbar" className="navbar">
+                <Link to="/">
+                  <cz>
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>COMMITTII</c>
+                  </cz>
+                </Link>
               </div>
-            </Route>
-            </Switch>
-          </div>
-        </header>
-
-        <Modal show={this.state.openModal} onClose={e => toggleModal(this, e)}>
-          This is a modal dialog!
-        </Modal>
-      </div>
+            <ForgotPassword toggleModal={e => toggleModal(this, e)}></ForgotPassword>
+        </Route>
+        </Switch>
+        <Switch>
+          <Route path="/checkemail">
+            <div id="navbar" className="navbar">
+                <Link to="/">
+                  <cz>
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>COMMITTII</c>
+                  </cz>
+                </Link>
+              </div>
+            <CheckEmail toggleModal={e => toggleModal(this, e)}></CheckEmail>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/profile">
+            <Profile toggleModal={e => toggleModal(this, e)}></Profile>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/styleguide">
+            <StyleGuide toggleModal={e => toggleModal(this, e)}></StyleGuide>
+          </Route>
+        </Switch>
+          <Route exact path="/">
+            <homepage>
+              <div id="navbar" className="navbar">
+                <img src="Images/committii logo.jpg"></img>
+                <c>COMMITTII</c>
+                <Link to="/login"><ld>Login</ld></Link>
+                <Link to="/styleguide"><ld>Style Guide</ld></Link>
+              </div>
+              <div className="homebody" id="homebody">
+                 <div class="text">
+                  <t>LIFE, BY COMMITTII.</t>
+                  <b>Create your own polls, View other user polls, and Vote on a Poll of your choice.</b>
+              </div>
+                <img src="Images\graphs.jpg"></img>
+              </div>
+            </homepage>
+          </Route>
       </Router>
     );
   }

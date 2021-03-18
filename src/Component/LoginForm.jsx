@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "../App.css";
 
@@ -91,20 +92,19 @@ export default class LoginForm extends React.Component {
 
   render() {
     // console.log("Rendering login, token is " + sessionStorage.getItem("token"));
-
     if (!sessionStorage.getItem("token")) {
       return (
-        <form onSubmit={this.submitHandler}>
-          <label>
-            Username
-            <input type="text" onChange={this.myChangeHandler} />
-          </label>
-          <br />
-          <label>
-            Password
-            <input type="password" onChange={this.passwordChangeHandler} />
-          </label>
-          <input type="submit" value="submit" />
+        <form id="Login" onSubmit={this.submitHandler}>
+          <h1 id="LoginLabel">SIGN IN</h1>
+          <div id="LoginUsername">
+            <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
+          </div>
+          <div id="LoginPassword">
+            <input id="LoginForm" type="password" placeholder="Password" onChange={this.passwordChangeHandler} />
+          </div>
+          <Link to="/forgotpassword"><a id="ForgotP">Forget your password? CLick here.</a></Link>
+          <Link to="/register" id="RegisterinLog">New? Register here.</Link>
+          <input id="SubmitButton" type="submit" value="Submit" />
           <p>{this.state.alanmessage}</p>
         </form>
       );

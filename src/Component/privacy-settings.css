@@ -1,0 +1,24 @@
+#priv {
+    position: relative;
+    top: -807px;
+    color: black;
+    font-weight: bold;
+    font-size: 150%;
+}
+
+#Box {
+    display: flex;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    top: 100px;
+    width: 700px;
+    height: 900px;
+}
+
+#back {
+    display: flex;
+    position: relative;
+    top: -864px;
+    left: 615px;
+}
