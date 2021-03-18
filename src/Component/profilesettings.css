@@ -13,10 +13,11 @@
   margin-left: 2%;
   margin-bottom: 1%;
 }
-#ProfileInput2{
-  margin-top: 1%;
+
+#BlockedResults{
+  margin-top: -3%;
   margin-left: 2%;
-  margin-bottom: 1%;
+  margin-bottom: -2%;
 }
 
 .container {
@@ -48,6 +49,32 @@ button {
   height: 140px;
   width: 140px;
   position: relative;
-  top: 70%;
+  top: -68px;
+  left: 240px;
   border-radius: 50%;
+}
+
+#backarrow {
+    display: flex;
+    position: relative;
+    top: -905px;
+    left: -1px;
+
+}
+
+#settingslogo {
+  display: flex;
+  position: relative;
+  top: -950px;
+  left: -690px;
+  size: 90%;
+}
+
+#avatarbutton {
+    display: flex;
+    position: relative;
+    top: 120px;
+    left: 225px;
+    font-size: medium;
+
 }

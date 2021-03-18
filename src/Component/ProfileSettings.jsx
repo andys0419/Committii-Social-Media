@@ -5,6 +5,9 @@ import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
 import prof from "./prof.png";
+import logo from "../assets/logo.svg";
+import backarrow from "../assets/back_arrow.svg";
+
 
 
 // the login form will display if there is no session token stored.  This will display
@@ -14,143 +17,120 @@ import prof from "./prof.png";
 export default class ProfileSettings extends React.Component {
   constructor() {
     super();
-
     this.state =
         {
-            username: 'Ryan',
-            email: 'jtdilapo',
+            username: 'John Smith',
+            email: 'test@test.edu',
             password: '12345',
-            bio:'Hello I am a senior',
-            dob:'12/23/2034',
-            allUsers: [],
-            blockedUsers: [],
+            bio:'Tell us something about you',
+            dob:'X/XX/XXXX',
+            blockedUsers: ["No Blocked Users"],
+            avatarbutton:"Change Avatar",
+            closebutton:"Close Account"
     };
-
+    this.handleClick = this.handleClick.bind(this)
+      this.changeAvatarButton = this.changeAvatarButton.bind(this);
+    this.changeAvatarButtonBack = this.changeAvatarButtonBack.bind(this);
+    this.changeCloseButton = this.changeCloseButton.bind(this);
+    this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
   }
 
-  componentDidMount() {
-  // make a request to our API and get all of the users
-  fetch("http://stark.cse.buffalo.edu/hci/usercontroller.php", {
-    method: "POST",
-    body: JSON.stringify({
-      action: "getUsers"
-    })
-  })
-    .then(response => response.json())
-    .then(json => {
-      // when we recieve a response, set the users state to our return value.
-      this.setState({
-        allUsers: json.users
-      })
-    });
-}
+  handleClick(){
+    // Changing state
+      if(document.getElementById('username').value != "") {
+          this.setState({username: document.getElementById('username').value});
+          document.getElementById('username').value = '';
+      }
+      if(document.getElementById('password').value != "") {
+          this.setState({password: document.getElementById('password').value})
+          document.getElementById('password').value = ''
+      }
+      if(document.getElementById('email').value != "") {
+          this.setState({email: document.getElementById('email').value});
+          document.getElementById('email').value = '';
+      }
+      if(document.getElementById('bio').value != "") {
+          this.setState({bio: document.getElementById('bio').value})
+          document.getElementById('bio').value = ''
+      }
+      if(document.getElementById('dob').value != "") {
+          this.setState({dob: document.getElementById('dob').value})
+          document.getElementById('dob').value = ''
+      }
 
-
-myChangeHandler = event => {
-    this.setState({
-      username: event.target.value
-    });
-  };
-
-  passwordChangeHandler = event => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  // when the user hits submit, process the login through the API
-  submitHandler = event => {
-    //keep the form from actually submitting
-    event.preventDefault();
-
-    //make the api call to the authentication page
-    fetch(process.env.REACT_APP_API_PATH+"/auth/login", {
-      method: "post",
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: this.state.username,
-        password: this.state.password
-      })
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          console.log("Testing");
-          if (result.userID) {
-
-            // set the auth token and user ID in the session state
-            sessionStorage.setItem("token", result.token);
-            sessionStorage.setItem("user", result.userID);
-
-            this.setState({
-              sessiontoken: result.token,
-              alanmessage: result.token
-            });
-
-            // call refresh on the posting list
-            this.refreshPostsFromLogin();
-          } else {
-
-            // if the login failed, remove any infomation from the session state
-            sessionStorage.removeItem("token");
-            sessionStorage.removeItem("user");
-            this.setState({
-              sessiontoken: "",
-              alanmessage: result.message
-            });
+      if(document.getElementById('blocked').value != "") {
+          if (this.state.blockedUsers[0] == "No Blocked Users"){
+              this.setState({blockedUsers: [document.getElementById('blocked').value]})
+          }else{
+              this.setState({blockedUsers: [...this.state.blockedUsers ," ", document.getElementById('blocked').value]})
           }
-        },
-        error => {
-          alert("error!");
-        }
-      );
-  };
+          document.getElementById('blocked').value = ''
+      }
+  }
+
+  changeAvatarButton(){
+      this.setState({avatarbutton:"Feature Coming Soon"})
+  }
+  changeAvatarButtonBack(){
+      this.setState({avatarbutton:"Change Avatar"})
+  }
+   changeCloseButton(){
+      this.setState({closebutton:"Feature Coming Soon"})
+  }
+  changeCloseButtonBack(){
+      this.setState({closebutton:"Close Account"})
+  }
 
   render() {
-    // console.log("Rendering login, token is " + sessionStorage.getItem("token"));
     const LoginFormStyle = {
       width: "96%",
       height: "3em"
     };
-
-    const allUsers = this.state.allUsers;
       return (
-        <form id="Login" onSubmit={this.submitHandler}>
+        <div id="Login">
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <button>Change Avatar</button>
+                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
                 <img src={prof} className="prof_pic" alt="logo" />
             </div>
             <a id="ProfileHeading">Account Information</a>
-          <div id="ProfileInput2">
-            <input name = "hi" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} />
+          <div id="ProfileInput">
+            <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} />
           </div>
             <div id="ProfileInput">
-            <input style={LoginFormStyle} type="password" placeholder={"Password: "+this.state.password} />
+            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: "+this.state.password} />
           </div>
             <div id="ProfileInput">
-            <input style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email}/>
+            <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email}/>
           </div>
             <a id="ProfileHeading">Social Information</a>
             <div id="ProfileInput">
-            <input style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.bio}/>
+            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.bio}/>
           </div>
           <div id="ProfileInput">
-            <input style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.dob}/>
+            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.dob}/>
+          </div>
+            <a id="ProfileHeading">Blocked Users</a>
+            <div id="BlockedResults">
+            <p>{this.state.blockedUsers}</p>
+            </div>
+          <div id="ProfileInput">
+            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"}/>
           </div>
 
             <div className='container'>
-                <button>Privacy Settings</button>
-                <button onClick={this.myChangeHandler}>Save</button>
-                <button>Close Account</button>
+                <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
+                <button onClick={this.handleClick}>Save</button>
+                <button onMouseLeave={this.changeCloseButtonBack} onMouseOver={this.changeCloseButton}>{this.state.closebutton}</button>
+                <Link to="/profile">
+                <img id="backarrow" src={backarrow}></img>
+                </Link>
             </div>
 
+            <img id="settingslogo" src={logo}></img>
 
           <p>{this.state.alanmessage}</p>
-        </form>
-
+        </div>
       );
   }
 }
