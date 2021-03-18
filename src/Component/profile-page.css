@@ -1,25 +1,18 @@
-.prof_pic {
+#prof_pic {
   display: flex;
   height: 140px;
   width: 140px;
   position: relative;
-  top: -190px;
+  top: -185px;
   border-radius: 50%;
 }
 
-#logo {
+#committii-logo {
   display: flex;
   position: relative;
   top: -650px;
   left: -790px;
   size: 90%;
-}
-
-#logo_text {
-  display: flex;
-  position: relative;
-  top: -660px;
-  left: -750px;
 }
 
 #welcome {
@@ -33,7 +26,7 @@
   position: relative;
   top: -313px;
   left: 450px;
-  background-color: black;
+  background-color: #302c34;
   border: none;
   color: white;
   padding: 3px;
@@ -83,17 +76,6 @@
   top: -700px;
   width: 700px;
   height: 900px;
-}
-
-#my-polls {
-  background-color: rgb(216, 216, 216);
-  width: 700px;
-  text-align: center;
-  font-size: 40px;
-  color: black;
-  position: relative;
-  top: -735px;
-  left: 602px;
 }
 
 #curr_polls {
@@ -213,4 +195,5 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
+  background-color: black;
 }

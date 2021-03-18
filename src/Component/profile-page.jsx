@@ -4,14 +4,14 @@ import {
 } from 'react-router-dom';
 import prof from './prof.png';
 import "./profile-page.css";
-import logo from "../assets/logo.svg";
+import committiilogo from "../assets/logo.svg";
 
 export default class ProfilePage extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      username: '',
+      username: 'User',
       following: 0,
       followers: 0
     };
@@ -38,9 +38,9 @@ export default class ProfilePage extends React.Component {
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
-              username: result.username || "",
-              firstname: result.firstName || "",
-              lastname: result.lastName || ""
+              username: result.email || "",
+              //firstname: result.firstName || "",
+              //lastname: result.lastName || ""
 
             });
           }
@@ -56,16 +56,15 @@ export default class ProfilePage extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={prof} className="prof_pic" alt="logo" />
-          <p id="welcome">Hello, {this.state.username}</p>
-          <p id="following">{this.state.following} Following</p>
-          <p id="followers">{this.state.followers} Followers</p>
+            <img src={prof} id="prof_pic" alt="logo" />
+            <p id="welcome">Hello, {this.state.username}</p>
+            <p id="following">{this.state.following} Following</p>
+            <p id="followers">{this.state.followers} Followers</p>
 
-          <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-          <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
+            <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
+            <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
 
-          <img id="logo" src={logo}></img>
-
+           <img id="committii-logo" src={committiilogo}></img>
         </header>
         <div className="Feed">
           <canvas id="Polls"></canvas>
