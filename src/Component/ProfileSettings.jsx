@@ -15,24 +15,141 @@ import backarrow from "../assets/back_arrow.svg";
 // the session.
 
 export default class ProfileSettings extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state =
         {
-            username: 'John Smith',
+            username: '',
             email: 'test@test.edu',
             password: '12345',
             bio:'Tell us something about you',
             dob:'X/XX/XXXX',
             blockedUsers: ["No Blocked Users"],
             avatarbutton:"Change Avatar",
-            closebutton:"Close Account"
+            closebutton:"Close Account",
+            firstname: "",
+            lastname: "",
+            favoritecolor: "",
+            responseMessage: ""
     };
     this.handleClick = this.handleClick.bind(this)
       this.changeAvatarButton = this.changeAvatarButton.bind(this);
     this.changeAvatarButtonBack = this.changeAvatarButtonBack.bind(this);
     this.changeCloseButton = this.changeCloseButton.bind(this);
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
+    this.fieldChangeHandler.bind(this);
+
+  }
+
+  fieldChangeHandler(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+
+
+  componentDidMount() {
+    console.log("In profile");
+    console.log(this.props);
+
+    // first fetch the user data to allow update of username
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+            console.log(result);
+
+            this.setState({
+              // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
+              // try and make the form component uncontrolled, which plays havoc with react
+              username: result.username || "",
+              firstname: result.firstName || "",
+              lastname: result.lastName || ""
+
+            });
+          }
+        },
+        error => {
+          alert("error!");
+        }
+      );
+
+    //make the api call to the user API to get the user with all of their attached preferences
+    fetch(process.env.REACT_APP_API_PATH+"/user-preferences?userID="+sessionStorage.getItem("user"), {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+            console.log(result);
+            let favoritecolor = "";
+
+            // read the user preferences and convert to an associative array for reference
+
+
+
+            console.log(favoritecolor);
+
+
+          }
+        },
+        error => {
+          alert("error!");
+        }
+      );
+  }
+
+  submitHandler = event => {
+    //keep the form from actually submitting
+    event.preventDefault();
+
+    //make the api call to the user controller
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+
+        username: this.state.username,
+
+      })
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            responseMessage: result.Status
+          });
+        },
+        error => {
+          alert("error!");
+        }
+      );
+
+    let url = process.env.REACT_APP_API_PATH+"/user-preferences";
+    let method = "POST";
+
+
+
+    //make the api call to the user prefs controller
+
+
+
   }
 
   handleClick(){
@@ -79,7 +196,9 @@ export default class ProfileSettings extends React.Component {
   }
   changeCloseButtonBack(){
       this.setState({closebutton:"Close Account"})
-  }
+  };
+
+
 
   render() {
     const LoginFormStyle = {
@@ -87,6 +206,7 @@ export default class ProfileSettings extends React.Component {
       height: "3em"
     };
       return (
+          <form onSubmit={this.submitHandler} className="profileform">
         <div id="Login">
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
@@ -95,7 +215,8 @@ export default class ProfileSettings extends React.Component {
             </div>
             <a id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
-            <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} />
+            <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
+            value={this.state.username} />
           </div>
             <div id="ProfileInput">
             <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: "+this.state.password} />
@@ -120,17 +241,16 @@ export default class ProfileSettings extends React.Component {
 
             <div className='container'>
                 <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
-                <button onClick={this.handleClick}>Save</button>
+                <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
                 <button onMouseLeave={this.changeCloseButtonBack} onMouseOver={this.changeCloseButton}>{this.state.closebutton}</button>
                 <Link to="/profile">
                 <img id="backarrow" src={backarrow}></img>
                 </Link>
             </div>
-
             <img id="settingslogo" src={logo}></img>
-
-          <p>{this.state.alanmessage}</p>
         </div>
+        {this.state.responseMessage}
+      </form>
       );
   }
 }
