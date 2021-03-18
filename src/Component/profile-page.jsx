@@ -2,7 +2,7 @@ import React from "react";
 import {
   Link
 } from 'react-router-dom';
-import prof from './prof.png';
+import prof_pic from "../assets/profile-picture-holder.png";
 import "./profile-page.css";
 import committiilogo from "../assets/logo.svg";
 
@@ -55,28 +55,24 @@ export default class ProfilePage extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-            <img src={prof} id="prof_pic" alt="logo" />
-            <p id="welcome">Hello, {this.state.username}</p>
-            <p id="following">{this.state.following} Following</p>
-            <p id="followers">{this.state.followers} Followers</p>
+        <img src={prof_pic} id="prof_pic" alt="logo" />
+        <p id="welcome">Hello, {this.state.username}</p>
+        <p id="following">{this.state.following} Following</p>
+        <p id="followers">{this.state.followers} Followers</p>
 
-            <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-            <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
+        <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
+        <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
 
-           <img id="committii-logo" src={committiilogo}></img>
-        </header>
-        <div className="Feed">
-          <canvas id="Polls"></canvas>
-          <p id="curr_polls">Current Polls:</p>
-          <p id="prev_polls">Previous Polls:</p>
-          <p id="poll1">Cats vs. Dogs</p>
-          <button id="view_res">View Results</button>
-          <button id="del_post">Delete</button>
-          <p id="poll2">Cats vs. Dogs</p>
-          <button id="view_res2">View Results</button>
-          <button id="del_post2">Delete</button>
-        </div>
+        <img id="committii-logo" src={committiilogo}></img>
+        <canvas id="Polls"></canvas>
+        <p id="curr_polls">Current Polls:</p>
+        <p id="prev_polls">Previous Polls:</p>
+        <p id="poll1">Cats vs. Dogs</p>
+        <button id="view_res">View Results</button>
+        <button id="del_post">Delete</button>
+        <p id="poll2">Cats vs. Dogs</p>
+        <button id="view_res2">View Results</button>
+        <button id="del_post2">Delete</button>
       </div>
     );
   }
