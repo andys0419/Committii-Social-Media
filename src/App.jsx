@@ -16,6 +16,8 @@ import StyleGuide from "./Component/styleguide";
 import ProfileSettings from "./Component/ProfileSettings.jsx";
 import Register from "./Component/Register.jsx";
 import PrivacySettings from "./Component/privacy-settings.jsx";
+import ForgotPassword from "./Component/ForgotPassword.jsx"
+import CheckEmail from "./Component/CheckEmail.jsx"
 
 import {
   BrowserRouter as Router, Route, Switch, Link 
@@ -103,6 +105,32 @@ class App extends React.Component {
               </div>
               <LoginForm toggleModal={e => toggleModal(this, e)}></LoginForm>
             </login>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/forgotpassword">
+            <div id="navbar" className="navbar">
+                <Link to="/">
+                  <cz>
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>COMMITTII</c>
+                  </cz>
+                </Link>
+              </div>
+            <ForgotPassword toggleModal={e => toggleModal(this, e)}></ForgotPassword>
+        </Route>
+        </Switch>
+        <Switch>
+          <Route path="/checkemail">
+            <div id="navbar" className="navbar">
+                <Link to="/">
+                  <cz>
+                    <img src="Images/committii logo.jpg"></img>
+                    <c>COMMITTII</c>
+                  </cz>
+                </Link>
+              </div>
+            <CheckEmail toggleModal={e => toggleModal(this, e)}></CheckEmail>
           </Route>
         </Switch>
         <Switch>
