@@ -1,65 +1,102 @@
 #title {
-    position: relative;
-    top: -440px;
-    font-weight:500;
-    color: white;
+  position: relative;
+  top: -425px;
+  color: white;
+  font-size: xx-large;
+  font-weight: bold;
 }
 
 #logo_title {
-    position: relative;
-    top: -850px;
-    text-decoration: underline;
-    color: white;
+  position: relative;
+  top: -850px;
+  text-decoration: underline;
+  color: white;
 }
 
 #logo_desc {
-    position: relative;
-    top: -850px;
-    font-size: 20px;
-    color: white;
+  position: relative;
+  top: -850px;
+  font-size: 20px;
+  color: white;
 }
 
 .logo_photo {
-    position: relative;
-    top: -800px;
-    max-width: 600px;
-    height:auto;
+  position: relative;
+  top: -800px;
+  max-width: 600px;
+  height:auto;
 }
 
 .color_photo {
-    position: relative;
-    top: -800px;
-    max-width: 600px;
-    height:auto;
+  position: relative;
+  top: -800px;
+  max-width: 600px;
+  height:auto;
 }
 
 #color_title {
-    position: relative;
-    top: -850px;
-    text-decoration: underline;
-    color: white;
+  position: relative;
+  top: -850px;
+  text-decoration: underline;
+  color: white;
 }
 
 #color_desc {
-    position: relative;
-    top: -850px;
-    font-size: 20px;
-    color: white;
+  position: relative;
+  top: -850px;
+  font-size: 20px;
+  color: white;
 }
 
 #back-button {
-    position: absolute;
-    top: 2%;
-    left: 0.5%;
+  position: absolute;
+  top: 2%;
+  left: 0.5%;
 }
 
-.App-header {
-    background-color: black;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
+#GeneralLayout {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-top: 5%;
+  margin-left: 25%
+}
+#SectionTitle {
+  font-weight: bold;
+  font-size: xx-large;
+}
+#genTitles {
+  font-weight: bold;
+  margin-left: 2%;
+  padding-top: 2%;
+}
+#genText{
+  margin-left: 4%;
+  margin-right: 25%;
+}
+
+#genImage{
+  float: left;
+  width: 75%;
+  height: 75%;
+  padding-top: 2%;
+  padding-left: 6%;
+}
+
+#genIcon{
+  float: left;
+  width: 75%;
+  height: 75%;
+  padding-top: 4%;
+  padding-left: 15%;
+}
+
+#genPallete{
+  float: left;
+  width: 75%;
+  height: 80%;
+  padding-top: 2%;
+  padding-left: 4%;
+  padding-bottom: 4%;
+}

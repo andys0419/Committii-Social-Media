@@ -140,6 +140,14 @@ class App extends React.Component {
         </Switch>
         <Switch>
           <Route path="/styleguide">
+          <div id="navbar" className="navbar">
+            <Link to="/">
+              <cz>
+                <img src="Images/committii logo.jpg"></img>
+                <c>COMMITTII</c>
+              </cz>
+            </Link>
+          </div>
             <StyleGuide toggleModal={e => toggleModal(this, e)}></StyleGuide>
           </Route>
         </Switch>
