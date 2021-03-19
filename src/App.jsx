@@ -20,7 +20,7 @@ import ForgotPassword from "./Component/ForgotPassword.jsx"
 import CheckEmail from "./Component/CheckEmail.jsx"
 
 import {
-  BrowserRouter as Router, Route, Switch, Link 
+  BrowserRouter as Router, Route, Switch, Link
 } from 'react-router-dom';
 
 // toggleModal will both show and hide the modal dialog, depending on current state.  Note that the
@@ -140,6 +140,14 @@ class App extends React.Component {
         </Switch>
         <Switch>
           <Route path="/styleguide">
+          <div id="navbar" className="navbar">
+            <Link to="/">
+              <cz>
+                <img src="Images/committii logo.jpg"></img>
+                <c>COMMITTII</c>
+              </cz>
+            </Link>
+          </div>
             <StyleGuide toggleModal={e => toggleModal(this, e)}></StyleGuide>
           </Route>
         </Switch>
