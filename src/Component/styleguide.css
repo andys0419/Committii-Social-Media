@@ -54,12 +54,14 @@
   font-size: x-large;
   margin-left: -20%;
   padding-top: 2%;
+  font-size: 350%;
 }
 #oswaldText{
   font-family: 'Oswald', sans-serif;
   text-align-last: center;
   margin-left: 4%;
   margin-right: 25%;
+  font-size: 250%;
 }
 
 #poppinsTitles {
@@ -68,12 +70,14 @@
   font-size: x-large;
   margin-left: -20%;
   padding-top: 2%;
+  font-size: 350%;
 }
 #poppinsText{
   font-family: 'Poppins', sans-serif;
   text-align: center;
   margin-left: 4%;
   margin-right: 25%;
+  font-size: 250%;
 }
 
 #back-button {
