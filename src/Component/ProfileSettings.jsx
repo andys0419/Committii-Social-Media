@@ -208,22 +208,15 @@ export default class ProfileSettings extends React.Component {
       return (
           <form onSubmit={this.submitHandler} className="profileform">
         <div id="Login">
+             <Link to="/profile">
+                <img id="backarrow" src={backarrow}></img>
+            </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
                 <img src={prof} className="prof_pic" alt="logo" />
+                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
             </div>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
-            <br></br>
+
             <a id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
             <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
@@ -254,10 +247,8 @@ export default class ProfileSettings extends React.Component {
                 <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
                 <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
                 <button onMouseLeave={this.changeCloseButtonBack} onMouseOver={this.changeCloseButton}>{this.state.closebutton}</button>
-                <Link to="/profile">
-                <img id="backarrow" src={backarrow}></img>
-                </Link>
             </div>
+
             <Link to="/profile">
             <img id="settingslogo" src={logo}></img>
             </Link>
