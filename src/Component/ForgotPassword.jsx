@@ -8,7 +8,8 @@ export default class ForgotPassword extends React.Component {
 
         this.state = {
             email: "",
-            errorMessage: ""
+            errorMessage: "",
+            resetToken: false
         }
     }
 
@@ -41,8 +42,8 @@ export default class ForgotPassword extends React.Component {
 
       
       // API call to fetch request for a password reset
-      fetch(process.env.REACT_APP_API_PATH+"/auth/request-reset", {
-        method: "POST",
+      fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/auth/request-reset", {
+        method: "post",
         headers: {
           'Content-Type': 'application/json',
         },
@@ -50,36 +51,18 @@ export default class ForgotPassword extends React.Component {
           email: this.state.email
         })
       })
-        .then(result => result.json())
+        .then(res => res.json())
         .then(
           result => {
             //response handling needs to be checked
-            if (result.Status == 400) {
-              this.setState({
-              errorMessage: "Bad request. Please try again!"
-              })
-              return;
+            console.log("Request sent, getting reset token of a valid email.");
+            if (result.Status !== 200) {
+              alert("There was an error with your request. Please try again.")
             }
-
-            if (result.Status == 401) {
-              this.setState({
-              errorMessage: "Authentication token is invalid. Please try again!"
-              })
-              return;
-            }
-            
-            // if (result.Status == 200) {
-            //   document.location.href = '/checkemail'
-            //   return;
-            // }
-            
           },
-         
-            document.location.href = '/checkemail'
-          
+          document.location.href = '/checkemail'
         )
       }
-
     }
     
     render() {
@@ -95,11 +78,10 @@ export default class ForgotPassword extends React.Component {
               <h3>Please enter your email address.</h3>
               <br/>
               <input id="name" name="email" placeholder="elmas@buffalo.edu" type="text" size="35" onChange={this.updateEmail} value={this.state.email} required></input>
-              {/* {this.state.email.includes("@") && this.state.email.includes(".") ? <div/> : <p>Please enter a valid email.</p>} */}
               {this.state.errorMessage !== "" ? <p>Not a valid email or bad request.</p> : <div/>}
+              {this.state.errorMessage == ""}
               <br/>
               <input name="button" type="submit" value="Submit"  onClick={this.submitEmail}></input>
-              {/* <button onClick={this.submitEmail}>Submit</button> */}
           </div>
         );
     }
