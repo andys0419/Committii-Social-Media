@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import {
+  Redirect
+} from 'react-router';
 import "../App.css";
 
 // the login form will display if there is no session token stored.  This will display
@@ -14,7 +16,8 @@ export default class LoginForm extends React.Component {
       username: "",
       password: "",
       alanmessage: "",
-      sessiontoken: ""
+      sessiontoken: "",
+      redir: false
     };
     //this.refreshPostsFromLogin = this.refreshPostsFromLogin.bind(this);
   }
@@ -65,10 +68,12 @@ export default class LoginForm extends React.Component {
             // set the auth token and user ID in the session state
             sessionStorage.setItem("token", result.token);
             sessionStorage.setItem("user", result.userID);
+            
 
             this.setState({
               sessiontoken: result.token,
-              alanmessage: result.token
+              alanmessage: result.token,
+              redir: true
             });
 
             // call refresh on the posting list
@@ -84,7 +89,7 @@ export default class LoginForm extends React.Component {
             });
           }
         },
-        error => {
+        _error => {
           alert("error!");
         }
       );
@@ -92,7 +97,8 @@ export default class LoginForm extends React.Component {
 
   render() {
     // console.log("Rendering login, token is " + sessionStorage.getItem("token"));
-    
+    if (this.state.redir) return <Redirect to='/profile'/>
+
     if (!sessionStorage.getItem("token")) {
       return (
         <form id="Login" onSubmit={this.submitHandler}>
@@ -103,7 +109,7 @@ export default class LoginForm extends React.Component {
           <div id="LoginPassword">
             <input id="LoginForm" type="password" placeholder="Password" onChange={this.passwordChangeHandler} />
           </div>
-          <Link to="/forgotpassword"><a id="ForgotP">Forget your password? CLick here.</a></Link>
+          <Link to="/forgotpassword"><a id="ForgotP">Forget your password? Click here.</a></Link>
           <Link to="/register" id="RegisterinLog">New? Register here.</Link>
           <input id="SubmitButton" type="submit" value="Submit" />
           <p>{this.state.alanmessage}</p>
