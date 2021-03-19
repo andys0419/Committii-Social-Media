@@ -44,11 +44,10 @@ export default class Register extends React.Component {
     if (this.state.password !== this.state.confirm)
     {
       this.setState({
-        password: "",
-        confirm: "",
         alanmessage: "Error: Passwords do not match"
       });
-
+      
+      return;
     }
     //make the api call to the authentication page
     fetch(process.env.REACT_APP_API_PATH+"/auth/signup", {
