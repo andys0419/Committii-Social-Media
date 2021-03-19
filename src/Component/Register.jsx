@@ -139,7 +139,7 @@ export default class Register extends React.Component {
         errormessage: ""
       });
     }
-    if (this.state.redir) return <Redirect to='/'/>
+    if (this.state.redir) return <Redirect to='/profile'/>
     else return (
     <div>
         <form id = "Login" onSubmit={this.submitHandler} className="profileform">
