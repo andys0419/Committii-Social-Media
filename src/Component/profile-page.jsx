@@ -74,6 +74,7 @@ export default class ProfilePage extends React.Component {
         <p id="poll2">Cats vs. Dogs</p>
         <button id="view_res2">View Results</button>
         <button id="del_post2">Delete</button>
+        <Link to="/"><button id="save-button">Log Out</button></Link>
       </div>
     );
   }
