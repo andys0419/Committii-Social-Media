@@ -213,13 +213,24 @@ export default class ProfileSettings extends React.Component {
                 <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
                 <img src={prof} className="prof_pic" alt="logo" />
             </div>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <a id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
             <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
             value={this.state.username} />
           </div>
             <div id="ProfileInput">
-            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: "+this.state.password} />
+            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"} />
           </div>
             <div id="ProfileInput">
             <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email}/>
@@ -247,7 +258,9 @@ export default class ProfileSettings extends React.Component {
                 <img id="backarrow" src={backarrow}></img>
                 </Link>
             </div>
+            <Link to="/profile">
             <img id="settingslogo" src={logo}></img>
+            </Link>
         </div>
         {this.state.responseMessage}
       </form>
