@@ -58,8 +58,10 @@ export default class StyleGuide extends React.Component {
 
             <div id="fonts">
               <p id="SectionTitle">Fonts:</p>
-              {/* INSERT FONT HEADER AND DESCRIPTION IN HERE! */}
-              {/* LOOK AT EXAMPLES ABOVE FOR GUIDANCE */}
+              <p id="oswaldTitles">Oswald</p>
+              <p id="oswaldText">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz.</p>
+              <p id="poppinsTitles">Poppins</p>
+              <p id="poppinsText">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz.</p>
              
             </div>
           

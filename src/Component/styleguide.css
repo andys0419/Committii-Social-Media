@@ -48,6 +48,34 @@
   color: white;
 }
 
+#oswaldTitles {
+  font-family: 'Oswald', sans-serif;
+  text-align-last: center;
+  font-size: x-large;
+  margin-left: -20%;
+  padding-top: 2%;
+}
+#oswaldText{
+  font-family: 'Oswald', sans-serif;
+  text-align-last: center;
+  margin-left: 4%;
+  margin-right: 25%;
+}
+
+#poppinsTitles {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  font-size: x-large;
+  margin-left: -20%;
+  padding-top: 2%;
+}
+#poppinsText{
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  margin-left: 4%;
+  margin-right: 25%;
+}
+
 #back-button {
   position: absolute;
   top: 2%;
@@ -99,4 +127,9 @@
   padding-top: 2%;
   padding-left: 4%;
   padding-bottom: 4%;
+}
+
+
+body, h1, h2, h3, h4, h5, h6, LoginForm {
+  font-family: 'Arial', Helvetica, serif;
 }
