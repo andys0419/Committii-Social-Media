@@ -4,10 +4,9 @@ import logo from "../assets/logo.svg";
 import icon from "../assets/icon.svg";
 import color from "../assets/color_palette.png";
 import backarrow from "../assets/back_arrow.svg";
-import {
+import { 
   Link
 } from 'react-router-dom';
-
 
 export default class StyleGuide extends React.Component {
   constructor() {
@@ -46,7 +45,7 @@ export default class StyleGuide extends React.Component {
             
             <div id="colorpallete">
               <p id="SectionTitle">Color Palettes</p>
-              <p id="genText">No color values other than those listed below should be used. 
+              <p id="genText">No color values other than those listed below should be used.
                               Variations of tints and shades of color is not permitted on our platform,
                               or in our web application.
               </p>
