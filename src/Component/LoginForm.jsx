@@ -16,15 +16,15 @@ export default class LoginForm extends React.Component {
       alanmessage: "",
       sessiontoken: ""
     };
-    this.refreshPostsFromLogin = this.refreshPostsFromLogin.bind(this);
+    //this.refreshPostsFromLogin = this.refreshPostsFromLogin.bind(this);
   }
 
   // once a user has successfully logged in, we want to refresh the post
   // listing that is displayed.  To do that, we'll call the callback passed in
   // from the parent.
-  refreshPostsFromLogin(){
-    this.props.refreshPosts();
-  }
+  // refreshPostsFromLogin(){
+  //   this.props.refreshPosts();
+  // }
 
   // change handlers keep the state current with the values as you type them, so
   // the submit handler can read from the state to hit the API layer
@@ -72,7 +72,7 @@ export default class LoginForm extends React.Component {
             });
 
             // call refresh on the posting list
-            this.refreshPostsFromLogin();
+            //this.refreshPostsFromLogin();
           } else {
 
             // if the login failed, remove any infomation from the session state
@@ -92,6 +92,7 @@ export default class LoginForm extends React.Component {
 
   render() {
     // console.log("Rendering login, token is " + sessionStorage.getItem("token"));
+    
     if (!sessionStorage.getItem("token")) {
       return (
         <form id="Login" onSubmit={this.submitHandler}>

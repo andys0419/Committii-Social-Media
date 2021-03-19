@@ -13,6 +13,7 @@ export default class Register extends React.Component {
       password: "",
       confirm: "",
       alanmessage: "",
+      errormessage: "",
       sessiontoken: "",
       redir: false
     };
@@ -41,12 +42,42 @@ export default class Register extends React.Component {
   submitHandler = event => {
     //keep the form from actually submitting
     event.preventDefault();
+
+    // //Checks if user already exists.
+    // fetch(process.env.REACT_APP_API_PATH+"/users/", {
+    //   method: "GET",
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer '+sessionStorage.getItem("token")
+    //   }
+
+    // })
+    // .then(res => res.json())
+    //   .then(
+    //     result => {
+    //       if (result) {
+    //         let names = [];
+
+    //         result[0].forEach(element => {if (element.username){names.push(element)}});
+
+    //         if (names.includes(this.state.username)) {
+    //           this.setState({
+    //             errormessage: "Error: User already exists"
+    //           });  
+    //         }
+    //       }
+    //     },
+    //     error => {
+    //       alert("error!");
+    //     }
+    //   );
+
     if (this.state.password !== this.state.confirm)
     {
       this.setState({
         password: "",
         confirm: "",
-        alanmessage: "Error: Passwords do not match"
+        errormessage: "Error: Passwords do not match"
       });
 
     }
@@ -86,22 +117,28 @@ export default class Register extends React.Component {
             sessionStorage.removeItem("user");
             this.setState({
               sessiontoken: "",
-              alanmessage: result.message
+              alanmessage: result.message,
+              errormessage: "Error: Invalid Email or Password"
             });
           }
         },
         _error => {
-          alert("error!");
+          if (this.state.errormessage !== "") {
+            this.setState({
+              errormessage: "Something has gone wrong."
+            });
+          }
         }
       );
   };
 
   render() {
-    const LoginFormStyle = {
-      width: "96%",
-      height: "3em"
-    }; 
-
+    if (this.state.errormessage !== "") {
+      window.alert(this.state.errormessage);
+      this.setState({
+        errormessage: ""
+      });
+    }
     if (this.state.redir) return <Redirect to='/'/>
     else return (
     <div>
