@@ -48,18 +48,17 @@ button {
   display: flex;
   height: 140px;
   width: 140px;
-  position: absolute;
+  position: relative;
   top: 32%;
-  left: 48.5%;
+  left: 38%;
   border-radius: 50%;
 }
 
 #backarrow {
     display: flex;
-    position: absolute;
-    top: 27%;
-    left: 35%;
-
+    position: relative;
+    top: 20%;
+    left: 1%;
 }
 
 #settingslogo {
@@ -71,9 +70,8 @@ button {
 
 #avatarbutton {
     display: flex;
-    position: absolute;
-    top: 45%;
-    left: 47.7%;
+    position: relative;
+    left: 35.1%;
     font-size: medium;
 
 }
