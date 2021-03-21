@@ -40,25 +40,22 @@ export default class ForgotPassword extends React.Component {
       // localStorage.setItem('user_email', email)
       
       // API call to fetch request for a password reset
-      let options = {
-        method: "POST",
-        headers: {
-          'Accept': '*/*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: this.state.email,
-        })
-      };
+      let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/request-reset", {
+          body: JSON.stringify({'email': 'andyshi@buffalo.edu'}),
+          headers: {
+            'Accept': "*/*",
+            "Content-Type": "application/json"
+          },
+          method: "POST"
+      });
 
-      let res = await fetch(process.env.REACT_APP_API_PATH+"/auth/request-reset", options);
-
-      if(res.ok) {
+      if (res.ok) {
         localStorage.setItem('user_email', email);
         document.location.href = '/checkemail';
       }
-      }
+
     }
+  }
     
     render() {
 
