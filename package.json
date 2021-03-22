@@ -2,7 +2,7 @@
   "name": "hci-social-frontend",
   "description": "Frontend for UB CSE370 course project",
   "version": "0.1.0",
-  "homepage": "./homepage.html",
+  "homepage": "./",
   "private": true,
   "dependencies": {
     "react": "^17.0.1",
