@@ -164,7 +164,7 @@ class App extends React.Component {
                   <t>LIFE, BY COMMITTII.</t>
                   <b>Create your own polls, View other user polls, and Vote on a Poll of your choice.</b>
               </div>
-                <img src="Images\graphs.jpg"></img>
+                <img src="Images/graphs.jpg"></img>
               </div>
             </homepage>
           </Route>
