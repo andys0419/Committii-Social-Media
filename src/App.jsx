@@ -69,7 +69,7 @@ class App extends React.Component {
       // the same effect as /posts, needs to go last, because it uses regular
       // expressions, and would otherwise capture all the routes.  Ask me how I
       // know this.
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path="/profilesettings">
           <ProfileSettings toggleModal={e => toggleModal(this, e)}></ProfileSettings>
