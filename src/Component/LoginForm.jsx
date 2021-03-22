@@ -116,12 +116,7 @@ export default class LoginForm extends React.Component {
         </form>
       );
     } else {
-      console.log("Returning welcome message");
-      if (this.state.username) {
-        return <p>Welcome, {this.state.username}</p>;
-      } else {
-        return <p>{this.state.alanmessage}</p>;
-      }
+      return <Redirect to='/profile' />
     }
   }
 }
