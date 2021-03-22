@@ -81,7 +81,7 @@ class App extends React.Component {
               <div className="navbar">
                 <Link to="/">
                   <cz id="MicImage">
-                    <img src="Images/committii logo.jpg"></img>
+                    <img src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -98,7 +98,7 @@ class App extends React.Component {
               <div id="navbar" className="navbar">
                 <Link to="/">
                   <cz>
-                    <img src="Images/committii logo.jpg"></img>
+                    <img src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -112,7 +112,7 @@ class App extends React.Component {
             <div id="navbar" className="navbar">
                 <Link to="/">
                   <cz>
-                    <img src="Images/committii logo.jpg"></img>
+                    <img src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -125,7 +125,7 @@ class App extends React.Component {
             <div id="navbar" className="navbar">
                 <Link to="/">
                   <cz>
-                    <img src="Images/committii logo.jpg"></img>
+                    <img src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -143,7 +143,7 @@ class App extends React.Component {
           <div id="navbar" className="navbar">
             <Link to="/">
               <cz>
-                <img src="Images/committii logo.jpg"></img>
+                <img src="Images/committii logo.JPG"></img>
                 <c>COMMITTII</c>
               </cz>
             </Link>
@@ -154,7 +154,7 @@ class App extends React.Component {
           <Route exact path="/">
             <homepage>
               <div id="navbar" className="navbar">
-                <img src="Images/committii logo.jpg"></img>
+                <img src="Images/committii logo.JPG"></img>
                 <c>COMMITTII</c>
                 <Link to="/login"><ld>Login</ld></Link>
                 <Link to="/styleguide"><ld>Style Guide</ld></Link>
@@ -164,7 +164,7 @@ class App extends React.Component {
                   <t>LIFE, BY COMMITTII.</t>
                   <b>Create your own polls, View other user polls, and Vote on a Poll of your choice.</b>
               </div>
-                <img src="Images/graphs.jpg"></img>
+                <img src="Images/graphs.JPG"></img>
               </div>
             </homepage>
           </Route>
