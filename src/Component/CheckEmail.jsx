@@ -8,11 +8,11 @@ export default class CheckEmail extends React.Component {
     }
 
     login = (e) => {
-        document.location.href = '/login'
+        document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/login'
     }
 
     retry = (e) => {
-        document.location.href = '/forgotpassword'
+        document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/forgotpassword'
     }
 
 
