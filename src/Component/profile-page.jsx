@@ -50,6 +50,17 @@ export default class ProfilePage extends React.Component {
         }
       );
       }
+  
+      clearState = (e) => {
+        this.setState({
+          username: "User",
+          following: 0,
+          followers: 0
+        })
+
+        sessionStorage.setItem("token", "");
+        sessionStorage.setItem("user", "User");
+      }
 
 
   render() {
@@ -74,7 +85,7 @@ export default class ProfilePage extends React.Component {
         <p id="poll2">Cats vs. Dogs</p>
         <button id="view_res2">View Results</button>
         <button id="del_post2">Delete</button>
-        <Link to="/"><button id="save-button">Log Out</button></Link>
+        <Link to="/"><button id="save-button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
       </div>
     );
   }
