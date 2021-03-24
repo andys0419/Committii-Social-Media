@@ -33,7 +33,7 @@ export default class CheckEmail extends React.Component {
     };
 
     retry = (e) => {
-        document.location.href = '/forgotpassword'
+        document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/forgotpassword'
     };
 
 
@@ -73,7 +73,7 @@ export default class CheckEmail extends React.Component {
 
             if (res.ok) {
                 // sessionStorage.setItem('resetPassword', true);
-                document.location.href = '/login';
+                document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/forgotpassword';
             }
         }
         
