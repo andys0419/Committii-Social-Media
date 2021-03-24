@@ -9,7 +9,6 @@ export default class ForgotPassword extends React.Component {
         this.state = {
             email: "",
             errorMessage: "",
-            hasToken: ""
         }
     }
 
@@ -23,20 +22,18 @@ export default class ForgotPassword extends React.Component {
       const email = this.state.email;
       var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-      if (email == '') 
-      {
-        this.setState({
-          errorMessage: "Field cannot be left blank."
-        })
-        return;
-      } else if (!email.match(email_pattern)) 
-      {
-        this.setState({
-          errorMessage: "Please enter a valid email."
-        })
-        return;
+      if (email == '') {
+          this.setState({
+            errorMessage: "Field cannot be left blank."
+          })
+          return;
+      } else if (!email.match(email_pattern)) {
+          this.setState({
+            errorMessage: "Please enter a valid email."
+          })
+          return;
       } else {
-      console.log("Submitting Emails");
+      //console.log("Submitting Emails");
       //email must be used in the checkemail page, so it must be stored
       // localStorage.setItem('user_email', email)
       
@@ -51,10 +48,9 @@ export default class ForgotPassword extends React.Component {
       });
 
       if (res.ok) {
-        localStorage.setItem('user_email', email);
-        document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/checkemail';
-        console.log(res.json.token)
-        this.state.hasToken = true;
+        sessionStorage.setItem('user_email', email);
+        document.location.href = '/checkemail';
+        //console.log(res.json.token)
       }
 
     }
@@ -74,8 +70,10 @@ export default class ForgotPassword extends React.Component {
               <h3>Please enter your email address.</h3>
               <br/>
               <input id="name" name="email" placeholder="elmas@buffalo.edu" type="text" size="35" onChange={this.updateEmail} value={this.state.email} required></input>
-              {this.state.errorMessage !== "" ? <p>You have entered a nonvalid email.</p> : <div/>}
+              <br/>
+              {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
               {this.state.errorMessage == ""}
+              <br/>
               <br/>
               <input name="button" type="submit" value="Submit"  onClick={()=>{this.submitEmail()}}></input>
           </div>
