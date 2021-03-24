@@ -49,7 +49,7 @@ export default class ForgotPassword extends React.Component {
 
       if (res.ok) {
         sessionStorage.setItem('user_email', email);
-        document.location.href = '/checkemail';
+        document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/checkemail';
         //console.log(res.json.token)
       }
 
