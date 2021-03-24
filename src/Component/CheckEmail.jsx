@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import { Link } from "react-router-dom";
 
 export default class CheckEmail extends React.Component {
 
@@ -122,10 +123,10 @@ render() {
               {this.state.errorMessage == ""}
               <br/>
               <br/>
-              <input name="button" type="submit" value="Login"  onClick={this.resetLogin}></input>
+              <input name="button" type="submit" value="Proceed to Login"  onClick={this.resetLogin}></input>
               <br/>
               <br/>
-              <input name="button" type="submit" value="Didn't Receive an Email?"  onClick={this.retry}></input>
+              <Link to="/forgotpassword"><a id="ForgotP">Didn't receieve an email? Click here.</a></Link>
           </div>
         );
     }
