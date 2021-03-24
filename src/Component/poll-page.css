@@ -1,0 +1,95 @@
+#comiti_logo {
+    position: absolute;
+    left: -3.8%;
+    top: 1.5%;
+}
+
+#backarrow {
+    position: absolute;
+    left: 26%;
+    top: 13%;
+    z-index: 1;
+}
+
+#prof_pic_poll_page {
+    position: absolute;
+    width: 11%;
+    right: 22.7%;
+    top: 9.5%;
+    z-index: 1;
+}
+
+#white_box {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 50%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #poll_name {
+      position: absolute;
+      color: black;
+      width: 20%;
+      top: 10%;
+      left: 50%;
+      margin-left: -10%;
+      font-size: 180%;
+      text-decoration: underline;
+      font-weight: 700;
+  }
+
+  #poll_outline {
+    position: absolute;
+    background-color: white;
+    outline: black 1px solid;
+    width: 25%;
+    height: 55%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #chart {
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      margin-left: -150px;
+      width: 15%;
+  }
+
+  #vote1 {
+    width: 6%;
+    position: absolute;
+    left: 50%;
+    margin-left: -7.4%;
+    bottom: 25%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 2px 2px 1px #acacac;
+    color: black;
+    padding: 0.2%;
+    font-size: 120%;
+    cursor: pointer;
+    }
+
+    #vote2 {
+        width: 6%;
+        position: absolute;
+        left: 50%;
+        margin-left: 1.4%;
+        bottom: 25%;
+        background-color: rgb(216, 216, 216);
+        border: black;
+        border-style: solid;
+        border-width: 1px;
+        text-shadow: 2px 2px 1px #acacac;
+        color: black;
+        padding: 0.2%;
+        font-size: 120%;
+        cursor: pointer;
+        }

@@ -1,7 +1,5 @@
 import React from "react";
-import {
-  Link
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import prof_pic from "../assets/profile-picture-holder.png";
 import "./profile-page.css";
 import committiilogo from "../assets/logo.svg";
@@ -80,7 +78,7 @@ export default class ProfilePage extends React.Component {
         <p id="curr_polls">Current Polls:</p>
         <p id="prev_polls">Previous Polls:</p>
         <p id="poll1">Cats vs. Dogs</p>
-        <button id="view_res">View Results</button>
+        <Link to="/pollpage"><button id="view_res">View Results</button></Link>
         <button id="del_post">Delete</button>
         <p id="poll2">Cats vs. Dogs</p>
         <button id="view_res2">View Results</button>

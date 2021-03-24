@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
 import prof from "./prof.png";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
-
-
 
 // the login form will display if there is no session token stored.  This will display
 // the login form, and call the API to authenticate the user and store the token in
