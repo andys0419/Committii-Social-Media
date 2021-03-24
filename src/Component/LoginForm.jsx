@@ -1,5 +1,8 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import {
+  Redirect
+} from 'react-router';
 import "../App.css";
 
 // the login form will display if there is no session token stored.  This will display
@@ -13,17 +16,18 @@ export default class LoginForm extends React.Component {
       username: "",
       password: "",
       alanmessage: "",
-      sessiontoken: ""
+      sessiontoken: "",
+      redir: false
     };
-    this.refreshPostsFromLogin = this.refreshPostsFromLogin.bind(this);
+    //this.refreshPostsFromLogin = this.refreshPostsFromLogin.bind(this);
   }
 
   // once a user has successfully logged in, we want to refresh the post
   // listing that is displayed.  To do that, we'll call the callback passed in
   // from the parent.
-  refreshPostsFromLogin(){
-    this.props.refreshPosts();
-  }
+  // refreshPostsFromLogin(){
+  //   this.props.refreshPosts();
+  // }
 
   // change handlers keep the state current with the values as you type them, so
   // the submit handler can read from the state to hit the API layer
@@ -64,14 +68,16 @@ export default class LoginForm extends React.Component {
             // set the auth token and user ID in the session state
             sessionStorage.setItem("token", result.token);
             sessionStorage.setItem("user", result.userID);
+            
 
             this.setState({
               sessiontoken: result.token,
-              alanmessage: result.token
+              alanmessage: result.token,
+              redir: true
             });
 
             // call refresh on the posting list
-            this.refreshPostsFromLogin();
+            //this.refreshPostsFromLogin();
           } else {
 
             // if the login failed, remove any infomation from the session state
@@ -83,7 +89,7 @@ export default class LoginForm extends React.Component {
             });
           }
         },
-        error => {
+        _error => {
           alert("error!");
         }
       );
@@ -91,30 +97,26 @@ export default class LoginForm extends React.Component {
 
   render() {
     // console.log("Rendering login, token is " + sessionStorage.getItem("token"));
+    if (this.state.redir) return <Redirect to='/profile'/>
 
     if (!sessionStorage.getItem("token")) {
       return (
-        <form onSubmit={this.submitHandler}>
-          <label>
-            Username
-            <input type="text" onChange={this.myChangeHandler} />
-          </label>
-          <br />
-          <label>
-            Password
-            <input type="password" onChange={this.passwordChangeHandler} />
-          </label>
-          <input type="submit" value="submit" />
+        <form id="Login" onSubmit={this.submitHandler}>
+          <h1 id="LoginLabel">SIGN IN</h1>
+          <div id="LoginUsername">
+            <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
+          </div>
+          <div id="LoginPassword">
+            <input id="LoginForm" type="password" placeholder="Password" onChange={this.passwordChangeHandler} />
+          </div>
+          <Link to="/forgotpassword"><a id="ForgotP">Forget your password? Click here.</a></Link>
+          <Link to="/register" id="RegisterinLog">New? Register here.</Link>
+          <input id="SubmitButton" type="submit" value="Submit" />
           <p>{this.state.alanmessage}</p>
         </form>
       );
     } else {
-      console.log("Returning welcome message");
-      if (this.state.username) {
-        return <p>Welcome, {this.state.username}</p>;
-      } else {
-        return <p>{this.state.alanmessage}</p>;
-      }
+      return <Redirect to='/profile' />
     }
   }
 }

@@ -462,9 +462,19 @@
   height: 600px;
   border: 1;
   margin: auto;
-  margin-top: 80px;
+  margin-top: 10%;
   margin-bottom: 80px;
   text-align: center;
+}
+
+input[type=submit] {
+  background-color: rgba(196,196,196);
+  padding:5px 30px; 
+  color: black;
+  cursor:pointer;
+  -webkit-border-radius: 5px;
+  border-radius: 5px; 
+  font-size: 15px;
 }
 
 body, h1, h2, h3, h4, h5, h6, LoginForm {
@@ -474,6 +484,3 @@ body, h1, h2, h3, h4, h5, h6, LoginForm {
 c {
   font-family: 'Oswald', sans-serif;
 }
-
-
-

@@ -1,0 +1,77 @@
+#ProfileHeading {
+  color: black;
+  text-align: left;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  text-decoration: none;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+#ProfileInput{
+  margin-top: 1%;
+  margin-left: 2%;
+  margin-bottom: 1%;
+}
+
+#BlockedResults{
+  margin-top: -3%;
+  margin-left: 2%;
+  margin-bottom: -2%;
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  background-color: white;
+  border: 5px;
+  color: black;
+  padding: 15px 28px;
+  text-align: center;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+#HeaderLabel {
+  color: black;
+  text-align: center;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  text-decoration: none;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.prof_pic {
+  display: flex;
+  height: 140px;
+  width: 140px;
+  position: relative;
+  top: 32%;
+  left: 38%;
+  border-radius: 50%;
+}
+
+#backarrow {
+    display: flex;
+    position: relative;
+    top: 20%;
+    left: 1%;
+}
+
+#settingslogo {
+  display: flex;
+  position: absolute;
+  top: 2%;
+  left: -3.5%;
+}
+
+#avatarbutton {
+    display: flex;
+    position: relative;
+    left: 35.1%;
+    font-size: medium;
+
+}
