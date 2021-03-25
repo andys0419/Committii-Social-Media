@@ -144,21 +144,21 @@ export default class ProfileSettings extends React.Component {
 
     //fetch calls for profile Image
     //userArtifact = {};
-    // fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
-    //   method: "post",
-    //   headers: {'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
-    //   body: JSON.stringify({
-    //     "ownerId": sessionStorage.getItem("user"),
-    //     "type": "string",
-    //     "url": "string",
-    //     "category": "string"
-    //   })
-    // })
-    // .then(res => res.json())
-    // .then(
-    //   result => {
-    //     console.log(result);
-    //   })
+    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/user-artifacts/", {
+      method: "post",
+      headers: {'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
+      body: JSON.stringify({
+        "ownerId": sessionStorage.getItem("user"),
+        "type": "string",
+        "url": "string",
+        "category": "string"
+      })
+    })
+    .then(res => res.json())
+    .then(
+      result => {
+        console.log(result);
+      })
   }
 
   handleClick(){
