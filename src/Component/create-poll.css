@@ -3,3 +3,83 @@
     left: -3.8%;
     top: 1.5%;
 }
+
+#create_backarrow {
+    position: absolute;
+    left: 35%;
+    top: 11%;
+    z-index: 1;
+}
+
+.create_poll_box {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 30%;
+    height: 75%;
+    top: 10%;
+    left: 50%;
+    margin-left: -15%;
+  }
+
+  #create_label {
+      position: relative;
+      color: black;
+      font-size: 200%;
+      top: -3.5%;
+      text-decoration: underline;
+  }
+
+  #option_1_field {
+    position: relative;
+    top: 0%;
+    width: 96%;
+    height: 3em;
+    font-size: 110%;
+  }
+
+  #option_2_field {
+    position: relative;
+    top: 3%;
+    width: 96%;
+    height: 3em;
+    font-size: 110%;
+  }
+
+  #category_field {
+    position: relative;
+    top: 6%;
+    width: 96%;
+    height: 3em;
+    font-size: 110%;
+  }
+
+  #new_poll_title {
+      position: relative;
+      color: black;
+      top: 15%;
+      font-size: 180%;
+  }
+
+  #new_poll_category {
+    position: relative;
+    color: black;
+    top: 15%;
+    font-size: 120%;
+}
+
+  .create_poll {
+    width: 40%;
+    position: relative;
+    left: 10%;
+    margin-left: -20%;
+    bottom: -34%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 2px 2px 1px #acacac;
+    color: black;
+    padding: 4px;
+    font-size: 28px;
+    cursor: pointer;
+  }
