@@ -74,16 +74,20 @@ export default class ProfilePage extends React.Component {
         <Link to="/">
           <img id="committii-logo" src={committiilogo}></img>
         </Link>
-        <canvas id="Polls"></canvas>
-        <p id="curr_polls">Current Polls:</p>
-        <p id="prev_polls">Previous Polls:</p>
-        <p id="poll1">Cats vs. Dogs</p>
-        <Link to="/pollpage"><button id="view_res">View Results</button></Link>
-        <button id="del_post">Delete</button>
-        <p id="poll2">Cats vs. Dogs</p>
-        <button id="view_res2">View Results</button>
-        <button id="del_post2">Delete</button>
-        <Link to="/"><button id="save-button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+        <div class="white_box">
+          <p id="curr_polls">Current Polls:</p>
+          <p id="prev_polls">Previous Polls:</p>
+          <p id="poll1">Cats vs. Dogs</p>
+          <Link to="/pollpage"><button id="view_res">View Results</button></Link>
+          <button id="del_post">Delete</button>
+          <p id="poll2">Cats vs. Dogs</p>
+          <button id="view_res2">View Results</button>
+          <button id="del_post2">Delete</button>
+          <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+        </div>
+        <div class="space">
+          <p>t</p>
+        </div>
       </div>
     );
   }
