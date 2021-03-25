@@ -33,8 +33,6 @@ export default class ProfileSettings extends React.Component {
             responseMessage: ""
     };
     this.handleClick = this.handleClick.bind(this)
-      this.changeAvatarButton = this.changeAvatarButton.bind(this);
-    this.changeAvatarButtonBack = this.changeAvatarButtonBack.bind(this);
     this.changeCloseButton = this.changeCloseButton.bind(this);
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
@@ -144,12 +142,21 @@ export default class ProfileSettings extends React.Component {
     let url = process.env.REACT_APP_API_PATH+"/user-preferences";
     let method = "POST";
 
-
-
-    //make the api call to the user prefs controller
-
-
-
+    //fetch calls for profile Image
+    //userArtifact = {};
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
+      method: "post",
+      headers: {'Authorization': 'Bearer '+sessionStorage.getItem("token")},
+      body: {
+        "ownerId": sessionStorage.getItem("token"),
+        "type": "object"
+      }
+    })
+    .then(res => res.json())
+    .then(
+      result => {
+        console.log(result);
+      })
   }
 
   handleClick(){
@@ -184,21 +191,12 @@ export default class ProfileSettings extends React.Component {
           document.getElementById('blocked').value = ''
       }
   }
-
-  changeAvatarButton(){
-      this.setState({avatarbutton:"Feature Coming Soon"})
-  }
-  changeAvatarButtonBack(){
-      this.setState({avatarbutton:"Change Avatar"})
-  }
    changeCloseButton(){
       this.setState({closebutton:"Feature Coming Soon"})
   }
   changeCloseButtonBack(){
       this.setState({closebutton:"Close Account"})
   };
-
-
 
   render() {
     const LoginFormStyle = {
@@ -214,9 +212,11 @@ export default class ProfileSettings extends React.Component {
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
                 <img src={prof} className="prof_pic" alt="logo" />
-                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
+                <form action="/action_page.php" id="avatarbutton">
+                  <label for="img1">Select Image:</label>
+                  <input type="file" id="img" name="img" accept="image/*"></input>
+                </form>
             </div>
-
             <a id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
             <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
