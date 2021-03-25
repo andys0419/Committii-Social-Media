@@ -113,7 +113,7 @@ export default class ProfilePage extends React.Component {
           <Link to="/profile"><img id="backarrow" src={backarrow}></img></Link>
           <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
-          <p id="poll_name">Dogs vs. Cats</p>
+          <p id="poll_name">{this.state.vote_first_name} vs. {this.state.vote_second_name}</p>
           <canvas id="poll_outline"></canvas>
           <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.vote_first_name}</button>
           <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.vote_second_name}</button>
