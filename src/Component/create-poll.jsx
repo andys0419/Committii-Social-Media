@@ -15,11 +15,9 @@ export default class ProfilePage extends React.Component {
     super();
 
     this.state = {
-        vote_first_name: "Dogs",
-        vote_second_name: "Cats",
-        vote_first: 0,
-        vote_second: 0,
-        likes: 0
+        poll_option_1: "",
+        poll_option_2: "",
+        poll_category: ""
     };
   }
 
@@ -88,44 +86,10 @@ export default class ProfilePage extends React.Component {
 
 
   render() {
-    CanvasJS.addColorSet("gray_color",
-    ["#acacac"]);
-    const options = {
-        responsive: true,
-        maintainAspectRation: false,
-        axisY: {interval: 1, labelFontSize: 15},
-        axisX: {labelFontSize: 16},
-        colorSet: "gray_color",
-        title: {
-        text: ""
-      },
-      data: [{				
-                type: "column",
-                dataPoints: [
-                    { label: this.state.vote_first_name,  y: this.state.vote_first  },
-                    { label: this.state.vote_second_name, y: this.state.vote_second  },
-                ]
-       }]
-   }
     return (
       <div className="App">
           <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link to="/profile"><img id="backarrow" src={backarrow}></img></Link>
-          <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
-          <canvas id="white_box"></canvas>
-          <p id="poll_name">{this.state.vote_first_name} vs. {this.state.vote_second_name}</p>
-          <canvas id="poll_outline"></canvas>
-          <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.vote_first_name}</button>
-          <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.vote_second_name}</button>
-          <p id="like_count">Likes: {this.state.likes}</p>
-          <button id="comment_button" onClick={()=>{}}>Comments</button>
-          <div id="test">
-            <button id="like_button" onClick={()=>{this.updateLikes()}}>Like this Poll?</button>
-            <img id="heart" src={hearticon}></img>
-          </div>
-          <div id="chart">
-            <CanvasJSChart options = {options}></CanvasJSChart>
-          </div>
       </div>
     );
   }

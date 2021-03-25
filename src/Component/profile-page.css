@@ -77,13 +77,13 @@
   margin-left: -18.5%;
 }
 
-#curr_polls {
+#curr_polls_label {
   display: flex;
   justify-content: left;
   align-items: center;
   width: 200px;
   height: 35px;
-  position: absolute;
+  position: relative;
   left: 3%;
   top: 0%;
   background-color: rgb(216, 216, 216);
@@ -93,15 +93,31 @@
   text-decoration: underline;
 }
 
-#prev_polls {
+.current_polls {
+  position: relative;
+  top: 10%;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+}
+
+.previous_polls {
+  position: relative;
+  top: 0%;
+  height: 50%;
+  width: 100%;
+  z-index: 1;
+}
+
+#prev_polls_label {
   display: flex;
   justify-content: left;
   align-items: center;
   width: 200px;
   height: 35px;
-  position: absolute;
+  position: relative;
   left: 3%;
-  top: 40%;
+  top: 0%;
   background-color: rgb(216, 216, 216);
   color: black;
   font-size: 20px;
@@ -114,19 +130,19 @@
   justify-content: left;
   align-items: center;
   width: 94%;
-  height: 4%;
+  height: 8%;
   text-align: left;
-  position: absolute;
+  position: relative;
   left: 3%;
-  top: 4%;
+  top: -3%;
   background-color: rgb(216, 216, 216);
   font-size: 150%;
 }
 
 #view_res {
-  position: absolute;
-  right: 14%;
-  top: 6.5%;
+  position: relative;
+  left: 32%;
+  top: -15%;
   background-color: rgb(216, 216, 216);
   border: black;
   border-style: solid;
@@ -139,9 +155,9 @@
 }
 
 #del_post {
-  position: absolute;
-  right: 4%;
-  top: 6.5%;
+  position: relative;
+  left: 32%;
+  top: -15%;
   background-color: rgb(216, 216, 216);
   border: black;
   border-style: solid;
@@ -158,19 +174,19 @@
   justify-content: left;
   align-items: center;
   width: 94%;
-  height: 4%;
+  height: 8%;
   text-align: left;
-  position: absolute;
+  position: relative;
   left: 3%;
-  top: 44%;
+  top: -3%;
   background-color: rgb(216, 216, 216);
   font-size: 150%;
 }
 
 #view_res2 {
-  position: absolute;
-  right: 14%;
-  top: 46.5%;
+  position: relative;
+  left: 32%;
+  top: -15%;
   background-color: rgb(216, 216, 216);
   border: black;
   border-style: solid;
@@ -183,9 +199,9 @@
 }
 
 #del_post2 {
-  position: absolute;
-  right: 4%;
-  top: 46.5%;
+  position: relative;
+  left: 32%;
+  top: -15%;
   background-color: rgb(216, 216, 216);
   border: black;
   border-style: solid;
@@ -231,4 +247,22 @@
   height: 70%;
   top: 1200px;
   left: 50%;
+}
+
+.create_poll_button {
+  position: absolute;
+  background-color: rgb(216, 216, 216);
+  border: black 1px solid;
+  color: black;
+  width: 5%;
+  height: 9.5%;
+  text-align: center;
+  padding: 4px 3px 0 3px;
+  font-size: 130%;
+  font-weight: 600;
+  left: 50%;
+  top: 34%;
+  margin-left: -2.5%;
+  z-index: 1;
+  border-radius: 50%;
 }

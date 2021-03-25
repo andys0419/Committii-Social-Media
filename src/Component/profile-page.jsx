@@ -10,6 +10,7 @@ export default class ProfilePage extends React.Component {
 
     this.state = {
       username: 'User',
+      email: '',
       following: 0,
       followers: 0
     };
@@ -36,8 +37,8 @@ export default class ProfilePage extends React.Component {
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
-              username: result.email || "",
-              //firstname: result.firstName || "",
+              username: result.username || "",
+              email: result.email || "",
               //lastname: result.lastName || ""
 
             });
@@ -65,7 +66,7 @@ export default class ProfilePage extends React.Component {
     return (
       <div className="App">
         <img src={prof_pic} id="prof_pic" alt="logo" />
-        <p id="welcome">Hello, {this.state.username}</p>
+        <p id="welcome">Hello, {this.state.email}</p>
         <p id="following">{this.state.following} Following</p>
         <p id="followers">{this.state.followers} Followers</p>
 
@@ -74,19 +75,24 @@ export default class ProfilePage extends React.Component {
         <Link to="/">
           <img id="committii-logo" src={committiilogo}></img>
         </Link>
+        <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
         <div class="white_box">
-          <p id="curr_polls">Current Polls:</p>
-          <p id="prev_polls">Previous Polls:</p>
-          <p id="poll1">Cats vs. Dogs</p>
-          <Link to="/pollpage"><button id="view_res">View Results</button></Link>
-          <button id="del_post">Delete</button>
-          <p id="poll2">Cats vs. Dogs</p>
+          <div class="current_polls">
+            <p id="curr_polls_label">Current Polls:</p>
+            <p id="poll1">Cats vs. Dogs</p>
+            <Link to="/pollpage"><button id="view_res">View Results</button></Link>
+            <button id="del_post">Delete</button>
+          </div>
+          <div class="previous_polls">
+            <p id="prev_polls_label">Previous Polls:</p>
+            <p id="poll2">Cats vs. Dogs</p>
           <button id="view_res2">View Results</button>
           <button id="del_post2">Delete</button>
+          </div>
           <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
         </div>
         <div class="space">
-          <p>t</p>
+          <p>.</p>
         </div>
       </div>
     );

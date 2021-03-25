@@ -19,6 +19,7 @@ import PrivacySettings from "./Component/privacy-settings.jsx";
 import ForgotPassword from "./Component/ForgotPassword.jsx"
 import CheckEmail from "./Component/CheckEmail.jsx"
 import PollPage from "./Component/poll-page.jsx"
+import CreatePoll from "./Component/create-poll.jsx"
 
 import {
   BrowserRouter as Router, Route, Switch, Link
@@ -91,11 +92,9 @@ class App extends React.Component {
               <Register toggleModal={e => toggleModal(this, e)}></Register>
             </register>
         </Route>
-        <Route path="/privacy-settings" component={PrivacySettings}>
-        </Route>
-        <Route path="/pollpage" Component={PollPage}>
-          <PollPage toggleModal={e => toggleModal(this, e)}></PollPage>
-        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}/>
+        <Route path="/pollpage" component={PollPage}/>
+        <Route path="/createpoll" component={CreatePoll}/>
       </Switch>
         <Switch>
           <Route path="/login">
