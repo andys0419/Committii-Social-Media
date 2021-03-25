@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
@@ -71,9 +70,9 @@ export default class ProfileSettings extends React.Component {
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
-              username: result.username || "",
-              firstname: result.firstName || "",
-              lastname: result.lastName || ""
+              username: result.email || "",
+              //firstname: result.firstName || "",
+              //lastname: result.lastName || ""
 
             });
           }
@@ -82,36 +81,18 @@ export default class ProfileSettings extends React.Component {
           alert("error!");
         }
       );
-
-    //make the api call to the user API to get the user with all of their attached preferences
-    fetch(process.env.REACT_APP_API_PATH+"/user-preferences?userID="+sessionStorage.getItem("user"), {
-      method: "get",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
       }
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          if (result) {
-            console.log(result);
-            let favoritecolor = "";
 
-            // read the user preferences and convert to an associative array for reference
+      clearState = (e) => {
+        this.setState({
+          username: "User",
+          following: 0,
+          followers: 0
+        })
 
-
-
-            console.log(favoritecolor);
-
-
-          }
-        },
-        error => {
-          alert("error!");
-        }
-      );
-  }
+        sessionStorage.setItem("token", "");
+        sessionStorage.setItem("user", "User");
+      }
 
   submitHandler = event => {
     //keep the form from actually submitting
@@ -260,56 +241,15 @@ export default class ProfileSettings extends React.Component {
       height: "3em"
     };
       return (
-          <form onSubmit={this.submitHandler} className="profileform">
         <div id="Login">
-             <Link to="/profile">
-                <img id="backarrow" src={backarrow}></img>
-            </Link>
-          <a id="HeaderLabel">Hello, {this.state.username}</a>
-            <div className='container'>
-                <img src={prof} className="prof_pic" alt="logo" />
-                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
-            </div>
-
-            <a id="ProfileHeading">Account Information</a>
-          <div id="ProfileInput">
-            <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
-            value={this.state.username} />
+          <a id="HeaderLabel">We are sorry to see you go!</a>
+            <a id="ProfileHeading">Please tell us why you are leaving?</a>
+             <div id="ProfileInput">
+            <input id="username" style={LoginFormStyle} type="text" placeholder="Let us know here"/>
           </div>
-            <div id="ProfileInput">
-            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"} />
-          </div>
-            <div id="ProfileInput">
-            <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email}/>
-          </div>
-            <a id="ProfileHeading">Social Information</a>
-            <div id="ProfileInput">
-            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.bio}/>
-          </div>
-          <div id="ProfileInput">
-            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.dob}/>
-          </div>
-            <a id="ProfileHeading">Blocked Users</a>
-            <div id="BlockedResults">
-            <p>{this.state.blockedUsers}</p>
-            </div>
-          <div id="ProfileInput">
-            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"}/>
-          </div>
-
-            <div className='container'>
-                <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
-                <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
-                <Link to="/closeaccount"><button>Close Account</button></Link>
-            </div>
-
-            <Link to="/profile">
-            <img id="settingslogo" src={logo}></img>
-            </Link>
+                <Link to="/"><button onClick={this.deleteaction(this.state.username)} onClick={()=>{this.clearState()}} value="close" >Submit</button></Link>
+                <Link to="/"><button onClick={this.deleteaction(this.state.username)} onClick={()=>{this.clearState()}} value="close" >Go To Home Page</button></Link>
         </div>
-        {this.state.responseMessage}
-      </form> );
-
-
+    );
   }
 }

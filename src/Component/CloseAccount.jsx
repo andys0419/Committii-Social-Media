@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
@@ -260,56 +259,19 @@ export default class ProfileSettings extends React.Component {
       height: "3em"
     };
       return (
-          <form onSubmit={this.submitHandler} className="profileform">
         <div id="Login">
-             <Link to="/profile">
+            <Link to="/profilesettings">
                 <img id="backarrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Hello, {this.state.username}</a>
-            <div className='container'>
-                <img src={prof} className="prof_pic" alt="logo" />
-                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
-            </div>
-
-            <a id="ProfileHeading">Account Information</a>
-          <div id="ProfileInput">
-            <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
-            value={this.state.username} />
-          </div>
-            <div id="ProfileInput">
-            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"} />
-          </div>
-            <div id="ProfileInput">
-            <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email}/>
-          </div>
-            <a id="ProfileHeading">Social Information</a>
-            <div id="ProfileInput">
-            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.bio}/>
-          </div>
-          <div id="ProfileInput">
-            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.dob}/>
-          </div>
-            <a id="ProfileHeading">Blocked Users</a>
-            <div id="BlockedResults">
-            <p>{this.state.blockedUsers}</p>
-            </div>
-          <div id="ProfileInput">
-            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"}/>
-          </div>
-
-            <div className='container'>
-                <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
-                <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
-                <Link to="/closeaccount"><button>Close Account</button></Link>
-            </div>
+          <a id="HeaderLabel">Are you sure you want to close your account?</a>
+            <a id="ProfileHeading">This action cannot be undone and all data associated with your account will be deleted. Would you like to proceed?</a>
+                <Link to="/closeaccountfeedback"><button>Yes, Close My Account</button></Link>
+                <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
 
             <Link to="/profile">
             <img id="settingslogo" src={logo}></img>
             </Link>
         </div>
-        {this.state.responseMessage}
-      </form> );
-
-
+    );
   }
 }

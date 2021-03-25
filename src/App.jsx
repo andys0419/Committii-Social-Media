@@ -18,6 +18,8 @@ import Register from "./Component/Register.jsx";
 import PrivacySettings from "./Component/privacy-settings.jsx";
 import ForgotPassword from "./Component/ForgotPassword.jsx"
 import CheckEmail from "./Component/CheckEmail.jsx"
+import CloseAccount from "./Component/CloseAccount";
+import CloseAccountFeedback from "./Component/CloseAccountFeedback";
 
 import {
   BrowserRouter as Router, Route, Switch, Link
@@ -73,6 +75,16 @@ class App extends React.Component {
       <Switch>
         <Route path="/profilesettings">
           <ProfileSettings toggleModal={e => toggleModal(this, e)}></ProfileSettings>
+        </Route>
+      </Switch>
+        <Switch>
+        <Route path="/closeaccount">
+          <CloseAccount toggleModal={e => toggleModal(this, e)}></CloseAccount>
+        </Route>
+      </Switch>
+          <Switch>
+        <Route path="/closeaccountfeedback">
+          <CloseAccountFeedback toggleModal={e => toggleModal(this, e)}></CloseAccountFeedback>
         </Route>
       </Switch>
       <Switch>
