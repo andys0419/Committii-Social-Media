@@ -18,7 +18,8 @@ export default class ProfilePage extends React.Component {
         vote_first_name: "Dogs",
         vote_second_name: "Cats",
         vote_first: 0,
-        vote_second: 0
+        vote_second: 0,
+        likes: 0
     };
   }
 
@@ -79,13 +80,21 @@ export default class ProfilePage extends React.Component {
         });
     }
 
+    updateLikes = () => {
+      this.setState({
+          likes: this.state.likes+1
+      });
+  }
+
 
   render() {
     CanvasJS.addColorSet("gray_color",
     ["#acacac"]);
     const options = {
-        axisY: {interval: 1},
-        axisX: {labelFontSize: 15},
+        responsive: true,
+        maintainAspectRation: false,
+        axisY: {interval: 1, labelFontSize: 15},
+        axisX: {labelFontSize: 16},
         colorSet: "gray_color",
         title: {
         text: ""
@@ -101,13 +110,19 @@ export default class ProfilePage extends React.Component {
     return (
       <div className="App">
           <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link to="/"><img id="backarrow" src={backarrow}></img></Link>
+          <Link to="/profile"><img id="backarrow" src={backarrow}></img></Link>
           <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
           <p id="poll_name">Dogs vs. Cats</p>
           <canvas id="poll_outline"></canvas>
           <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.vote_first_name}</button>
           <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.vote_second_name}</button>
+          <p id="like_count">Likes: {this.state.likes}</p>
+          <button id="comment_button" onClick={()=>{}}>Comments</button>
+          <div id="test">
+            <button id="like_button" onClick={()=>{this.updateLikes()}}>Like this Poll?</button>
+            <img id="heart" src={hearticon}></img>
+          </div>
           <div id="chart">
             <CanvasJSChart options = {options}></CanvasJSChart>
           </div>
