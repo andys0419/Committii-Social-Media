@@ -143,22 +143,42 @@ export default class ProfileSettings extends React.Component {
     let method = "POST";
 
     //fetch calls for profile Image
-    //userArtifact = {};
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/user-artifacts/", {
+    if(document.getElementById("imgUpload").value != ""){
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
       method: "post",
-      headers: {'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
       body: JSON.stringify({
-        "ownerId": sessionStorage.getItem("user"),
-        "type": "string",
-        "url": "string",
-        "category": "string"
+        "ownerID": sessionStorage.getItem("user"),
+        "type": "profilepic",
+        "url": "",
+        "category": "image"
       })
     })
     .then(res => res.json())
     .then(
       result => {
-        console.log(result);
+        var userArtifact = -1;
+        userArtifact = result.id;
+        if (userArtifact != -1){
+          const formData = new FormData();
+          const fileInput = document.querySelector('input[type="file"]');
+          formData.append("file", fileInput.files[0]);
+          fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + String(userArtifact) + "/upload", {
+            method: "post",
+            headers: {
+              'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
+            body: formData
+          }).then(res => res.json())
+          .then(
+            result => {
+              console.log(result)
+              document.getElementById("profilepic").src = process.env.REACT_APP_API_PATH + result.url
+            })
+        }
       })
+    }
   }
 
   handleClick(){
@@ -213,10 +233,10 @@ export default class ProfileSettings extends React.Component {
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <img src={prof} className="prof_pic" alt="logo" />
+                <img src={prof} className="prof_pic" alt="logo" id="profilepic"/>
                 <form action="/action_page.php" id="avatarbutton">
                   <label for="img1">Select Image:</label>
-                  <input type="file" id="img" name="img" accept="image/*"></input>
+                  <input type="file" id="imgUpload" name="img" accept="image/*"></input>
                 </form>
             </div>
             <a id="ProfileHeading">Account Information</a>
