@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
-import prof from "./prof.png";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
+import profilepicture from "./prof.png"
 
 
 
@@ -30,17 +30,18 @@ export default class ProfileSettings extends React.Component {
             firstname: "",
             lastname: "",
             favoritecolor: "",
-            responseMessage: ""
+            responseMessage: "",
+            prof: profilepicture
     };
     this.handleClick = this.handleClick.bind(this)
     this.changeCloseButton = this.changeCloseButton.bind(this);
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
+    this.displayProfilePic = this.displayProfilePic.bind(this);
 
   }
 
   fieldChangeHandler(field, e) {
-    console.log("field change");
     this.setState({
       [field]: e.target.value
     });
@@ -48,8 +49,6 @@ export default class ProfileSettings extends React.Component {
 
 
   componentDidMount() {
-    console.log("In profile");
-    console.log(this.props);
 
     // first fetch the user data to allow update of username
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
@@ -62,8 +61,7 @@ export default class ProfileSettings extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result) {
-            console.log(result);
+          if (result) {;
 
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
@@ -92,14 +90,9 @@ export default class ProfileSettings extends React.Component {
       .then(
         result => {
           if (result) {
-            console.log(result);
             let favoritecolor = "";
 
             // read the user preferences and convert to an associative array for reference
-
-
-
-            console.log(favoritecolor);
 
 
           }
@@ -108,6 +101,24 @@ export default class ProfileSettings extends React.Component {
           alert("error!");
         }
       );
+  }
+
+  displayProfilePic(userArtifact){
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + userArtifact,{
+      method: 'get',
+      mode: 'cors',
+      cache: 'default'
+    })
+    .then(response => response.blob())
+    .then(img => {
+      console.log(img)
+      const reader = new FileReader();
+      reader.addEventListener('load', (event) => {
+      console.log(event.target.result)
+      document.getElementById("profilepic").src = event.target.result
+    });
+    reader.readAsDataURL(img);
+  })
   }
 
   submitHandler = event => {
@@ -173,8 +184,7 @@ export default class ProfileSettings extends React.Component {
           }).then(res => res.json())
           .then(
             result => {
-              console.log(result)
-              document.getElementById("profilepic").src = process.env.REACT_APP_API_PATH + result.url
+              this.displayProfilePic(result.id);
             })
         }
       })
@@ -233,7 +243,7 @@ export default class ProfileSettings extends React.Component {
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <img src={prof} className="prof_pic" alt="logo" id="profilepic"/>
+                <img src={this.state.prof} className="prof_pic" alt="logo" id="profilepic"/>
                 <form action="/action_page.php" id="avatarbutton">
                   <label for="img1">Select Image:</label>
                   <input type="file" id="imgUpload" name="img" accept="image/*"></input>
