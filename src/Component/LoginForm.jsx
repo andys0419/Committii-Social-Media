@@ -97,7 +97,7 @@ export default class LoginForm extends React.Component {
 
   render() {
     // console.log("Rendering login, token is " + sessionStorage.getItem("token"));
-    if (this.state.redir) return <Redirect to='/profile'/>
+    if (this.state.redir) return <Redirect to='/feed'/>
 
     if (!sessionStorage.getItem("token")) {
       return (

@@ -477,10 +477,124 @@ input[type=submit] {
   font-size: 15px;
 }
 
-body, h1, h2, h3, h4, h5, h6, LoginForm {
+body, h1, h2, h3, h4, h5, h6, LoginForm, feed {
   font-family: 'Poppins', sans-serif;
 }
 
 c {
   font-family: 'Oswald', sans-serif;
+}
+
+.vRight {
+  border-left: 3px solid rgb(172, 172, 172);
+  height: 2000px;
+  position: absolute;
+  left: 100%;
+  margin-left: -3px;
+  top: 0;
+}
+
+.vLeft {
+  border-left: 3px solid rgb(172, 172, 172);
+  height: 2000px;
+  position: absolute;
+  right: 100%;
+  margin-right: -3px;
+  top: 0;
+  
+}
+
+.feedOptions {
+  border-bottom: 3px solid rgb(172, 172, 172);
+  width: 60%;
+  position: relative;
+  margin-left: 20%;
+
+
+}
+
+.feed {
+  
+}
+
+.feedPosts {
+  
+  position:relative;
+  
+}
+
+.post {
+  border: 3px solid rgb(172, 172, 172);
+  width: 99.4%;
+  height: 250px;
+  margin-bottom: ;
+}
+.feedSort {
+  position:absolute;
+  left: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.feedProfile {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  left: 45%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.likeButton {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  left: 2.5%;
+  top: 5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.commentButton {
+  position: absolute;
+  width: 250px;
+  height: 40px;
+
+  top: 30%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.feedMessages {
+  position:absolute;
+  right: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.chart {
+  position: absolute;
+  top: 1%;
+  left: 30%;
+  margin-inline:inherit;
 }

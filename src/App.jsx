@@ -11,6 +11,7 @@ import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
+import Feed from "./Component/feed.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
 import ProfileSettings from "./Component/ProfileSettings.jsx";
@@ -141,6 +142,11 @@ class App extends React.Component {
         <Switch>
           <Route path="/profile">
             <Profile toggleModal={e => toggleModal(this, e)}></Profile>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/feed">
+            <Feed toggleModal={e => toggleModal(this, e)}></Feed>
           </Route>
         </Switch>
         <Switch>
