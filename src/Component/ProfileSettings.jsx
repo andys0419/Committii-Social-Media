@@ -20,17 +20,18 @@ export default class ProfileSettings extends React.Component {
     this.state =
         {
             username: '',
-            email: 'test@test.edu',
-            password: '12345',
-            bio:'Tell us something about you',
-            dob:'X/XX/XXXX',
+            email: '',
+            password: '',
+            bio: '',
+            dob: '',
             blockedUsers: ["No Blocked Users"],
             avatarbutton:"Change Avatar",
             closebutton:"Close Account",
-            firstname: "",
+            firstName: "",
             lastname: "",
             favoritecolor: "",
-            responseMessage: ""
+            responseMessage: "",
+            role: ""
     };
     this.handleClick = this.handleClick.bind(this)
       this.changeAvatarButton = this.changeAvatarButton.bind(this);
@@ -38,7 +39,11 @@ export default class ProfileSettings extends React.Component {
     this.changeCloseButton = this.changeCloseButton.bind(this);
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
-    this.deleteaction = this.deleteaction.bind(this)
+    this.fieldChangeHandler2.bind(this);
+    this.fieldChangeHandler3.bind(this);
+    this.fieldChangeHandler4.bind(this);
+    this.fieldChangeHandler5.bind(this);
+    this.fieldChangeHandler6.bind(this);
 
   }
 
@@ -48,6 +53,40 @@ export default class ProfileSettings extends React.Component {
       [field]: e.target.value
     });
   }
+
+  fieldChangeHandler2(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+  fieldChangeHandler3(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+  fieldChangeHandler4(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+  fieldChangeHandler5(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+
+  fieldChangeHandler6(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+
+
 
 
   componentDidMount() {
@@ -65,15 +104,22 @@ export default class ProfileSettings extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result) {
+            if (result) {
             console.log(result);
 
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
-              username: result.username || "",
-              firstname: result.firstName || "",
-              lastname: result.lastName || ""
+
+                username: result.username || "",
+                firstName: result.firstName || "",
+                lastName: result.lastName || "",
+                password: result.password || "",
+                bio: result.bio || "",
+                dob: result.dob || "",
+                blockedUsers: result.blockedUsers || ["No Blocked Users"],
+                email: result.email || "",
+                role: result.role || ""
 
             });
           }
@@ -126,7 +172,13 @@ export default class ProfileSettings extends React.Component {
       },
       body: JSON.stringify({
 
-        username: this.state.username,
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            blockedUsers: this.state.blockedUsers,
+            role: this.state.role
 
       })
     })
@@ -144,7 +196,6 @@ export default class ProfileSettings extends React.Component {
 
     let url = process.env.REACT_APP_API_PATH+"/user-preferences";
     let method = "POST";
-
 
 
     //make the api call to the user prefs controller
@@ -154,80 +205,10 @@ export default class ProfileSettings extends React.Component {
   }
   ///////////////
 
-    deleteaction2(){
-    //make the api call to the user controller
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      },
-      body: JSON.stringify({
-
-        username: this.state.username,
-
-      })
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            responseMessage: result.Status
-          });
-        },
-        error => {
-          alert("error!");
-        }
-      );
-
-    let url = process.env.REACT_APP_API_PATH+"/user-preferences";
-    let method = "POST";
-
-
-
-    //make the api call to the user prefs controller
-
-  }
-
-
-  ///
-
-  deleteaction(userID){
-    //make the api call to post
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      }
-      })
-
-  }
-
-  /////
 
   handleClick(){
     // Changing state
-      if(document.getElementById('username').value != "") {
-          this.setState({username: document.getElementById('username').value});
-          document.getElementById('username').value = '';
-      }
-      if(document.getElementById('password').value != "") {
-          this.setState({password: document.getElementById('password').value})
-          document.getElementById('password').value = ''
-      }
-      if(document.getElementById('email').value != "") {
-          this.setState({email: document.getElementById('email').value});
-          document.getElementById('email').value = '';
-      }
-      if(document.getElementById('bio').value != "") {
-          this.setState({bio: document.getElementById('bio').value})
-          document.getElementById('bio').value = ''
-      }
-      if(document.getElementById('dob').value != "") {
-          this.setState({dob: document.getElementById('dob').value})
-          document.getElementById('dob').value = ''
-      }
+
 
       if(document.getElementById('blocked').value != "") {
           if (this.state.blockedUsers[0] == "No Blocked Users"){
@@ -277,24 +258,28 @@ export default class ProfileSettings extends React.Component {
             value={this.state.username} />
           </div>
             <div id="ProfileInput">
-            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"} />
+            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"} onChange={e => this.fieldChangeHandler3("password", e)}
+            value={this.state.password} />
           </div>
             <div id="ProfileInput">
-            <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email}/>
+            <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email} onChange={e => this.fieldChangeHandler2("email", e)}
+            value={this.state.email}/>
           </div>
             <a id="ProfileHeading">Social Information</a>
             <div id="ProfileInput">
-            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.bio}/>
+            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.firstName} onChange={e => this.fieldChangeHandler4("firstName", e)}
+            value={this.state.firstName}/>
           </div>
           <div id="ProfileInput">
-            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.dob}/>
+            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.lastName} onChange={e => this.fieldChangeHandler5("lastName", e)}
+            value={this.state.lastName}/>
           </div>
             <a id="ProfileHeading">Blocked Users</a>
             <div id="BlockedResults">
-            <p>{this.state.blockedUsers}</p>
+            <p>{this.state.role}</p>
             </div>
           <div id="ProfileInput">
-            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"}/>
+            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"} onChange={e => this.fieldChangeHandler6("role", e)} value={this.state.lastName}/>
           </div>
 
             <div className='container'>
