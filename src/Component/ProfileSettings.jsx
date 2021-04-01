@@ -110,11 +110,12 @@ export default class ProfileSettings extends React.Component {
      mode: 'cors',
      cache: 'default'
    })
-   .then(res => res.blob())
+   .then(res => res.json())
    .then(
      result => {
-       result = URL.createObjectURL(result)
-       console.log(result)
+       var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+       console.log(server);
+       this.state.prof = server + result.url
      })
   }
 
@@ -123,7 +124,7 @@ export default class ProfileSettings extends React.Component {
     const fileInput = document.querySelector('input[type="file"]');
     formData.append("file", fileInput.files[0]);
     fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + String(userArtifact) + "/upload", {
-      method: "put",
+      method: "POST",
       body: formData,
       headers: {
         'Authorization': 'Bearer '+ sessionStorage.getItem("token")
@@ -131,7 +132,6 @@ export default class ProfileSettings extends React.Component {
     }).then(res => res.json())
     .then(
       result => {
-        console.log(result)
         this.displayProfilePic(result.id);
         document.getElementById("imgUpload").value = ""
       })
@@ -171,13 +171,8 @@ export default class ProfileSettings extends React.Component {
 
     //fetch calls for profile Image
     if(document.getElementById("imgUpload").value != ""){
-	       var image = document.getElementById('profilepic');
-	       image.src = URL.createObjectURL(document.getElementById('imgUpload').files[0]);
-     }
-
-    if(document.getElementById("imgUpload").value == "NOTNULL"){
     fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
-      method: "post",
+      method: "POST",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
