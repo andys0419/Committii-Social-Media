@@ -1,0 +1,52 @@
+#logo {
+    margin-top: 2%;
+}
+
+
+#comment_box {
+    text-align: left;
+}
+
+#current_user {
+    text-align: left;
+    color: white;
+    font-family: 'Poppins';
+    font-size: 18px;
+    margin-top: 7%;
+    margin-left: 5%;
+}
+
+textarea {
+    resize: none;
+    overflow-y: scroll;
+    font-family: 'Poppins';
+    font-size: 12px;
+}
+
+text {
+    text-decoration: underline;
+}
+
+text1 {
+    color: red
+}
+
+#comments {
+  color: white;
+  float: right;
+  margin-top: 25%;
+}
+
+#line {
+  border-left: 2px solid white;
+  height: 100%;
+  position: absolute;
+  left: 40%;
+  margin-left: -3px;
+  top: 0;
+}
+
+
+
+
+
