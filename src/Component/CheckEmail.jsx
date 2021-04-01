@@ -1,4 +1,5 @@
 import React from "react";
+import {Redirect} from 'react-router-dom';
 import "../App.css";
 import { Link } from "react-router-dom";
 
@@ -12,6 +13,7 @@ export default class CheckEmail extends React.Component {
             password: "",
             confirm: "",
             errorMessage: "",
+            redirect: false
         };
     }
 
@@ -73,8 +75,9 @@ export default class CheckEmail extends React.Component {
             });
 
             if (res.ok) {
-                // sessionStorage.setItem('resetPassword', true);
-                document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/login';
+                this.setState({
+                    redirect: true
+                })
             }
         }
         
@@ -97,6 +100,11 @@ export default class CheckEmail extends React.Component {
 
 
 render() {
+        if (this.state.redirect) {
+            return <Redirect to='/login' />
+        }
+
+
         return (
           <div id="base_rectangle" className="reset-component">
               <br/>
