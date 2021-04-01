@@ -38,6 +38,7 @@ export default class ProfileSettings extends React.Component {
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
     this.displayProfilePic = this.displayProfilePic.bind(this);
+    this.uploadImage = this.uploadImage.bind(this);
 
   }
 
@@ -105,20 +106,35 @@ export default class ProfileSettings extends React.Component {
 
   displayProfilePic(userArtifact){
     fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + userArtifact,{
-      method: 'get',
-      mode: 'cors',
-      cache: 'default'
-    })
-    .then(response => response.blob())
-    .then(img => {
-      console.log(img)
-      const reader = new FileReader();
-      reader.addEventListener('load', (event) => {
-      console.log(event.target.result)
-      document.getElementById("profilepic").src = event.target.result
-    });
-    reader.readAsDataURL(img);
-  })
+     method: 'get',
+     mode: 'cors',
+     cache: 'default'
+   })
+   .then(res => res.blob())
+   .then(
+     result => {
+       result = URL.createObjectURL(result)
+       console.log(result)
+     })
+  }
+
+  uploadImage(userArtifact){
+    const formData = new FormData();
+    const fileInput = document.querySelector('input[type="file"]');
+    formData.append("file", fileInput.files[0]);
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + String(userArtifact) + "/upload", {
+      method: "put",
+      body: formData,
+      headers: {
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
+      },
+    }).then(res => res.json())
+    .then(
+      result => {
+        console.log(result)
+        this.displayProfilePic(result.id);
+        document.getElementById("imgUpload").value = ""
+      })
   }
 
   submitHandler = event => {
@@ -130,7 +146,7 @@ export default class ProfileSettings extends React.Component {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
       },
       body: JSON.stringify({
 
@@ -155,6 +171,11 @@ export default class ProfileSettings extends React.Component {
 
     //fetch calls for profile Image
     if(document.getElementById("imgUpload").value != ""){
+	       var image = document.getElementById('profilepic');
+	       image.src = URL.createObjectURL(document.getElementById('imgUpload').files[0]);
+     }
+
+    if(document.getElementById("imgUpload").value == "NOTNULL"){
     fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
       method: "post",
       headers: {
@@ -162,9 +183,9 @@ export default class ProfileSettings extends React.Component {
         'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
       body: JSON.stringify({
         "ownerID": sessionStorage.getItem("user"),
-        "type": "profilepic",
-        "url": "",
-        "category": "image"
+        "type": "Image",
+        "url": "String",
+        "category": "profilepic"
       })
     })
     .then(res => res.json())
@@ -173,19 +194,7 @@ export default class ProfileSettings extends React.Component {
         var userArtifact = -1;
         userArtifact = result.id;
         if (userArtifact != -1){
-          const formData = new FormData();
-          const fileInput = document.querySelector('input[type="file"]');
-          formData.append("file", fileInput.files[0]);
-          fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + String(userArtifact) + "/upload", {
-            method: "post",
-            headers: {
-              'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
-            body: formData
-          }).then(res => res.json())
-          .then(
-            result => {
-              this.displayProfilePic(result.id);
-            })
+          this.uploadImage(userArtifact);
         }
       })
     }
@@ -243,7 +252,7 @@ export default class ProfileSettings extends React.Component {
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <img src={this.state.prof} className="prof_pic" alt="logo" id="profilepic"/>
+                <img src={this.state.prof} className="prof_pic" alt="Profile Picture" id="profilepic"/>
                 <form action="/action_page.php" id="avatarbutton">
                   <label for="img1">Select Image:</label>
                   <input type="file" id="imgUpload" name="img" accept="image/*"></input>
