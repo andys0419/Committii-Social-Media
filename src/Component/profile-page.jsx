@@ -15,6 +15,7 @@ export default class ProfilePage extends React.Component {
       following: 0,
       followers: 0
     };
+    this.displayProfilePic = this.displayProfilePic.bind(this);
   }
 
   componentDidMount() {
@@ -50,7 +51,7 @@ export default class ProfilePage extends React.Component {
         }
       );
       }
-  
+
       clearState = (e) => {
         this.setState({
           username: "User",
@@ -62,11 +63,33 @@ export default class ProfilePage extends React.Component {
         sessionStorage.setItem("user", "User");
       }
 
+      displayProfilePic(){
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "get",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          }
+        })
+       .then(res => res.json())
+       .then(
+         result => {
+           console.log(result)
+           if (result.role == ""){
+             document.getElementById("prof_pic").src = "./prof.png"
+           }else{
+           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+           console.log(result.role)
+           document.getElementById("prof_pic").src = server + result.role
+         }
+         })
+      }
+
 
   render() {
     return (
       <div className="App">
-        <img src={prof_pic} id="prof_pic" alt="logo" />
+        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
         <p id="welcome">Hello, {this.state.username}</p>
         <p id="following">{this.state.following} Following</p>
         <p id="followers">{this.state.followers} Followers</p>

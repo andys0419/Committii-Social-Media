@@ -38,7 +38,7 @@ export default class ProfileSettings extends React.Component {
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
     this.displayProfilePic = this.displayProfilePic.bind(this);
-    this.uploadImage = this.uploadImage.bind(this);
+    this.uploadProfileImage = this.uploadProfileImage.bind(this);
 
   }
 
@@ -104,22 +104,29 @@ export default class ProfileSettings extends React.Component {
       );
   }
 
-  displayProfilePic(userArtifact){
-    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + userArtifact,{
-     method: 'get',
-     mode: 'cors',
-     cache: 'default'
-   })
+  displayProfilePic(){
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
    .then(res => res.json())
    .then(
      result => {
+       console.log(result)
+       if (result.role == ""){
+         document.getElementById("profilepic").src = "./prof.png"
+       }else{
        var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-       console.log(server);
-       this.state.prof = server + result.url
+       console.log(result.role)
+       document.getElementById("profilepic").src = server + result.role
+     }
      })
   }
 
-  uploadImage(userArtifact){
+  uploadProfileImage(userArtifact){
     const formData = new FormData();
     const fileInput = document.querySelector('input[type="file"]');
     formData.append("file", fileInput.files[0]);
@@ -132,7 +139,19 @@ export default class ProfileSettings extends React.Component {
     }).then(res => res.json())
     .then(
       result => {
-        this.displayProfilePic(result.id);
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "PATCH",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+          body: JSON.stringify({
+            "role": result.url
+          })
+        }).then(res => res.json())
+        .then(
+          result => {console.log(result)})
+        this.displayProfilePic()
         document.getElementById("imgUpload").value = ""
       })
   }
@@ -189,7 +208,7 @@ export default class ProfileSettings extends React.Component {
         var userArtifact = -1;
         userArtifact = result.id;
         if (userArtifact != -1){
-          this.uploadImage(userArtifact);
+          this.uploadProfileImage(userArtifact);
         }
       })
     }
@@ -247,7 +266,7 @@ export default class ProfileSettings extends React.Component {
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <img src={this.state.prof} className="prof_pic" alt="Profile Picture" id="profilepic"/>
+                <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="profilepic"/>
                 <form action="/action_page.php" id="avatarbutton">
                   <label for="img1">Select Image:</label>
                   <input type="file" id="imgUpload" name="img" accept="image/*"></input>

@@ -213,3 +213,12 @@
   font-size: 28px;
   cursor: pointer;
   }
+  #prof_pic {
+    display: flex;
+    height: 140px;
+    width: 140px;
+    position: relative;
+    top: 32%;
+    left: 0%;
+    border-radius: 50%;
+  }
