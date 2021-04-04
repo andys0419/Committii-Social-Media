@@ -9,9 +9,8 @@ export default class CommentForm extends React.Component {
     super(props);
     this.state = {
       post_text: "",
-      postmessage: "",
       comment_holder: "You are commenting as: " + sessionStorage.getItem("username"),
-      errorMessage: ""
+      errorMessage: "",
     };
     this.postListing = React.createRef();
   }
@@ -20,18 +19,24 @@ export default class CommentForm extends React.Component {
     //keep the form from actually submitting
     event.preventDefault();
 
-    const postMsg = this.state.postmessage;
+    const postMsg = this.state.post_text;
 
     if (postMsg == '') {
       this.setState({
         errorMessage: "Please enter a message."
       })
+      return;
+    } else {
+
+      this.setState({
+        errorMessage: ""
+      })
     }
 
     //make the api call to the authentication page
 
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/"+"/posts", {
-      method: "POST",
+    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/posts", {
+      method: "post",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+sessionStorage.getItem("token")
@@ -47,6 +52,11 @@ export default class CommentForm extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+          
+          this.setState({
+            errorMessage: "Your comment has been posted!"
+          })
+
           // update the count in the UI manually, to avoid a database hit
           this.props.onAddComment(this.props.commentCount + 1);
           this.postListing.current.loadPosts();
@@ -63,9 +73,9 @@ export default class CommentForm extends React.Component {
     });
   };
 
-  updatePostMessage = (e) => {
+  updatePostText = (e) => {
     this.setState({
-      postmessage: e.currentTarget.value
+      post_text: e.currentTarget.value
     })
   }
 
@@ -81,7 +91,7 @@ export default class CommentForm extends React.Component {
             <br/>
 
             <div id="comment_box">
-                 <textarea onChange={this.updatePostMessage} value={this.state.postmessage} rows="8" cols="43" placeholder={this.state.comment_holder} onChange={this.myChangeHandler}/>
+                 <textarea rows="8" cols="43" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
             </div>
             <br/>
 
@@ -89,25 +99,22 @@ export default class CommentForm extends React.Component {
                 <div id="comments">
                     <text>Current Comments</text>
                     <br/>
-                    <text1>(No Comments currently exist!)</text1>
                 </div>
             </div>
             
             
             <form onSubmit={this.submitHandler}>
             <input type="submit" value="Comment"/>
-            {/* {this.state.postmessage} */}
             <br/>
             {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
-            {this.state.errorMessage == ""}
             <br />
             </form>
 
-            {/* <PostingList
+            <PostingList
                  ref={this.postListing}
                  parentid={this.props.parent}
                  type="commentlist"
-            /> */}
+            />
         </div>
     </div>
     );

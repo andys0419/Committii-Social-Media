@@ -19,6 +19,7 @@ import PrivacySettings from "./Component/privacy-settings.jsx";
 import ForgotPassword from "./Component/ForgotPassword.jsx"
 import CheckEmail from "./Component/CheckEmail.jsx"
 import PollPage from "./Component/poll-page.jsx"
+import CommentForm from "./Component/CommentForm.jsx"
 
 import {
   BrowserRouter as Router, Route, Switch, Link
@@ -141,6 +142,11 @@ class App extends React.Component {
         <Switch>
           <Route path="/profile">
             <Profile toggleModal={e => toggleModal(this, e)}></Profile>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/comment">
+            <CommentForm toggleModal={e => toggleModal(this, e)}></CommentForm>
           </Route>
         </Switch>
         <Switch>

@@ -35,9 +35,7 @@ export default class CheckEmail extends React.Component {
         })
     };
 
-
-
-    resetLogin = async (e) => {
+resetLogin = async (e) => {
         const token = this.state.token;
         const password = this.state.password;
 

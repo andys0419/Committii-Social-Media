@@ -1,7 +1,10 @@
 import React from "react";
-import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
 import { Link } from 'react-router-dom';
+import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
+
 import "./poll-page.css";
+import "./CommentForm.css"
+
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
 import prof_pic from "../assets/profile-picture-holder.png";
@@ -19,7 +22,7 @@ export default class ProfilePage extends React.Component {
         vote_second_name: "Cats",
         vote_first: 0,
         vote_second: 0,
-        likes: 0
+        likes: 0,
     };
   }
 
@@ -28,7 +31,7 @@ export default class ProfilePage extends React.Component {
     console.log(this.props);
 
     // first fetch the user data to allow update of username
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/users/"+sessionStorage.getItem("user"), {
       method: "get",
       headers: {
         'Content-Type': 'application/json',
@@ -84,7 +87,14 @@ export default class ProfilePage extends React.Component {
       this.setState({
           likes: this.state.likes+1
       });
-  }
+    }
+
+    // grabComments = (e) => {
+    //   //find post by ID
+    // })
+
+
+    // };
 
 
   render() {
@@ -118,7 +128,8 @@ export default class ProfilePage extends React.Component {
           <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.vote_first_name}</button>
           <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.vote_second_name}</button>
           <p id="like_count">Likes: {this.state.likes}</p>
-          <button id="comment_button" onClick={()=>{}}>Comments</button>
+          <Link to="/comment" id="comment_button">Comment</Link>
+          {/* <button id="comment_button" onClick={()=>{this.grabComments()}}>Comments</button> */}
           <div id="test">
             <button id="like_button" onClick={()=>{this.updateLikes()}}>Like this Poll?</button>
             <img id="heart" src={hearticon}></img>

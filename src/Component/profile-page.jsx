@@ -20,7 +20,7 @@ export default class ProfilePage extends React.Component {
     console.log(this.props);
 
     // first fetch the user data to allow update of username
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/users/"+sessionStorage.getItem("user"), {
       method: "get",
       headers: {
         'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export default class ProfilePage extends React.Component {
         result => {
           if (result) {
             console.log(result);
-
+            sessionStorage.setItem("username", result.email)
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
@@ -55,7 +55,7 @@ export default class ProfilePage extends React.Component {
           following: 0,
           followers: 0
         })
-
+        
         sessionStorage.setItem("token", "");
         sessionStorage.setItem("user", "User");
       }
