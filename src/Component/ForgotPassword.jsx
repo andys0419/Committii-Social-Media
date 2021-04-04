@@ -1,5 +1,7 @@
 import React from "react";
+import {Redirect} from 'react-router-dom';
 import "../App.css";
+
 
 export default class ForgotPassword extends React.Component {
 
@@ -9,6 +11,7 @@ export default class ForgotPassword extends React.Component {
         this.state = {
             email: "",
             errorMessage: "",
+            redirect: false
         }
     }
 
@@ -49,8 +52,11 @@ export default class ForgotPassword extends React.Component {
 
       if (res.ok) {
         sessionStorage.setItem('user_email', email);
-        document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/checkemail';
-        //console.log(res.json.token)
+        
+        this.setState({
+          redirect: true
+        })
+        
       }
 
     }
@@ -58,15 +64,13 @@ export default class ForgotPassword extends React.Component {
     
     render() {
 
+        if (this.state.redirect) {
+          return <Redirect to='/checkemail' />
+        }
+
         return (
           <div id="base_rectangle" className="reset-component">
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
+              <div id="forgot_content">
               <h3>Please enter your email address.</h3>
               <br/>
               <input id="name" name="email" placeholder="elmas@buffalo.edu" type="text" size="35" onChange={this.updateEmail} value={this.state.email} required></input>
@@ -76,6 +80,7 @@ export default class ForgotPassword extends React.Component {
               <br/>
               <br/>
               <input name="button" type="submit" value="Submit"  onClick={()=>{this.submitEmail()}}></input>
+              </div>
           </div>
         );
     }

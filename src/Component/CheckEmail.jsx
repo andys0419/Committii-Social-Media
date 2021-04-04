@@ -35,9 +35,6 @@ export default class CheckEmail extends React.Component {
         })
     };
 
-    retry = (e) => {
-        document.location.href = 'https://webdev.cse.buffalo.edu/hci/elmas/forgotpassword'
-    };
 
 
     resetLogin = async (e) => {
@@ -107,10 +104,7 @@ render() {
 
         return (
           <div id="base_rectangle" className="reset-component">
-              <br/>
-              <br/>
-              <br/>
-              <br/>
+              <div id="email_content">
               <h1>{sessionStorage.getItem('user_email')}</h1>
               <h2>Please check your email.</h2>
               <br/>
@@ -135,6 +129,7 @@ render() {
               <br/>
               <br/>
               <Link to="/forgotpassword"><a id="ForgotP">Didn't receieve an email? Click here.</a></Link>
+              </div>
           </div>
         );
     }
