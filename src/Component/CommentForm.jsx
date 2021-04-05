@@ -82,41 +82,37 @@ export default class CommentForm extends React.Component {
   render() {
     return (
 
-      <div id="logo">
-        <Link to="/pollpage"><img id="committi_logo" src={committiilogo}></img></Link>
+      <div class="site">
+        
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <header class="masthead">
+            <Link to="/pollpage"><img id="committi_logo" src={committiilogo}></img></Link>
+          </header>
 
-        <div id="current_user">
-        Add A Comment to this Poll.{this.props.parent}
-            <br/>
-            <br/>
+          <main id="content" class="main-content">
+            <h2>Criteria Comments</h2>
+            <p id="comments">Generate content dynamically with a template HERE?</p>
+          </main>
 
-            <div id="comment_box">
-                 <textarea rows="8" cols="43" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
-            </div>
-            <br/>
+          <aside class="sidebar">
+              <h3>Add a comment to this Poll.{this.props.parent}</h3>
+              <textarea rows="5" cols="35" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
+              <br/><br/>
+              <form onSubmit={this.submitHandler}>
+                  <input type="submit" value="Comment"/>
+                  <br/>
+                  {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
+                  <br />
+              </form>
+          </aside>
 
-            <div id="line">
-                <div id="comments">
-                    <text>Current Comments</text>
-                    <br/>
-                </div>
-            </div>
-            
-            
-            <form onSubmit={this.submitHandler}>
-            <input type="submit" value="Comment"/>
-            <br/>
-            {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
-            <br />
-            </form>
-
-            <PostingList
-                 ref={this.postListing}
-                 parentid={this.props.parent}
-                 type="commentlist"
-            />
-        </div>
-    </div>
+          <PostingList
+              ref={this.postListing}
+              parentid={this.props.parent}
+              type="commentlist"
+          />
+          
+      </div>
     );
   }
 }
