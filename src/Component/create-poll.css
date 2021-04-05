@@ -25,6 +25,9 @@
       position: relative;
       color: black;
       font-size: 200%;
+      width: 30%;
+      left: 50%;
+      margin-left: -15%;
       top: -3.5%;
       text-decoration: underline;
   }
@@ -33,6 +36,7 @@
     position: relative;
     top: 0%;
     width: 96%;
+    left: 1.2%;
     height: 3em;
     font-size: 110%;
   }
@@ -41,6 +45,7 @@
     position: relative;
     top: 3%;
     width: 96%;
+    left: 1.2%;
     height: 3em;
     font-size: 110%;
   }
@@ -49,6 +54,7 @@
     position: relative;
     top: 6%;
     width: 96%;
+    left: 1.2%;
     height: 3em;
     font-size: 110%;
   }
@@ -57,6 +63,7 @@
       position: relative;
       color: black;
       top: 15%;
+      text-align: center;
       font-size: 180%;
   }
 
@@ -64,15 +71,16 @@
     position: relative;
     color: black;
     top: 15%;
+    text-align: center;
     font-size: 120%;
 }
 
-  .create_poll {
+  #create_poll {
     width: 40%;
-    position: relative;
-    left: 10%;
+    position: absolute;
+    left: 50%;
     margin-left: -20%;
-    bottom: -34%;
+    bottom: 5%;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;

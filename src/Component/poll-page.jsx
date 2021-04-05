@@ -114,7 +114,7 @@ export default class PollPages extends React.Component {
           <Link to="/profile"><img id="backarrow" src={backarrow}></img></Link>
           <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
-          <p id="poll_name">{this.state.poll_option_1} vs. {this.state.poll_option_2}</p>
+          <p id="poll_name">{this.state.post_text}</p>
           <canvas id="poll_outline"></canvas>
           <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
           <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
