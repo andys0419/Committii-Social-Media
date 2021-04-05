@@ -74,15 +74,15 @@ export default class Post extends React.Component {
         <div className="comment-block">
 
           <div className="comment-indicator">
-            <div className="comment-indicator-text">
-              {this.getCommentCount()} Comments
-            </div>
             <img
               src={commentIcon}
               className="comment-icon"
               onClick={e => this.showModal()}
               alt="View Comments"
             />
+            <div className="comment-indicator-text">
+              {this.getCommentCount()} Comments
+            </div>
           </div>
           <div className={this.showHideComments()}>
             <CommentForm
@@ -127,9 +127,11 @@ export default class Post extends React.Component {
       {this.props.post.author.username} ({this.props.post.createdAt})
       {this.showDelete()}
       </div>
-         <br />{" "}
+      <div className="commentPost">
+        <br />{" "}
         {this.props.post.content}
         {this.conditionalDisplay()}
+      </div>
       </div>
       </div>
     );

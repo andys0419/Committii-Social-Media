@@ -90,11 +90,17 @@ export default class CommentForm extends React.Component {
           </header>
 
           <main id="content" class="main-content">
-            <h2>Criteria Comments</h2>
-            <p id="comments">Generate content dynamically with a template HERE?</p>
+            <h2>Comments</h2>
+            <br/>
+            <PostingList
+              ref={this.postListing}
+              parentid={this.props.parent}
+              type="commentlist"
+            />
           </main>
 
           <aside class="sidebar">
+              <br/>
               <h3>Add a comment to this Poll.{this.props.parent}</h3>
               <textarea rows="5" cols="35" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
               <br/><br/>
@@ -105,12 +111,6 @@ export default class CommentForm extends React.Component {
                   <br />
               </form>
           </aside>
-
-          <PostingList
-              ref={this.postListing}
-              parentid={this.props.parent}
-              type="commentlist"
-          />
           
       </div>
     );

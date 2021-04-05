@@ -22,10 +22,13 @@
   width:100%;
 }
 
-.deleteIcon{
-  float:right;
-  background-color: black;
+.commentPost{
+  width:100%;
+}
 
+.deleteIcon{
+  background-color: black;
+  float:right;
 }
 
 .settings{
@@ -145,7 +148,6 @@
   border-radius: 20px;
   padding:30px;
   margin:10px;
-
   width:60%;
   display: inline-flex;
 }
@@ -172,14 +174,15 @@
 
 .commentlist {
   text-align: left;
-  background: white;
-  color:black;
-  border-radius: 15px;
-  padding:20px;
+  background: black;
+  color:white;
+  border-radius: 2px;
+  padding: 1em 2em;
   margin:10px;
-  font-size: 12px;
-  width:100%;
-  display:block;
+  font-size: 13px;
+  display:table;
+  font-family: 'Poppins';
+  border-bottom: 1px solid white;
 }
 
 .hide{
@@ -196,22 +199,24 @@
 }
 
 .posts{
-    display:flex;
+    display:table;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    width: 99%;
 }
 
 .postbody{
-  width:100%;
-  display:flex;
+  width:95%;
+  display:table;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  /* align-items: flex-start; */
+  justify-content: flex-start;
+  font-size: 13.5px;
 }
 
 .comment-block{
-  width:85%;
+  width:100%;
   display:flex;
   flex-direction: column;
   align-items: flex-start;
@@ -244,10 +249,9 @@
 }
 
 .sidenav-icon{
-  width:40px;
-  height:40px;
-
-  margin-bottom:15px;
+  width:30px;
+  height:30px;
+  margin-bottom:12px;
 }
 
 .comment-indicator{
@@ -255,21 +259,21 @@
   width:100%;
   display:block;
   float:right;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 
 .comment-icon{
-  width:40px;
-  height:40px;
+  width:30px;
+  height:35px;
   float:right;
   background-color: #000000;
 }
 
 .comment-indicator-text{
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   border-radius: 20px;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
   width:120px;
   padding:5px;
@@ -496,6 +500,10 @@ body, h1, h2, h3, h4, h5, h6, LoginForm {
 c {
   font-family: 'Oswald', sans-serif;
 }
+
+.new-line {
+	border-bottom: 1px solid white;
+}	
 
 
 

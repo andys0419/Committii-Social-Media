@@ -74,12 +74,14 @@ textarea {
     overflow-y: scroll;
 }
 
+h2,
 h3
 {
 	margin: 0;
 	padding: 1em 0;
 	text-decoration: underline;
 }
+
 
 #comments {
 	margin: 0;
@@ -103,10 +105,14 @@ General styles
 	color: white;
 }
 
-.main-content{
+.main-content {
 	border-style: solid solid hidden solid;
-    margin-left: 2%;
+    margin-left: -5%;
 }
+
+.new_line {
+	border-bottom: 1px solid black;
+}	
 
 /*--------------------------------------------------------------
 If no grid support, limit width to 50em and center align
