@@ -7,6 +7,8 @@
 import React from "react";
 import "./App.css";
 import PostForm from "./Component/PostForm.jsx";
+import PostingList from "./Component/PostingList.jsx";
+import Post from "./Component/Post.jsx";
 import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
@@ -94,7 +96,10 @@ class App extends React.Component {
         </Route>
         <Route path="/privacy-settings" component={PrivacySettings}/>
         <Route path="/pollpage" component={PollPage}/>
-        <Route path="/createpoll" component={CreatePoll}/>
+        <Route exact path="/createpoll" component={CreatePoll}/>
+        <Route path="/PostForm" component={PostForm}/>
+        <Route path="/PostingList" component={PostingList}/>
+        <Route path="/post" component={Post}/>
       </Switch>
         <Switch>
           <Route path="/login">

@@ -5,15 +5,22 @@ import "./profile-page.css";
 import committiilogo from "../assets/logo.svg";
 
 export default class ProfilePage extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    this.state = {
-      username: 'User',
-      email: '',
-      following: 0,
-      followers: 0
-    };
+      this.state = {
+        username: 'User',
+        email: '',
+        following: 0,
+        followers: 0,
+        poll_option_1: '',
+        poll_option_2: '',
+        post_text: '',
+        poll_category: "",
+        vote_first: 0,
+        vote_second: 0,
+        likes: 0
+      };
   }
 
   componentDidMount() {
@@ -63,6 +70,15 @@ export default class ProfilePage extends React.Component {
 
 
   render() {
+    this.state.defaultProps = {
+      poll_option_1: "",
+      poll_option_2: "",
+      post_text: '',
+      poll_category: "",
+      vote_first: 0,
+      vote_second: 0,
+      likes: 0
+    };
     return (
       <div className="App">
         <img src={prof_pic} id="prof_pic" alt="logo" />
@@ -79,7 +95,7 @@ export default class ProfilePage extends React.Component {
         <div class="white_box">
           <div class="current_polls">
             <p id="curr_polls_label">Current Polls:</p>
-            <p id="poll1">Cats vs. Dogs</p>
+            <p id="poll1">Dogs vs. Cats</p>
             <Link to="/pollpage"><button id="view_res">View Results</button></Link>
             <button id="del_post">Delete</button>
           </div>

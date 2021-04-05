@@ -6,20 +6,24 @@ import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
 import prof_pic from "../assets/profile-picture-holder.png";
 import hearticon from "../assets/heart-icon.svg";
+import PollPage from "../Component/poll-page.jsx";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default class ProfilePage extends React.Component {
-  constructor() {
-    super();
+export default class CreatePoll extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.state = {
-        poll_option_1: "test",
-        poll_option_2: "",
-        poll_category: "",
-        post_text: ''
-    };
+      poll_option_1: "",
+      poll_option_2: "",
+      post_text: '',
+      poll_category: "",
+      vote_first: 0,
+      vote_second: 0,
+      likes: 0
+  };
   }
 
   submitHandler = event => {
@@ -65,7 +69,6 @@ export default class ProfilePage extends React.Component {
     });
   }
 
-
   render() {
     return (
       <div className="App">
@@ -90,7 +93,21 @@ export default class ProfilePage extends React.Component {
             />
             <p id="new_poll_title">{this.state.poll_option_1} vs. {this.state.poll_option_2}</p>
             <p id="new_poll_category">Category: {this.state.poll_category}</p>
-            <Link to="/pollpage"><button class="create_poll">Create Poll!</button></Link>
+
+            <Link
+              to={{
+                pathname: "/pollpage",
+                state: {
+                poll_option_1: this.state.poll_option_1,
+                poll_option_2: this.state.poll_option_2,
+                post_text: this.state.post_text,
+                poll_category: this.state.poll_category,
+                vote_first: this.state.vote_first,
+                vote_second: this.state.vote_second,
+                likes: this.state.likes
+                }
+              }}
+              ><button class="create_poll">Create Poll!</button></Link>
           </div>
       </div>
     );

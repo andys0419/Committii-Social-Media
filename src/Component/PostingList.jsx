@@ -29,7 +29,7 @@ export default class PostingList extends React.Component {
   }
 
   loadPosts() {
-    let url = process.env.REACT_APP_API_PATH+"/posts?parentID=";
+    let url = "https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/posts?parentID=";
     if (this.props && this.props.parentid){
       url += this.props.parentid;
     }
