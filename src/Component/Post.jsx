@@ -14,7 +14,6 @@ export default class Post extends React.Component {
       comments: this.props.post.commentCount
     };
     this.post = React.createRef();
-
   }
 
   showModal = e => {
@@ -103,12 +102,9 @@ export default class Post extends React.Component {
     }
     return "";
   }
-
   render() {
-
     return (
       <div>
-
       <div
         key={this.props.post.id}
         className={[this.props.type, "postbody"].join(" ")}
@@ -121,7 +117,7 @@ export default class Post extends React.Component {
         </div>
         {/* {this.conditionalDisplay()} */}
         {this.props.post.content}
-        <Link to="/pollpage"><button id="view-res">View Results</button></Link>
+        <Link to={"/pollpage/"+this.props.post.id}><button id="view-res">View Results</button></Link>
         </div>
       </div>
       </div>

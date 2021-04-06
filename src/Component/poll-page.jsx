@@ -1,6 +1,6 @@
 import React from "react";
 import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import "./poll-page.css";
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
@@ -16,6 +16,8 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default class PollPages extends React.Component {
   constructor(props) {
     super(props);
+    let { postid } = this.props.match.params;
+    this.post = React.createRef();
     this.state = {
       posts: [],
       poll_option_1: "",
@@ -24,50 +26,30 @@ export default class PollPages extends React.Component {
       poll_category: "",
       vote_first: 0,
       vote_second: 0,
-      likes: 0
+      likes: 0,
+      postid: postid
     };
-    this.post = React.createRef();
+
   }
 
-
-  showModal = e => {
-    this.setState({
-      showModal: !this.state.showModal
-    });
-  };
-
-  setCommentCount = newcount => {
-    this.setState({
-      comments: newcount
-    });
-  };
-
-  getCommentCount() {
-    if (!this.state.comments || this.state.comments === "0") {
-      return 0;
-    }
-    return parseInt(this.state.comments);
-  }
-
-  showHideComments() {
-    if (this.state.showModal) {
-      return "comments show";
-    }
-    return "comments hide";
-  }
-
-  deletePost(postID) {
-    //make the api call to post
+  getPost(postID) {
     fetch(process.env.REACT_APP_API_PATH+"/posts/"+postID, {
-      method: "DELETE",
+      method: "get",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+sessionStorage.getItem("token")
       }
       })
+      .then(res => res.json())
       .then(
         result => {
-          this.props.loadPosts();
+          this.setState({
+            isLoaded: true,
+            post: result,
+            poll_option_1: result.content.substring(0, result.content.indexOf(' ')),
+            poll_option_2: result.content.substring(result.content.indexOf(' ')+5),
+            
+          });
         },
         error => {
           alert("error!"+error);
@@ -75,67 +57,12 @@ export default class PollPages extends React.Component {
       );
   }
 
-
-  // we only want to display comment information if this is a post that accepts comments
-  conditionalDisplay() {
-    console.log("Comment count is " + this.props.post.commentCount);
-
-    //if (this.props.post.commentCount <= 0) {
-    //  return "";
-    //  }
-
-    //else {
-      return (
-        <div className="comment-block">
-
-          <div className="comment-indicator">
-            <div className="comment-indicator-text">
-              {this.getCommentCount()} Comments
-            </div>
-            <img
-              src={commentIcon}
-              className="comment-icon"
-              onClick={e => this.showModal()}
-              alt="View Comments"
-            />
-          </div>
-          <div className={this.showHideComments()}>
-            <CommentForm
-              onAddComment={this.setCommentCount}
-              parent={this.props.post.id}
-              commentCount={this.getCommentCount()}
-            />
-          </div>
-        </div>
-      );
-    //}
-
-  }
-
-  // we only want to expose the delete post functionality if the user is
-  // author of the post
-  showDelete(){
-    if (this.props.post.author.id == sessionStorage.getItem("user")) {
-      return(
-      <img
-        src={helpIcon}
-        className="sidenav-icon deleteIcon"
-        alt="Delete Post"
-        title="Delete Post"
-        onClick={e => this.deletePost(this.props.post.id)}
-      />
-    );
-    }
-    return "";
-  }
-
-
-
-
-
   componentDidMount() {
     console.log("In profile");
     console.log(this.props);
+
+    this.getPost(this.state.postid);
+    //this.state.poll_option_1 = this.state.post.content.substring(0, 4);
 
     // first fetch the user data to allow update of username
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
@@ -217,13 +144,15 @@ export default class PollPages extends React.Component {
                 ]
        }]
    }
+   if(this.state.post) {
     return (
+      
       <div className="App">
           <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link to="/profile"><img id="backarrow-pollpage" src={backarrow}></img></Link>
           <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
-          <p id="poll_name">{this.state.post_text}</p>
+          <p id="poll_name">{this.state.post.content}</p>
           <canvas id="poll_outline"></canvas>
           <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
           <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
@@ -238,5 +167,13 @@ export default class PollPages extends React.Component {
           </div>
       </div>
     );
+   }
+   else {
+     return (
+    <div className="App">
+      <p id="testing12">Loading...</p>
+    </div>
+     )
+   }
   }
 }
