@@ -80,6 +80,7 @@ h3
 	margin: 0;
 	padding: 1em 0;
 	text-decoration: underline;
+	margin-left: 1%;
 }
 
 
@@ -133,7 +134,7 @@ CSS Grid layout for wider screens, when browser supports grid:
 
 		.site {
 			display: grid;
-			grid-template-columns: 1fr repeat(3, minmax(auto, 10em)) 1fr;
+			grid-template-columns: 1fr repeat(3, minmax(auto, 15em)) 1fr;
 			grid-template-rows: minmax(1em, auto) 1fr auto minmax(1em, auto);
 		}
 

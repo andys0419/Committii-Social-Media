@@ -80,39 +80,41 @@ export default class CommentForm extends React.Component {
   }
 
   render() {
+    
     return (
 
-      <div class="site">
-        
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <header class="masthead">
-            <Link to="/pollpage"><img id="committi_logo" src={committiilogo}></img></Link>
-          </header>
-
-          <main id="content" class="main-content">
-            <h2>Comments</h2>
-            <br/>
-            <PostingList
-              ref={this.postListing}
-              parentid={this.props.parent}
-              type="commentlist"
-            />
-          </main>
-
-          <aside class="sidebar">
-              <br/>
-              <h3>Add a comment to this Poll.{this.props.parent}</h3>
-              <textarea rows="5" cols="35" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
-              <br/><br/>
-              <form onSubmit={this.submitHandler}>
-                  <input type="submit" value="Comment"/>
-                  <br/>
-                  {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
-                  <br />
-              </form>
-          </aside>
+        <div class="site">
           
-      </div>
-    );
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <header class="masthead">
+              <Link to="/pollpage"><img id="committi_logo" src={committiilogo}></img></Link>
+            </header>
+
+            <main id="content" class="main-content">
+              <h2>Comments</h2>
+              <br/>
+              <PostingList
+                ref={this.postListing}
+                parentid={this.props.parent}
+                type="commentlist"
+              />
+            </main>
+
+            <aside class="sidebar">
+                <br/>
+                <br/>
+                <h3>Add a comment to this Poll.{this.props.parent}</h3>
+                <textarea rows="5" cols="35" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
+                <br/><br/>
+                <form onSubmit={this.submitHandler}>
+                    <input type="submit" value="Comment"/>
+                    <br/>
+                    {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
+                    <br />
+                </form>
+            </aside>
+            
+        </div>
+      );
   }
 }
