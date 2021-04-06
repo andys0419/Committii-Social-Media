@@ -125,7 +125,6 @@ export default class PostingList extends React.Component {
     } else if (!isLoaded) {
       return <div> Loading... </div>;
     } else if (posts) {
-
       if (posts.length > 0){
       return (
         <div className="posts">
