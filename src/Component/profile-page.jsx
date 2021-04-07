@@ -72,7 +72,7 @@ export default class PostingList extends React.Component {
   }
 
   loadPosts() {
-    let url = process.env.REACT_APP_API_PATH+"/posts?ParentID=";
+    let url = process.env.REACT_APP_API_PATH+"/posts?ParentID="+sessionStorage.getItem("user");
     // /posts/1
     if (this.props && this.props.parentid){
       url += this.props.parentid;
@@ -158,7 +158,33 @@ export default class PostingList extends React.Component {
     }
     else {
       return (
-        <p>Please log-in!</p>
+        <div className="posts">
+          {posts.map(post => (
+            <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
+          ))}
+        <img src={prof_pic} id="prof_pic" alt="logo" />
+        <p id="welcome">Hello, {this.state.email}</p>
+        <p id="following">{this.state.following} Following</p>
+        <p id="followers">{this.state.followers} Followers</p>
+
+        <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
+        <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
+        <Link to="/">
+          <img id="committii-logo" src={committiilogo}></img>
+        </Link>
+        <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
+        <div class="white_box">
+          <div class="current_polls">
+            <p id="curr_polls_label">Current Polls:</p>
+            {/* <p id="poll1">Dogs vs. Cats</p>
+            <button id="del_post">Delete</button> */}
+          </div>
+          <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+        </div>
+        <div class="space">
+          <p>.</p>
+        </div>
+        </div>
       )}
   }
 }

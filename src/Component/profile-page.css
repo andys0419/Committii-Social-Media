@@ -16,7 +16,7 @@
 #del-post-button {
   position: relative;
   left: 165%;
-  top: 505px;
+  top: 440px;
   background-color: rgb(216, 216, 216);
   border: black;
   border-style: solid;
@@ -174,8 +174,8 @@
   
   #view-res {
     position: relative;
-    left: 138%;
-    top: 447.5px;
+    left: 100%;
+    top: 503px;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
@@ -191,7 +191,7 @@
   #del_post {
     position: relative;
     left: 32%;
-    top: -15%;
+    top: -10%;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
