@@ -17,13 +17,6 @@ body {
 	margin: 0;
 }
 
-#committi_logo {
-	display: block;
-	border-radius: 0;
-	height: auto;
-	margin-left: -6%;
-}
-
 /*--------------------------------------------------------------
 Accessibility
 --------------------------------------------------------------*/
@@ -80,21 +73,15 @@ h3
 	margin: 0;
 	padding: 1em 0;
 	text-decoration: underline;
-	margin-left: 1%;
 }
 
-
-#comments {
-	margin: 0;
-	padding: 1em 0;
-}
 
 /*--------------------------------------------------------------
 General styles
 --------------------------------------------------------------*/
 .site {
 	background: black;
-	min-height: 100vh;
+	min-height: 50vh;
 	scroll-behavior: smooth;
 }
 
@@ -107,13 +94,10 @@ General styles
 }
 
 .main-content {
-	border-style: solid solid hidden solid;
+	border-style: solid solid solid solid;
     margin-left: -5%;
 }
 
-.new_line {
-	border-bottom: 1px solid black;
-}	
 
 /*--------------------------------------------------------------
 If no grid support, limit width to 50em and center align

@@ -49,7 +49,7 @@ export default class LoginForm extends React.Component {
     event.preventDefault();
 
     //make the api call to the authentication page
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/auth/login", {
+    fetch(process.env.REACT_APP_API_PATH+"/auth/login", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
