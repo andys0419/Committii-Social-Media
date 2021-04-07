@@ -4,6 +4,10 @@ import PostingList from "./PostingList.jsx";
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
+import "./create-poll.css"
+import {
+  Redirect
+} from 'react-router';
 
 //The post form component holds both a form for posting, and also the list of current posts in your feed
 export default class PostForm extends React.Component {
@@ -18,7 +22,8 @@ export default class PostForm extends React.Component {
       poll_category: "",
       vote_first: 0,
       vote_second: 0,
-      likes: 0
+      likes: 0,
+      redir: false
     };
     this.postListing = React.createRef();
   }
@@ -32,7 +37,7 @@ export default class PostForm extends React.Component {
     event.preventDefault();
 
     //make the api call to post
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/"+"/posts", {
+    fetch(process.env.REACT_APP_API_PATH+"/posts", {
       method: "post",
       headers: {
         'Content-Type': 'application/json',
@@ -49,10 +54,11 @@ export default class PostForm extends React.Component {
       .then(
         result => {
           this.setState({
-            postmessage: result.Status
+            postmessage: result.Status,
+            redir: true
           });
           // once a post is complete, reload the feed
-          this.postListing.current.loadPosts();
+          //this.postListing.current.loadPosts();
         },
         error => {
           alert("error!");
@@ -77,10 +83,10 @@ export default class PostForm extends React.Component {
   }
 
   render() {
+    if (this.state.redir) return <Redirect to='/profile'/>
     return (
       <div>
-
-        <PostingList ref={this.postListing} refresh={this.props.refresh} type="postlist" />
+        {/* <PostingList ref={this.postListing} refresh={this.props.refresh} type="postlist" /> */}
 
         <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
@@ -103,7 +109,9 @@ export default class PostForm extends React.Component {
             />
             <p id="new_poll_title">{this.state.post_text}</p>
             <p id="new_poll_category">Category: {this.state.poll_category}</p>
-            <form onSubmit={this.submitHandler}><input class="create_poll" type="submit" value="Create Poll" /></form>
+            <form onSubmit={this.submitHandler}>
+              <input id="create_poll" type="submit" value="Create Poll" />
+            </form>
           </div>
       </div>
     );

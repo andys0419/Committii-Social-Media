@@ -7,6 +7,8 @@
 import React from "react";
 import "./App.css";
 import PostForm from "./Component/PostForm.jsx";
+import PostingList from "./Component/PostingList.jsx";
+import Post from "./Component/Post.jsx";
 import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
@@ -20,6 +22,7 @@ import ForgotPassword from "./Component/ForgotPassword.jsx"
 import CheckEmail from "./Component/CheckEmail.jsx"
 import PollPage from "./Component/poll-page.jsx"
 import CommentForm from "./Component/CommentForm.jsx"
+import CreatePoll from "./Component/create-poll.jsx"
 
 import {
   BrowserRouter as Router, Route, Switch, Link
@@ -92,11 +95,12 @@ class App extends React.Component {
               <Register toggleModal={e => toggleModal(this, e)}></Register>
             </register>
         </Route>
-        <Route path="/privacy-settings" component={PrivacySettings}>
-        </Route>
-        <Route path="/pollpage" Component={PollPage}>
-          <PollPage toggleModal={e => toggleModal(this, e)}></PollPage>
-        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}/>
+        <Route path="/pollpage/:postid" component={PollPage}/>
+        <Route exact path="/createpoll" component={CreatePoll}/>
+        <Route path="/PostForm" component={PostForm}/>
+        <Route path="/PostingList" component={PostingList}/>
+        <Route path="/post" component={Post}/>
       </Switch>
         <Switch>
           <Route path="/login">

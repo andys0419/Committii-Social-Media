@@ -1,234 +1,302 @@
+#poll-name {
+    position: relative;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 310%;
+    height: 40px;
+    text-align: left;
+    left: -108%;
+    top: 440px;
+    background-color: rgb(216, 216, 216);
+    font-size: 150%;
+    z-index: 1;
+    margin-bottom: -50%;
+}
+#del-post-button {
+  position: relative;
+  left: 165%;
+  top: 440px;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: rgb(214, 5, 5);
+  padding: 3px;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 2;
+}
+
 #prof_pic {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  width: 20%;
-}
-
-#committii-logo {
-  position: absolute;
-  top: 2%;
-  left: -3.5%;
-  size: 90%;
-}
-
-#welcome {
-  font-size: 40px;
-  color: white;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 0%;
-}
-
-#edit_prof {
-  position: absolute;
-  right: 24.9%;
-  top: 32%;
-  background-color: black;
-  border: none;
-  color: white;
-  padding: 3px;
-  font-size: 130%;
-  cursor: pointer;
-}
-
-#edit_priv {
-  position: absolute;
-  right: 22.3%;
-  top: 36%;
-  background-color: black;
-  border: none;
-  color: white;
-  padding: 5px;
-  font-size: 130%;
-  cursor: pointer;
-}
-
-#following {
-  position: absolute;
-  left: 25%;
-  top: 30%;
-  font-size: 130%;
-  color: white;
-}
-
-#followers {
-  position: absolute;
-  left: 25%;
-  top: 34%;
-  font-size: 130%;
-  color: white;
-}
-
-.Feed {
-  position: relative;
-  background-color: black;
-  color: black;
-}
-
-#Polls {
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  width: 37%;
-  height: 70%;
-  top: 33%;
-  left: 50%;
-  margin-left: -18.5%;
-}
-
-#curr_polls {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 200px;
-  height: 35px;
-  position: absolute;
-  left: 3%;
-  top: 0%;
-  background-color: rgb(216, 216, 216);
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-#prev_polls {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 200px;
-  height: 35px;
-  position: absolute;
-  left: 3%;
-  top: 40%;
-  background-color: rgb(216, 216, 216);
-  color: black;
-  font-size: 20px;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-#poll1 {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 94%;
-  height: 4%;
-  text-align: left;
-  position: absolute;
-  left: 3%;
-  top: 4%;
-  background-color: rgb(216, 216, 216);
-  font-size: 150%;
-}
-
-#view_res {
-  position: absolute;
-  right: 14%;
-  top: 6.5%;
-  background-color: rgb(216, 216, 216);
-  border: black;
-  border-style: solid;
-  border-width: 1px;
-  text-shadow: 2px 2px 1px #acacac;
-  color: black;
-  padding: 3px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#del_post {
-  position: absolute;
-  right: 4%;
-  top: 6.5%;
-  background-color: rgb(216, 216, 216);
-  border: black;
-  border-style: solid;
-  border-width: 1px;
-  text-shadow: 2px 2px 1px #acacac;
-  color: rgb(214, 5, 5);
-  padding: 3px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#poll2 {
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  width: 94%;
-  height: 4%;
-  text-align: left;
-  position: absolute;
-  left: 3%;
-  top: 44%;
-  background-color: rgb(216, 216, 216);
-  font-size: 150%;
-}
-
-#view_res2 {
-  position: absolute;
-  right: 14%;
-  top: 46.5%;
-  background-color: rgb(216, 216, 216);
-  border: black;
-  border-style: solid;
-  border-width: 1px;
-  text-shadow: 2px 2px 1px #acacac;
-  color: black;
-  padding: 3px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#del_post2 {
-  position: absolute;
-  right: 4%;
-  top: 46.5%;
-  background-color: rgb(216, 216, 216);
-  border: black;
-  border-style: solid;
-  border-width: 1px;
-  text-shadow: 2px 2px 1px #acacac;
-  color: rgb(214, 5, 5);
-  padding: 3px;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-#logout_button {
-  width: 180px;
-  position: absolute;
-  left: 50%;
-  margin-left: -90px;
-  bottom: 2%;
-  background-color: rgb(216, 216, 216);
-  border: black;
-  border-style: solid;
-  border-width: 1px;
-  text-shadow: 2px 2px 1px #acacac;
-  color: black;
-  padding: 3px;
-  font-size: 28px;
-  cursor: pointer;
+    position: absolute;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 20%;
   }
-
-.white_box {
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  width: 37%;
-  height: 110%;
-  top: 33%;
-  left: 50%;
-  margin-left: -18.5%;
-}
-
-.space {
-  position: relative;
-  background-color: black;
-  width: 2%;
-  height: 70%;
-  top: 1200px;
-  left: 50%;
-}
+  
+  #committii-logo {
+    position: absolute;
+    top: 2%;
+    left: -3.5%;
+    size: 90%;
+  }
+  
+  #welcome {
+    position: absolute;
+    font-size: 40px;
+    color: white;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12.5%;
+  }
+  
+  #edit_prof {
+    position: absolute;
+    right: 24.9%;
+    top: 32%;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 3px;
+    font-size: 130%;
+    cursor: pointer;
+  }
+  
+  #edit_priv {
+    position: absolute;
+    right: 22.3%;
+    top: 36%;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 5px;
+    font-size: 130%;
+    cursor: pointer;
+  }
+  
+  #following {
+    position: absolute;
+    left: 25%;
+    top: 30%;
+    font-size: 130%;
+    color: white;
+  }
+  
+  #followers {
+    position: absolute;
+    left: 25%;
+    top: 34%;
+    font-size: 130%;
+    color: white;
+  }
+  
+  .Feed {
+    position: relative;
+    background-color: black;
+    color: black;
+  }
+  
+  #Polls {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 37%;
+    height: 70%;
+    top: 33%;
+    left: 50%;
+    margin-left: -18.5%;
+  }
+  
+  #curr_polls_label {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 200px;
+    height: 35px;
+    position: relative;
+    left: 3%;
+    top: 0%;
+    background-color: rgb(216, 216, 216);
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  .current_polls {
+    position: relative;
+    top: 10%;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  .previous_polls {
+    position: relative;
+    top: 0%;
+    height: 50%;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  #prev_polls_label {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 200px;
+    height: 35px;
+    position: relative;
+    left: 3%;
+    top: 0%;
+    background-color: rgb(216, 216, 216);
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+  }
+  
+  #poll1 {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 94%;
+    height: 8%;
+    text-align: left;
+    position: relative;
+    left: 3%;
+    top: -3%;
+    background-color: rgb(216, 216, 216);
+    font-size: 150%;
+  }
+  
+  #view-res {
+    position: relative;
+    left: 100%;
+    top: 503px;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 2px 2px 1px #acacac;
+    color: black;
+    padding: 3px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  #del_post {
+    position: relative;
+    left: 32%;
+    top: -10%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 2px 2px 1px #acacac;
+    color: rgb(214, 5, 5);
+    padding: 3px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #poll2 {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 94%;
+    height: 8%;
+    text-align: left;
+    position: relative;
+    left: 3%;
+    top: -3%;
+    background-color: rgb(216, 216, 216);
+    font-size: 150%;
+  }
+  
+  #view_res2 {
+    position: relative;
+    left: 32%;
+    top: -15%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 2px 2px 1px #acacac;
+    color: black;
+    padding: 3px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #del_post2 {
+    position: relative;
+    left: 32%;
+    top: -15%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 2px 2px 1px #acacac;
+    color: rgb(214, 5, 5);
+    padding: 3px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #logout_button {
+    width: 180px;
+    position: absolute;
+    left: 50%;
+    margin-left: -90px;
+    bottom: 2%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+    text-shadow: 2px 2px 1px #acacac;
+    color: black;
+    padding: 3px;
+    font-size: 28px;
+    cursor: pointer;
+    }
+  
+  .white_box {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 37%;
+    height: 110%;
+    top: 33%;
+    left: 50%;
+    margin-left: -18.5%;
+  }
+  
+  .space {
+    position: relative;
+    background-color: black;
+    width: 2%;
+    height: 70%;
+    top: 1200px;
+    left: 50%;
+  }
+  
+  .create_poll_button {
+    position: absolute;
+    background-color: rgb(216, 216, 216);
+    border: black 1px solid;
+    color: black;
+    width: 5%;
+    height: 9.5%;
+    text-align: center;
+    padding: 4px 3px 0 3px;
+    font-size: 130%;
+    font-weight: 600;
+    left: 50%;
+    top: 34%;
+    margin-left: -2.5%;
+    z-index: 1;
+    border-radius: 50%;
+  }
