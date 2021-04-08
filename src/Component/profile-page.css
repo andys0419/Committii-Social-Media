@@ -30,22 +30,15 @@
   z-index: 2;
 }
 
-#prof_pic {
-    position: relative;
-    left: 50%;
-    margin-left: -10%;
-    top: -440px;
-    display: block;
-    width: 20%;
-  }
-  
+
+
   #committii-logo {
     position: absolute;
     top: 2%;
     left: -3.5%;
     size: 90%;
   }
-  
+
   #welcome {
     position: relative;
     top: -490px;
@@ -54,7 +47,7 @@
     color: white;
     z-index: 3;
   }
-  
+
   #edit_prof {
     position: absolute;
     right: 24.9%;
@@ -66,7 +59,7 @@
     font-size: 130%;
     cursor: pointer;
   }
-  
+
   #edit_priv {
     position: absolute;
     right: 22.3%;
@@ -78,7 +71,7 @@
     font-size: 130%;
     cursor: pointer;
   }
-  
+
   #following {
     position: absolute;
     left: 25%;
@@ -86,7 +79,7 @@
     font-size: 130%;
     color: white;
   }
-  
+
   #followers {
     position: absolute;
     left: 25%;
@@ -94,13 +87,13 @@
     font-size: 130%;
     color: white;
   }
-  
+
   .Feed {
     position: relative;
     background-color: black;
     color: black;
   }
-  
+
   #curr_polls_label {
     display: flex;
     justify-content: left;
@@ -116,7 +109,7 @@
     font-weight: bold;
     text-decoration: underline;
   }
-  
+
   .current_polls {
     position: relative;
     top: 10%;
@@ -124,7 +117,7 @@
     width: 100%;
     z-index: 1;
   }
-  
+
   #view-res {
     position: relative;
     left: 61%;
@@ -140,7 +133,7 @@
     cursor: pointer;
     z-index: 2;
   }
-  
+
   #logout_button {
     width: 180px;
     position: absolute;
@@ -157,7 +150,7 @@
     font-size: 28px;
     cursor: pointer;
     }
-  
+
   .white_box {
     position: absolute;
     background-color: rgb(255, 255, 255);
@@ -167,7 +160,7 @@
     left: 50%;
     margin-left: -18.5%;
   }
-  
+
   .create_poll_button {
     position: absolute;
     background-color: rgb(216, 216, 216);
@@ -193,4 +186,29 @@
     height: 70%;
     top: 800px;
     left: 50%;
+  }
+#save-button {
+  width: 180px;
+  position: absolute;
+  left: 50%;
+  margin-left: -90px;
+  bottom: 10%;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: black;
+  padding: 3px;
+  font-size: 28px;
+  cursor: pointer;
+  }
+  #prof_pic {
+    display: flex;
+    height: 140px;
+    width: 140px;
+    position: relative;
+    top: 32%;
+    left: 0%;
+    border-radius: 50%;
   }

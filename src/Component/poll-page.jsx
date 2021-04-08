@@ -156,7 +156,7 @@ export default class PollPages extends React.Component {
     return (
       
       <div className="App">
-          <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
+          <Link to="/feed"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link to="/profile"><img id="backarrow-pollpage" src={backarrow}></img></Link>
           <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>

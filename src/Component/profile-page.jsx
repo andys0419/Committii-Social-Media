@@ -30,6 +30,7 @@ export default class PostingList extends React.Component {
     };
     this.postingList = React.createRef();
     this.loadPosts = this.loadPosts.bind(this);
+    this.displayProfilePic = this.displayProfilePic.bind(this);
   }
 
   componentDidMount() {
@@ -117,6 +118,28 @@ export default class PostingList extends React.Component {
     sessionStorage.setItem("user", "User");
   }
 
+  displayProfilePic(){
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "get",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          }
+        })
+       .then(res => res.json())
+       .then(
+         result => {
+           console.log(result)
+           if (result.role == ""){
+             document.getElementById("prof_pic").src = "./prof.png"
+           }else{
+           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+           console.log(result.role)
+           document.getElementById("prof_pic").src = server + result.role
+         }
+         })
+      }
+
   render() {
     const {error, isLoaded, posts} = this.state;
     if (error) {
@@ -130,7 +153,7 @@ export default class PostingList extends React.Component {
           {posts.map(post => (
             <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
           ))}
-        <img src={prof_pic} id="prof_pic" alt="logo" />
+        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
         <p id="welcome">Hello, {this.state.email}</p>
         <p id="following">{this.state.following} Following</p>
         <p id="followers">{this.state.followers} Followers</p>
@@ -161,7 +184,7 @@ export default class PostingList extends React.Component {
           {posts.map(post => (
             <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
           ))}
-        <img src={prof_pic} id="prof_pic" alt="logo" />
+        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
         <p id="welcome">Hello, {this.state.email}</p>
         <p id="following">{this.state.following} Following</p>
         <p id="followers">{this.state.followers} Followers</p>
@@ -175,8 +198,6 @@ export default class PostingList extends React.Component {
         <div class="white_box">
           <div class="current_polls">
             <p id="curr_polls_label">Current Polls:</p>
-            {/* <p id="poll1">Dogs vs. Cats</p>
-            <button id="del_post">Delete</button> */}
           </div>
           <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
         </div>
