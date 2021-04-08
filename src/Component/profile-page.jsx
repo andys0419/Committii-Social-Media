@@ -62,14 +62,7 @@ export default class PostingList extends React.Component {
           alert("error!");
         }
       );
-      }
-
-      clearState = (e) => {
-        this.setState({
-          username: "User",
-          following: 0,
-          followers: 0
-        })
+  }
 
   componentDidUpdate(prevProps) {
     console.log("PrevProps "+prevProps.refresh);
@@ -126,29 +119,28 @@ export default class PostingList extends React.Component {
   }
 
   displayProfilePic(){
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-      method: "get",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "get",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          }
+        })
+       .then(res => res.json())
+       .then(
+         result => {
+           console.log(result)
+           if (result.role == ""){
+             document.getElementById("prof_pic").src = "./prof.png"
+           }else{
+           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+           console.log(result.role)
+           document.getElementById("prof_pic").src = server + result.role
+         }
+         })
       }
-    })
-   .then(res => res.json())
-   .then(
-     result => {
-       console.log(result)
-       if (result.role == ""){
-         document.getElementById("prof_pic").src = "./prof.png"
-       }else{
-       var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-       console.log(result.role)
-       document.getElementById("prof_pic").src = server + result.role
-     }
-     })
-  }
 
   render() {
-    //this.loadPosts();
     const {error, isLoaded, posts} = this.state;
     if (error) {
       return <div> Error: {error.message} </div>;
@@ -168,7 +160,7 @@ export default class PostingList extends React.Component {
 
         <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
         <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/feed">
+        <Link to="/">
           <img id="committii-logo" src={committiilogo}></img>
         </Link>
         <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
@@ -199,15 +191,13 @@ export default class PostingList extends React.Component {
 
         <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
         <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/feed">
+        <Link to="/">
           <img id="committii-logo" src={committiilogo}></img>
         </Link>
         <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
         <div class="white_box">
           <div class="current_polls">
             <p id="curr_polls_label">Current Polls:</p>
-            {/* <p id="poll1">Dogs vs. Cats</p>
-            <button id="del_post">Delete</button> */}
           </div>
           <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
         </div>
@@ -217,4 +207,5 @@ export default class PostingList extends React.Component {
         </div>
       )}
   }
+}
 }
