@@ -30,14 +30,7 @@
   z-index: 2;
 }
 
-#prof_pic {
-    position: relative;
-    left: 50%;
-    margin-left: -10%;
-    top: -440px;
-    display: block;
-    width: 20%;
-  }
+
 
   #committii-logo {
     position: absolute;
