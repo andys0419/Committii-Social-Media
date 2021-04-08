@@ -118,7 +118,6 @@ export default class PostingList extends React.Component {
   }
 
   render() {
-    //this.loadPosts();
     const {error, isLoaded, posts} = this.state;
     if (error) {
       return <div> Error: {error.message} </div>;
@@ -176,8 +175,6 @@ export default class PostingList extends React.Component {
         <div class="white_box">
           <div class="current_polls">
             <p id="curr_polls_label">Current Polls:</p>
-            {/* <p id="poll1">Dogs vs. Cats</p>
-            <button id="del_post">Delete</button> */}
           </div>
           <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
         </div>

@@ -47,7 +47,7 @@ export default class PollPages extends React.Component {
             isLoaded: true,
             post: result,
             poll_option_1: result.content.substring(0, result.content.indexOf(' ')),
-            poll_option_2: result.content.substring(result.content.indexOf(' ')+5),
+            poll_option_2: result.content.substring(result.content.indexOf(' ')+5)
           });
         },
         error => {
