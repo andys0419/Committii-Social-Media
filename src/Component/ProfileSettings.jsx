@@ -24,14 +24,14 @@ export default class ProfileSettings extends React.Component {
             password: '',
             bio: '',
             dob: '',
-            blockedUsers: ["No Blocked Users"],
+            blockedUsers: "",
             avatarbutton:"Change Avatar",
             closebutton:"Close Account",
             firstName: "",
             lastname: "",
             favoritecolor: "",
             responseMessage: "",
-            role: ""
+            status: ""
     };
     this.handleClick = this.handleClick.bind(this)
       this.changeAvatarButton = this.changeAvatarButton.bind(this);
@@ -44,6 +44,7 @@ export default class ProfileSettings extends React.Component {
     this.fieldChangeHandler4.bind(this);
     this.fieldChangeHandler5.bind(this);
     this.fieldChangeHandler6.bind(this);
+    this.updatePassword.bind(this);
 
   }
 
@@ -89,6 +90,7 @@ export default class ProfileSettings extends React.Component {
 
 
 
+
   componentDidMount() {
     console.log("In profile");
     console.log(this.props);
@@ -117,9 +119,9 @@ export default class ProfileSettings extends React.Component {
                 password: result.password || "",
                 bio: result.bio || "",
                 dob: result.dob || "",
-                blockedUsers: result.blockedUsers || ["No Blocked Users"],
+                blockedUsers: result.blockedUsers || "",
                 email: result.email || "",
-                role: result.role || ""
+                status: result.status || ""
 
             });
           }
@@ -178,7 +180,7 @@ export default class ProfileSettings extends React.Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             blockedUsers: this.state.blockedUsers,
-            role: this.state.role
+            status: this.state.status
 
       })
     })
@@ -200,7 +202,14 @@ export default class ProfileSettings extends React.Component {
 
     //make the api call to the user prefs controller
 
-
+    let res = fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+                body: JSON.stringify({'password': this.state.password}),
+                headers: {
+                    'Accept': "*/*",
+                    "Content-Type": "application/json"
+                },
+                method: "POST"
+            });
 
   }
   ///////////////
@@ -218,6 +227,7 @@ export default class ProfileSettings extends React.Component {
           }
           document.getElementById('blocked').value = ''
       }
+
   }
 
   changeAvatarButton(){
@@ -258,8 +268,7 @@ export default class ProfileSettings extends React.Component {
             value={this.state.username} />
           </div>
             <div id="ProfileInput">
-            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"} onChange={e => this.fieldChangeHandler3("password", e)}
-            value={this.state.password} />
+            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"}onChange={this.updatePassword} value={this.state.password}/>
           </div>
             <div id="ProfileInput">
             <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email} onChange={e => this.fieldChangeHandler2("email", e)}
@@ -276,10 +285,12 @@ export default class ProfileSettings extends React.Component {
           </div>
             <a id="ProfileHeading">Blocked Users</a>
             <div id="BlockedResults">
-            <p>{this.state.role}</p>
+            <p>{this.state.status}</p>
             </div>
           <div id="ProfileInput">
-            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"} onChange={e => this.fieldChangeHandler6("role", e)} value={this.state.lastName}/>
+            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"} onChange={e => this.fieldChangeHandler6("blockedUsers", e)}/>
+            <button onClick={e => this.setState({status:this.state.status +" | "+ this.state.blockedUsers})} input type="submit" value="blocked" >Add</button>
+
           </div>
 
             <div className='container'>
