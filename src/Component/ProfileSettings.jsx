@@ -31,7 +31,8 @@ export default class ProfileSettings extends React.Component {
             lastname: "",
             favoritecolor: "",
             responseMessage: "",
-            status: ""
+            status: "",
+            token: "",
     };
     this.handleClick = this.handleClick.bind(this)
       this.changeAvatarButton = this.changeAvatarButton.bind(this);
@@ -44,7 +45,6 @@ export default class ProfileSettings extends React.Component {
     this.fieldChangeHandler4.bind(this);
     this.fieldChangeHandler5.bind(this);
     this.fieldChangeHandler6.bind(this);
-    this.updatePassword.bind(this);
 
   }
 
@@ -87,7 +87,17 @@ export default class ProfileSettings extends React.Component {
     });
   }
 
+  updatePassword = (e) => {
+        this.setState({
+          password: e.currentTarget.value
+        })
+    };
 
+  updateToken = (e) => {
+        this.setState({
+          token: e.currentTarget.value
+        })
+    };
 
 
 
@@ -121,7 +131,8 @@ export default class ProfileSettings extends React.Component {
                 dob: result.dob || "",
                 blockedUsers: result.blockedUsers || "",
                 email: result.email || "",
-                status: result.status || ""
+                status: result.status || "",
+                token: result.token || ""
 
             });
           }
@@ -161,7 +172,7 @@ export default class ProfileSettings extends React.Component {
       );
   }
 
-  submitHandler = event => {
+  submitHandler = async (event) =>  {
     //keep the form from actually submitting
     event.preventDefault();
 
@@ -180,7 +191,8 @@ export default class ProfileSettings extends React.Component {
             firstName: this.state.firstName,
             lastName: this.state.lastName,
             blockedUsers: this.state.blockedUsers,
-            status: this.state.status
+            status: this.state.status,
+            token: this.state.token
 
       })
     })
@@ -202,8 +214,11 @@ export default class ProfileSettings extends React.Component {
 
     //make the api call to the user prefs controller
 
-    let res = fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
-                body: JSON.stringify({'password': this.state.password}),
+    const token = this.state.token;
+    const password = this.state.password;
+
+            let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+                body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
                 headers: {
                     'Accept': "*/*",
                     "Content-Type": "application/json"
@@ -268,9 +283,6 @@ export default class ProfileSettings extends React.Component {
             value={this.state.username} />
           </div>
             <div id="ProfileInput">
-            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"}onChange={this.updatePassword} value={this.state.password}/>
-          </div>
-            <div id="ProfileInput">
             <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email} onChange={e => this.fieldChangeHandler2("email", e)}
             value={this.state.email}/>
           </div>
@@ -294,6 +306,7 @@ export default class ProfileSettings extends React.Component {
           </div>
 
             <div className='container'>
+                <Link to="/forgotpassword"><button>Change Password</button></Link>
                 <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
                 <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
                 <Link to="/closeaccount"><button>Close Account</button></Link>
