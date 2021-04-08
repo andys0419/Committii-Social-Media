@@ -10,7 +10,7 @@ import hearticon from "../assets/heart-icon.svg";
 import CommentForm from "./CommentForm.jsx";
 import helpIcon from "../assets/delete.png";
 import commentIcon from "../assets/comment.svg";
-import "./PostingList.css"
+import "./PostingList.css";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -118,7 +118,6 @@ export default class PostingList extends React.Component {
   }
 
   render() {
-    //this.loadPosts();
     const {error, isLoaded, posts} = this.state;
     if (error) {
       return <div> Error: {error.message} </div>;
