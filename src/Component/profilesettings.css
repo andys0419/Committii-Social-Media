@@ -71,7 +71,8 @@ button {
 #avatarbutton {
     display: flex;
     position: relative;
-    left: 35.1%;
+    left: 27.5%;
+    margin-top: 1%;
     font-size: medium;
 
 }
