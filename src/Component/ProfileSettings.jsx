@@ -5,7 +5,6 @@ import "./profile-page.css";
 import "./profilesettings.css";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
-import prof_pic from "./prof.png"
 
 // the login form will display if there is no session token stored.  This will display
 // the login form, and call the API to authenticate the user and store the token in
@@ -40,10 +39,8 @@ export default class ProfileSettings extends React.Component {
     this.fieldChangeHandler4.bind(this);
     this.fieldChangeHandler5.bind(this);
     this.fieldChangeHandler6.bind(this);
-    this.displayProfilePic = this.displayProfilePic.bind(this);
-    this.uploadProfileImage = this.uploadProfileImage.bind(this);
+}
 
-  }
 
   fieldChangeHandler(field, e) {
     this.setState({
@@ -82,18 +79,6 @@ export default class ProfileSettings extends React.Component {
       [field]: e.target.value
     });
   }
-
-  updatePassword = (e) => {
-        this.setState({
-          password: e.currentTarget.value
-        })
-    };
-
-  updateToken = (e) => {
-        this.setState({
-          token: e.currentTarget.value
-        })
-    };
 
 
 
@@ -162,60 +147,6 @@ export default class ProfileSettings extends React.Component {
 
   submitHandler = async (event) =>  {
 
-  displayProfilePic(){
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-      method: "get",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      }
-    })
-   .then(res => res.json())
-   .then(
-     result => {
-       console.log(result)
-       if (result.role == ""){
-         document.getElementById("profilepic").src = prof_pic
-       }else{
-       var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-       
-       document.getElementById("profilepic").src = server + result.role
-     }
-     })
-  }
-
-  uploadProfileImage(userArtifact){
-    const formData = new FormData();
-    const fileInput = document.querySelector('input[type="file"]');
-    formData.append("file", fileInput.files[0]);
-    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + String(userArtifact) + "/upload", {
-      method: "POST",
-      body: formData,
-      headers: {
-        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
-      },
-    }).then(res => res.json())
-    .then(
-      result => {
-        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-          method: "PATCH",
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+sessionStorage.getItem("token")
-          },
-          body: JSON.stringify({
-            "role": result.url
-          })
-        }).then(res => res.json())
-        .then(
-          result => {console.log(result)})
-        this.displayProfilePic()
-        document.getElementById("imgUpload").value = ""
-      })
-  }
-
-  submitHandler = event => {
-
     //keep the form from actually submitting
     event.preventDefault();
 
@@ -255,48 +186,8 @@ export default class ProfileSettings extends React.Component {
     let method = "POST";
 
 
-
-    //make the api call to the user prefs controller
-
-    const token = this.state.token;
-    const password = this.state.password;
-
-            let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
-                body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
-                headers: {
-                    'Accept': "*/*",
-                    "Content-Type": "application/json"
-                },
-                method: "POST"
-            });
-
-
-    //fetch calls for profile Image
-    if(document.getElementById("imgUpload").value != ""){
-    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
-      body: JSON.stringify({
-        "ownerID": sessionStorage.getItem("user"),
-        "type": "Image",
-        "url": "String",
-        "category": "profilepic"
-      })
-    })
-    .then(res => res.json())
-    .then(
-      result => {
-        var userArtifact = -1;
-        userArtifact = result.id;
-        if (userArtifact != -1){
-          this.uploadProfileImage(userArtifact);
-        }
-      })
-    }
-
   }
+
   ///////////////
 
 
@@ -333,13 +224,6 @@ export default class ProfileSettings extends React.Component {
                 <img id="backarrow" src={backarrow}></img>
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
-            <div className='container'>
-                <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="profilepic"/>
-                <form action="/action_page.php" id="avatarbutton">
-                  <label for="img1">Select Image:</label>
-                  <input type="file" id="imgUpload" name="img" accept="image/*"></input>
-                </form>
-            </div>
             <a id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
             <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
