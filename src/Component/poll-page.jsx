@@ -66,7 +66,7 @@ export default class PollPages extends React.Component {
     //this.state.poll_option_1 = this.state.post.content.substring(0, 4);
 
     // first fetch the user data to allow update of username
-    fetch(process.env.REACT_APP_API_PATH + "/api/users/"+sessionStorage.getItem("user"), {
+    fetch(process.env.REACT_APP_API_PATH + "/users/"+sessionStorage.getItem("user"), {
       method: "get",
       headers: {
         'Content-Type': 'application/json',
@@ -124,12 +124,6 @@ export default class PollPages extends React.Component {
       });
     }
 
-    // grabComments = (e) => {
-    //   //find post by ID
-    // })
-
-
-    // };
 
 
   render() {
