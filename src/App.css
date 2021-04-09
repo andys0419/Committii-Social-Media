@@ -633,3 +633,21 @@ c {
   margin-inline:inherit;
   z-index: -1;
 }
+
+.poll_button {
+  position: relative;
+  background-color: rgb(216, 216, 216);
+  border: black 1px solid;
+  color: black;
+  width: 5%;
+  height: 9.5%;
+  text-align: center;
+  padding: 4px 3px 0 3px;
+  font-size: 130%;
+  font-weight: 600;
+  left: 90%;
+  top: 34%;
+  margin-left: -2.5%;
+  z-index: 1;
+  border-radius: 50%;
+}
