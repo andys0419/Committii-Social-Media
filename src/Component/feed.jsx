@@ -104,6 +104,11 @@ export default class Register extends React.Component {
     let comments = post.commentCount;
     let id = "pollpage/" + post.id.toString();
 
+    if (content.length < 2) {
+      content[0] = "Undefined"
+      content[1] = "Undefined"
+    }
+
     CanvasJS.addColorSet("gray_color",
     ["#acacac"]);
     const options = {
