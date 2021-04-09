@@ -1,5 +1,5 @@
 import React from "react";
-import CommentsList from "./CommentsList.jsx";
+import ReplyList from "./ReplyList.jsx";
 import "./ReplyForm.css"
 
 
@@ -42,8 +42,9 @@ export default class ReplyForm extends React.Component {
           },
           body: JSON.stringify({
             authorID: sessionStorage.getItem("user"),
+            parentID: this.props.parent,
             content: sessionStorage.getItem("current_content"),
-            type: "comments",
+            type: "replies",
             thumbnailURL: this.state.post_text
           })
         })
@@ -54,6 +55,8 @@ export default class ReplyForm extends React.Component {
               this.setState({
                 errorMessage: "Your reply has been posted!"
               })
+
+              //sessionStorage.setItem("current_content", this.state.post_text);
     
               // update the count in the UI manually, to avoid a database hit
               this.props.onAddComment(this.props.commentCount + 1);
@@ -90,7 +93,7 @@ export default class ReplyForm extends React.Component {
                 <main id="content" class="main-content">
                     <h2>Replies</h2>
                     <br/>
-                    <CommentsList
+                    <ReplyList
                         ref={this.postListing}
                         parentid={this.props.parent}
                         type="commentlist"
