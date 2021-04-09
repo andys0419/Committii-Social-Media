@@ -60,7 +60,7 @@ resetLogin = async (e) => {
         }
         else {
             
-            let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+            let res = await fetch(process.env.REACT_APP_API_PATH + "/auth/reset-password", {
                 body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
                 headers: {
                     'Accept': "*/*",

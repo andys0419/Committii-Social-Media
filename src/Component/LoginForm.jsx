@@ -49,7 +49,7 @@ export default class LoginForm extends React.Component {
     event.preventDefault();
 
     //make the api call to the authentication page
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/auth/login", {
+    fetch(process.env.REACT_APP_API_PATH+"/auth/login", {
       method: "POST",
       headers: {
         'Content-Type': 'application/json',
@@ -97,7 +97,7 @@ export default class LoginForm extends React.Component {
 
   render() {
     // console.log("Rendering login, token is " + sessionStorage.getItem("token"));
-    if (this.state.redir) return <Redirect to='/profile'/>
+    if (this.state.redir) return <Redirect to='/feed'/>
 
     if (!sessionStorage.getItem("token")) {
       return (

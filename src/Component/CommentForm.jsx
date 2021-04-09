@@ -35,7 +35,7 @@ export default class CommentForm extends React.Component {
 
     //make the api call to the authentication page
 
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/posts", {
+    fetch(process.env.REACT_APP_API_PATH + "/posts", {
       method: "post",
       headers: {
         'Content-Type': 'application/json',
@@ -80,43 +80,41 @@ export default class CommentForm extends React.Component {
   }
 
   render() {
+    
     return (
 
-      <div id="logo">
-        <Link to="/pollpage"><img id="committi_logo" src={committiilogo}></img></Link>
+        <div class="site">
+          
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <header class="masthead">
+              <Link to="/pollpage"><img id="committi_logo" src={committiilogo}></img></Link>
+            </header>
 
-        <div id="current_user">
-        Add A Comment to this Poll.{this.props.parent}
-            <br/>
-            <br/>
+            <main id="content" class="main-content">
+              <h2>Comments</h2>
+              <br/>
+              <PostingList
+                ref={this.postListing}
+                parentid={this.props.parent}
+                type="commentlist"
+              />
+            </main>
 
-            <div id="comment_box">
-                 <textarea rows="8" cols="43" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
-            </div>
-            <br/>
-
-            <div id="line">
-                <div id="comments">
-                    <text>Current Comments</text>
+            <aside class="sidebar">
+                <br/>
+                <br/>
+                <h3>Add a comment to this Poll.{this.props.parent}</h3>
+                <textarea rows="5" cols="35" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
+                <br/><br/>
+                <form onSubmit={this.submitHandler}>
+                    <input type="submit" value="Comment"/>
                     <br/>
-                </div>
-            </div>
+                    {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
+                    <br />
+                </form>
+            </aside>
             
-            
-            <form onSubmit={this.submitHandler}>
-            <input type="submit" value="Comment"/>
-            <br/>
-            {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
-            <br />
-            </form>
-
-            <PostingList
-                 ref={this.postListing}
-                 parentid={this.props.parent}
-                 type="commentlist"
-            />
         </div>
-    </div>
-    );
+      );
   }
 }

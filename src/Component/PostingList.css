@@ -4,15 +4,11 @@
     top: 1.5%;
 }
 
-#backarrow-pollpage {
+#backarrow {
     position: absolute;
     left: 26%;
     top: 13%;
     z-index: 1;
-}
-
-#testing12 {
-    color:white;
 }
 
 #prof_pic_poll_page {

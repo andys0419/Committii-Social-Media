@@ -7,10 +7,13 @@
 import React from "react";
 import "./App.css";
 import PostForm from "./Component/PostForm.jsx";
+import PostingList from "./Component/PostingList.jsx";
+import Post from "./Component/Post.jsx";
 import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
+import Feed from "./Component/feed.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
 import ProfileSettings from "./Component/ProfileSettings.jsx";
@@ -20,6 +23,10 @@ import ForgotPassword from "./Component/ForgotPassword.jsx"
 import CheckEmail from "./Component/CheckEmail.jsx"
 import PollPage from "./Component/poll-page.jsx"
 import CommentForm from "./Component/CommentForm.jsx"
+import CreatePoll from "./Component/create-poll.jsx"
+import CloseAccount from "./Component/CloseAccount.jsx";
+import CloseAccountFeedback from "./Component/CloseAccountFeedback.jsx";
+
 
 import {
   BrowserRouter as Router, Route, Switch, Link
@@ -92,11 +99,12 @@ class App extends React.Component {
               <Register toggleModal={e => toggleModal(this, e)}></Register>
             </register>
         </Route>
-        <Route path="/privacy-settings" component={PrivacySettings}>
-        </Route>
-        <Route path="/pollpage" Component={PollPage}>
-          <PollPage toggleModal={e => toggleModal(this, e)}></PollPage>
-        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}/>
+        <Route path="/pollpage/:postid" component={PollPage}/>
+        <Route exact path="/createpoll" component={CreatePoll}/>
+        <Route path="/PostForm" component={PostForm}/>
+        <Route path="/PostingList" component={PostingList}/>
+        <Route path="/post" component={Post}/>
       </Switch>
         <Switch>
           <Route path="/login">
@@ -113,6 +121,16 @@ class App extends React.Component {
             </login>
           </Route>
         </Switch>
+        <Switch>
+          <Route path="/closeaccount">
+            <CloseAccount toggleModal={e => toggleModal(this, e)}></CloseAccount>
+          </Route>
+        </Switch>
+          <Switch>
+            <Route path="/closeaccountfeedback">
+              <CloseAccountFeedback toggleModal={e => toggleModal(this, e)}></CloseAccountFeedback>
+            </Route>
+          </Switch>
         <Switch>
           <Route path="/forgotpassword">
             <div id="navbar" className="navbar">
@@ -147,6 +165,11 @@ class App extends React.Component {
         <Switch>
           <Route path="/comment">
             <CommentForm toggleModal={e => toggleModal(this, e)}></CommentForm>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/feed">
+            <Feed toggleModal={e => toggleModal(this, e)}></Feed>
           </Route>
         </Switch>
         <Switch>

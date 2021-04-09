@@ -1,7 +1,6 @@
 import React from "react";
 import "../App.css";
 import CommentForm from "./CommentForm.jsx";
-import ReplyForm from "./ReplyForm.jsx"
 import helpIcon from "../assets/delete.png";
 import commentIcon from "../assets/comment.svg";
 import "./post.css";
@@ -12,14 +11,14 @@ export default class Post extends React.Component {
     super(props);
     this.state = {
       showModal: false,
-      comments: this.props.post.commentCount,
+      comments: this.props.post.commentCount
     };
     this.post = React.createRef();
   }
 
   showModal = e => {
     this.setState({
-      showModal: !this.state.showModal,
+      showModal: !this.state.showModal
     });
   };
 
@@ -37,11 +36,9 @@ export default class Post extends React.Component {
   }
 
   showHideComments() {
-    
     if (this.state.showModal) {
       return "comments show";
     }
-
     return "comments hide";
   }
 
@@ -61,47 +58,6 @@ export default class Post extends React.Component {
         error => {
           alert("error!"+error);
         }
-      );
-  }
-
-
-  // we only want to display comment information if this is a post that accepts comments
-  conditionalDisplay() {
-    console.log("Comment count is " + this.props.post.commentCount);
-    
-    //if (this.props.post.commentCount <= 0) {
-    //  return "";
-    //  }
-
-    //else {
-      return (
-        <div className="comment-block">
-
-          <div className="comment-indicator">
-            <img
-              src={commentIcon}
-              className="comment-icon"
-              onClick={e => this.showModal()}
-              alt="View Comments"
-            />
-            <div className="comment-indicator-text">
-              {this.getCommentCount()} Reply
-            </div>
-          </div>
-          <div className={this.showHideComments()}>
-            <ReplyForm 
-              onAddComment={this.setCommentCount}
-              parent={this.props.post.id}
-              commentCount={this.getCommentCount()}
-            />
-
-            {/* <CommentForm
-              onAddComment={this.setCommentCount}
-              parent={this.props.post.id}
-              commentCount={this.getCommentCount()}
-            /> */}
-          </div>
-        </div>
       );
   }
 
@@ -137,16 +93,13 @@ showPolls() {
         key={this.props.post.id}
         className={[this.props.type, "postbody"].join(" ")}
       >
-      <div className="deletePost">
-      {this.props.post.author.username} ({this.props.post.createdAt})
-      {this.showDelete()}
-      </div>
-      <div className="commentPost">
-      {this.showPolls()}
-      {/* {this.showDelete()} */}
-        <br />{" "}
-        {/* {this.conditionalDisplay()} */}
-      </div>
+      <div className="posts">
+        <div className="deletePost">
+          {this.props.post.author.username} ({this.props.post.createdAt})
+          {this.showPolls()}
+          {this.showDelete()}
+        </div>
+        </div>
       </div>
       </div>
     );
