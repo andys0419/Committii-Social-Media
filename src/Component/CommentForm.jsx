@@ -35,7 +35,7 @@ export default class CommentForm extends React.Component {
 
     //make the api call to the authentication page
 
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/posts", {
+    fetch(process.env.REACT_APP_API_PATH + "/posts", {
       method: "post",
       headers: {
         'Content-Type': 'application/json',
