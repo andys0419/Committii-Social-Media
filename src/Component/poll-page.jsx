@@ -45,12 +45,16 @@ export default class PollPages extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+          
           this.setState({
             isLoaded: true,
             post: result,
             poll_option_1: result.content.substring(0, result.content.indexOf(' ')),
             poll_option_2: result.content.substring(result.content.indexOf(' ')+5),
           });
+          
+          //stores the title of the poll for use with grabbing relevant comments
+          sessionStorage.setItem("current_content", result.content);
         },
         error => {
           alert("error!"+error);
@@ -159,8 +163,7 @@ export default class PollPages extends React.Component {
           <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
           <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
           <p id="like_count">Likes: {this.state.likes}</p>
-          <Link to="/comment" id="comment_button">Comment</Link>
-          {/* <button id="comment_button" onClick={()=>{this.grabComments()}}>Comments</button> */}
+          <Link to={"/pollpage/"+ this.state.postid + "/comments"}><button id="comment_button">Comments</button></Link>
           <div id="test">
             <button id="like_button" onClick={()=>{this.updateLikes()}}>Like this Poll?</button>
             <img id="heart" src={hearticon}></img>

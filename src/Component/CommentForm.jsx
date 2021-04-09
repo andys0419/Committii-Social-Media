@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
-import PostingList from "./PostingList.jsx";
+import CommentsList from "./CommentsList.jsx";
 import "./CommentForm.css"
 
 export default class CommentForm extends React.Component {
@@ -43,10 +43,10 @@ export default class CommentForm extends React.Component {
       },
       body: JSON.stringify({
         authorID: sessionStorage.getItem("user"),
-        content: this.state.post_text,
         parentID: this.props.parent,
-        thumbnailURL: "",
-        type: "post"
+        content: sessionStorage.getItem("current_content"),
+        type: "comments",
+        thumbnailURL: this.state.post_text
       })
     })
       .then(res => res.json())
@@ -58,7 +58,7 @@ export default class CommentForm extends React.Component {
           })
 
           // update the count in the UI manually, to avoid a database hit
-          this.props.onAddComment(this.props.commentCount + 1);
+          // this.props.onAddComment(this.props.commentCount + 1);
           this.postListing.current.loadPosts();
         },
         error => {
@@ -66,6 +66,9 @@ export default class CommentForm extends React.Component {
         }
       );
   };
+
+  // this method will keep the current post up to date as you type it,
+  // so that the submit handler can read the information from the state.
 
   myChangeHandler = event => {
     this.setState({
@@ -87,13 +90,13 @@ export default class CommentForm extends React.Component {
           
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <header class="masthead">
-              <Link to="/pollpage"><img id="committi_logo" src={committiilogo}></img></Link>
+              <Link to="/profile"><img id="committi_logo" src={committiilogo}></img></Link>
             </header>
 
             <main id="content" class="main-content">
               <h2>Comments</h2>
               <br/>
-              <PostingList
+              <CommentsList
                 ref={this.postListing}
                 parentid={this.props.parent}
                 type="commentlist"

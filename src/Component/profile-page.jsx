@@ -73,11 +73,9 @@ export default class PostingList extends React.Component {
   }
 
   loadPosts() {
-    let url = process.env.REACT_APP_API_PATH+"/posts?ParentID="+sessionStorage.getItem("user");
-    // /posts/1
-    if (this.props && this.props.parentid){
-      url += this.props.parentid;
-    }
+    let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+sessionStorage.getItem("user");
+    url += "&type=post";
+
     fetch(url, {
       method: "get",
       headers: {

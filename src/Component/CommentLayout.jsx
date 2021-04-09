@@ -4,8 +4,6 @@ import CommentForm from "./CommentForm.jsx";
 import ReplyForm from "./ReplyForm.jsx"
 import helpIcon from "../assets/delete.png";
 import commentIcon from "../assets/comment.svg";
-import "./post.css";
-import { Link } from 'react-router-dom';
 
 export default class Post extends React.Component {
   constructor(props) {
@@ -15,6 +13,7 @@ export default class Post extends React.Component {
       comments: this.props.post.commentCount,
     };
     this.post = React.createRef();
+
   }
 
   showModal = e => {
@@ -47,7 +46,7 @@ export default class Post extends React.Component {
 
   deletePost(postID) {
     //make the api call to post
-    fetch(process.env.REACT_APP_API_PATH+"/posts/"+postID, {
+    fetch(process.env.REACT_APP_API_PATH +"/posts/"+postID, {
       method: "DELETE",
       headers: {
         'Content-Type': 'application/json',
@@ -94,15 +93,11 @@ export default class Post extends React.Component {
               parent={this.props.post.id}
               commentCount={this.getCommentCount()}
             />
-
-            {/* <CommentForm
-              onAddComment={this.setCommentCount}
-              parent={this.props.post.id}
-              commentCount={this.getCommentCount()}
-            /> */}
           </div>
         </div>
       );
+    //}
+
   }
 
   // we only want to expose the delete post functionality if the user is
@@ -110,29 +105,23 @@ export default class Post extends React.Component {
   showDelete(){
     if (this.props.post.author.id == sessionStorage.getItem("user")) {
       return(
-        <div>
-          <button id={"del-post-button"} onClick={e => this.deletePost(this.props.post.id)}>Delete</button>
-        </div>
+      <img
+        src={helpIcon}
+        className="sidenav-icon deleteIcon"
+        alt="Delete Post"
+        title="Delete Post"
+        onClick={e => this.deletePost(this.props.post.id)}
+      />
     );
     }
     return "";
   }
 
-showPolls() {
-  if (this.props.post.author.id == sessionStorage.getItem("user")) {
-    return(
-      <div>
-        <p id="poll-name">{this.props.post.content}</p>
-        <Link to={"/pollpage/"+this.props.post.id}><button id="view-res">View Results</button></Link>
-      </div>
-  );
-  }
-  return "";
-}
-
   render() {
+
     return (
       <div>
+
       <div
         key={this.props.post.id}
         className={[this.props.type, "postbody"].join(" ")}
@@ -142,10 +131,9 @@ showPolls() {
       {this.showDelete()}
       </div>
       <div className="commentPost">
-      {this.showPolls()}
-      {/* {this.showDelete()} */}
         <br />{" "}
-        {/* {this.conditionalDisplay()} */}
+        {this.props.post.thumbnailURL}
+        {this.conditionalDisplay()}
       </div>
       </div>
       </div>

@@ -100,6 +100,7 @@ class App extends React.Component {
             </register>
         </Route>
         <Route path="/privacy-settings" component={PrivacySettings}/>
+        <Route path="/pollpage/:postid/comments" component={CommentForm}/>
         <Route path="/pollpage/:postid" component={PollPage}/>
         <Route exact path="/createpoll" component={CreatePoll}/>
         <Route path="/PostForm" component={PostForm}/>

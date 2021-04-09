@@ -65,11 +65,11 @@ export default class LoginForm extends React.Component {
           console.log("Testing");
           if (result.userID) {
 
-            // set the auth token and user ID in the session state
+            // set the auth token, user ID, and username in the session state
             sessionStorage.setItem("token", result.token);
             sessionStorage.setItem("user", result.userID);
+            sessionStorage.setItem("username", this.state.username);
             
-
             this.setState({
               sessiontoken: result.token,
               alanmessage: result.token,

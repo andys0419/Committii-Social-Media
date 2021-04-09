@@ -107,7 +107,7 @@ General styles
 }
 
 .main-content {
-	border-style: solid solid hidden solid;
+	border-style: solid solid solid solid;
     margin-left: -5%;
 }
 
