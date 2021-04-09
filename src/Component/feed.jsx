@@ -186,8 +186,9 @@ export default class Register extends React.Component {
 
         {this.state.posts.map(post => this.createPost(post))}
 
-        
+        <Link to="/createpoll"><button class="poll_button">Create Poll</button></Link>
       </div>
+      
     );
   }
 }
