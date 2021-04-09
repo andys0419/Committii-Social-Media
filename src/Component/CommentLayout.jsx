@@ -128,7 +128,7 @@ export default class Post extends React.Component {
       <div className="commentPost">
         <br />{" "}
         {this.props.post.thumbnailURL}
-        {this.conditionalDisplay()}
+        {/* {this.conditionalDisplay()} */}
       </div>
       </div>
       </div>
