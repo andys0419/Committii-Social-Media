@@ -154,7 +154,9 @@ export default class PostingList extends React.Component {
             <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
           ))}
         <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
-        <p id="welcome">Hello, {this.state.email}</p>
+        <div class="welcome_id">
+        <p id="welcome">Hello, {this.state.username}</p>
+        </div>
         <p id="following">{this.state.following} Following</p>
         <p id="followers">{this.state.followers} Followers</p>
 
