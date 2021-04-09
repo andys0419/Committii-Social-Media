@@ -184,6 +184,8 @@
   border-bottom: 1px solid white;
 }
 
+
+
 .hide{
   display:none;
 }
@@ -192,7 +194,6 @@
 .maincontent{
   display: flex;
   flex-direction: column;
-
   justify-content: center;
   flex-grow: 1;
 }

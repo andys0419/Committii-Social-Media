@@ -10,7 +10,7 @@ import hearticon from "../assets/heart-icon.svg";
 import CommentForm from "./CommentForm.jsx";
 import helpIcon from "../assets/delete.png";
 import commentIcon from "../assets/comment.svg";
-import "./PostingList.css"
+import "./PostingList.css";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -30,6 +30,7 @@ export default class PostingList extends React.Component {
     };
     this.postingList = React.createRef();
     this.loadPosts = this.loadPosts.bind(this);
+    this.displayProfilePic = this.displayProfilePic.bind(this);
   }
 
   componentDidMount() {
@@ -72,11 +73,9 @@ export default class PostingList extends React.Component {
   }
 
   loadPosts() {
-    let url = process.env.REACT_APP_API_PATH+"/posts?ParentID="+sessionStorage.getItem("user");
-    // /posts/1
-    if (this.props && this.props.parentid){
-      url += this.props.parentid;
-    }
+    let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+sessionStorage.getItem("user");
+    url += "&type=post";
+
     fetch(url, {
       method: "get",
       headers: {
@@ -117,8 +116,29 @@ export default class PostingList extends React.Component {
     sessionStorage.setItem("user", "User");
   }
 
+  displayProfilePic(){
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "get",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          }
+        })
+       .then(res => res.json())
+       .then(
+         result => {
+           console.log(result)
+           if (result.role == ""){
+             document.getElementById("prof_pic").src = prof_pic
+           }else{
+           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+           console.log(result.role)
+           document.getElementById("prof_pic").src = server + result.role
+         }
+         })
+      }
+
   render() {
-    //this.loadPosts();
     const {error, isLoaded, posts} = this.state;
     if (error) {
       return <div> Error: {error.message} </div>;
@@ -131,14 +151,16 @@ export default class PostingList extends React.Component {
           {posts.map(post => (
             <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
           ))}
-        <img src={prof_pic} id="prof_pic" alt="logo" />
-        <p id="welcome">Hello, {this.state.email}</p>
+        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
+        <div class="welcome_id">
+        <p id="welcome">Hello, {this.state.username}</p>
+        </div>
         <p id="following">{this.state.following} Following</p>
         <p id="followers">{this.state.followers} Followers</p>
 
         <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
         <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/feed">
+        <Link to="/">
           <img id="committii-logo" src={committiilogo}></img>
         </Link>
         <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
@@ -162,22 +184,20 @@ export default class PostingList extends React.Component {
           {posts.map(post => (
             <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
           ))}
-        <img src={prof_pic} id="prof_pic" alt="logo" />
+        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
         <p id="welcome">Hello, {this.state.email}</p>
         <p id="following">{this.state.following} Following</p>
         <p id="followers">{this.state.followers} Followers</p>
 
         <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
         <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/feed">
+        <Link to="/">
           <img id="committii-logo" src={committiilogo}></img>
         </Link>
         <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
         <div class="white_box">
           <div class="current_polls">
             <p id="curr_polls_label">Current Polls:</p>
-            {/* <p id="poll1">Dogs vs. Cats</p>
-            <button id="del_post">Delete</button> */}
           </div>
           <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
         </div>

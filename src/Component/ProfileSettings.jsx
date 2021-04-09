@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
-import prof from "./prof.png";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
+import prof_pic from "./prof.png"
+
+
 
 // the login form will display if there is no session token stored.  This will display
 // the login form, and call the API to authenticate the user and store the token in
@@ -17,38 +20,90 @@ export default class ProfileSettings extends React.Component {
     this.state =
         {
             username: '',
-            email: 'test@test.edu',
-            password: '12345',
-            bio:'Tell us something about you',
-            dob:'X/XX/XXXX',
-            blockedUsers: ["No Blocked Users"],
+            email: '',
+            password: '',
+            bio: '',
+            dob: '',
+            blockedUsers: "",
             avatarbutton:"Change Avatar",
             closebutton:"Close Account",
-            firstname: "",
+            firstName: "",
             lastname: "",
             favoritecolor: "",
-            responseMessage: ""
+            responseMessage: "",
+            status: "",
+            token: "",
+
     };
     this.handleClick = this.handleClick.bind(this)
-      this.changeAvatarButton = this.changeAvatarButton.bind(this);
-    this.changeAvatarButtonBack = this.changeAvatarButtonBack.bind(this);
     this.changeCloseButton = this.changeCloseButton.bind(this);
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
 
+    this.fieldChangeHandler2.bind(this);
+    this.fieldChangeHandler3.bind(this);
+    this.fieldChangeHandler4.bind(this);
+    this.fieldChangeHandler5.bind(this);
+    this.fieldChangeHandler6.bind(this);
+
+    this.displayProfilePic = this.displayProfilePic.bind(this);
+    this.uploadProfileImage = this.uploadProfileImage.bind(this);
+
   }
 
   fieldChangeHandler(field, e) {
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+
+  fieldChangeHandler2(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+  fieldChangeHandler3(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+  fieldChangeHandler4(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+  fieldChangeHandler5(field, e) {
     console.log("field change");
     this.setState({
       [field]: e.target.value
     });
   }
 
+  fieldChangeHandler6(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value
+    });
+  }
+
+  updatePassword = (e) => {
+        this.setState({
+          password: e.currentTarget.value
+        })
+    };
+
+  updateToken = (e) => {
+        this.setState({
+          token: e.currentTarget.value
+        })
+    };
+
+
 
   componentDidMount() {
-    console.log("In profile");
-    console.log(this.props);
 
     // first fetch the user data to allow update of username
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
@@ -61,15 +116,22 @@ export default class ProfileSettings extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result) {
-            console.log(result);
+          if (result) {;
 
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
-              username: result.username || "",
-              firstname: result.firstName || "",
-              lastname: result.lastName || ""
+
+                username: result.username || "",
+                firstName: result.firstName || "",
+                lastName: result.lastName || "",
+                password: result.password || "",
+                bio: result.bio || "",
+                dob: result.dob || "",
+                blockedUsers: result.blockedUsers || "",
+                email: result.email || "",
+                status: result.status || "",
+                token: result.token || ""
 
             });
           }
@@ -91,14 +153,9 @@ export default class ProfileSettings extends React.Component {
       .then(
         result => {
           if (result) {
-            console.log(result);
             let favoritecolor = "";
 
             // read the user preferences and convert to an associative array for reference
-
-
-
-            console.log(favoritecolor);
 
 
           }
@@ -109,7 +166,60 @@ export default class ProfileSettings extends React.Component {
       );
   }
 
-  submitHandler = event => {
+
+  displayProfilePic(){
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+   .then(res => res.json())
+   .then(
+     result => {
+       console.log(result)
+       if (result.role == ""){
+         document.getElementById("profilepic").src = prof_pic
+       }else{
+       var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+       
+       document.getElementById("profilepic").src = server + result.role
+     }
+     })
+  }
+
+  uploadProfileImage(userArtifact){
+    const formData = new FormData();
+    const fileInput = document.querySelector('input[type="file"]');
+    formData.append("file", fileInput.files[0]);
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + String(userArtifact) + "/upload", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
+      },
+    }).then(res => res.json())
+    .then(
+      result => {
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "PATCH",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+          body: JSON.stringify({
+            "role": result.url
+          })
+        }).then(res => res.json())
+        .then(
+          result => {console.log(result)})
+        this.displayProfilePic()
+        document.getElementById("imgUpload").value = ""
+      })
+  }
+
+  submitHandler = async (event) =>  {
     //keep the form from actually submitting
     event.preventDefault();
 
@@ -118,11 +228,18 @@ export default class ProfileSettings extends React.Component {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
       },
       body: JSON.stringify({
 
-        username: this.state.username,
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            blockedUsers: this.state.blockedUsers,
+            status: this.state.status,
+            token: this.state.token
 
       })
     })
@@ -145,32 +262,51 @@ export default class ProfileSettings extends React.Component {
 
     //make the api call to the user prefs controller
 
+    const token = this.state.token;
+    const password = this.state.password;
 
+            let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+                body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
+                headers: {
+                    'Accept': "*/*",
+                    "Content-Type": "application/json"
+                },
+                method: "POST"
+            });
+
+
+    //fetch calls for profile Image
+    if(document.getElementById("imgUpload").value != ""){
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
+      body: JSON.stringify({
+        "ownerID": sessionStorage.getItem("user"),
+        "type": "Image",
+        "url": "String",
+        "category": "profilepic"
+      })
+    })
+    .then(res => res.json())
+    .then(
+      result => {
+        var userArtifact = -1;
+        userArtifact = result.id;
+        if (userArtifact != -1){
+          this.uploadProfileImage(userArtifact);
+        }
+      })
+    }
 
   }
+  ///////////////
+
 
   handleClick(){
     // Changing state
-      if(document.getElementById('username').value != "") {
-          this.setState({username: document.getElementById('username').value});
-          document.getElementById('username').value = '';
-      }
-      if(document.getElementById('password').value != "") {
-          this.setState({password: document.getElementById('password').value})
-          document.getElementById('password').value = ''
-      }
-      if(document.getElementById('email').value != "") {
-          this.setState({email: document.getElementById('email').value});
-          document.getElementById('email').value = '';
-      }
-      if(document.getElementById('bio').value != "") {
-          this.setState({bio: document.getElementById('bio').value})
-          document.getElementById('bio').value = ''
-      }
-      if(document.getElementById('dob').value != "") {
-          this.setState({dob: document.getElementById('dob').value})
-          document.getElementById('dob').value = ''
-      }
+
 
       if(document.getElementById('blocked').value != "") {
           if (this.state.blockedUsers[0] == "No Blocked Users"){
@@ -180,13 +316,7 @@ export default class ProfileSettings extends React.Component {
           }
           document.getElementById('blocked').value = ''
       }
-  }
 
-  changeAvatarButton(){
-      this.setState({avatarbutton:"Feature Coming Soon"})
-  }
-  changeAvatarButtonBack(){
-      this.setState({avatarbutton:"Change Avatar"})
   }
    changeCloseButton(){
       this.setState({closebutton:"Feature Coming Soon"})
@@ -194,8 +324,6 @@ export default class ProfileSettings extends React.Component {
   changeCloseButtonBack(){
       this.setState({closebutton:"Close Account"})
   };
-
-
 
   render() {
     const LoginFormStyle = {
@@ -210,40 +338,45 @@ export default class ProfileSettings extends React.Component {
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <img src={prof} className="prof_pic" alt="logo" />
-                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
+                <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="profilepic"/>
+                <form action="/action_page.php" id="avatarbutton">
+                  <label for="img1">Select Image:</label>
+                  <input type="file" id="imgUpload" name="img" accept="image/*"></input>
+                </form>
             </div>
-
             <a id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
             <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
             value={this.state.username} />
           </div>
             <div id="ProfileInput">
-            <input id="password" style={LoginFormStyle} type="password" placeholder={"Password: XXXXXXXX"} />
-          </div>
-            <div id="ProfileInput">
-            <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email}/>
+            <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email} onChange={e => this.fieldChangeHandler2("email", e)}
+            value={this.state.email}/>
           </div>
             <a id="ProfileHeading">Social Information</a>
             <div id="ProfileInput">
-            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.bio}/>
+            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.firstName} onChange={e => this.fieldChangeHandler4("firstName", e)}
+            value={this.state.firstName}/>
           </div>
           <div id="ProfileInput">
-            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.dob}/>
+            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.lastName} onChange={e => this.fieldChangeHandler5("lastName", e)}
+            value={this.state.lastName}/>
           </div>
             <a id="ProfileHeading">Blocked Users</a>
             <div id="BlockedResults">
-            <p>{this.state.blockedUsers}</p>
+            <p>{this.state.status}</p>
             </div>
           <div id="ProfileInput">
-            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"}/>
+            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"} onChange={e => this.fieldChangeHandler6("blockedUsers", e)}/>
+            <button onClick={e => this.setState({status:this.state.status +" | "+ this.state.blockedUsers})} input type="submit" value="blocked" >Add</button>
+
           </div>
 
             <div className='container'>
+                <Link to="/forgotpassword"><button>Change Password</button></Link>
                 <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
                 <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
-                <button onMouseLeave={this.changeCloseButtonBack} onMouseOver={this.changeCloseButton}>{this.state.closebutton}</button>
+                <Link to="/closeaccount"><button>Close Account</button></Link>
             </div>
 
             <Link to="/profile">
@@ -251,7 +384,8 @@ export default class ProfileSettings extends React.Component {
             </Link>
         </div>
         {this.state.responseMessage}
-      </form>
-      );
+      </form> );
+
+
   }
 }

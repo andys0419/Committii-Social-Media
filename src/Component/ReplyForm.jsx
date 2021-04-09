@@ -1,5 +1,5 @@
 import React from "react";
-import PostingList from "./PostingList.jsx";
+import CommentsList from "./CommentsList.jsx";
 import "./ReplyForm.css"
 
 
@@ -34,7 +34,7 @@ export default class ReplyForm extends React.Component {
     
         //make the api call to the authentication page
     
-        fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api"+"/posts", {
+        fetch(process.env.REACT_APP_API_PATH +"/posts", {
           method: "post",
           headers: {
             'Content-Type': 'application/json',
@@ -42,10 +42,9 @@ export default class ReplyForm extends React.Component {
           },
           body: JSON.stringify({
             authorID: sessionStorage.getItem("user"),
-            content: this.state.post_text,
-            parentID: this.props.parent,
-            thumbnailURL: "",
-            type: "post"
+            content: sessionStorage.getItem("current_content"),
+            type: "comments",
+            thumbnailURL: this.state.post_text
           })
         })
           .then(res => res.json())
@@ -61,10 +60,10 @@ export default class ReplyForm extends React.Component {
               this.postListing.current.loadPosts();
             
               //this may or may not work as intended... needs to be tested.
-              document.getElementsById("comment_submit").style.display="none";
+              // document.getElementsById("comment_submit").style.display="none";
             },
             error => {
-              alert("error!");
+              alert("error here!");
             }
           );
       };
@@ -91,7 +90,7 @@ export default class ReplyForm extends React.Component {
                 <main id="content" class="main-content">
                     <h2>Replies</h2>
                     <br/>
-                    <PostingList
+                    <CommentsList
                         ref={this.postListing}
                         parentid={this.props.parent}
                         type="commentlist"

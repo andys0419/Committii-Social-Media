@@ -32,7 +32,7 @@ export default class PostForm extends React.Component {
     event.preventDefault();
 
     //make the api call to post
-    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/"+"/posts", {
+    fetch(process.env.REACT_APP_API_PATH +"/posts", {
       method: "post",
       headers: {
         'Content-Type': 'application/json',
