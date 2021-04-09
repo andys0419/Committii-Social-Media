@@ -68,11 +68,6 @@ export default class Post extends React.Component {
   conditionalDisplay() {
     console.log("Comment count is " + this.props.post.commentCount);
     
-    //if (this.props.post.commentCount <= 0) {
-    //  return "";
-    //  }
-
-    //else {
       return (
         <div className="comment-block">
 
