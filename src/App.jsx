@@ -24,8 +24,6 @@ import CheckEmail from "./Component/CheckEmail.jsx"
 import PollPage from "./Component/poll-page.jsx"
 import CommentForm from "./Component/CommentForm.jsx"
 import CreatePoll from "./Component/create-poll.jsx"
-import CloseAccount from "./Component/CloseAccount";
-import CloseAccountFeedback from "./Component/CloseAccountFeedback";
 
 import {
   BrowserRouter as Router, Route, Switch, Link
@@ -83,16 +81,6 @@ class App extends React.Component {
           <ProfileSettings toggleModal={e => toggleModal(this, e)}></ProfileSettings>
         </Route>
         
-      </Switch>
-        <Switch>
-        <Route path="/closeaccount">
-          <CloseAccount toggleModal={e => toggleModal(this, e)}></CloseAccount>
-        </Route>
-      </Switch>
-          <Switch>
-        <Route path="/closeaccountfeedback">
-          <CloseAccountFeedback toggleModal={e => toggleModal(this, e)}></CloseAccountFeedback>
-        </Route>
       </Switch>
       <Switch>
         <Route path="/register">
