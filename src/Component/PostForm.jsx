@@ -1,6 +1,9 @@
 import React from "react";
 import "../App.css";
 import PostingList from "./PostingList.jsx";
+import { Link } from 'react-router-dom';
+import committiilogo from "../assets/logo.svg";
+import backarrow from "../assets/back_arrow.svg";
 
 //The post form component holds both a form for posting, and also the list of current posts in your feed
 export default class PostForm extends React.Component {
@@ -8,8 +11,14 @@ export default class PostForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      postmessage: "",
+      poll_option_1: "",
+      poll_option_2: "",
       post_text: "",
-      postmessage: ""
+      poll_category: "",
+      vote_first: 0,
+      vote_second: 0,
+      likes: 0
     };
     this.postListing = React.createRef();
   }
@@ -23,7 +32,7 @@ export default class PostForm extends React.Component {
     event.preventDefault();
 
     //make the api call to post
-    fetch(process.env.REACT_APP_API_PATH+"/posts", {
+    fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/"+"/posts", {
       method: "post",
       headers: {
         'Content-Type': 'application/json',
@@ -59,22 +68,43 @@ export default class PostForm extends React.Component {
     });
   };
 
+  fieldChangeHandler(field, e) {
+    console.log("field change");
+    this.setState({
+      [field]: e.target.value,
+      post_text: this.state.poll_option_1+" vs. "+this.state.poll_option_2
+    });
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.submitHandler}>
-          <label>
-            Post Something!
-            <br />
-            <textarea rows="10" cols="70" onChange={this.myChangeHandler} />
-          </label>
-          <br />
 
-          <input type="submit" value="submit" />
-          <br />
-          {this.state.postmessage}
-        </form>
         <PostingList ref={this.postListing} refresh={this.props.refresh} type="postlist" />
+
+        <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
+          <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
+          <div class="create_poll_box">
+            <p id="create_label">Create Poll</p>
+            <input id="option_1_field"
+                type="text"
+                placeholder={" Option #1"}
+                onChange={e => this.fieldChangeHandler("poll_option_1", e)}
+            />
+            <input id="option_2_field"
+                type="text"
+                placeholder={" Option #2"}
+                onChange={e => this.fieldChangeHandler("poll_option_2", e)}
+            />
+            <input id="category_field"
+                type="text"
+                placeholder={" Category"}
+                onChange={e => this.fieldChangeHandler("poll_category", e)}
+            />
+            <p id="new_poll_title">{this.state.post_text}</p>
+            <p id="new_poll_category">Category: {this.state.poll_category}</p>
+            <form onSubmit={this.submitHandler}><input class="create_poll" type="submit" value="Create Poll" /></form>
+          </div>
       </div>
     );
   }

@@ -21,7 +21,13 @@
 .deletePost{
   width:100%;
 }
+
+.commentPost{
+  width:100%;
+}
+
 .deleteIcon{
+  background-color: black;
   float:right;
 }
 
@@ -142,7 +148,6 @@
   border-radius: 20px;
   padding:30px;
   margin:10px;
-
   width:60%;
   display: inline-flex;
 }
@@ -158,25 +163,25 @@
 }
 
 .comments{
-    background:white;
-    width:90%;
+    background:black;
+    width:95%;
     display:block;
-    border-radius: 20px;
-    padding:10px;
+    padding:3px;
     margin:10px;
     color:black;
 }
 
 .commentlist {
   text-align: left;
-  background: lightblue;
-  color:black;
-  border-radius: 20px;
-  padding:10px;
+  background: black;
+  color:white;
+  border-radius: 2px;
+  padding: 1em 2em;
   margin:10px;
-  font-size: 12px;
-  width:90%;
-  display:block;
+  font-size: 13px;
+  display:table;
+  font-family: 'Poppins';
+  border-bottom: 1px solid white;
 }
 
 .hide{
@@ -193,18 +198,20 @@
 }
 
 .posts{
-    display:flex;
+    display:table;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    width: 99%;
 }
 
 .postbody{
-  width:100%;
-  display:flex;
+  width:90%;
+  display:table;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  /* align-items: flex-start; */
+  justify-content: flex-start;
+  font-size: 13.5px;
 }
 
 .comment-block{
@@ -241,10 +248,9 @@
 }
 
 .sidenav-icon{
-  width:40px;
-  height:40px;
-
-  margin-bottom:15px;
+  width:30px;
+  height:30px;
+  margin-bottom:12px;
 }
 
 .comment-indicator{
@@ -252,20 +258,21 @@
   width:100%;
   display:block;
   float:right;
-  margin-top: 10px;
+  margin-top: 3px;
 }
 
 .comment-icon{
-  width:40px;
-  height:40px;
+  width:30px;
+  height:35px;
   float:right;
+  background-color: #000000;
 }
 
 .comment-indicator-text{
-  background-color: lightblue;
-  color: black;
-  border-radius: 10px;
-  font-size: 16px;
+  background-color: black;
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
   font-weight: bold;
   width:120px;
   padding:5px;
@@ -467,6 +474,14 @@
   text-align: center;
 }
 
+#forgot_content {
+  padding: 130px 0;
+}
+
+#email_content {
+  padding: 90px 0;
+}
+
 input[type=submit] {
   background-color: rgba(196,196,196);
   padding:5px 30px; 
@@ -477,10 +492,143 @@ input[type=submit] {
   font-size: 15px;
 }
 
-body, h1, h2, h3, h4, h5, h6, LoginForm {
+body, h1, h2, h3, h4, h5, h6, LoginForm, feed {
   font-family: 'Poppins', sans-serif;
 }
 
 c {
   font-family: 'Oswald', sans-serif;
+}
+
+.new-line {
+	border-bottom: 1px solid white;
+}	
+
+.vRight {
+  border-left: 3px solid rgb(172, 172, 172);
+  height: 2000px;
+  position: absolute;
+  left: 100%;
+  margin-left: -3px;
+  top: 0;
+}
+
+.vLeft {
+  border-left: 3px solid rgb(172, 172, 172);
+  height: 2000px;
+  position: absolute;
+  right: 100%;
+  margin-right: -3px;
+  top: 0;
+  
+}
+
+.feedOptions {
+  border-bottom: 3px solid rgb(172, 172, 172);
+  width: 60%;
+  position: relative;
+  margin-left: 20%;
+
+
+}
+
+.feed {
+  
+}
+
+.feedPosts {
+  margin-left: 20%;
+  width: 60%;
+  position:relative;
+  
+}
+
+.post {
+  border: 3px solid rgb(172, 172, 172);
+  width: 99.4%;
+  height: 250px;
+  z-index: initial;
+}
+.feedSort {
+  position:absolute;
+  left: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.feedProfile {
+  position: relative;
+  width: 100px;
+  height: 40px;
+  left: 45%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.likeButton {
+  position: absolute;
+  width: 150px;
+  height: 40px;
+  left: 2.5%;
+  top: 5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.commentButton {
+  position: absolute;
+  width: 250px;
+  height: 40px;
+
+  top: 30%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.postButton {
+  position: absolute;
+  width: 250px;
+  height: 40px;
+
+  top: 55%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.feedMessages {
+  position:absolute;
+  right: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+  cursor: pointer;
+}
+
+.chart {
+  position: absolute;
+  top: 1%;
+  left: 30%;
+  margin-inline:inherit;
+  z-index: -1;
 }

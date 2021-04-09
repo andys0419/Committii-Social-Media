@@ -7,10 +7,13 @@
 import React from "react";
 import "./App.css";
 import PostForm from "./Component/PostForm.jsx";
+import PostingList from "./Component/PostingList.jsx";
+import Post from "./Component/Post.jsx";
 import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
+import Feed from "./Component/feed.jsx";
 import Profile from "./Component/profile-page.jsx";
 import StyleGuide from "./Component/styleguide";
 import ProfileSettings from "./Component/ProfileSettings.jsx";
@@ -18,6 +21,9 @@ import Register from "./Component/Register.jsx";
 import PrivacySettings from "./Component/privacy-settings.jsx";
 import ForgotPassword from "./Component/ForgotPassword.jsx"
 import CheckEmail from "./Component/CheckEmail.jsx"
+import PollPage from "./Component/poll-page.jsx"
+import CommentForm from "./Component/CommentForm.jsx"
+import CreatePoll from "./Component/create-poll.jsx"
 import CloseAccount from "./Component/CloseAccount";
 import CloseAccountFeedback from "./Component/CloseAccountFeedback";
 
@@ -76,6 +82,7 @@ class App extends React.Component {
         <Route path="/profilesettings">
           <ProfileSettings toggleModal={e => toggleModal(this, e)}></ProfileSettings>
         </Route>
+        
       </Switch>
         <Switch>
         <Route path="/closeaccount">
@@ -101,8 +108,12 @@ class App extends React.Component {
               <Register toggleModal={e => toggleModal(this, e)}></Register>
             </register>
         </Route>
-        <Route path="/privacy-settings" component={PrivacySettings}>
-        </Route>
+        <Route path="/privacy-settings" component={PrivacySettings}/>
+        <Route path="/pollpage/:postid" component={PollPage}/>
+        <Route exact path="/createpoll" component={CreatePoll}/>
+        <Route path="/PostForm" component={PostForm}/>
+        <Route path="/PostingList" component={PostingList}/>
+        <Route path="/post" component={Post}/>
       </Switch>
         <Switch>
           <Route path="/login">
@@ -148,6 +159,16 @@ class App extends React.Component {
         <Switch>
           <Route path="/profile">
             <Profile toggleModal={e => toggleModal(this, e)}></Profile>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/comment">
+            <CommentForm toggleModal={e => toggleModal(this, e)}></CommentForm>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/feed">
+            <Feed toggleModal={e => toggleModal(this, e)}></Feed>
           </Route>
         </Switch>
         <Switch>

@@ -1,14 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
-import prof from "./prof.png";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
-
-
+import prof_pic from "./prof.png"
 
 // the login form will display if there is no session token stored.  This will display
 // the login form, and call the API to authenticate the user and store the token in
@@ -35,8 +32,6 @@ export default class ProfileSettings extends React.Component {
             token: "",
     };
     this.handleClick = this.handleClick.bind(this)
-      this.changeAvatarButton = this.changeAvatarButton.bind(this);
-    this.changeAvatarButtonBack = this.changeAvatarButtonBack.bind(this);
     this.changeCloseButton = this.changeCloseButton.bind(this);
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
@@ -45,11 +40,12 @@ export default class ProfileSettings extends React.Component {
     this.fieldChangeHandler4.bind(this);
     this.fieldChangeHandler5.bind(this);
     this.fieldChangeHandler6.bind(this);
+    this.displayProfilePic = this.displayProfilePic.bind(this);
+    this.uploadProfileImage = this.uploadProfileImage.bind(this);
 
   }
 
   fieldChangeHandler(field, e) {
-    console.log("field change");
     this.setState({
       [field]: e.target.value
     });
@@ -102,8 +98,6 @@ export default class ProfileSettings extends React.Component {
 
 
   componentDidMount() {
-    console.log("In profile");
-    console.log(this.props);
 
     // first fetch the user data to allow update of username
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
@@ -118,7 +112,6 @@ export default class ProfileSettings extends React.Component {
         result => {
             if (result) {
             console.log(result);
-
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
@@ -154,14 +147,9 @@ export default class ProfileSettings extends React.Component {
       .then(
         result => {
           if (result) {
-            console.log(result);
             let favoritecolor = "";
 
             // read the user preferences and convert to an associative array for reference
-
-
-
-            console.log(favoritecolor);
 
 
           }
@@ -173,6 +161,61 @@ export default class ProfileSettings extends React.Component {
   }
 
   submitHandler = async (event) =>  {
+
+  displayProfilePic(){
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+   .then(res => res.json())
+   .then(
+     result => {
+       console.log(result)
+       if (result.role == ""){
+         document.getElementById("profilepic").src = prof_pic
+       }else{
+       var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+       
+       document.getElementById("profilepic").src = server + result.role
+     }
+     })
+  }
+
+  uploadProfileImage(userArtifact){
+    const formData = new FormData();
+    const fileInput = document.querySelector('input[type="file"]');
+    formData.append("file", fileInput.files[0]);
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts/" + String(userArtifact) + "/upload", {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
+      },
+    }).then(res => res.json())
+    .then(
+      result => {
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "PATCH",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+sessionStorage.getItem("token")
+          },
+          body: JSON.stringify({
+            "role": result.url
+          })
+        }).then(res => res.json())
+        .then(
+          result => {console.log(result)})
+        this.displayProfilePic()
+        document.getElementById("imgUpload").value = ""
+      })
+  }
+
+  submitHandler = event => {
+
     //keep the form from actually submitting
     event.preventDefault();
 
@@ -181,7 +224,7 @@ export default class ProfileSettings extends React.Component {
       method: "PATCH",
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
       },
       body: JSON.stringify({
 
@@ -212,6 +255,7 @@ export default class ProfileSettings extends React.Component {
     let method = "POST";
 
 
+
     //make the api call to the user prefs controller
 
     const token = this.state.token;
@@ -225,6 +269,32 @@ export default class ProfileSettings extends React.Component {
                 },
                 method: "POST"
             });
+
+
+    //fetch calls for profile Image
+    if(document.getElementById("imgUpload").value != ""){
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
+      body: JSON.stringify({
+        "ownerID": sessionStorage.getItem("user"),
+        "type": "Image",
+        "url": "String",
+        "category": "profilepic"
+      })
+    })
+    .then(res => res.json())
+    .then(
+      result => {
+        var userArtifact = -1;
+        userArtifact = result.id;
+        if (userArtifact != -1){
+          this.uploadProfileImage(userArtifact);
+        }
+      })
+    }
 
   }
   ///////////////
@@ -244,21 +314,12 @@ export default class ProfileSettings extends React.Component {
       }
 
   }
-
-  changeAvatarButton(){
-      this.setState({avatarbutton:"Feature Coming Soon"})
-  }
-  changeAvatarButtonBack(){
-      this.setState({avatarbutton:"Change Avatar"})
-  }
    changeCloseButton(){
       this.setState({closebutton:"Feature Coming Soon"})
   }
   changeCloseButtonBack(){
       this.setState({closebutton:"Close Account"})
   };
-
-
 
   render() {
     const LoginFormStyle = {
@@ -273,10 +334,12 @@ export default class ProfileSettings extends React.Component {
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <img src={prof} className="prof_pic" alt="logo" />
-                <button id="avatarbutton" onMouseLeave={this.changeAvatarButtonBack} onMouseOver={this.changeAvatarButton}>{this.state.avatarbutton}</button>
+                <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="profilepic"/>
+                <form action="/action_page.php" id="avatarbutton">
+                  <label for="img1">Select Image:</label>
+                  <input type="file" id="imgUpload" name="img" accept="image/*"></input>
+                </form>
             </div>
-
             <a id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
             <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
