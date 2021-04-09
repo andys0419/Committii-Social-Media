@@ -160,7 +160,7 @@ export default class PostingList extends React.Component {
 
         <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
         <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/">
+        <Link to="/feed">
           <img id="committii-logo" src={committiilogo}></img>
         </Link>
         <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>

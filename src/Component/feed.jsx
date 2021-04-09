@@ -33,7 +33,7 @@ export default class Register extends React.Component {
   }
 
   componentDidMount() {
-    //this.loadPosts();
+    this.loadPosts();
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
       method: "get",
       headers: {
