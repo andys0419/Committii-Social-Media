@@ -5,7 +5,7 @@ import "./profile-page.css";
 import "./profilesettings.css";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
-import profilepicture from "./prof.png"
+import prof_pic from "./prof.png"
 
 // the login form will display if there is no session token stored.  This will display
 // the login form, and call the API to authenticate the user and store the token in
@@ -28,7 +28,6 @@ export default class ProfileSettings extends React.Component {
             lastname: "",
             favoritecolor: "",
             responseMessage: "",
-            prof: profilepicture
     };
     this.handleClick = this.handleClick.bind(this)
     this.changeCloseButton = this.changeCloseButton.bind(this);
@@ -114,10 +113,10 @@ export default class ProfileSettings extends React.Component {
      result => {
        console.log(result)
        if (result.role == ""){
-         document.getElementById("profilepic").src = "./prof.png"
+         document.getElementById("profilepic").src = prof_pic
        }else{
        var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-       console.log(result.role)
+       
        document.getElementById("profilepic").src = server + result.role
      }
      })

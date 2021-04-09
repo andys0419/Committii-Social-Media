@@ -131,7 +131,7 @@ export default class PostingList extends React.Component {
          result => {
            console.log(result)
            if (result.role == ""){
-             document.getElementById("prof_pic").src = "./prof.png"
+             document.getElementById("prof_pic").src = prof_pic
            }else{
            var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
            console.log(result.role)
