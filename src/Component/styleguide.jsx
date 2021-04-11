@@ -48,6 +48,13 @@ export default class StyleGuide extends React.Component {
               <p id="genText">No color values other than those listed below should be used.
                               Variations of tints and shades of color is not permitted on our platform,
                               or in our web application.
+                              <ul>
+                                <li>#FFFFA should be used for general text within the platform.</li>
+                                <li>#515052 and #333138 should be used for buttons that navigate to/from a page within the platform.</li>
+                                <li>#000103 is the background color of the site.</li>
+                                <li>#333138 should be used for important buttons that allow login, registration, resetting credientials, and closing an account.</li>
+                                <li>#FF312E should be used for error messages/error handling.</li>
+                              </ul> 
               </p>
               <img
                 src={color}
@@ -57,11 +64,10 @@ export default class StyleGuide extends React.Component {
 
             <div id="fonts">
               <p id="SectionTitle">Fonts:</p>
-              <p id="oswaldTitles">Oswald</p>
-              <p id="oswaldText">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz.</p>
-              <p id="poppinsTitles">Poppins</p>
+              <p id="poppinsTitles">Arial Rounded MT Bold</p>
               <p id="poppinsText">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz.</p>
-             
+              <p id="oswaldTitles">Georgia</p>
+              <p id="oswaldText">Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz.</p>
             </div>
           
           <div id="SectionTitle">General Layout:</div>
@@ -86,9 +92,8 @@ export default class StyleGuide extends React.Component {
                   Messages pop up menu will slide down as it is a drop down.
               </p>
             <t id="genTitles">Inline Error Messages:</t>
-              <p id="genText">Login and register will have error inline messages when the user does not enter a valid email address or an incorrect password.
-                  Resetting a password will invoke an error if an invalid email format is entered.
-		              Posts have inline error messages if poll creation fields are not filled in a complete manner.
+              <p id="genText">General pages which involve inputting into text fields and clicking a button will have error inline messages when the member either inputs nothing or an invalid input.
+                  Inline error messages are to ensure that fields are filled in a complete manner, and will prompt in #FF312E (red) with an error message if it is not.
               </p>
             <t id="genTitles">Feedback:</t>
               <p id="genText">On buttons, we switch to a hand cursor, to indicate the presence of a clickable event. 

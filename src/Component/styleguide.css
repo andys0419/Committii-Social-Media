@@ -7,6 +7,7 @@
 }
 
 #logo_title {
+  font-family: 'Arial Rounded MT Bold';
   position: relative;
   top: -850px;
   text-decoration: underline;
@@ -49,7 +50,7 @@
 }
 
 #oswaldTitles {
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Georgia';
   text-align-last: center;
   font-size: x-large;
   margin-left: -20%;
@@ -57,7 +58,7 @@
   font-size: 350%;
 }
 #oswaldText{
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Georgia';
   text-align-last: center;
   margin-left: 4%;
   margin-right: 25%;
@@ -65,7 +66,7 @@
 }
 
 #poppinsTitles {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Arial Rounded MT Bold';
   text-align: center;
   font-size: x-large;
   margin-left: -20%;
@@ -73,12 +74,12 @@
   font-size: 350%;
 }
 #poppinsText{
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Arial Rounded MT Bold';
   text-align: center;
   margin-left: 4%;
   margin-right: 25%;
   font-size: 250%;
-}
+} */
 
 #back-button {
   position: absolute;
@@ -94,16 +95,22 @@
   margin-top: 5%;
   margin-left: 25%
 }
+
 #SectionTitle {
+  font-family: 'Arial Rounded MT Bold';
+  font-family: 'Georgia';
   font-weight: bold;
   font-size: xx-large;
 }
 #genTitles {
+  font-family: 'Arial Rounded MT Bold';
   font-weight: bold;
   margin-left: 2%;
   padding-top: 2%;
 }
 #genText{
+  font-family: 'Georgia';
+  font-size: 18px;
   margin-left: 4%;
   margin-right: 25%;
 }
@@ -133,7 +140,3 @@
   padding-bottom: 4%;
 }
 
-
-body, h1, h2, h3, h4, h5, h6, LoginForm {
-  font-family: 'Arial', Helvetica, serif;
-}
