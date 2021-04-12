@@ -97,7 +97,6 @@ export default class Post extends React.Component {
         </div>
       );
     //}
-
   }
 
   // we only want to expose the delete post functionality if the user is
