@@ -83,15 +83,12 @@ export default class Post extends React.Component {
             </div>
           </div>
           <div className={this.showHideComments()}>
-            <ReplyForm 
-              onAddComment={this.setCommentCount}
-              parent={this.props.post.id}
-              commentCount={this.getCommentCount()}
-            />
+            <ReplyForm></ReplyForm>
           </div>
         </div>
       );
     //}
+
   }
 
   // we only want to expose the delete post functionality if the user is
@@ -127,7 +124,7 @@ export default class Post extends React.Component {
       <div className="commentPost">
         <br />{" "}
         {this.props.post.thumbnailURL}
-        {this.conditionalDisplay()}
+        {/* {this.conditionalDisplay()} */}
       </div>
       </div>
       </div>
