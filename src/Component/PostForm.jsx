@@ -42,7 +42,7 @@ export default class PostForm extends React.Component {
         authorID: sessionStorage.getItem("user"),
         content: this.state.post_text,
         thumbnailURL: "",
-        type: "post"
+        type: this.state.poll_category
       })
     })
       .then(res => res.json())
