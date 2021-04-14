@@ -48,7 +48,7 @@ export default class PostForm extends React.Component {
         content: this.state.post_text,
         parentID: this.props.parent,
         thumbnailURL: "",
-        type: "post"
+        type: this.state.poll_category
       })
     })
       .then(res => res.json())

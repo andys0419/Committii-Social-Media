@@ -28,7 +28,8 @@ export default class Register extends React.Component {
       alanmessage: "",
       errormessage: "",
       sessiontoken: "",
-      redir: false
+      redir: false,
+      ShowSearch: false
     };
   }
 
@@ -145,6 +146,17 @@ export default class Register extends React.Component {
    )
 
   }
+  fieldChangeHandler(field, e) {
+
+  }
+
+  showMenu(event){
+    event.preventDefault();
+    console.log(this.state.ShowSearch)
+    this.setState({
+      ShowSearch: true
+    });
+  }
 
   render() {
     const {posts} = this.state;
@@ -179,8 +191,17 @@ export default class Register extends React.Component {
 
         <div class="feedOptions">
           <div class="vLeft">
-
-            <button class="feedSort">Sort</button>
+            <button class="feedSort" onClick={this.showMenu}>Sort</button>
+            {
+            this.state.ShowSearch
+            ? (
+              <input id="search"
+                type="text"
+                placeholder={"Enter Tag"}
+                onChange={e => this.fieldChangeHandler("search", e)}>
+                </input>
+            ): (null)
+          }
           </div>
           <div class="vRight">
             <button class="feedMessages">Messages</button>
