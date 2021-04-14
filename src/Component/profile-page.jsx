@@ -117,66 +117,121 @@ export default class PostingList extends React.Component {
   }
 
   displayProfilePic(){
-        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-          method: "get",
+      fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+        method: "get",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        }
+      })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log(result)
+          if (result.role == ""){
+            document.getElementById("prof_pic").src = prof_pic
+          }else{
+          var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+          console.log(result.role)
+          document.getElementById("prof_pic").src = server + result.role
+        }}
+      )
+  }
+
+
+  loadConnections() {
+      
+      //reset state of 'followers' to 0, to prevent duplicate followers upon refreshing the page
+      //this.state.followers = 0;
+
+      //api call to fetch connections with the type 'followers'
+      fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+sessionStorage.getItem("user"), {
+          method: "GET",
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '+sessionStorage.getItem("token")
           }
-        })
-       .then(res => res.json())
-       .then(
-         result => {
-           console.log(result)
-           if (result.role == ""){
-             document.getElementById("prof_pic").src = prof_pic
-           }else{
-           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-           console.log(result.role)
-           document.getElementById("prof_pic").src = server + result.role
-         }
-         })
-      }
+      })
+      .then(response => response.json())
+      .then(
+        json => {
+          const json_array = json[0];
+
+          for(var i = 0; i < json_array.length; i++) {
+            var connection_data = json_array[i];
+            var type = connection_data.type;
+            var status = connection_data.status;
+
+            if (type == "follower" && status == "active") {
+              this.state.followers++;
+            } 
+            
+            else if (type == "isFollowing" && status == "active") {
+              this.state.following++;
+            }
+            
+            else {
+              //may use this block to implement other features later on
+              continue;
+            }
+            
+          }
+        
+        }
+      )
+  }
+
+
+  
 
   render() {
+    
     const {error, isLoaded, posts} = this.state;
+    this.loadConnections();
+
     if (error) {
       return <div> Error: {error.message} </div>;
-    } else if (!isLoaded) {
+    } 
+    
+    else if (!isLoaded) 
+    {
       return <div> Loading... </div>;
-    } else if (posts) {
+    } 
+    
+    else if (posts) 
+    {
       if (posts.length > 0){
-      return (
-        <div className="posts">
-          {posts.map(post => (
-            <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
-          ))}
-        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
-        <div class="welcome_id">
-        <p id="welcome">Hello, {this.state.username}</p>
-        </div>
-        <p id="following">{this.state.following} Following</p>
-        <p id="followers">{this.state.followers} Followers</p>
-
-        <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-        <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/feed">
-          <img id="committii-logo" src={committiilogo}></img>
-        </Link>
-        <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
-        <div class="white_box">
-          <div class="current_polls">
-            <p id="curr_polls_label">Current Polls:</p>
-            {/* <p id="poll1">Dogs vs. Cats</p>
-            <button id="del_post">Delete</button> */}
+        return (
+          <div className="posts">
+            {posts.map(post => (
+              <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
+            ))}
+          <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
+          <div class="welcome_id">
+          <p id="welcome">Hello, {this.state.username}</p>
           </div>
-          <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
-        </div>
-        <div class="space">
-          <p>.</p>
-        </div>
-        </div>
-      );
+          <p id="following">{this.state.following} Following</p>
+          <p id="followers">{this.state.followers} Followers</p>
+
+          <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
+          <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
+          <Link to="/feed">
+            <img id="committii-logo" src={committiilogo}></img>
+          </Link>
+          <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
+          <div class="white_box">
+            <div class="current_polls">
+              <p id="curr_polls_label">Current Polls:</p>
+              {/* <p id="poll1">Dogs vs. Cats</p>
+              <button id="del_post">Delete</button> */}
+            </div>
+            <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+          </div>
+          <div class="space">
+            <p>.</p>
+          </div>
+          </div>
+        );
     }
     else {
       return (
