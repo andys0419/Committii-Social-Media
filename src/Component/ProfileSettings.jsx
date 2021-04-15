@@ -182,7 +182,7 @@ export default class ProfileSettings extends React.Component {
        if (result.role == ""){
          document.getElementById("profilepic").src = prof_pic
        }else{
-       var server = "https://webdev.cse.buffalo.edu/hci/elmas"
+       var server = "https://webdev.cse.buffalo.edu"
 
        document.getElementById("profilepic").src = server + result.role
      }
