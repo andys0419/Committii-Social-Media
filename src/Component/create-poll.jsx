@@ -105,7 +105,7 @@ export default class PostForm extends React.Component {
             />
             <input id="category_field"
                 type="text"
-                placeholder={" Category"}
+                placeholder={" Category (Ex. Animals, Photos, Classes, etc.)"}
                 onChange={e => this.fieldChangeHandler("poll_category", e)}
             />
             <p id="new_poll_title">{this.state.post_text}</p>

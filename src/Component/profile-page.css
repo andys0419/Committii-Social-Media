@@ -195,6 +195,7 @@ cursor: pointer;
 .follow_info {
   position: absolute;
   top: 50%;
+  left: 0.5%;
   transform: translate(0%, -50%);
   height: 80%;
   width: 30%;
