@@ -16,7 +16,7 @@ import {
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default class Register extends React.Component {
+export default class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +31,8 @@ export default class Register extends React.Component {
       redir: false,
       ShowSearch: false
     };
+    this.showMenu = this.showMenu.bind(this)
+    this.fieldChangeHandler = this.fieldChangeHandler.bind(this)
   }
 
   componentDidMount() {
@@ -46,7 +48,6 @@ export default class Register extends React.Component {
       .then(
         result => {
           if (result) {
-            console.log(result);
 
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
@@ -86,7 +87,6 @@ export default class Register extends React.Component {
               isLoaded: true,
               posts: result[0]
             });
-            console.log(result);
           }
         },
         error => {
@@ -147,14 +147,25 @@ export default class Register extends React.Component {
 
   }
   fieldChangeHandler(field, e) {
-
+    var sortedPost = Array()
+    for (var post in this.state.posts){
+      if (this.state.posts[post]['type'] == e.target.value){
+        sortedPost.push(this.state.posts[post])
+      }
+    }
+    if (sortedPost.length != 0){
+      this.setState({
+        posts: sortedPost
+      })
+  }
+  if (e.target.value == ""){
+    this.loadPosts()
+  }
   }
 
   showMenu(event){
-    event.preventDefault();
-    console.log(this.state.ShowSearch)
     this.setState({
-      ShowSearch: true
+      ShowSearch: !this.state.ShowSearch
     });
   }
 
@@ -195,11 +206,13 @@ export default class Register extends React.Component {
             {
             this.state.ShowSearch
             ? (
-              <input id="search"
-                type="text"
-                placeholder={"Enter Tag"}
-                onChange={e => this.fieldChangeHandler("search", e)}>
-                </input>
+              <div id="searchdropdown">
+                <input id="search"
+                    type="text"
+                    placeholder={"Enter Tag"}
+                    onChange={e => this.fieldChangeHandler("search", e)}>
+                  </input>
+                </div>
             ): (null)
           }
           </div>
