@@ -128,6 +128,28 @@ export default class PollPages extends React.Component {
       });
     }
 
+    displayProfilePic(){
+      fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+        method: "get",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        }
+      })
+     .then(res => res.json())
+     .then(
+       result => {
+         console.log(result)
+         if (result.role == ""){
+           document.getElementById("prof_pic").src = prof_pic
+         }else{
+         var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+         console.log(result.role)
+         document.getElementById("prof_pic_poll_page").src = server + result.role
+       }
+       })
+    }
+
 
 
   render() {
@@ -152,11 +174,10 @@ export default class PollPages extends React.Component {
    }
    if(this.state.post) {
     return (
-      
       <div className="App">
           <Link to="/feed"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link to="/profile"><img id="backarrow-pollpage" src={backarrow}></img></Link>
-          <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
+          <Link to="/profile"><img src={this.displayProfilePic()} id="prof_pic_poll_page" alt="logo"></img></Link>
           <canvas id="white_box"></canvas>
           <p id="poll_name">{this.state.post.content}</p>
           <canvas id="poll_outline"></canvas>

@@ -16,10 +16,10 @@
 }
 
 #prof_pic_poll_page {
-    position: absolute;
-    width: 11%;
-    right: 22.7%;
-    top: 9.5%;
+    position: relative;
+    display: block;
+    height: 21%;
+    border-radius: 50%;
     z-index: 1;
 }
 
