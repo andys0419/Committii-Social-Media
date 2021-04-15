@@ -131,8 +131,8 @@ export default class PostingList extends React.Component {
            if (result.role == ""){
              document.getElementById("prof_pic").src = prof_pic
            }else{
-           var server = "https://webdev.cse.buffalo.edu/hci/elmas"
-           console.log(server + result.role)
+           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+           console.log(result.role)
            document.getElementById("prof_pic").src = server + result.role
          }
          })
@@ -147,65 +147,80 @@ export default class PostingList extends React.Component {
     } else if (posts) {
       if (posts.length > 0){
       return (
-        <div className="posts">
-          {posts.map(post => (
-            <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
-          ))}
-        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
-        <div class="welcome_id">
-        <p id="welcome">Hello, {this.state.username}</p>
-        </div>
-        <p id="following">{this.state.following} Following</p>
-        <p id="followers">{this.state.followers} Followers</p>
-
-        <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-        <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/feed">
-          <img id="committii-logo" src={committiilogo}></img>
-        </Link>
-        <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
-        <div class="white_box">
-          <div class="current_polls">
-            <p id="curr_polls_label">Current Polls:</p>
-            {/* <p id="poll1">Dogs vs. Cats</p>
-            <button id="del_post">Delete</button> */}
+        <div class="ProfilePage">
+          <header>
+            <Link to="/feed">
+              <img id="committii-logo" src={committiilogo}></img>
+            </Link>
+            <div class="profile_pic_id">
+              <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
+            </div>
+            <div class="welcome_id">
+              <p id="welcome">Hello, {this.state.username}</p>
+            </div>
+          </header>
+          <div class="white_box">
+            <header class="white_box_header">
+              <div class="follow_info">
+                <p id="following">{this.state.following} Following</p>
+                <p id="followers">{this.state.followers} Followers</p>
+              </div>
+              <div class="profile_settings">
+                <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
+                <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
+              </div>
+              <div class="create_poll_div">
+                <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
+              </div>
+            </header>
+            <div class="polls_label_id">
+              <p id="polls_label">Polls</p>
+            </div>
+            <div>
+              {posts.map(post => (
+                <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>))}
+            </div>
+            <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
           </div>
-          <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
-        </div>
-        <div class="space">
-          <p>.</p>
-        </div>
         </div>
       );
     }
     else {
       return (
-        <div className="posts">
-          {posts.map(post => (
-            <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
-          ))}
-        <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
-        <div class="welcome_id">
-          <p id="welcome">Hello, {this.state.username}</p>
-        </div>
-        <p id="following">{this.state.following} Following</p>
-        <p id="followers">{this.state.followers} Followers</p>
-
-        <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-        <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-        <Link to="/">
-          <img id="committii-logo" src={committiilogo}></img>
-        </Link>
-        <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
-        <div class="white_box">
-          <div class="current_polls">
-            <p id="curr_polls_label">Current Polls:</p>
+        <div class="ProfilePage">
+          <header>
+            <Link to="/feed">
+              <img id="committii-logo" src={committiilogo}></img>
+            </Link>
+            <div class="profile_pic_id">
+              <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
+            </div>
+            <div class="welcome_id">
+              <p id="welcome">Hello, {this.state.username}</p>
+            </div>
+          </header>
+          <div class="white_box">
+            <header class="white_box_header">
+              <div class="follow_info">
+                <p id="following">{this.state.following} Following</p>
+                <p id="followers">{this.state.followers} Followers</p>
+              </div>
+              <div class="profile_settings">
+                <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
+                <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
+              </div>
+              <div class="create_poll_div">
+                <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
+              </div>
+            </header>
+            <div class="polls_label_id">
+              <p id="polls_label">Polls</p>
+            </div>
+            <div class="no_polls_id">
+              <p id="no_polls">You have not created any Polls yet. <br></br>Create a new Poll with the 'Create Poll' button above!</p>
+            </div>
+            <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
           </div>
-          <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
-        </div>
-        <div class="space">
-          <p>.</p>
-        </div>
         </div>
       )}
   }
