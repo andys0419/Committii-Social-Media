@@ -6,6 +6,8 @@ import "./profilesettings.css";
 import prof from "./prof.png";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
+import Post from "./Post";
+import committiilogo from "../assets/logo.svg";
 
 
 
@@ -29,7 +31,8 @@ export default class ProfileSettings extends React.Component {
             firstname: "",
             lastname: "",
             favoritecolor: "",
-            responseMessage: ""
+            responseMessage: "",
+            posts: [],
     };
     this.handleClick = this.handleClick.bind(this)
       this.changeAvatarButton = this.changeAvatarButton.bind(this);
@@ -37,7 +40,11 @@ export default class ProfileSettings extends React.Component {
     this.changeCloseButton = this.changeCloseButton.bind(this);
     this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
     this.fieldChangeHandler.bind(this);
-    this.deleteaction = this.deleteaction.bind(this)
+    this.deleteaction = this.deleteaction.bind(this);
+    this.loadPosts = this.loadPosts.bind(this);
+    this.deletePost = this.deletePost.bind(this);
+    this.deleteAll = this.deleteAll.bind(this);
+
 
   }
 
@@ -48,8 +55,41 @@ export default class ProfileSettings extends React.Component {
     });
   }
 
+  loadPosts() {
+    let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+sessionStorage.getItem("user");
+    url += "&type=post";
+
+    fetch(url, {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      },
+
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+            this.setState({
+              isLoaded: true,
+              posts: result[0]
+            });
+            console.log("Got Posts");
+          }
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+          console.log("ERROR loading Posts")
+        }
+      );
+  }
 
   componentDidMount() {
+    this.loadPosts();
     console.log("In profile");
     console.log(this.props);
 
@@ -252,14 +292,73 @@ export default class ProfileSettings extends React.Component {
   };
 
 
+  deletePost(postID) {
+    //make the api call to post
+    fetch(process.env.REACT_APP_API_PATH+"/posts/"+postID, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+      })
+      .then(
+        result => {
+          this.loadPosts();
+        },
+        error => {
+          alert("error!"+error);
+        }
+      );
+  }
+
+  deleteAll() {
+    //make the api call to post
+    for (let x of this.state.posts) {
+        console.log(x[0]);
+        console.log(x.id);
+        this.deletePost(x.id)
+}
+  }
 
   render() {
-    const LoginFormStyle = {
-      width: "96%",
-      height: "3em"
-    };
+      const {error, isLoaded, posts} = this.state;
+      if (posts.length > 0){
       return (
-        <div id="Login">
+          <div className="posts">
+              {posts.map(post => (
+                  <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
+              ))}
+              <div className="white_box">
+                  <div className="current_polls">
+                      <p id="curr_polls_label">Current Polls:</p>
+                      {/* <p id="poll1">Dogs vs. Cats</p>
+            <button id="del_post">Delete</button> */}
+                  </div>
+                   <div id="Login">
+            <Link to="/profilesettings">
+                <img id="backarrow" src={backarrow}></img>
+            </Link>
+          <a id="HeaderLabel">Are you sure you want to close your account?</a>
+            <a id="ProfileHeading">This action cannot be undone and all data associated with your account will be deleted. Would you like to proceed?</a>
+                <Link to="/closeaccountfeedback"><button>Yes, Close My Account</button></Link>
+                <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
+                       <button onClick={this.deleteAll()}>DELETE ALL POSTS</button>
+
+            <Link to="/profile">
+            <img id="settingslogo" src={logo}></img>
+            </Link>
+        </div>
+              </div>
+              <div className="space">
+                  <p>.</p>
+              </div>
+          </div>
+
+      );
+    }
+    else {
+      return (
+           <div id="Login">
             <Link to="/profilesettings">
                 <img id="backarrow" src={backarrow}></img>
             </Link>
@@ -272,6 +371,11 @@ export default class ProfileSettings extends React.Component {
             <img id="settingslogo" src={logo}></img>
             </Link>
         </div>
-    );
+      )}
+    const LoginFormStyle = {
+      width: "96%",
+      height: "3em"
+    };
+
   }
 }
