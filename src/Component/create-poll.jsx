@@ -79,7 +79,7 @@ export default class PostForm extends React.Component {
     console.log("field change");
     this.setState({
       [field]: e.target.value,
-      post_text: this.state.poll_option_1+" vs. "+this.state.poll_option_2
+      post_text: "choice1:" + this.state.poll_option_1 + ",choice2:" + this.state.poll_option_2 + ",votes1:, votes2:, comments:0"
     });
   }
 
