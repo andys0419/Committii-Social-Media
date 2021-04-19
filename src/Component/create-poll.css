@@ -62,7 +62,7 @@
   #new_poll_title {
       position: relative;
       color: black;
-      top: 15%;
+      top: 25%;
       text-align: center;
       font-size: 180%;
   }
@@ -70,7 +70,7 @@
   #new_poll_category {
     position: relative;
     color: black;
-    top: 15%;
+    top: 25%;
     text-align: center;
     font-size: 120%;
 }
@@ -90,4 +90,15 @@
     padding: 4px;
     font-size: 28px;
     cursor: pointer;
+  }
+
+  #image1 {
+    position: absolute;
+    top: 56%;
+    left: 35%;
+  }
+  #image2 {
+    position: absolute;
+    top: 66%;
+    left: 35%;
   }
