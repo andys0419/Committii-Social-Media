@@ -23,8 +23,8 @@
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
-    border-width: 1px;
-    text-shadow: 1px 2px 1px #acacac;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
     color: black;
     padding: 1%;
     cursor: pointer;
@@ -40,8 +40,8 @@
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
-    border-width: 1px;
-    text-shadow: 1px 2px 1px #acacac;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
     color: rgb(214, 36, 36);
     padding: 1%;
     cursor: pointer;

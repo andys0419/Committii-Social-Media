@@ -82,7 +82,7 @@ export default class PostForm extends React.Component {
       post_text: this.state.poll_option_1+" vs. "+this.state.poll_option_2
     });
   }
-
+  
   render() {
     if (this.state.redir) return <Redirect to='/profile'/>
     return (
