@@ -9,12 +9,13 @@ import "./App.css";
 import PostForm from "./Component/PostForm.jsx";
 import PostingList from "./Component/PostingList.jsx";
 import Post from "./Component/Post.jsx";
-import FriendList from "./Component/FriendList.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
 import FriendForm from "./Component/FriendForm.jsx";
 import Modal from "./Component/Modal.jsx";
 import Feed from "./Component/feed.jsx";
 import Profile from "./Component/profile-page.jsx";
+import Followers from "./Component/MyFollowers";
+import Following from "./Component/Following.jsx";
 import StyleGuide from "./Component/styleguide";
 import ProfileSettings from "./Component/ProfileSettings.jsx";
 import Register from "./Component/Register.jsx";
@@ -171,6 +172,16 @@ class App extends React.Component {
         <Switch>
           <Route path="/feed">
             <Feed toggleModal={e => toggleModal(this, e)}></Feed>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/followers">
+            <Followers toggleModal={e => toggleModal(this, e)}></Followers>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/following">
+            <Following toggleModal={e => toggleModal(this, e)}></Following>
           </Route>
         </Switch>
         <Switch>

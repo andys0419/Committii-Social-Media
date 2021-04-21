@@ -154,12 +154,29 @@
 
 .userlist {
   text-align: left;
-  background: rgb(0, 0, 0);
-  border-radius: 20px;
-  padding:30px;
-  margin:10px;
-  width:60%;
-  display: inline-flex;
+  background: black;
+  color:white;
+  border-style: solid solid solid solid;
+  border-radius: 10px;
+  padding:40px;
+  margin:30px;
+  width: 90%;
+  display: table;
+  font-family: 'Poppins';
+  border-bottom: 1px solid white;
+}
+
+.emptylist {
+  text-align: center;
+  color:white;
+  border-style: dotted dotted dotted dotted;
+  border-radius: 10px;
+  font-size: xx-large;
+  padding:40px;
+  margin:30px;
+  width: 90%;
+  display: table;
+  font-family: 'Poppins';
 }
 
 .comments{
