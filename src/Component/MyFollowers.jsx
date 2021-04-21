@@ -5,6 +5,7 @@ import "../App.css";
 import blockIcon from "../assets/block_white_216x216.png";
 import unblockIcon from "../assets/thumbsup.jpg";
 import backarrow from "../assets/back_arrow.svg";
+import prof_pic from "../assets/profile-picture-holder.png";
 
 export default class Followers extends React.Component {
   constructor(props) {
@@ -98,6 +99,29 @@ export default class Followers extends React.Component {
     }
   }
 
+  displayProfilePic(userID) {
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+ userID, {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+   .then(res => res.json())
+   .then(
+     result => {
+       console.log(result)
+       if (result.role == ""){
+         document.getElementById("prof_pic").src = prof_pic
+       }
+       else{
+       var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+       console.log(result.role)
+       document.getElementById("prof_pic").src = server + result.role
+     }
+     })
+  }
+
   render() {
     //this.loadPost();
     const {error, isLoaded, connections} = this.state;
@@ -122,10 +146,13 @@ export default class Followers extends React.Component {
           <ul>
             {connections.map(connection => (
               <div key={connection.id} className="userlist">
+                {/* Only use the line below for debugging purposes */}
                 {/* {connection.connectedUser.email} - {connection.type} - {connection.status} */}
-                {connection.connectedUser.email} - {connection.status}
+                {connection.connectedUser.email}
                 <div className="deletePost">
                 {this.conditionalAction(connection.status, connection.id)}
+                <br/>
+                <img src={this.displayProfilePic(connection.connectedUser.id)} id="prof_pic" alt="No profile picture found found." />
                 </div>
               </div>
             ))}
