@@ -70,8 +70,7 @@
 
 #following {
   position: absolute;
-  top: -26.5%;
-  height: 1.6vw;
+  top: -3%;
   right: 3%;
   width: 90%;
   background-color: rgb(216, 216, 216);
@@ -83,12 +82,12 @@
   padding: 0.25vw;
   font-size: 1.3vw;
   cursor: pointer;
+  text-align: left;
 }
 
 #followers {
   position: absolute;
-  bottom: -26.5%;
-  height: 1.6vw;
+  bottom: -3%;
   right: 3%;
   width: 90%;
   background-color: rgb(216, 216, 216);
@@ -100,6 +99,7 @@
   padding: 0.25vw;
   font-size: 1.3vw;
   cursor: pointer;
+  text-align: left;
 }
 
 .polls_label_id {
