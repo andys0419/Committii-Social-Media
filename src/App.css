@@ -668,9 +668,12 @@ c {
 #image1 {
   position: relative;
   height: 10%;
-  margin: 10%;
+  margin-left: 8%;
+  margin-top: 6.5%
 }
 #image2 {
   position: relative;
-height: 10%
+  height: 10%;
+  margin-left: 32%;
+  margin-top: 4.5%
 }
