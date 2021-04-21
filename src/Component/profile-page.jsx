@@ -166,13 +166,8 @@ export default class PostingList extends React.Component {
               this.state.followers++;
             } 
             
-            else if (type == "isFollowing" && status == "active") {
+            if (type == "isFollowing" && status == "active") {
               this.state.following++;
-            }
-            
-            else {
-              //may use this block to implement other features later on
-              continue;
             }
             
           }
@@ -210,9 +205,9 @@ export default class PostingList extends React.Component {
           <div class="welcome_id">
           <p id="welcome">Hello, {this.state.username}</p>
           </div>
-          <p id="following">{this.state.following} Following</p>
-          <p id="followers">{this.state.followers} Followers</p>
-
+          <Link to="/following"><button id="following">{this.state.following} Following</button></Link>
+          <Link to="/followers"><button id="followers">{this.state.followers} Followers</button></Link>
+          
           <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
           <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
           <Link to="/feed">
