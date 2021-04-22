@@ -18,7 +18,7 @@ export default class PostForm extends React.Component {
       postmessage: "",
       poll_option_1: "",
       poll_option_2: "",
-      post_text: "",
+      post_text: "Example vs. Example",
       poll_category: "",
       vote_first: 0,
       vote_second: 0,
@@ -35,6 +35,10 @@ export default class PostForm extends React.Component {
 
     //keep the form from actually submitting via HTML - we want to handle it in react
     event.preventDefault();
+
+    if(this.state.poll_category == "") {
+      
+    }
 
     //make the api call to post
     fetch(process.env.REACT_APP_API_PATH+"/posts", {
@@ -86,30 +90,35 @@ export default class PostForm extends React.Component {
   render() {
     if (this.state.redir) return <Redirect to='/profile'/>
     return (
-      <div>
-        {/* <PostingList ref={this.postListing} refresh={this.props.refresh} type="postlist" /> */}
-
-        <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
-          <div class="create_poll_box">
-            <p id="create_label">Create Poll</p>
+      <div class="CreatePollPage">
+        <header>
+          <Link to="/"><img id="committii-logo" src={committiilogo}></img></Link>
+        </header>
+        <div class="create_poll_white_box">
+          <header class="create_poll_white_box_header">
+            <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
+            <div class="create_id">
+              <p id="create_label">Create Poll</p>
+            </div>
+          </header>
+          <div class="poll_inputs">
             <input id="option_1_field"
                 type="text"
                 placeholder={" Option #1"}
-                onChange={e => this.fieldChangeHandler("poll_option_1", e)}
-            />
+                onChange={e => this.fieldChangeHandler("poll_option_1", e)}/>
             <input id="option_2_field"
                 type="text"
                 placeholder={" Option #2"}
-                onChange={e => this.fieldChangeHandler("poll_option_2", e)}
-            />
+                onChange={e => this.fieldChangeHandler("poll_option_2", e)}/>
             <input id="category_field"
                 type="text"
                 placeholder={" Category (Ex. Animals, Photos, Classes, etc.)"}
-                onChange={e => this.fieldChangeHandler("poll_category", e)}
-            />
-            <p id="new_poll_title">{this.state.post_text}</p>
-            <p id="new_poll_category">Category: {this.state.poll_category}</p>
+                onChange={e => this.fieldChangeHandler("poll_category", e)}/>
+            </div>
+            <div class="new_poll_data">
+              <p id="new_poll_title">{this.state.post_text}</p>
+              <p id="new_poll_category">Category: {this.state.poll_category}</p>
+            </div>
             <form onSubmit={this.submitHandler}>
               <input id="create_poll" type="submit" value="Create Poll" />
             </form>
