@@ -180,7 +180,9 @@ export default class PostingList extends React.Component {
               {posts.map(post => (
                 <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>))}
             </div>
-            <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+            <div class="logout_botton_id">
+              <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+            </div>
           </div>
         </div>
       );
@@ -219,7 +221,9 @@ export default class PostingList extends React.Component {
             <div class="no_polls_id">
               <p id="no_polls">You have not created any Polls yet. <br></br>Create a new Poll with the 'Create Poll' button above!</p>
             </div>
-            <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+            <div class="logout_botton_id">
+              <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+            </div>
           </div>
         </div>
       )}
