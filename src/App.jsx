@@ -26,6 +26,9 @@ import CommentForm from "./Component/CommentForm.jsx"
 import CreatePoll from "./Component/create-poll.jsx"
 import CloseAccount from "./Component/CloseAccount.jsx";
 import CloseAccountFeedback from "./Component/CloseAccountFeedback.jsx";
+import Messages from "./Component/Messages.jsx";
+import MessageDetails from "./Component/MessageDetails.jsx";
+
 
 
 import {
@@ -133,6 +136,11 @@ class App extends React.Component {
             </Route>
           </Switch>
         <Switch>
+            <Route path="/Messages">
+              <Messages toggleModal={e => toggleModal(this, e)}></Messages>
+            </Route>
+          </Switch>
+        <Switch>
           <Route path="/forgotpassword">
             <div id="navbar" className="navbar">
                 <Link to="/">
@@ -166,6 +174,11 @@ class App extends React.Component {
         <Switch>
           <Route path="/comment">
             <CommentForm toggleModal={e => toggleModal(this, e)}></CommentForm>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/messagedetails">
+            <MessageDetails toggleModal={e => toggleModal(this, e)}></MessageDetails>
           </Route>
         </Switch>
         <Switch>

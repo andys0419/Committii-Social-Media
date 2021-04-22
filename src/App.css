@@ -544,6 +544,45 @@ c {
   
 }
 
+.messageFeed {
+  margin-left: 20%;
+  width: 60%;
+  position:relative;
+}
+.messageInd {
+  border: 3px solid rgb(172, 172, 172);
+  width: 99.4%;
+  height: 125px;
+  z-index: initial;
+}
+
+.viewMessage {
+  position: absolute;
+  width: 250px;
+  height: 40px;
+  top: 20%;
+  right: 2.5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 150%;
+  cursor: pointer;
+}
+
+.messageName {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: -180%;
+  right: -40%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 250%;
+  cursor: pointer;
+
+}
+
 .post {
   border: 3px solid rgb(172, 172, 172);
   width: 99.4%;
@@ -559,6 +598,14 @@ c {
   padding: 8px;
   font-size: 200%;
   cursor: pointer;
+}
+
+.messageOptions {
+  border-bottom: 3px solid rgb(172, 172, 172);
+  width: 64.3%;
+  position: relative;
+  margin-left: 14.6%;
+  background: black;
 }
 
 .feedProfile {
@@ -650,4 +697,14 @@ c {
   margin-left: -2.5%;
   z-index: 1;
   border-radius: 50%;
+}
+.message-content {
+	border-style: solid solid solid solid;
+    margin-left: -48.5%;
+    margin-right: 39%;
+    grid-column: 3/6;
+    padding: 1em 2em;
+	background: black;
+	color: white;
+
 }
