@@ -22,16 +22,61 @@ export default class PollPages extends React.Component {
     this.post = React.createRef();
     this.state = {
       posts: [],
+      postData: [],
       poll_option_1: "",
       poll_option_2: "",
       post_text: "",
       poll_category: "",
       vote_first: 0,
       vote_second: 0,
+      voter_list_first: [],
+      voter_list_second: [],
       likes: 0,
       postid: postid
     };
 
+  }
+
+  updatePost(index, value) {
+    console.log(this.state.postData);
+    var tempData = this.state.postData[index].split(":");
+    var tempPost = this.state.postData;
+
+    tempData[1] = value;
+    tempPost[index] = tempData.join(":");
+
+    this.setState({
+      postData: tempPost
+    });
+    
+    console.log("This is " + value);
+    console.log("HERE" + this.state.postData + "\n");
+    console.log("HERE" + this.state.postData.join(",") + "\n");
+    //make the api call to patch
+    fetch(process.env.REACT_APP_API_PATH+"/posts/"+this.state.postid, {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        content: this.state.postData.join(","),
+      })
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            postmessage: result.Status,
+            redir: true
+          });
+          // once a post is complete, reload the feed
+          //this.postListing.current.loadPosts();
+        },
+        error => {
+          alert("error!");
+        }
+      );
   }
 
   getPost(postID) {
@@ -45,12 +90,18 @@ export default class PollPages extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          
+          var results = result.content.split(",");
+          console.log(results)
           this.setState({
             isLoaded: true,
             post: result,
-            poll_option_1: result.content.substring(0, result.content.indexOf(' ')),
-            poll_option_2: result.content.substring(result.content.indexOf(' ')+5),
+            postData: results,
+            poll_option_1: results[0].split(":")[1],
+            poll_option_2: results[1].split(":")[1], 
+            vote_first: results[2].split(":")[1].split('-').length-1,
+            vote_second: results[3].split(":")[1].split('-').length-1,
+            voter_list_first: results[2].split(":")[1].split('-'),
+            voter_list_second: results[3].split(":")[1].split('-'),
           });
           
           //stores the title of the poll for use with grabbing relevant comments
@@ -99,30 +150,88 @@ export default class PollPages extends React.Component {
       );
       }
   
-      clearState = (e) => {
-        this.setState({
-          username: "User",
-          following: 0,
-          followers: 0
-        })
+      // clearState = (e) => {
+      //   this.setState({
+      //     username: "User",
+      //     following: 0,
+      //     followers: 0
+      //   })
 
-        sessionStorage.setItem("token", "");
-        sessionStorage.setItem("user", "User");
-      }
+      //   sessionStorage.setItem("token", "");
+      //   sessionStorage.setItem("user", "User");
+      // }
 
       updateVoteFirst = () => {
+        if (this.state.voter_list_first.includes(sessionStorage.getItem("user"))) {
+          this.state.voter_list_first.splice(
+            this.state.voter_list_first.indexOf(sessionStorage.getItem("user")),
+            1
+          )
+          this.updatePost(2, this.state.voter_list_first.join('-'))
           this.setState({
-              vote_first: this.state.vote_first+1
+            vote_first: this.state.vote_first-1
           });
+        }
+        else if (this.state.voter_list_second.includes(sessionStorage.getItem("user"))) {
+          this.state.voter_list_second.splice(
+            this.state.voter_list_second.indexOf(sessionStorage.getItem("user")),
+            1
+          )
+          this.updatePost(3, this.state.voter_list_second.join('-'))
+          this.state.voter_list_first.push(sessionStorage.getItem("user"));
+          this.updatePost(2, this.state.voter_list_first.join('-'))
+          this.setState({
+            vote_first: this.state.vote_first+1,
+            vote_second: this.state.vote_second-1
+          });
+        }
+        else {
+          console.log("yeet" + this.state.voter_list_first.length);
+          console.log("yote" + sessionStorage.getItem("user"));
+          this.state.voter_list_first.push(sessionStorage.getItem("user"));
+          console.log("yeet" + this.state.voter_list_first.length);
+          this.updatePost(2, this.state.voter_list_first.join('-'))
+          this.setState({
+            vote_first: this.state.vote_first+1
+          });
+        }
       }
 
       updateVoteSecond = () => {
-        this.setState({
+        if (this.state.voter_list_second.includes(sessionStorage.getItem("user"))) {
+          this.state.voter_list_second.splice(
+            this.state.voter_list_second.indexOf(sessionStorage.getItem("user")),
+            1
+          )
+          this.updatePost(3, this.state.voter_list_second.join('-'))
+          this.setState({
+            vote_second: this.state.vote_second-1
+          });
+        }
+        else if (this.state.voter_list_first.includes(sessionStorage.getItem("user"))) {
+          this.state.voter_list_first.splice(
+            this.state.voter_list_first.indexOf(sessionStorage.getItem("user")),
+            1
+          )
+          this.updatePost(2, this.state.voter_list_first.join('-'))
+          this.state.voter_list_second.push(sessionStorage.getItem("user"));
+          this.updatePost(3, this.state.voter_list_second.join('-'))
+          this.setState({
+            vote_second: this.state.vote_second+1,
+            vote_first: this.state.vote_first-1
+          });
+        }
+        else {
+          this.state.voter_list_second.push(sessionStorage.getItem("user"));
+          this.updatePost(3, this.state.voter_list_second.join('-'))
+          this.setState({
             vote_second: this.state.vote_second+1
-        });
+          });
+        }
     }
 
     updateLikes = () => {
+      console.log(this.state.postid);
       this.setState({
           likes: this.state.likes+1
       });
