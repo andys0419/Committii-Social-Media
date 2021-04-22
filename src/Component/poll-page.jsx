@@ -1,6 +1,6 @@
 import React from "react";
 import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useParams } from 'react-router-dom';
 import "./poll-page.css";
 import "./CommentForm.css"
 
@@ -20,6 +20,7 @@ export default class PollPages extends React.Component {
     super(props);
     let { postid } = this.props.match.params;
     this.post = React.createRef();
+    this.goBack = this.goBack.bind(this);
     this.state = {
       posts: [],
       postData: [],
@@ -37,6 +38,9 @@ export default class PollPages extends React.Component {
 
   }
 
+  goBack() {
+    this.props.history.goBack();
+  }
   updatePost(index, value) {
     console.log(this.state.postData);
     var tempData = this.state.postData[index].split(":");
@@ -238,8 +242,11 @@ export default class PollPages extends React.Component {
     }
 
 
-
+    static contextTypes = {
+      router: () => true, // replace with PropTypes.object if you use them
+    }
   render() {
+
     CanvasJS.addColorSet("gray_color",
     ["#acacac"]);
     const options = {
@@ -259,15 +266,16 @@ export default class PollPages extends React.Component {
                 ]
        }]
    }
+   
    if(this.state.post) {
     return (
       
       <div className="App">
           <Link to="/feed"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link to="/profile"><img id="backarrow-pollpage" src={backarrow}></img></Link>
+          <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
           <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
-          <p id="poll_name">{this.state.post.content}</p>
+          <p id="poll_name">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</p>
           <canvas id="poll_outline"></canvas>
           <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
           <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>

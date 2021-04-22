@@ -9,7 +9,7 @@ import hearticon from "../assets/heart-icon.svg";
 import Post from "./Post.jsx";
 
 import {
-    Redirect
+    Redirect, useHistory
 } from 'react-router';
 //import Autocomplete from "./Autocomplete.jsx";
 
@@ -109,7 +109,7 @@ export default class Register extends React.Component {
     let votes2 = contentData[3].split(":")[1].split('-');
     let votes = (votes1.length-1) + (votes2.length-1);
 
-    let comments = contentData[4].split(":")[1];
+    let comments = post.commentCount;
     let id = "pollpage/" + post.id.toString();
 
     CanvasJS.addColorSet("gray_color",
@@ -129,8 +129,8 @@ export default class Register extends React.Component {
       data: [{				
                 type: "column",
                 dataPoints: [
-                    { label: contentData[0].split(":")[0].trim(), y: votes1.length-1 },
-                    { label: contentData[0].split(":")[1].trim(), y: votes2.length-1 },
+                    { label: contentData[0].split(":")[1].trim(), y: votes1.length-1 },
+                    { label: contentData[1].split(":")[1].trim(), y: votes2.length-1 },
                 ]
        }]
    }
