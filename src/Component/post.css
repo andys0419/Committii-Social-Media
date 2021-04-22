@@ -1,0 +1,54 @@
+.poll_list {
+    position: relative;
+    height: 20%;
+    width: 98.8%;
+    left: 1.4%;
+    margin-bottom: -10%;
+    display: inline-block;
+}
+
+#poll-name {
+    position: relative;
+    font-size: 1.4vw;
+    top: -10%;
+}
+
+#view-res {
+    position: relative;
+    float: right;
+    font-size: 1.1vw;
+    margin-right: 8vw;
+    margin-top: -3.45vw;
+    width: 7.5vw;
+    height: 2vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 0vw;
+}
+
+#del-post-button {
+    position: relative;
+    float: right;
+    font-size: 1.1vw;
+    margin-top: -3.45vw;
+    margin-right: 0vw;
+    width: 7.5vw;
+    height: 2vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: rgb(214, 36, 36);
+    padding: 1%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 0vw;
+}
