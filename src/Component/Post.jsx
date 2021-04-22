@@ -120,9 +120,12 @@ export default class Post extends React.Component {
 
 showPolls() {
   if (this.props.post.author.id == sessionStorage.getItem("user")) {
+    var results = this.props.post.content.split(",");
+    var option1 = results[0].split(":")[1];
+    var option2 = results[1].split(":")[1];
     return(
       <div>
-        <p id="poll-name">{this.props.post.content}</p>
+        <p id="poll-name">{option1 + " vs. " + option2}</p>
         <Link to={"/pollpage/"+this.props.post.id}><button id="view-res">View Results</button></Link>
       </div>
   );
