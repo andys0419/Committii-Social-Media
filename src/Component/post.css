@@ -4,7 +4,7 @@
     width: 98.8%;
     left: 1.4%;
     margin-bottom: -10%;
-    display: table;
+    display: inline-block;
 }
 
 #poll-name {
@@ -17,9 +17,10 @@
     position: relative;
     float: right;
     font-size: 1.1vw;
-    margin-right: 1%;
-    top: -59%;
-    width: 25%;
+    margin-right: 8vw;
+    margin-top: -3.45vw;
+    width: 7.5vw;
+    height: 2vw;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
@@ -29,14 +30,17 @@
     padding: 1%;
     cursor: pointer;
     text-align: center;
+    line-height: 0vw;
 }
 
 #del-post-button {
     position: relative;
     float: right;
     font-size: 1.1vw;
-    top: -59%;
-    width: 20%;
+    margin-top: -3.45vw;
+    margin-right: 0vw;
+    width: 7.5vw;
+    height: 2vw;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
@@ -46,4 +50,5 @@
     padding: 1%;
     cursor: pointer;
     text-align: center;
+    line-height: 0vw;
 }
