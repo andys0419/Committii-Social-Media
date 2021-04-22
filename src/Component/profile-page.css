@@ -1,3 +1,4 @@
+
 #committii-logo {
   position: absolute;
   height: 5.3vw;
@@ -245,4 +246,496 @@ cursor: pointer;
 .no_polls_img {
   position: absolute;
   top: 50%;
+}
+
+@media only screen and (max-width: 1200px) {
+  #committii-logo {
+    position: absolute;
+    height: 7vw;
+    top: 1vw;
+    left: -3.5vw;
+  }
+  
+  .welcome_id {
+    position: relative;
+    top: 5.5vw;
+    margin-top: -5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #welcome {
+    position: relative;
+    text-align: center;
+    font-size: 3vw;
+    color: white;
+  }
+  
+  .profile_pic_id {
+    position: relative;
+    height: 15vw;
+    width: 15vw;
+    top: 1vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #prof_pic {
+    position: absolute;
+    width: 15vw;
+    height: 15vw;
+    border-radius: 50%;
+  }
+  
+  #edit_prof {
+    position: absolute;
+    top: 4%;
+    height: 4.5vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    text-align: right;
+  }
+  
+  #edit_priv {
+    position: absolute;
+    bottom: 4%;
+    height: 4.5vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    line-height: 3.5vw;
+  }
+  
+  #following {
+    position: absolute;
+    top: -10%;
+    height: 4vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    line-height: 3.5vw;
+  }
+  
+  #followers {
+    position: absolute;
+    bottom: -10%;
+    height: 4vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    line-height: 3.9vw;
+  }
+  
+  .polls_label_id {
+    position: relative;
+  }
+  
+  #polls_label {
+    position: relative;
+    font-size: 2.5vw;
+    font-weight: 600;
+    text-decoration: underline;
+    left: 1.4%;
+  }
+  
+  .logout_botton_id {
+    position: absolute;
+    top: 114vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #logout_button {
+    position: relative;
+    font-size: 2.8vw;
+    width: 20vw;
+    height: 3.5vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 2vw;
+    }
+  
+  .white_box {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    height: 120vw;
+    width: 80vw;
+    margin-top: 6.5%;
+    margin-bottom: 5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  .create_poll_button {
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -55%);
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    font-size: 2vw;
+    cursor: pointer;
+    border-radius: 0.8vw;
+  }
+  
+  .space {
+    position: relative;
+    background-color: black;
+    width: 2%;
+    height: 70%;
+    top: 1300px;
+    left: 50%;
+  }
+  
+  #save-button {
+  width: 180px;
+  position: absolute;
+  left: 50%;
+  margin-left: -90px;
+  bottom: 10%;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: black;
+  padding: 3px;
+  font-size: 28px;
+  cursor: pointer;
+  }
+  
+  .white_box_header {
+    position: relative;
+    height: 15vw;
+  }
+  
+  .follow_info {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30%;
+    line-height: 1.65vw;
+  }
+  
+  .profile_settings {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30%;
+  }
+  
+  .create_poll_div {
+    position: relative;
+    height: 80%;
+    width: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .no_polls_id {
+    position: relative;
+    color: black;
+    left: 1.4%;
+    margin-top: -2vw;
+  }
+  
+  #no_polls {
+    font-size: 2vw;
+    line-height: 180%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  #committii-logo {
+    position: absolute;
+    height: 10vw;
+    top: 1vw;
+    left: -6.5vw;
+  }
+  
+  .welcome_id {
+    position: relative;
+    top: 5.5vw;
+    margin-top: -5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #welcome {
+    position: relative;
+    text-align: center;
+    font-size: 4vw;
+    color: white;
+  }
+  
+  .profile_pic_id {
+    position: relative;
+    height: 20vw;
+    width: 20vw;
+    top: 1vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #prof_pic {
+    position: absolute;
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+  }
+  
+  #edit_prof {
+    position: absolute;
+    top: -1.5%;
+    height: 8.5vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 4vw;
+    cursor: pointer;
+    text-align: right;
+  }
+  
+  #edit_priv {
+    position: absolute;
+    bottom: 1.5%;
+    height: 8.8vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 3.7vw;
+    cursor: pointer;
+    line-height: 3.5vw;
+  }
+  
+  #following {
+    position: absolute;
+    top: -18%;
+    left: 2%;
+    height: 8vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 4vw;
+    cursor: pointer;
+    line-height: 8vw;
+  }
+  
+  #followers {
+    position: absolute;
+    bottom: -18%;
+    left: 2%;
+    height: 8vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 4vw;
+    cursor: pointer;
+    line-height: 8vw;
+  }
+  
+  .polls_label_id {
+    position: relative;
+  }
+  
+  #polls_label {
+    position: relative;
+    font-size: 4vw;
+    font-weight: 600;
+    text-decoration: underline;
+    left: 1.4%;
+  }
+  
+  .logout_botton_id {
+    position: absolute;
+    top: 190vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #logout_button {
+    position: relative;
+    font-size: 4vw;
+    width: 26vw;
+    height: 6vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 2vw;
+    }
+  
+  .white_box {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    height: 200vw;
+    width: 92vw;
+    margin-top: 6.5%;
+    margin-bottom: 5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  .create_poll_button {
+    position: absolute;
+    width: 90%;
+    height: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -54%);
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    font-size: 4.5vw;
+    cursor: pointer;
+    border-radius: 0.8vw;
+  }
+  
+  .space {
+    position: relative;
+    background-color: black;
+    width: 2%;
+    height: 70%;
+    top: 1300px;
+    left: 50%;
+  }
+  
+  #save-button {
+  width: 180px;
+  position: absolute;
+  left: 50%;
+  margin-left: -90px;
+  bottom: 10%;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: black;
+  padding: 3px;
+  font-size: 28px;
+  cursor: pointer;
+  }
+  
+  .white_box_header {
+    position: relative;
+    height: 25vw;
+  }
+  
+  .follow_info {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30vw;
+    line-height: 1.65vw;
+  }
+  
+  .profile_settings {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30vw;
+  }
+  
+  .create_poll_div {
+    position: relative;
+    height: 80%;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .no_polls_id {
+    position: relative;
+    color: black;
+    left: 1.4%;
+    margin-top: -3vw;
+  }
+  
+  #no_polls {
+    font-size: 4vw;
+    line-height: 180%;
+  }
 }
