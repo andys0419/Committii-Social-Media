@@ -105,27 +105,15 @@ export default class Post extends React.Component {
       );
   }
 
-  // we only want to expose the delete post functionality if the user is
-  // author of the post
-  showDelete(){
-    if (this.props.post.author.id == sessionStorage.getItem("user")) {
-      return(
-        <div>
-          <button id={"del-post-button"} onClick={e => this.deletePost(this.props.post.id)}>Delete</button>
-        </div>
-    );
-    }
-    return "";
-  }
-
 showPolls() {
   if (this.props.post.author.id == sessionStorage.getItem("user")) {
     var results = this.props.post.content.split(",");
     var option1 = results[0].split(":")[1];
     var option2 = results[1].split(":")[1];
     return(
-      <div>
+      <div class="poll_list">
         <p id="poll-name">{option1 + " vs. " + option2}</p>
+        <button id={"del-post-button"} onClick={e => this.deletePost(this.props.post.id)}>Delete</button>
         <Link to={"/pollpage/"+this.props.post.id}><button id="view-res">View Results</button></Link>
       </div>
   );
@@ -135,22 +123,9 @@ showPolls() {
 
   render() {
     return (
-      <div>
-      <div
-        key={this.props.post.id}
-        className={[this.props.type, "postbody"].join(" ")}
-      >
-      <div className="deletePost">
-      {this.props.post.author.email} ({this.props.post.createdAt})
-      {this.showDelete()}
-      </div>
-      <div className="commentPost">
+      <div className="posts">
+      {/* {this.props.post.author.email} ({this.props.post.createdAt}) */}
       {this.showPolls()}
-      {/* {this.showDelete()} */}
-        <br />{" "}
-        {/* {this.conditionalDisplay()} */}
-      </div>
-      </div>
       </div>
     );
   }

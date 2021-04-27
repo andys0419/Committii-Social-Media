@@ -1,191 +1,426 @@
-#poll-name {
-    position: relative;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    width: 37%;
-    height: 40px;
-    text-align: left;
-    left: 36.57%;
-    top: 385px;
-    background-color: rgb(216, 216, 216);
-    font-size: 150%;
-    z-index: 1;
-    margin-top: 3.5%;
-    margin-bottom: -50%;
+
+#committii-logo {
+  position: absolute;
+  height: 5.3vw;
+  top: 1vw;
+  left: -3.5vw;
 }
-#del-post-button {
+
+.welcome_id {
   position: relative;
-  left: 69%;
-  top: 484px;
+  top: 5.5vw;
+  margin-top: -5vw;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+#welcome {
+  position: relative;
+  text-align: center;
+  font-size: 2.1vw;
+  color: white;
+}
+
+.profile_pic_id {
+  position: relative;
+  height: 10vw;
+  width: 10vw;
+  top: 1vw;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+#prof_pic {
+  position: absolute;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+}
+
+#edit_prof {
+  position: absolute;
+  top: -3%;
+  right: 3%;
+  width: 90%;
   background-color: rgb(216, 216, 216);
   border: black;
   border-style: solid;
-  border-width: 1px;
-  text-shadow: 2px 2px 1px #acacac;
-  color: rgb(214, 5, 5);
-  padding: 3px;
-  font-size: 20px;
+  border-width: 0.1vw;
+  text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+  color: black;
+  padding: 0.25vw;
+  font-size: 1.3vw;
   cursor: pointer;
-  z-index: 2;
+  text-align: right;
 }
 
+#edit_priv {
+  position: absolute;
+  bottom: -3%;
+  right: 3%;
+  width: 90%;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 0.1vw;
+  text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+  color: black;
+  padding: 0.25vw;
+  font-size: 1.3vw;
+  cursor: pointer;
+  text-align: right;
+}
 
+#following {
+  position: absolute;
+  top: -26.5%;
+  height: 1.6vw;
+  right: 3%;
+  width: 90%;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 0.1vw;
+  text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+  color: black;
+  padding: 0.25vw;
+  font-size: 1.3vw;
+  cursor: pointer;
+}
 
-  #committii-logo {
-    position: absolute;
-    top: 2%;
-    left: -3.5%;
-    size: 90%;
+#followers {
+  position: absolute;
+  bottom: -26.5%;
+  height: 1.6vw;
+  right: 3%;
+  width: 90%;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 0.1vw;
+  text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+  color: black;
+  padding: 0.25vw;
+  font-size: 1.3vw;
+  cursor: pointer;
+}
+
+.polls_label_id {
+  position: relative;
+}
+
+#polls_label {
+  position: relative;
+  font-size: 1.8vw;
+  font-weight: 600;
+  text-decoration: underline;
+  left: 1.4%;
+}
+
+.logout_botton_id {
+  position: absolute;
+  top: 66vw;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+#logout_button {
+  position: relative;
+  font-size: 1.1vw;
+  width: 11vw;
+  height: 2.1vw;
+  
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 0.1vw;
+  text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+  color: black;
+  padding: 1%;
+  cursor: pointer;
+  text-align: center;
+  line-height: 0vw;
   }
 
-.welcome_id {
-  position: absolute;
+.white_box {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  height: 70vw;
+  width: 41vw;
+  margin-top: 6.5%;
+  margin-bottom: 5vw;
   left: 50%;
-  top: 29.5%;
-  transform: translate(-50%, -50%);
-
+  transform: translate(-50%, 0%);
 }
 
+.create_poll_button {
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-52%, -55%);
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 0.1vw;
+  text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+  color: black;
+  padding: 1%;
+  font-size: 1.3vw;
+  cursor: pointer;
+  border-radius: 0.8vw;
+}
+
+.space {
+  position: relative;
+  background-color: black;
+  width: 2%;
+  height: 70%;
+  top: 1300px;
+  left: 50%;
+}
+
+#save-button {
+width: 180px;
+position: absolute;
+left: 50%;
+margin-left: -90px;
+bottom: 10%;
+background-color: rgb(216, 216, 216);
+border: black;
+border-style: solid;
+border-width: 1px;
+text-shadow: 2px 2px 1px #acacac;
+color: black;
+padding: 3px;
+font-size: 28px;
+cursor: pointer;
+}
+
+.white_box_header {
+  position: relative;
+  height: 6vw;
+}
+
+.follow_info {
+  position: absolute;
+  top: 50%;
+  left: 0.5%;
+  transform: translate(0%, -50%);
+  height: 80%;
+  width: 30%;
+  line-height: 1.65vw;
+}
+
+.profile_settings {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  height: 80%;
+  width: 30%;
+}
+
+.create_poll_div {
+  position: relative;
+  height: 80%;
+  width: 20%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.no_polls_id {
+  position: relative;
+  color: black;
+  left: 1.4%;
+  margin-top: -4%;
+}
+
+#no_polls {
+  font-size: 1.1vw;
+  line-height: 180%;
+}
+
+.no_polls_img {
+  position: absolute;
+  top: 50%;
+}
+
+@media only screen and (max-width: 1200px) {
+  #committii-logo {
+    position: absolute;
+    height: 7vw;
+    top: 1vw;
+    left: -3.5vw;
+  }
+  
+  .welcome_id {
+    position: relative;
+    top: 5.5vw;
+    margin-top: -5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
   #welcome {
     position: relative;
     text-align: center;
-    font-size: 40px;
-    color: white;
-    z-index: 3;
-  }
-
-  #edit_prof {
-    position: absolute;
-    right: 24.9%;
-    top: 32%;
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 3px;
-    font-size: 130%;
-    cursor: pointer;
-  }
-
-  #edit_priv {
-    position: absolute;
-    right: 22.3%;
-    top: 36%;
-    background-color: black;
-    border: none;
-    color: white;
-    padding: 5px;
-    font-size: 130%;
-    cursor: pointer;
-  }
-
-  #following {
-    position: absolute;
-    left: 25%;
-    top: 30%;
-    font-size: 130%;
+    font-size: 3vw;
     color: white;
   }
-
-  #followers {
-    position: absolute;
-    left: 25%;
-    top: 34%;
-    font-size: 130%;
-    color: white;
-  }
-
-  .Feed {
+  
+  .profile_pic_id {
     position: relative;
-    background-color: black;
-    color: black;
-  }
-
-  #curr_polls_label {
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    width: 200px;
-    height: 35px;
-    position: relative;
-    left: 3%;
-    top: 0%;
-    background-color: rgb(216, 216, 216);
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: underline;
-  }
-
-  .current_polls {
-    position: relative;
-    top: 10%;
-    height: 50%;
-    width: 100%;
-    z-index: 1;
-  }
-
-  #view-res {
-    position: relative;
-    left: 61%;
-    top: 1192.3px;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 1px;
-    text-shadow: 2px 2px 1px #acacac;
-    color: black;
-    padding: 3px;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 2;
-  }
-
-  #logout_button {
-    width: 180px;
-    position: absolute;
+    height: 15vw;
+    width: 15vw;
+    top: 1vw;
     left: 50%;
-    margin-left: -90px;
-    bottom: 2%;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 1px;
-    text-shadow: 2px 2px 1px #acacac;
-    color: black;
-    padding: 3px;
-    font-size: 28px;
-    cursor: pointer;
-    }
-
-  .white_box {
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    width: 37%;
-    height: 110%;
-    top: 33%;
-    left: 50%;
-    margin-left: -18.5%;
+    transform: translate(-50%, 0%);
   }
-
-  .create_poll_button {
+  
+  #prof_pic {
     position: absolute;
-    background-color: rgb(216, 216, 216);
-    border: black 1px solid;
-    color: black;
-    width: 5%;
-    height: 9.5%;
-    text-align: center;
-    padding: 4px 3px 0 3px;
-    font-size: 130%;
-    font-weight: 600;
-    left: 50%;
-    top: 34%;
-    margin-left: -2.5%;
-    z-index: 1;
+    width: 15vw;
+    height: 15vw;
     border-radius: 50%;
   }
-
+  
+  #edit_prof {
+    position: absolute;
+    top: 4%;
+    height: 4.5vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    text-align: right;
+  }
+  
+  #edit_priv {
+    position: absolute;
+    bottom: 4%;
+    height: 4.5vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    line-height: 3.5vw;
+  }
+  
+  #following {
+    position: absolute;
+    top: -10%;
+    height: 4vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    line-height: 3.5vw;
+  }
+  
+  #followers {
+    position: absolute;
+    bottom: -10%;
+    height: 4vw;
+    width: 90%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2vw;
+    cursor: pointer;
+    line-height: 3.9vw;
+  }
+  
+  .polls_label_id {
+    position: relative;
+  }
+  
+  #polls_label {
+    position: relative;
+    font-size: 2.5vw;
+    font-weight: 600;
+    text-decoration: underline;
+    left: 1.4%;
+  }
+  
+  .logout_botton_id {
+    position: absolute;
+    top: 114vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #logout_button {
+    position: relative;
+    font-size: 2.8vw;
+    width: 20vw;
+    height: 3.5vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 2vw;
+    }
+  
+  .white_box {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    height: 120vw;
+    width: 80vw;
+    margin-top: 6.5%;
+    margin-bottom: 5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  .create_poll_button {
+    position: absolute;
+    width: 90%;
+    height: 80%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -55%);
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    font-size: 2vw;
+    cursor: pointer;
+    border-radius: 0.8vw;
+  }
+  
   .space {
     position: relative;
     background-color: black;
@@ -194,8 +429,8 @@
     top: 1300px;
     left: 50%;
   }
-
-#save-button {
+  
+  #save-button {
   width: 180px;
   position: absolute;
   left: 50%;
@@ -211,15 +446,296 @@
   font-size: 28px;
   cursor: pointer;
   }
+  
+  .white_box_header {
+    position: relative;
+    height: 15vw;
+  }
+  
+  .follow_info {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30%;
+    line-height: 1.65vw;
+  }
+  
+  .profile_settings {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30%;
+  }
+  
+  .create_poll_div {
+    position: relative;
+    height: 80%;
+    width: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .no_polls_id {
+    position: relative;
+    color: black;
+    left: 1.4%;
+    margin-top: -2vw;
+  }
+  
+  #no_polls {
+    font-size: 2vw;
+    line-height: 180%;
+  }
+}
 
+@media only screen and (max-width: 650px) {
+  #committii-logo {
+    position: absolute;
+    height: 10vw;
+    top: 1vw;
+    left: -6.5vw;
+  }
+  
+  .welcome_id {
+    position: relative;
+    top: 5.5vw;
+    margin-top: -5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #welcome {
+    position: relative;
+    text-align: center;
+    font-size: 4vw;
+    color: white;
+  }
+  
+  .profile_pic_id {
+    position: relative;
+    height: 20vw;
+    width: 20vw;
+    top: 1vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
   #prof_pic {
     position: absolute;
-    display: block;
-    width: 250px;
-    height: 250px;
-    top: -1%;
-    left: 50%;
-    margin-left: -125px;
+    width: 20vw;
+    height: 20vw;
     border-radius: 50%;
-    margin-top: 20px;
   }
+  
+  #edit_prof {
+    position: absolute;
+    top: -1.5%;
+    height: 8.5vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 4vw;
+    cursor: pointer;
+    text-align: right;
+  }
+  
+  #edit_priv {
+    position: absolute;
+    bottom: 1.5%;
+    height: 8.8vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 3.7vw;
+    cursor: pointer;
+    line-height: 3.5vw;
+  }
+  
+  #following {
+    position: absolute;
+    top: -18%;
+    left: 2%;
+    height: 8vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 4vw;
+    cursor: pointer;
+    line-height: 8vw;
+  }
+  
+  #followers {
+    position: absolute;
+    bottom: -18%;
+    left: 2%;
+    height: 8vw;
+    width: 95%;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 4vw;
+    cursor: pointer;
+    line-height: 8vw;
+  }
+  
+  .polls_label_id {
+    position: relative;
+  }
+  
+  #polls_label {
+    position: relative;
+    font-size: 4vw;
+    font-weight: 600;
+    text-decoration: underline;
+    left: 1.4%;
+  }
+  
+  .logout_botton_id {
+    position: absolute;
+    top: 190vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  #logout_button {
+    position: relative;
+    font-size: 4vw;
+    width: 26vw;
+    height: 6vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 2vw;
+    }
+  
+  .white_box {
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    height: 200vw;
+    width: 92vw;
+    margin-top: 6.5%;
+    margin-bottom: 5vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  
+  .create_poll_button {
+    position: absolute;
+    width: 90%;
+    height: 95%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, -54%);
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 1%;
+    font-size: 4.5vw;
+    cursor: pointer;
+    border-radius: 0.8vw;
+  }
+  
+  .space {
+    position: relative;
+    background-color: black;
+    width: 2%;
+    height: 70%;
+    top: 1300px;
+    left: 50%;
+  }
+  
+  #save-button {
+  width: 180px;
+  position: absolute;
+  left: 50%;
+  margin-left: -90px;
+  bottom: 10%;
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 1px;
+  text-shadow: 2px 2px 1px #acacac;
+  color: black;
+  padding: 3px;
+  font-size: 28px;
+  cursor: pointer;
+  }
+  
+  .white_box_header {
+    position: relative;
+    height: 25vw;
+  }
+  
+  .follow_info {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30vw;
+    line-height: 1.65vw;
+  }
+  
+  .profile_settings {
+    position: absolute;
+    right: 0%;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 80%;
+    width: 30vw;
+  }
+  
+  .create_poll_div {
+    position: relative;
+    height: 80%;
+    width: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .no_polls_id {
+    position: relative;
+    color: black;
+    left: 1.4%;
+    margin-top: -3vw;
+  }
+  
+  #no_polls {
+    font-size: 4vw;
+    line-height: 180%;
+  }
+}
