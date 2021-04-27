@@ -33,6 +33,7 @@ export default class PollPages extends React.Component {
       voter_list_first: [],
       voter_list_second: [],
       likes: 0,
+      userid: -1,
       postid: postid
     };
 
@@ -106,6 +107,7 @@ export default class PollPages extends React.Component {
             vote_second: results[3].split(":")[1].split('-').length-1,
             voter_list_first: results[2].split(":")[1].split('-'),
             voter_list_second: results[3].split(":")[1].split('-'),
+            userid: results[5].split(":")[1],
           });
           
           //stores the title of the poll for use with grabbing relevant comments
@@ -273,7 +275,7 @@ export default class PollPages extends React.Component {
       <div className="App">
           <Link to="/feed"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
-          <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
+          <Link to={"/profile/"+this.state.userid}><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
           <p id="poll_name">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</p>
           <canvas id="poll_outline"></canvas>

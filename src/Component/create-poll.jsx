@@ -79,18 +79,18 @@ export default class PostForm extends React.Component {
     console.log("field change");
     this.setState({
       [field]: e.target.value,
-      post_text: "choice1:" + this.state.poll_option_1 + ",choice2:" + this.state.poll_option_2 + ",votes1:, votes2:, comments:0"
+      post_text: "choice1:" + this.state.poll_option_1 + ",choice2:" + this.state.poll_option_2 + ",votes1:, votes2:, comments:0, user:" + sessionStorage.getItem("user")
     });
   }
   
   render() {
-    if (this.state.redir) return <Redirect to='/profile'/>
+    if (this.state.redir) return <Redirect to={"/profile/"+sessionStorage.getItem("user")}/>
     return (
       <div>
         {/* <PostingList ref={this.postListing} refresh={this.props.refresh} type="postlist" /> */}
 
         <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="create_backarrow" src={backarrow}></img></Link>
           <div class="create_poll_box">
             <p id="create_label">Create Poll</p>
             <input id="option_1_field"

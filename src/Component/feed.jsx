@@ -168,7 +168,7 @@ export default class Register extends React.Component {
             <button class="feedMessages">Messages</button>
           </div>
           
-          <Link to="/profile"><button class="feedProfile">Profile</button></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><button class="feedProfile">Profile</button></Link>
         </div>
 
         {this.state.posts.map(post => this.createPost(post))}

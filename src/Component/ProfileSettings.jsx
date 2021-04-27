@@ -333,7 +333,7 @@ export default class ProfileSettings extends React.Component {
       return (
           <form onSubmit={this.submitHandler} className="profileform">
         <div id="Login">
-             <Link to="/profile">
+             <Link to={"/profile/"+sessionStorage.getItem("user")}>
                 <img id="backarrow" src={backarrow}></img>
             </Link>
           <a id="HeaderLabel">Hello, {this.state.username}</a>
@@ -379,7 +379,7 @@ export default class ProfileSettings extends React.Component {
                 <Link to="/closeaccount"><button>Close Account</button></Link>
             </div>
 
-            <Link to="/profile">
+            <Link to={"/profile/"+sessionStorage.getItem("user")}>
             <img id="settingslogo" src={logo}></img>
             </Link>
         </div>

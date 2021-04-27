@@ -268,7 +268,7 @@ export default class ProfileSettings extends React.Component {
                 <Link to="/closeaccountfeedback"><button>Yes, Close My Account</button></Link>
                 <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
 
-            <Link to="/profile">
+            <Link to={"/profile/"+sessionStorage.getItem("user")}>
             <img id="settingslogo" src={logo}></img>
             </Link>
         </div>
