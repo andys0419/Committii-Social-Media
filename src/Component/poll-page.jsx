@@ -11,6 +11,7 @@ import hearticon from "../assets/heart-icon.svg";
 import CommentForm from "./CommentForm.jsx";
 import helpIcon from "../assets/delete.png";
 import commentIcon from "../assets/comment.svg";
+import profilepage from "../Component/profile-page.jsx"
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -268,6 +269,7 @@ export default class PollPages extends React.Component {
       }
       })
   }
+
   render() {
 
     CanvasJS.addColorSet("gray_color",
@@ -292,12 +294,11 @@ export default class PollPages extends React.Component {
    
    if(this.state.post) {
     return (
-      
       <div className="App">
           <Link to="/feed"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
           <div class="prof_pic_id">
-            <Link to={"/profile/"+this.state.userid}><img id="prof_pic_poll_page" src={this.displayProfilePic()}></img></Link>
+            <Link to={"/profile/"+this.state.userid}><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           </div>
           <canvas id="white_box"></canvas>
           <p id="poll_name">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</p>
