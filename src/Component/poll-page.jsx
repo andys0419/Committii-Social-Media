@@ -236,17 +236,38 @@ export default class PollPages extends React.Component {
         }
     }
 
-    updateLikes = () => {
-      console.log(this.state.postid);
-      this.setState({
-          likes: this.state.likes+1
-      });
-    }
+  updateLikes = () => {
+    console.log(this.state.postid);
+    this.setState({
+        likes: this.state.likes+1
+    });
+  }
+  
+  static contextTypes = {
+    router: () => true, // replace with PropTypes.object if you use them
+  }
 
-
-    static contextTypes = {
-      router: () => true, // replace with PropTypes.object if you use them
-    }
+  displayProfilePic(){
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+    .then(res => res.json())
+    .then(
+      result => {
+        console.log(result)
+        if (result.role == ""){
+          document.getElementById("prof_pic_poll_page").src = prof_pic
+        }else{
+        var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+        console.log(result.role)
+        document.getElementById("prof_pic_poll_page").src = server + result.role
+      }
+      })
+  }
   render() {
 
     CanvasJS.addColorSet("gray_color",
@@ -275,7 +296,9 @@ export default class PollPages extends React.Component {
       <div className="App">
           <Link to="/feed"><img id="comiti_logo" src={committiilogo}></img></Link>
           <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
-          <Link to={"/profile/"+this.state.userid}><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
+          <div class="prof_pic_id">
+            <Link to={"/profile/"+this.state.userid}><img id="prof_pic_poll_page" src={this.displayProfilePic()}></img></Link>
+          </div>
           <canvas id="white_box"></canvas>
           <p id="poll_name">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</p>
           <canvas id="poll_outline"></canvas>
