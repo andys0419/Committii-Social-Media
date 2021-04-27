@@ -16,9 +16,9 @@ export default class PostForm extends React.Component {
     super(props);
     this.state = {
       postmessage: "",
-      poll_option_1: "",
-      poll_option_2: "",
-      post_text: "Example vs. Example",
+      poll_option_1: "Example",
+      poll_option_2: "Example",
+      post_text: "",
       poll_category: "",
       vote_first: 0,
       vote_second: 0,
@@ -96,7 +96,7 @@ export default class PostForm extends React.Component {
         </header>
         <div class="create_poll_white_box">
           <header class="create_poll_white_box_header">
-            <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
+            <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="create_backarrow" src={backarrow}></img></Link>
             <div class="create_id">
               <p id="create_label">Create Poll</p>
             </div>
@@ -116,7 +116,7 @@ export default class PostForm extends React.Component {
                 onChange={e => this.fieldChangeHandler("poll_category", e)}/>
             </div>
             <div class="new_poll_data">
-              <p id="new_poll_title">{this.state.post_text}</p>
+              <p id="new_poll_title">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</p>
               <p id="new_poll_category">Category: {this.state.poll_category}</p>
             </div>
             <form onSubmit={this.submitHandler}>
