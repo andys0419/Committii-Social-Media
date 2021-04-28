@@ -83,7 +83,7 @@ export default class PostForm extends React.Component {
         <PostingList ref={this.postListing} refresh={this.props.refresh} type="postlist" />
 
         <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="create_backarrow" src={backarrow}></img></Link>
           <div class="create_poll_box">
             <p id="create_label">Create Poll</p>
             <input id="option_1_field"

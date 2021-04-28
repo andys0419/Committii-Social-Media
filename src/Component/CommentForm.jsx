@@ -90,7 +90,7 @@ export default class CommentForm extends React.Component {
           
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <header class="masthead">
-              <Link to="/profile"><img id="committi_logo" src={committiilogo}></img></Link>
+              <Link to="/feed"><img id="committi_logo" src={committiilogo}></img></Link>
             </header>
 
             <main id="content" class="main-content">

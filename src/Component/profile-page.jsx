@@ -1,7 +1,7 @@
 import React from "react";
 import Post from "./Post.jsx";
 import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useParams  } from 'react-router-dom';
 import "./poll-page.css";
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
@@ -18,6 +18,7 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default class PostingList extends React.Component {
   constructor(props) {
     super(props);
+    let { userid } = this.props.match.params;
     this.state = {
       error: null,
       isLoaded: false,
@@ -27,6 +28,8 @@ export default class PostingList extends React.Component {
       email: '',
       following: 0,
       followers: 0,
+      userid: userid,
+      isCurrentUser: userid === sessionStorage.getItem("user")
     };
     this.postingList = React.createRef();
     this.loadPosts = this.loadPosts.bind(this);
@@ -35,7 +38,7 @@ export default class PostingList extends React.Component {
 
   componentDidMount() {
     this.loadPosts();
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
       method: "get",
       headers: {
         'Content-Type': 'application/json',
@@ -72,8 +75,41 @@ export default class PostingList extends React.Component {
     }
   }
 
+  showUserButtons() {
+    if (this.state.isCurrentUser) {
+      return (
+        <header class="white_box_header">
+          <div class="follow_info">
+            <p id="following">{this.state.following} Following</p>
+            <p id="followers">{this.state.followers} Followers</p>
+          </div>
+          <div class="profile_settings">
+            <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
+            <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
+          </div>
+          <div class="create_poll_div">
+            <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
+          </div>
+          <div class="logout_botton_id">
+          <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
+          </div>  
+        </header>   
+      )
+    }
+    else {
+      return (
+        <header class="white_box_header">
+          <div class="follow_info">
+            <p id="following">{this.state.following} Following</p>
+            <p id="followers">{this.state.followers} Followers</p>
+          </div>
+        </header>   
+      )
+    }
+
+  }
   loadPosts() {
-    let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+sessionStorage.getItem("user");
+    let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+this.state.userid;
     url += "&type=post";
 
     fetch(url, {
@@ -116,84 +152,35 @@ export default class PostingList extends React.Component {
     sessionStorage.setItem("user", "User");
   }
 
-  //this is the developer function for grabbing images locally. need to implement both locally and web server
   displayProfilePic(){
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-      method: "get",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      }
-    })
-   .then(res => res.json())
-   .then(
-     result => {
-       console.log(result)
-       if (result.role == ""){
-         document.getElementById("prof_pic").src = prof_pic
-       }
-       else{
-       var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-       console.log(result.role)
-       document.getElementById("prof_pic").src = server + result.role
-     }
-     })
-  }
-
-  
-  loadConnections() {
-      
-      //reset state of 'followers' to 0, to prevent duplicate followers upon refreshing the page
-      //this.state.followers = 0;
-
-      //api call to fetch connections with the type 'followers'
-      fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+sessionStorage.getItem("user"), {
-          method: "GET",
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
+          method: "get",
           headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer '+sessionStorage.getItem("token")
           }
-      })
-      .then(response => response.json())
-      .then(
-        json => {
-          const json_array = json[0];
-
-          for(var i = 0; i < json_array.length; i++) {
-            var connection_data = json_array[i];
-            var type = connection_data.type;
-            var status = connection_data.status;
-
-            if (type == "follower" && status == "active") {
-              this.state.followers++;
-            } 
-            
-            if (type == "isFollowing" && status == "active") {
-              this.state.following++;
-            }
-            
-          }
-        
-        }
-      )
-  }
+        })
+       .then(res => res.json())
+       .then(
+         result => {
+           console.log(result)
+           if (result.role == ""){
+             document.getElementById("prof_pic").src = prof_pic
+           }else{
+           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
+           console.log(result.role)
+           document.getElementById("prof_pic").src = server + result.role
+         }
+         })
+      }
 
   render() {
-    
     const {error, isLoaded, posts} = this.state;
-    this.loadConnections();
-
     if (error) {
       return <div> Error: {error.message} </div>;
-    } 
-    
-    else if (!isLoaded) 
-    {
+    } else if (!isLoaded) {
       return <div> Loading... </div>;
-    } 
-    
-    else if (posts) 
-    {
+    } else if (posts) {
       if (posts.length > 0){
       return (
         <div class="ProfilePage">
@@ -205,23 +192,16 @@ export default class PostingList extends React.Component {
               <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
             </div>
             <div class="welcome_id">
-              <p id="welcome">Hello, {this.state.username}</p>
+              <p id="welcome">
+                {this.state.isCurrentUser
+                  ? 'Hello, ' + this.state.username
+                  : 'Welcome to ' + this.state.username + '\'s page!'
+                }
+              </p>
             </div>
           </header>
           <div class="white_box">
-            <header class="white_box_header">
-              <div class="follow_info">
-                <Link to="/followers"><button id="followers">{this.state.followers} Followers</button></Link>
-                <Link to="/following"><button id="following">{this.state.following} Following</button></Link>
-              </div>
-              <div class="profile_settings">
-                <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-                <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-              </div>
-              <div class="create_poll_div">
-                <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
-              </div>
-            </header>
+            {this.showUserButtons()}
             <div class="polls_label_id">
               <p id="polls_label">Polls</p>
             </div>
@@ -229,7 +209,6 @@ export default class PostingList extends React.Component {
               {posts.map(post => (
                 <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>))}
             </div>
-            <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
           </div>
         </div>
       );
@@ -245,30 +224,22 @@ export default class PostingList extends React.Component {
               <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
             </div>
             <div class="welcome_id">
-              <p id="welcome">Hello, {this.state.username}</p>
+              <p id="welcome">
+                {this.state.isCurrentUser
+                  ? 'Hello, ' + this.state.username
+                  : 'Welcome to ' + this.state.username + '\'s page!'
+                }
+              </p>
             </div>
           </header>
           <div class="white_box">
-            <header class="white_box_header">
-              <div class="follow_info">
-                <p id="following">{this.state.following} Following</p>
-                <p id="followers">{this.state.followers} Followers</p>
-              </div>
-              <div class="profile_settings">
-                <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-                <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
-              </div>
-              <div class="create_poll_div">
-                <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
-              </div>
-            </header>
+            {this.showUserButtons()}
             <div class="polls_label_id">
               <p id="polls_label">Polls</p>
             </div>
             <div class="no_polls_id">
               <p id="no_polls">You have not created any Polls yet. <br></br>Create a new Poll with the 'Create Poll' button above!</p>
             </div>
-            <Link to="/"><button id="logout_button" onClick={()=>{this.clearState()}}>Log Out</button></Link>
           </div>
         </div>
       )}

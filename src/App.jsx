@@ -107,6 +107,7 @@ class App extends React.Component {
         <Route path="/PostForm" component={PostForm}/>
         <Route path="/PostingList" component={PostingList}/>
         <Route path="/post" component={Post}/>
+        <Route path="/profile/:userid" component={Profile}/>
       </Switch>
         <Switch>
           <Route path="/login">
@@ -157,11 +158,6 @@ class App extends React.Component {
                 </Link>
               </div>
             <CheckEmail toggleModal={e => toggleModal(this, e)}></CheckEmail>
-          </Route>
-        </Switch>
-        <Switch>
-          <Route path="/profile">
-            <Profile toggleModal={e => toggleModal(this, e)}></Profile>
           </Route>
         </Switch>
         <Switch>

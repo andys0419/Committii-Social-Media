@@ -551,7 +551,6 @@ c {
 }
 
 .feed {
-  
 }
 
 .feedPosts {
@@ -595,10 +594,10 @@ c {
 
 .likeButton {
   position: absolute;
-  width: 150px;
-  height: 40px;
-  left: 2.5%;
-  top: 5%;
+  width: fit-content;
+  height: fit-content;
+  top: -1%;
+  left: 3%;
   background-color: black;
   border: none;
   color: white;
@@ -608,9 +607,8 @@ c {
 
 .commentButton {
   position: absolute;
-  width: 250px;
-  height: 40px;
-
+  width: fit-content;
+  height: fit-content;
   top: 30%;
   background-color: black;
   border: none;
@@ -621,8 +619,8 @@ c {
 
 .postButton {
   position: absolute;
-  width: 250px;
-  height: 40px;
+  width: fit-content;
+  height: fit-content;
 
   top: 55%;
   background-color: black;
@@ -644,11 +642,12 @@ c {
 }
 
 .chart {
-  position: absolute;
+  position: relative;
   top: 1%;
-  left: 30%;
+  left: 40%;
   margin-inline:inherit;
   z-index: -1;
+  width:20%;
 }
 
 .poll_button {

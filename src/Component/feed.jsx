@@ -9,7 +9,7 @@ import hearticon from "../assets/heart-icon.svg";
 import Post from "./Post.jsx";
 
 import {
-    Redirect
+    Redirect, useHistory
 } from 'react-router';
 //import Autocomplete from "./Autocomplete.jsx";
 
@@ -28,6 +28,10 @@ export default class Register extends React.Component {
       alanmessage: "",
       errormessage: "",
       sessiontoken: "",
+      poll_option_1: "",
+      poll_option_2: "",
+      vote_first: 0,
+      vote_second: 0,
       redir: false
     };
   }
@@ -99,15 +103,14 @@ export default class Register extends React.Component {
   }
 
   createPost(post) {
-    let content = post.content.split("vs.");
-    let likes = 0;
+    let contentData = post.content.split(",");
+
+    let votes1 = contentData[2].split(":")[1].split('-');
+    let votes2 = contentData[3].split(":")[1].split('-');
+    let votes = (votes1.length-1) + (votes2.length-1);
+
     let comments = post.commentCount;
     let id = "pollpage/" + post.id.toString();
-
-    if (content.length < 2) {
-      content[0] = "Undefined"
-      content[1] = "Undefined"
-    }
 
     CanvasJS.addColorSet("gray_color",
     ["#acacac"]);
@@ -116,7 +119,7 @@ export default class Register extends React.Component {
         maintainAspectRation: false,
         axisY: {interval: 1, labelFontSize: 15},
         axisX: {labelFontSize: 16},
-        width: 600,
+        width: window.innerWidth / 3,
         height: 245,
         colorSet: "gray_color",
         title: {
@@ -126,15 +129,15 @@ export default class Register extends React.Component {
       data: [{				
                 type: "column",
                 dataPoints: [
-                    { label: content[0].trim(), y: Math.floor(Math.random() * 10) },
-                    { label: content[1].trim(), y: Math.floor(Math.random() * 10)  },
+                    { label: contentData[0].split(":")[1].trim(), y: votes1.length-1 },
+                    { label: contentData[1].split(":")[1].trim(), y: votes2.length-1 },
                 ]
        }]
    }
    return (
     <div class = "feedPosts">
       <div class = "post">
-        <p class="likeButton">{likes} Likes</p>
+        <p class="likeButton">{votes} Vote(s)</p>
         <Link to="/pollpage"><button class="commentButton">{comments} Comments</button></Link>
         <Link to={id}><button class="postButton">View Post</button></Link>
         <div class="chart">
@@ -147,29 +150,8 @@ export default class Register extends React.Component {
   }
 
   render() {
-    const {posts} = this.state;
     CanvasJS.addColorSet("gray_color",
     ["#acacac"]);
-    const options = {
-        responsive: true,
-        maintainAspectRation: false,
-        axisY: {interval: 1, labelFontSize: 15},
-        axisX: {labelFontSize: 16},
-        width: 600,
-        height: 245,
-        colorSet: "gray_color",
-        title: {
-        text: ""
-        
-      },
-      data: [{				
-                type: "column",
-                dataPoints: [
-                    { label: "Dogs",  y: 2  },
-                    { label: "Cats", y: 4  },
-                ]
-       }]
-   }
     return (
       
       <div class = "feed">
@@ -186,7 +168,7 @@ export default class Register extends React.Component {
             <button class="feedMessages">Messages</button>
           </div>
           
-          <Link to="/profile"><button class="feedProfile">Profile</button></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><button class="feedProfile">Profile</button></Link>
         </div>
 
         {this.state.posts.map(post => this.createPost(post))}
