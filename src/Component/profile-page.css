@@ -323,8 +323,8 @@ cursor: pointer;
   
   #following {
     position: absolute;
-    top: -10%;
-    height: 4vw;
+    top: 4%;
+    height: 4.5vw;
     width: 90%;
     background-color: rgb(216, 216, 216);
     border: black;
@@ -336,12 +336,13 @@ cursor: pointer;
     font-size: 2vw;
     cursor: pointer;
     line-height: 3.5vw;
+    text-align: left;
   }
   
   #followers {
     position: absolute;
-    bottom: -10%;
-    height: 4vw;
+    bottom: 4%;
+    height: 4.5vw;
     width: 90%;
     background-color: rgb(216, 216, 216);
     border: black;
@@ -352,7 +353,8 @@ cursor: pointer;
     padding: 0.25vw;
     font-size: 2vw;
     cursor: pointer;
-    line-height: 3.9vw;
+    line-height: 3.5vw;
+    text-align: left;
   }
   
   .polls_label_id {
@@ -568,9 +570,8 @@ cursor: pointer;
   
   #following {
     position: absolute;
-    top: -18%;
-    left: 2%;
-    height: 8vw;
+    top: -1.5%;
+    height: 8.5vw;
     width: 95%;
     background-color: rgb(216, 216, 216);
     border: black;
@@ -581,14 +582,13 @@ cursor: pointer;
     padding: 0.25vw;
     font-size: 4vw;
     cursor: pointer;
-    line-height: 8vw;
+    text-align: left;
   }
   
   #followers {
     position: absolute;
-    bottom: -18%;
-    left: 2%;
-    height: 8vw;
+    bottom: 1.5%;
+    height: 8.8vw;
     width: 95%;
     background-color: rgb(216, 216, 216);
     border: black;
@@ -599,7 +599,8 @@ cursor: pointer;
     padding: 0.25vw;
     font-size: 4vw;
     cursor: pointer;
-    line-height: 8vw;
+    line-height: 3.5vw;
+    text-align: left;
   }
   
   .polls_label_id {
