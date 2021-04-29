@@ -29,6 +29,7 @@ import CloseAccountFeedback from "./Component/CloseAccountFeedback.jsx";
 import Messages from "./Component/Messages.jsx";
 import MessageDetails from "./Component/MessageDetails.jsx";
 import CreateMessage from "./Component/CreateMessage.jsx";
+import CloseAccountPosts from "./Component/ClostAccountPosts.jsx";
 
 
 
@@ -185,6 +186,11 @@ class App extends React.Component {
         <Switch>
           <Route path="/createmessage">
             <CreateMessage toggleModal={e => toggleModal(this, e)}></CreateMessage>
+          </Route>
+        </Switch>
+        <Switch>
+          <Route path="/closeaccountposts">
+            <CloseAccountPosts toggleModal={e => toggleModal(this, e)}></CloseAccountPosts>
           </Route>
         </Switch>
         <Switch>
