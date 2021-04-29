@@ -100,14 +100,18 @@ export default class PostingList extends React.Component {
       return (
         <header class="white_box_header">
           <div class="follow_info">
-            <p id="following">{this.state.following} Following</p>
-            <p id="followers">{this.state.followers} Followers</p>
+            <Link to="/following"><button id="following">{this.state.following} Following</button></Link>
+            <Link to="/followers"><button id="followers">{this.state.followers} Follower</button></Link>
+          </div>
+          <div class="follow_button_class">
+            <button id="follow_button">Follow {this.state.username}</button>
           </div>
         </header>   
       )
     }
 
   }
+  
   loadPosts() {
     let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+this.state.userid;
     url += "&type=post";

@@ -37,7 +37,7 @@
   border-radius: 50%;
 }
 
-#edit_prof {
+#edit_prof, #follow_button {
   position: absolute;
   top: -3%;
   right: 3%;
@@ -52,6 +52,10 @@
   font-size: 1.3vw;
   cursor: pointer;
   text-align: right;
+}
+
+#follow_button {
+  text-align: left;
 }
 
 #edit_priv {
@@ -213,7 +217,7 @@ cursor: pointer;
   line-height: 1.65vw;
 }
 
-.profile_settings {
+.profile_settings, .follow_button_class {
   position: absolute;
   right: 0%;
   top: 50%;
@@ -287,7 +291,7 @@ cursor: pointer;
     border-radius: 50%;
   }
   
-  #edit_prof {
+  #edit_prof, #follow_button {
     position: absolute;
     top: 4%;
     height: 4.5vw;
@@ -464,7 +468,7 @@ cursor: pointer;
     line-height: 1.65vw;
   }
   
-  .profile_settings {
+  .profile_settings, .follow_button_class {
     position: absolute;
     right: 0%;
     top: 50%;
@@ -472,7 +476,7 @@ cursor: pointer;
     height: 80%;
     width: 30%;
   }
-  
+
   .create_poll_div {
     position: relative;
     height: 80%;
@@ -534,7 +538,7 @@ cursor: pointer;
     border-radius: 50%;
   }
   
-  #edit_prof {
+  #edit_prof, #follow_button {
     position: absolute;
     top: -1.5%;
     height: 8.5vw;
@@ -549,6 +553,10 @@ cursor: pointer;
     font-size: 4vw;
     cursor: pointer;
     text-align: right;
+  }
+
+  #follow_button {
+    text-align: center;
   }
   
   #edit_priv {
@@ -710,7 +718,7 @@ cursor: pointer;
     line-height: 1.65vw;
   }
   
-  .profile_settings {
+  .profile_settings, .follow_button_class {
     position: absolute;
     right: 0%;
     top: 50%;
@@ -718,7 +726,7 @@ cursor: pointer;
     height: 80%;
     width: 30vw;
   }
-  
+
   .create_poll_div {
     position: relative;
     height: 80%;
