@@ -37,6 +37,8 @@ export default class PostingList extends React.Component {
   }
 
   componentDidMount() {
+    this.loadFollowing();
+    this.loadFollowers();
     this.loadPosts();
     fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
       method: "get",
@@ -80,8 +82,8 @@ export default class PostingList extends React.Component {
       return (
         <header class="white_box_header">
           <div class="follow_info">
-            <Link to="/following"><button id="following">{this.state.following} Following</button></Link>
-            <Link to="/followers"><button id="followers">{this.state.followers} Followers</button></Link>
+            <Link to={this.state.userid + "/following"}><button id="following">{this.state.following} Following</button></Link>
+            <Link to={this.state.userid + "/followers"}><button id="followers">{this.state.followers} Followers</button></Link>
           </div>
           <div class="profile_settings">
             <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
@@ -100,8 +102,8 @@ export default class PostingList extends React.Component {
       return (
         <header class="white_box_header">
           <div class="follow_info">
-            <Link to="/following"><button id="following">{this.state.following} Following</button></Link>
-            <Link to="/followers"><button id="followers">{this.state.followers} Follower</button></Link>
+            <Link to={this.state.userid + "/following"}><button id="following">{this.state.following} Following</button></Link>
+            <Link to={this.state.userid + "/followers"}><button id="followers">{this.state.followers} Followers</button></Link>
           </div>
           <div class="follow_button_class">
             <button id="follow_button">Follow {this.state.username}</button>
@@ -111,7 +113,60 @@ export default class PostingList extends React.Component {
     }
 
   }
+
+  loadFollowing() {
+
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+"&type=isFollowing&status=active", {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+     })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+            this.setState({
+              following: result[0].length
+            });
+          }
+        },
+        error => {
+          this.setState({
+            following: 0
+          });
+        }
+      );
+  }
   
+  loadFollowers() {
+      fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+"&type=follower&status=active", {
+        method: "get",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        }
+       })
+        .then(res => res.json())
+        .then(
+          result => {
+            if (result) {
+              this.setState({
+                followers: result[0].length
+              });
+            }
+          },
+          error => {
+            this.setState({
+              followers: 0
+            });
+          }
+        ); 
+    }  
+    
+  
+
   loadPosts() {
     let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+this.state.userid;
     url += "&type=post";
@@ -156,7 +211,7 @@ export default class PostingList extends React.Component {
     sessionStorage.setItem("user", "User");
   }
 
-  displayProfilePic(){
+  displayProfilePic() {
         fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
           method: "get",
           headers: {
@@ -176,15 +231,19 @@ export default class PostingList extends React.Component {
            document.getElementById("prof_pic").src = server + result.role
          }
          })
-      }
+  }
+
+
 
   render() {
     const {error, isLoaded, posts} = this.state;
+
     if (error) {
       return <div> Error: {error.message} </div>;
     } else if (!isLoaded) {
       return <div> Loading... </div>;
     } else if (posts) {
+      
       if (posts.length > 0){
       return (
         <div class="ProfilePage">

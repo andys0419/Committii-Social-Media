@@ -107,6 +107,8 @@ class App extends React.Component {
         <Route path="/PostForm" component={PostForm}/>
         <Route path="/PostingList" component={PostingList}/>
         <Route path="/post" component={Post}/>
+        <Route path="/profile/:userid/following" component={Following}/>
+        <Route path="/profile/:userid/followers" component={Followers}/>
         <Route path="/profile/:userid" component={Profile}/>
       </Switch>
         <Switch>
@@ -168,16 +170,6 @@ class App extends React.Component {
         <Switch>
           <Route path="/feed">
             <Feed toggleModal={e => toggleModal(this, e)}></Feed>
-          </Route>
-        </Switch>
-        <Switch>
-          <Route path="/followers">
-            <Followers toggleModal={e => toggleModal(this, e)}></Followers>
-          </Route>
-        </Switch>
-        <Switch>
-          <Route path="/following">
-            <Following toggleModal={e => toggleModal(this, e)}></Following>
           </Route>
         </Switch>
         <Switch>

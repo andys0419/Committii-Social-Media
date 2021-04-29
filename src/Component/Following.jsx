@@ -10,8 +10,9 @@ import prof_pic from "../assets/profile-picture-holder.png";
 export default class Following extends React.Component {
   constructor(props) {
     super(props);
+    let { userid } = this.props.match.params;
     this.state = {
-      userid: props.userid,
+      userid: userid,
       connections: []
     };
   }
@@ -22,7 +23,7 @@ export default class Following extends React.Component {
 
   loadFriends() {
 
-    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+sessionStorage.getItem("user")+"&type=isFollowing&status=active", {
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+"&type=isFollowing&status=active", {
       method: "get",
       headers: {
         'Content-Type': 'application/json',
@@ -140,7 +141,7 @@ export default class Following extends React.Component {
     else {
       return (
         <div className="posts">
-          <Link to="/profile">
+          <Link to={"/profile/" + this.state.userid}>
                 <img id="backarrow" src={backarrow}></img>
           </Link>
           <ul>
