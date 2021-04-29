@@ -301,7 +301,10 @@ export default class PostingList extends React.Component {
               <p id="polls_label">Polls</p>
             </div>
             <div class="no_polls_id">
-              <p id="no_polls">You have not created any Polls yet. <br></br>Create a new Poll with the 'Create Poll' button above!</p>
+              {this.state.isCurrentUser
+                ? <p id="no_polls">You have not created any Polls yet. <br></br>Create a new Poll with the 'Create Poll' button above!</p>
+                : <p id="no_polls">This member currently does not have any Polls.</p>
+              }
             </div>
           </div>
         </div>

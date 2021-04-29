@@ -49,7 +49,7 @@ export default class Following extends React.Component {
       );
   }
 
-  updateConnection(id, status){
+  updateConnection(id, status) {
     //make the api call to the user controller
     fetch(process.env.REACT_APP_API_PATH+"/connections/"+id, {
       method: "PATCH",
@@ -124,8 +124,8 @@ export default class Following extends React.Component {
   }
 
   render() {
-    //this.loadPost();
     const {error, isLoaded, connections} = this.state;
+
     if (error) {
       return <div> Error: {error.message} </div>;
     } else if (!isLoaded) {
@@ -144,20 +144,21 @@ export default class Following extends React.Component {
           <Link to={"/profile/" + this.state.userid}>
                 <img id="backarrow" src={backarrow}></img>
           </Link>
-          <ul>
-            {connections.map(connection => (
-              <div key={connection.id} className="userlist">
-                {/* Only use the line below for debugging purposes */}
-                {/* {connection.connectedUser.email} - {connection.type} - {connection.status} */}
-                {connection.connectedUser.email}
-                <div className="deletePost">
-                {this.conditionalAction(connection.status, connection.id)}
-                <br/>
-                <img src={this.displayProfilePic(connection.connectedUser.id)} id="prof_pic" alt="No profile picture found found." />
-                </div>
+          
+          {connections.map(connection => (
+            <div key={connection.id} className="userlist">
+              {/* Only use the line below for debugging purposes */}
+              {/* {connection.connectedUser.email} - {connection.type} - {connection.status} */}
+
+              <Link to={"/profile/" + connection.connectedUser.id}>{connection.connectedUser.email}</Link>
+              <div className="deletePost">
+              {this.conditionalAction(connection.status, connection.id)}
+              <br/>
+              <img src={this.displayProfilePic(connection.connectedUser.id)} id="prof_pic" alt="No profile picture found." />
               </div>
-            ))}
-          </ul>
+            </div>
+          ))}
+          
         </div>
       );
     }

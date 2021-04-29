@@ -149,7 +149,8 @@ export default class Followers extends React.Component {
               <div key={connection.id} className="userlist">
                 {/* Only use the line below for debugging purposes */}
                 {/* {connection.connectedUser.email} - {connection.type} - {connection.status} */}
-                {connection.connectedUser.email}
+                
+                <Link to={"/profile/" + connection.connectedUser.id}>{connection.connectedUser.email}</Link>
                 <div className="deletePost">
                 {this.conditionalAction(connection.status, connection.id)}
                 <br/>
