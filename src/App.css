@@ -623,6 +623,21 @@ c {
   cursor: pointer;
 }
 
+.feedProfile2 {
+  position: relative;
+  width: 500px;
+  height: 40px;
+  left: 30%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+  cursor: pointer;
+}
+
 .likeButton {
   position: absolute;
   width: 150px;
