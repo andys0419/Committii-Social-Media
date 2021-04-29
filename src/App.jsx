@@ -83,7 +83,7 @@ class App extends React.Component {
         <Route path="/profilesettings">
           <ProfileSettings toggleModal={e => toggleModal(this, e)}></ProfileSettings>
         </Route>
-        
+
       </Switch>
       <Switch>
         <Route path="/register">
