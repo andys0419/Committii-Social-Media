@@ -116,7 +116,7 @@ export default class LoginForm extends React.Component {
         </form>
       );
     } else {
-      return <Redirect to='/profile' />
+      return <Redirect to='/feed'/>
     }
   }
 }
