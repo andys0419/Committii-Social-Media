@@ -35,12 +35,15 @@ export default class PostingList extends React.Component {
     this.postingList = React.createRef();
     this.loadPosts = this.loadPosts.bind(this);
     this.displayProfilePic = this.displayProfilePic.bind(this);
+    this.showUserButtons = this.showUserButtons.bind(this);
+    this.createFollow = this.createFollow.bind(this);
   }
 
   componentDidMount() {
     this.loadFollowing();
     this.loadFollowers();
     this.loadPosts();
+    this.checkIsFollowing();
     fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
       method: "get",
       headers: {
@@ -166,68 +169,135 @@ export default class PostingList extends React.Component {
             });
           }
         ); 
-  }  
-  
-  checkAlreadyFollowed() {
-
-    if (this.state.follow_text.normalize() == 'Follow Member'.normalize()) {
-    
-      fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+ "&connectedUserID=" +sessionStorage.getItem("user")+ "&type=follower&status=active", {
-        method: "get",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+sessionStorage.getItem("token")
-        }
-      })
-        .then(res => res.json())
-        .then(
-          result => {
-            if (result) {
-              return true;
-            } 
-          },
-        ); 
-    }
-
-    else {
-      this.setState({
-        follow_text: 'Unfollow Member'
-      });
-    }
   }
 
-  createFollow = (e) => {
+  checkIsFollowing() {
 
-    if (this.checkAlreadyFollowed() !== true) {
+    /* Check the following status - is the visiting member a follower? */
 
-      /* Grab the userID of the member profile being viewed, and use this ID to add the follower of the visiting userID */
-      fetch(process.env.REACT_APP_API_PATH+"/connections", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer '+sessionStorage.getItem("token")
-        },
-        body: JSON.stringify({
-          userID: this.state.userid,
-          connectedUserID: sessionStorage.getItem("user"),
-          type: "follower",
-          status: "active"
-        })
-      })
-        .then(res => res.json())
-        .then(
-          result => {
-            console.log("Follow created successfully!")
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+ "&connectedUserID=" +sessionStorage.getItem("user")+ "&type=follower&status=active", {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+
+          if (result[0].length > 0) {
+            console.log("There is a follow!")
+
             this.setState({
               follow_text: 'Unfollow Member'
             });
-          },
-          _error => {
-            alert("An errored occured while trying to follow!");
+          } 
+          
+          else {
+            this.setState({
+              follow_text: 'Follow Member'
+            });
           }
-        );
+        },
+      );
     }
-  }
+  
+  createFollow = (e) => {
+
+    /* First thing to do is check the following status - is the visiting member a follower? */
+
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+ "&connectedUserID=" +sessionStorage.getItem("user")+ "&type=follower&status=active", {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+
+          let isFollowing = false;
+          let followID = -1;
+
+          if (result[0].length > 0) {
+            console.log("There is a follow!")
+
+            isFollowing = true;
+            followID = result[0][0].id;
+
+            console.log(isFollowing);
+            console.log(followID);
+
+            console.log("Visiting member wants to unfollow!")
+
+            fetch(process.env.REACT_APP_API_PATH+"/connections/"+  followID, {
+              method: "PATCH",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify({
+                status: "unfollow"
+              })
+            })
+              .then(res => res.json())
+              .then(
+                result => {
+                  console.log("Successfully unfollowed!")
+                  this.setState({
+                    follow_text: 'Follow Member'
+                  });
+                  this.state.follow_text = 'Follow Member';
+                  window.location.reload();
+                },
+                _error => {
+                  alert("An errored occured while trying to unfollow!");
+                  window.location.reload();
+                }
+              );
+          }
+
+          else {
+            /* If the member visiting is not following, and wants to follow */
+            
+            console.log("Visiting member is not already following this user!")
+
+             /* Grab the userID of the member profile being viewed, and use this ID to add the follower of the visiting userID */
+            fetch(process.env.REACT_APP_API_PATH+"/connections", {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify({
+                userID: this.state.userid,
+                connectedUserID: sessionStorage.getItem("user"),
+                type: "follower",
+                status: "active"
+              })
+            })
+              .then(res => res.json())
+              .then(
+                result => {
+                  console.log("Follow created successfully!")
+                  this.setState({
+                    follow_text: 'Unfollow Member'
+                  });
+                  this.state.follow_text = 'Unfollow Member';
+                  window.location.reload();
+                },
+                _error => {
+                  alert("An errored occured while trying to follow!");
+                  window.location.reload();
+                }
+              );
+          
+          }
+        },
+      ); 
+    }
 
   loadPosts() {
     let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+this.state.userid;
