@@ -29,7 +29,8 @@ export default class PostingList extends React.Component {
       following: 0,
       followers: 0,
       userid: userid,
-      isCurrentUser: userid === sessionStorage.getItem("user")
+      isCurrentUser: userid === sessionStorage.getItem("user"),
+      follow_text: 'Follow Member'
     };
     this.postingList = React.createRef();
     this.loadPosts = this.loadPosts.bind(this);
@@ -106,7 +107,7 @@ export default class PostingList extends React.Component {
             <Link to={this.state.userid + "/followers"}><button id="followers">{this.state.followers} Followers</button></Link>
           </div>
           <div class="follow_button_class">
-            <button id="follow_button">Follow {this.state.username}</button>
+            <button id="follow_button" onClick={()=>this.createFollow()}>{this.state.follow_text}</button>
           </div>
         </header>   
       )
@@ -128,12 +129,14 @@ export default class PostingList extends React.Component {
         result => {
           if (result) {
             this.setState({
+              isLoaded: true,
               following: result[0].length
             });
           }
         },
         error => {
           this.setState({
+            isLoaded: true,
             following: 0
           });
         }
@@ -163,9 +166,68 @@ export default class PostingList extends React.Component {
             });
           }
         ); 
-    }  
-    
+  }  
   
+  checkAlreadyFollowed() {
+
+    if (this.state.follow_text.normalize() == 'Follow Member'.normalize()) {
+    
+      fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+ "&connectedUserID=" +sessionStorage.getItem("user")+ "&type=follower&status=active", {
+        method: "get",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        }
+      })
+        .then(res => res.json())
+        .then(
+          result => {
+            if (result) {
+              return true;
+            } 
+          },
+        ); 
+    }
+
+    else {
+      this.setState({
+        follow_text: 'Unfollow Member'
+      });
+    }
+  }
+
+  createFollow = (e) => {
+
+    if (this.checkAlreadyFollowed() !== true) {
+
+      /* Grab the userID of the member profile being viewed, and use this ID to add the follower of the visiting userID */
+      fetch(process.env.REACT_APP_API_PATH+"/connections", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        },
+        body: JSON.stringify({
+          userID: this.state.userid,
+          connectedUserID: sessionStorage.getItem("user"),
+          type: "follower",
+          status: "active"
+        })
+      })
+        .then(res => res.json())
+        .then(
+          result => {
+            console.log("Follow created successfully!")
+            this.setState({
+              follow_text: 'Unfollow Member'
+            });
+          },
+          _error => {
+            alert("An errored occured while trying to follow!");
+          }
+        );
+    }
+  }
 
   loadPosts() {
     let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+this.state.userid;

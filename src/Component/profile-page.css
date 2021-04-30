@@ -55,7 +55,7 @@
 }
 
 #follow_button {
-  text-align: left;
+  text-align: center;
 }
 
 #edit_priv {
@@ -306,6 +306,10 @@ cursor: pointer;
     font-size: 2vw;
     cursor: pointer;
     text-align: right;
+  }
+
+  #follow_button {
+    text-align: center;
   }
   
   #edit_priv {
