@@ -271,7 +271,6 @@ export default class PollPages extends React.Component {
   }
 
   render() {
-
     CanvasJS.addColorSet("gray_color",
     ["#acacac"]);
     const options = {
