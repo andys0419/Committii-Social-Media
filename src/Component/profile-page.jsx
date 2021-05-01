@@ -201,7 +201,7 @@ export default class PostingList extends React.Component {
           }
         },
       );
-    }
+}
   
   createFollow = (e) => {
 
@@ -293,8 +293,31 @@ export default class PostingList extends React.Component {
                   window.location.reload();
                 }
               );
-          
-          }
+            
+            /* Update the following count of the visiting member */
+            fetch(process.env.REACT_APP_API_PATH+"/connections", {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify({
+                userID: sessionStorage.getItem("user"),
+                connectedUserID: this.state.userid,
+                type: "isFollowing",
+                status: "active"
+              })
+            })
+              .then(res => res.json())
+              .then(
+                result => {
+                  console.log("Updated visiting member following!")
+                },
+                _error => {
+                  alert("An errored occured while trying to follow!");
+                }
+              );
+            }
         },
       ); 
     }

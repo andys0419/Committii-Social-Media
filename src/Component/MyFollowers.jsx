@@ -50,7 +50,8 @@ export default class Followers extends React.Component {
   }
 
   updateConnection(id, status){
-    //make the api call to the user controller
+    
+    //make the api call to the user controller, blocks the member
     fetch(process.env.REACT_APP_API_PATH+"/connections/"+id, {
       method: "PATCH",
       headers: {
