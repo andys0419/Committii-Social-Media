@@ -300,7 +300,7 @@ export default class PollPages extends React.Component {
             </div>
           </div>
           <div className="poll_page_chart_box">
-              <CanvasJSChart style="height: 500px" options = {Poll_Options}></CanvasJSChart>
+              <CanvasJSChart style="width:100%;height:100%;" options = {Poll_Options}></CanvasJSChart>
               <button className="poll_page_vote_option_1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
               <button className="poll_page_vote_option_2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
               <div className="like_count_id">
