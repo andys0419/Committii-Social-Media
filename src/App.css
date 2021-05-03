@@ -569,6 +569,19 @@ c {
   cursor: pointer;
 }
 
+.viewMessage2 {
+  position: absolute;
+  width: 1000px;
+  height: 40px;
+  top: 20%;
+  left: 5%;
+  right: 2.5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 150%;
+}
+
 .messageName {
   position: absolute;
   width: 100%;
@@ -625,9 +638,9 @@ c {
 
 .feedProfile2 {
   position: relative;
-  width: 500px;
+  width: 700px;
   height: 40px;
-  left: 30%;
+  left: 35%;
   margin-left: -50px; /* margin is -0.5 * dimension */
   margin-bottom: 20px;
   background-color: black;
@@ -635,7 +648,34 @@ c {
   color: white;
   padding: 8px;
   font-size: 200%;
-  cursor: pointer;
+}
+
+.feedProfile3 {
+  position: relative;
+  width: 500px;
+  height: 40px;
+  left: 44%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 100%;
+}
+
+.feedProfile4 {
+  position: relative;
+  width: 500px;
+  height: 40px;
+  left: 45%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
 }
 
 .likeButton {
@@ -648,6 +688,19 @@ c {
   border: none;
   color: white;
   font-size: 200%;
+  cursor: pointer;
+}
+
+.likeButton2 {
+  position: absolute;
+  width: 350px;
+  height: 40px;
+  left: 45%;
+  top: 5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 150%;
   cursor: pointer;
 }
 

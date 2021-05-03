@@ -17,6 +17,7 @@ import CommentLayout from "./CommentLayout";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+var i = -1;
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -24,6 +25,8 @@ export default class Register extends React.Component {
     this.state = {
       posts: [],
       messages: [],
+      authors: [],
+      currentauthor: "",
       username: "",
       password: "",
       confirm: "",
@@ -71,7 +74,7 @@ export default class Register extends React.Component {
             console.log(uniqueItems)
             this.setState({
               isLoaded: true,
-              messages: uniqueItems
+              authors: uniqueItems
             });
             ;
             console.log("Got Messages");
@@ -89,19 +92,55 @@ export default class Register extends React.Component {
   }
 
   createPost(post) {
+      i += 1;
+      console.log(this.state.currentauthor)
    return (
     <div class = "messageFeed">
       <div class = "messageInd">
         <p class="likeButton">{post}</p>
-        <Link to="/messagedetails">><button class="viewMessage">View Message</button></Link>
+        <Link to="/messagedetails"><button class="viewMessage" onClick={() => this.funt1(post)}>View Message</button> </Link>
       </div>
     </div>
    )
 
   }
 
+  funt1(post){
+      sessionStorage.setItem("currentauthor",post)
+
+      fetch(process.env.REACT_APP_API_PATH+"/users?email="+post, {
+      method: "GET",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+
+            //result[0].forEach(element => {if (element.username){names.push(element)}});
+
+             sessionStorage.setItem("currentauthorID",result[0][0].id)
+
+            //console.log(result[0][0].id);
+            console.log("EMAILID");
+            console.log(result[0][0].id);
+          }
+        },
+        error => {
+          alert("error!");
+        }
+      )
+  }
+
+
+
+
   render() {
-    const {messages} = this.state;
+    const {authors, currentauthor} = this.state;
     return (
       <div class = "feed">
         <Link to="/feed">
@@ -120,11 +159,11 @@ export default class Register extends React.Component {
                 </Link></button>
             </div>
 
-          <Link to="/profile"><button class="feedProfile2">Messages for {this.state.email}</button></Link>
+          <p class="feedProfile4">Messages</p>
 
         </div>
 
-        {this.state.messages.map(messages => this.createPost(messages))}
+        {this.state.authors.map(authors => this.createPost(authors))}
       </div>
 
     );

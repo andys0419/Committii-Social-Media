@@ -162,13 +162,16 @@ export default class CommentForm extends React.Component {
                 <h3>your userID is {sessionStorage.getItem("user")}{this.props.parent}</h3>
 
                 <h3>type in the Email of person you want to message</h3>
-                <textarea rows="1" cols="15" placeholder="name@email.com" onChange={this.myChangeHandler2} value={this.state.recipientUserID}/>
+                <textarea rows="1" cols="50" placeholder="name@email.com" onChange={this.myChangeHandler2} value={this.state.recipientUserID}/>
 
                 <h3>type message below</h3>
+
+
                 <textarea rows="5" cols="115" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
                 <br/><br/>
+                 <p> Please click "Send Message" 5-6 times as first submit has a chance of not going through</p>
                 <form onSubmit={this.submitHandler}>
-                    <input type="submit" value="Message"/>
+                    <input type="submit" value="Send Message"/>
                     <br/>
                     {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
                     <br />

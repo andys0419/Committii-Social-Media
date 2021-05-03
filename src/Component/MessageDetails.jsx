@@ -1,128 +1,143 @@
 import React from "react";
+import "../App.css";
+import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
-import CommentsList from "./CommentsList.jsx";
-import "./CommentForm.css"
 import backarrow from "../assets/back_arrow.svg";
-import "../App.css";
+import create_message from "../assets/create_message.png";
+import prof_pic from "../assets/profile-picture-holder.png";
+import hearticon from "../assets/heart-icon.svg";
+import Post from "./Post.jsx";
 
-export default class CommentForm extends React.Component {
+import {
+    Redirect
+} from 'react-router';
+import CommentLayout from "./CommentLayout";
+//import Autocomplete from "./Autocomplete.jsx";
+
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+var i = -1;
+
+export default class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      post_text: "",
-      comment_holder: "You are messaging as: " + sessionStorage.getItem("username"),
-      errorMessage: "",
+      posts: [],
+      messages: [],
+      authors: [],
+      currentauthor: "",
+      username: "",
+      password: "",
+      confirm: "",
+      listType: props.listType,
+      alanmessage: "",
+      errormessage: "",
+      sessiontoken: "",
+      redir: false,
+      email: sessionStorage.getItem("username")
     };
-    this.postListing = React.createRef();
   }
 
-  submitHandler = event => {
-    //keep the form from actually submitting
-    event.preventDefault();
-
-    const postMsg = this.state.post_text;
-
-    if (postMsg == '') {
-      this.setState({
-        errorMessage: "Please enter a message."
+  componentDidMount() {
+      this.loadPosts();
+      fetch(process.env.REACT_APP_API_PATH + "/messages?recipientUserID=" + sessionStorage.getItem("user"), {
+          method: "get",
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + sessionStorage.getItem("token")
+          }
       })
-      return;
-    } else {
-
-      this.setState({
-        errorMessage: ""
-      })
+          .then(res => res.json())
+      ;
+  }
+  loadPosts() {
+    let url = process.env.REACT_APP_API_PATH+"/messages?authorID="+sessionStorage.getItem("currentauthorID")+"&recipientUserID="+sessionStorage.getItem("user");
+    // /posts/1
+    if (this.props && this.props.parentid){
+      url += this.props.parentid;
     }
-
-    //make the api call to the authentication page
-
-    fetch(process.env.REACT_APP_API_PATH + "/posts", {
-      method: "post",
+    fetch(url, {
+      method: "get",
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      },
-      body: JSON.stringify({
-        authorID: sessionStorage.getItem("user"),
-        parentID: this.props.parent,
-        content: sessionStorage.getItem("current_content"),
-        type: "comments",
-        thumbnailURL: this.state.post_text
-      })
+      }
     })
       .then(res => res.json())
       .then(
         result => {
-
-          this.setState({
-            errorMessage: "Your message has been sent!"
-          })
-
-          // update the count in the UI manually, to avoid a database hit
-          //this.props.onAddComment(this.props.commentCount + 1);
-          this.postListing.current.loadPosts();
+          if (result) {
+            let resultarr = result[0].map(a => a.content);
+            let uniqueItems = [...new Set(resultarr)]
+            console.log(uniqueItems)
+            this.setState({
+              isLoaded: true,
+              authors: uniqueItems
+            });
+            ;
+            console.log("Got SPECIFIC");
+            console.log(result[0]);
+          }
         },
         error => {
-          alert("error!");
+          this.setState({
+            isLoaded: true,
+            error
+          });
+          console.log("ERROR loading Messages")
         }
       );
-  };
-
-  // this method will keep the current post up to date as you type it,
-  // so that the submit handler can read the information from the state.
-
-  myChangeHandler = event => {
-    this.setState({
-      post_text: event.target.value
-    });
-  };
-
-  updatePostText = (e) => {
-    this.setState({
-      post_text: e.currentTarget.value
-    })
   }
 
+  createPost(post) {
+      i += 1;
+      console.log(this.state.currentauthor)
+   return (
+    <div class = "messageFeed">
+      <div class = "messageInd">
+        <p class='viewMessage2'>{post}</p>
+      </div>
+    </div>
+   )
+
+  }
+
+  funt1(post){
+      sessionStorage.setItem("currentauthor",post)
+  }
+
+
+
+
   render() {
-
+    const {authors, currentauthor} = this.state;
     return (
+      <div class = "feed">
+        <Link to="/feed">
+          <img id="committii-logo" src={committiilogo}></img>
+        </Link>
 
-        <div class="site">
+        <div class="feedOptions">
+          <div class="vLeft">
+            <button class="feedSort"><Link to="/messages">
+                    <img id="backarrow" src={backarrow}></img>
+            </Link></button>
+          </div>
+            <div className="vRight">
+                <button className="feedSort"><Link to="/createmessage">
+                    <img id="create_message" src={create_message}></img>
+                </Link></button>
+            </div>
 
-            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-            <header class="masthead">
-              <Link to="/profile"><img id="committi_logo" src={committiilogo}></img></Link>
-                <div className="messageOptions">
-                    <Link to="/messages">
-                        <img id="backarrow" src={backarrow}></img>
-                    </Link>
-                    <h2 className="messageName">John Doe</h2>
-                    </div>
-
-            </header>
-
-            <main id="content" class="message-content">
-
-              <br/>
-              <CommentsList
-                ref={this.postListing}
-                parentid={this.props.parent}
-                type="commentlist"
-              />
-                <br></br>
-                <h3>Type Your Message Below{this.props.parent}</h3>
-                <textarea rows="5" cols="115" placeholder={this.state.comment_holder} onChange={this.myChangeHandler} value={this.state.post_text}/>
-                <br/><br/>
-                <form onSubmit={this.submitHandler}>
-                    <input type="submit" value="Message"/>
-                    <br/>
-                    {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
-                    <br />
-                </form>
-            </main>
+          <p class="feedProfile2"> Messages from {sessionStorage.getItem("currentauthor")} </p>
+            <p className="feedProfile3"> Refresh page for latest messages </p>
 
         </div>
-      );
+
+        {this.state.authors.map(authors => this.createPost(authors))}
+      </div>
+
+    );
   }
 }
