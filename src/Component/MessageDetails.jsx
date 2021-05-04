@@ -4,7 +4,7 @@ import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
-import create_message from "../assets/create_message.png";
+import create_message from "../assets/compose.png";
 import prof_pic from "../assets/profile-picture-holder.png";
 import hearticon from "../assets/heart-icon.svg";
 import Post from "./Post.jsx";
@@ -125,7 +125,8 @@ export default class Register extends React.Component {
             </Link></button>
           </div>
             <div className="vRight">
-                <button className="feedSort"><Link to="/createmessage">
+                <p className="feedProfile6"> Compose New Message  </p>
+                <button className="feedSort2"><Link to="/createmessage">
                     <img id="create_message" src={create_message}></img>
                 </Link></button>
             </div>
