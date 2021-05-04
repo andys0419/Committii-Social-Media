@@ -75,33 +75,10 @@ export default class Post extends React.Component {
   }
 
 showPolls() {
-  if (this.props.post.author.id == sessionStorage.getItem("user")) {
-    return(
-      <div>
-        <p id="poll-name">{this.props.post.content}</p>
-        <Link to={"/pollpage/"+this.props.post.id}><button id="view-res">View Results</button></Link>
-      </div>
+  return(
+    <div>
+      <p id="poll-name">{this.props.post.content}</p>
+      <Link to={"/pollpage/"+this.props.post.id}><button id="view-res">View Results</button></Link>
+    </div>
   );
-  }
-  return "";
-}
-
-  render() {
-    return (
-      <div>
-      <div
-        key={this.props.post.id}
-        className={[this.props.type, "postbody"].join(" ")}
-      >
-      <div className="posts">
-        <div className="deletePost">
-          {this.props.post.author.username} ({this.props.post.createdAt})
-          {this.showPolls()}
-          {this.showDelete()}
-        </div>
-        </div>
-      </div>
-      </div>
-    );
-  }
 }

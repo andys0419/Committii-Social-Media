@@ -30,6 +30,7 @@ export default class PostForm extends React.Component {
 
     //keep the form from actually submitting via HTML - we want to handle it in react
     event.preventDefault();
+    console.log(this.state.poll_category)
 
     //make the api call to post
     fetch(process.env.REACT_APP_API_PATH +"/posts", {
@@ -42,7 +43,7 @@ export default class PostForm extends React.Component {
         authorID: sessionStorage.getItem("user"),
         content: this.state.post_text,
         thumbnailURL: "",
-        type: "post"
+        type: this.state.poll_category
       })
     })
       .then(res => res.json())
@@ -83,7 +84,7 @@ export default class PostForm extends React.Component {
         <PostingList ref={this.postListing} refresh={this.props.refresh} type="postlist" />
 
         <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link to="/profile"><img id="create_backarrow" src={backarrow}></img></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="create_backarrow" src={backarrow}></img></Link>
           <div class="create_poll_box">
             <p id="create_label">Create Poll</p>
             <input id="option_1_field"

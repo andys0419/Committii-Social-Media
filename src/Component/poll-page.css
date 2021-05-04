@@ -1,152 +1,468 @@
-#comiti_logo {
-    position: absolute;
-    left: -3.8%;
-    top: 1.5%;
+.poll_page_white_box {
+    background-color: white;
+    position: relative;
+    top: 8vw;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 50vw;
+    height: 900px;
+    margin-bottom: 15vw;
+}
+
+.poll_page_white_box_header {
+    position: relative;
+    height: 4vw;
 }
 
 #backarrow-pollpage {
-    position: absolute;
-    left: 26%;
-    top: 13%;
-    z-index: 1;
+    position: relative;
+    top: 0.5vw;
+    height: 2.2vw;
 }
 
-#testing12 {
-    color:white;
-}
-
-#prof_pic_poll_page {
+.poll_page_title_id {
     position: absolute;
-    width: 11%;
-    right: 22.7%;
-    top: 9.5%;
-    z-index: 1;
-}
-
-#white_box {
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    width: 50%;
-    height: 80%;
+    text-align: center;
+    width: 80%;
+    margin: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
-#poll_name {
-    position: absolute;
-    color: black;
-    width: 20%;
-    top: 10%;
-    left: 50%;
-    margin-left: -10%;
-    font-size: 180%;
+#poll_page_poll_title {
+    position: relative;
+    font-size: 2vw;
     text-decoration: underline;
     font-weight: 700;
 }
 
-#poll_outline {
+.poll_page_chart_box {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    width: 30vw;
+    height: 600px;
+    border: 1px solid black;
+    padding: 0.5vw;
+}
+
+.poll_page_vote_option_1 {
+    position: relative;
+    bottom: -2vw;
+    height: 3vw;
+    width: 14vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+}
+
+.poll_page_vote_option_2 {
+    position: relative;
+    bottom: -2vw;
+    height: 3vw;
+    width: 14vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+    float: right;
+}
+
+.like_count_id {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 10vw;
+    bottom: -10%;
+    text-align: center;
+}
+
+#poll_page_like_count {
+    position: relative;
+    font-size: 1.5vw;
+}
+
+.poll_page_white_box_footer {
     position: absolute;
+    height: 5vw;
+    width: 100%;
+    bottom: 0%;
+}
+
+.poll_page_comment_button {
+    position: relative;
+    left: 1vw;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 3vw;
+    width: 15vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+}
+
+.poll_page_like_button {
+    position: relative;
+    right: 1vw;
+    float: right;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 3vw;
+    width: 15vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+    text-align: center;
+}
+
+#poll_page_heart {
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -60%);
+    float: left;
+    margin-left: 0.3vw;
+    height: 1.6vw;
+}
+
+#like_button_text {
+    position: relative;
+    margin-left: -5%;
+}
+
+@media only screen and (max-width: 1200px) {
+.poll_page_white_box {
     background-color: white;
-    outline: black 1px solid;
-    width: 25%;
-    height: 55%;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 8%);
+    width: 80vw;
+    height: 1000px;
+    margin-bottom: 25vw;
+}
+
+.poll_page_white_box_header {
+    position: relative;
+    height: 8vw;
+}
+
+#backarrow-pollpage {
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 4vw;
+}
+
+.poll_page_title_id {
+    position: absolute;
+    text-align: center;
+    width: 80%;
+    margin: auto;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-  }
+}
 
-#chart {
-    position: absolute;
-    top: 25%;
+#poll_page_poll_title {
+    position: relative;
+    font-size: 3.8vw;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.poll_page_chart_box {
+    position: relative;
     left: 50%;
-    margin-left: -150px;
-    width: 15%;
-    height: 10%;
+    transform: translate(-50%, 10%);
+    width: 60vw;
+    height: 600px;
+    border: 1px solid black;
+    padding: 0.5vw;
 }
 
-#vote1 {
-    width: 6%;
-    position: absolute;
+.poll_page_vote_option_1 {
+    position: relative;
+    bottom: -2vw;
+    height: 4.8vw;
+    width: 25vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+}
+
+.poll_page_vote_option_2 {
+    position: relative;
+    bottom: -2vw;
+    height: 4.8vw;
+    width: 25vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 1.6vw;
+    cursor: pointer;
+    float: right;
+}
+
+.like_count_id {
+    position: relative;
     left: 50%;
-    margin-left: -7.4%;
-    bottom: 27%;
+    transform: translate(-50%, 0%);
+    width: 10vw;
+    bottom: -10%;
+    text-align: center;
+}
+
+#poll_page_like_count {
+    position: relative;
+    font-size: 2.5vw;
+}
+
+.poll_page_white_box_footer {
+    position: absolute;
+    height: 10vw;
+    width: 100%;
+    bottom: 0%;
+}
+
+.poll_page_comment_button {
+    position: relative;
+    left: 1vw;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 5.4vw;
+    width: 28vw;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
-    border-width: 1px;
-    text-shadow: 2px 2px 1px #acacac;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
     color: black;
-    padding: 0.2%;
-    font-size: 120%;
+    padding: 0.25vw;
+    font-size: 2.6vw;
     cursor: pointer;
 }
 
-#vote2 {
-    width: 6%;
-    position: absolute;
+.poll_page_like_button {
+    position: relative;
+    right: 1vw;
+    float: right;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 5.4vw;
+    width: 28vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 2.6vw;
+    cursor: pointer;
+    text-align: center;
+}
+
+#poll_page_heart {
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -80%);
+    float: left;
+    margin-left: 1vw;
+    height: 2.6vw;
+}
+
+#like_button_text {
+    position: relative;
+    margin-left: -10%;
+}
+}
+
+@media only screen and (max-width: 650px) {
+.poll_page_white_box {
+    background-color: white;
+    position: relative;
     left: 50%;
-    margin-left: 1.4%;
-    bottom: 27%;
+    transform: translate(-50%, 5%);
+    width: 92vw;
+    height: 1000px;
+    margin-bottom: 25vw;
+}
+
+.poll_page_white_box_header {
+    position: relative;
+    height: 12vw;
+}
+
+#backarrow-pollpage {
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 5.5vw;
+}
+
+.poll_page_title_id {
+    position: absolute;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#poll_page_poll_title {
+    position: relative;
+    font-size: 5.5vw;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.poll_page_chart_box {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 10%);
+    width: 80vw;
+    height: 600px;
+    border: 1px solid black;
+    padding: 0.5vw;
+}
+
+.poll_page_vote_option_1 {
+    position: relative;
+    bottom: -2vw;
+    height: 8vw;
+    width: 35vw;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
-    border-width: 1px;
-    text-shadow: 2px 2px 1px #acacac;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
     color: black;
-    padding: 0.2%;
-    font-size: 120%;
+    padding: 0.25vw;
+    font-size: 3.8vw;
     cursor: pointer;
 }
 
-#comment_button {
-    width: 12%;
-    position: absolute;
-    left: 27%;
-    bottom: 12.5%;
+.poll_page_vote_option_2 {
+    position: relative;
+    bottom: -2vw;
+    height: 8vw;
+    width: 35vw;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
-    border-width: 1px;
-    text-shadow: 2px 2px 1px #acacac;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
     color: black;
-    padding: 0.2%;
-    font-size: 120%;
+    padding: 0.25vw;
+    font-size: 3.8vw;
     cursor: pointer;
+    float: right;
 }
 
-#like_button {
-    width: 12%;
+.like_count_id {
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 20vw;
+    bottom: -10%;
+    text-align: center;
+}
+
+#poll_page_like_count {
+    position: relative;
+    font-size: 5vw;
+}
+
+.poll_page_white_box_footer {
     position: absolute;
-    right: 27%;
-    bottom: 12.5%;
+    height: 20vw;
+    width: 100%;
+    bottom: 0%;
+}
+
+.poll_page_comment_button {
+    position: relative;
+    left: 1vw;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 8vw;
+    width: 38vw;
     background-color: rgb(216, 216, 216);
     border: black;
     border-style: solid;
-    border-width: 1px;
-    text-shadow: 2px 2px 1px #acacac;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
     color: black;
-    padding: 0.2%;
-    font-size: 120%;
+    padding: 0.25vw;
+    font-size: 3.8vw;
     cursor: pointer;
 }
 
-#heart {
-    position: absolute;
-    bottom: 13.2%;
-    left: 61.3%;
-    width: 1.5%;
-    height: auto;
+.poll_page_like_button {
+    position: relative;
+    right: 1vw;
+    float: right;
+    top: 50%;
+    transform: translate(0%, -50%);
+    height: 8vw;
+    width: 38vw;
+    background-color: rgb(216, 216, 216);
+    border: black;
+    border-style: solid;
+    border-width: 0.1vw;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: black;
+    padding: 0.25vw;
+    font-size: 3.8vw;
+    cursor: pointer;
+    text-align: center;
 }
 
-#test {
-    justify-content: center;
-    align-content: center;
+#poll_page_heart {
+    position: relative;
+    top: 50%;
+    transform: translate(0%, -80%);
+    float: left;
+    margin-left: 1vw;
+    height: 4.4vw;
 }
 
-#like_count {
-    position: absolute;
-    left: 38%;
-    bottom: 21%;
-    font-size: 110%;
+#like_button_text {
+    position: relative;
+    margin-left: -10%;
+}
 }

@@ -152,8 +152,8 @@ export default class PostingList extends React.Component {
             <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
           ))}
           <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link to="/profile"><img id="backarrow" src={backarrow}></img></Link>
-          <Link to="/profile"><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="backarrow" src={backarrow}></img></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
           <p id="poll_name">{this.props.post}Test</p>
           <canvas id="poll_outline"></canvas>
