@@ -176,7 +176,7 @@ export default class Feed extends React.Component {
   }
 
   createPost(post) {
-    var privacy = true;
+    var privacy = false;
     let contentData = post.content.split(",");
 
     let votes1 = contentData[2].split(":")[1].split('-');
