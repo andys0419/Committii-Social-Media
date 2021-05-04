@@ -42,8 +42,7 @@ export default class ProfileSettings extends React.Component {
     this.fieldChangeHandler.bind(this);
     this.deleteaction = this.deleteaction.bind(this);
     this.loadPosts = this.loadPosts.bind(this);
-    this.deletePost = this.deletePost.bind(this);
-    this.deleteAll = this.deleteAll.bind(this);
+
 
 
   }
@@ -76,6 +75,7 @@ export default class ProfileSettings extends React.Component {
               posts: result[0]
             });
             console.log("Got Posts");
+            console.log(this.state.posts);
           }
         },
         error => {
@@ -292,33 +292,7 @@ export default class ProfileSettings extends React.Component {
   };
 
 
-  deletePost(postID) {
-    //make the api call to post
-    fetch(process.env.REACT_APP_API_PATH+"/posts/"+postID, {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      }
-      })
-      .then(
-        result => {
-          this.loadPosts();
-        },
-        error => {
-          alert("error!"+error);
-        }
-      );
-  }
 
-  deleteAll() {
-    //make the api call to post
-    for (let x of this.state.posts) {
-        console.log(x[0]);
-        console.log(x.id);
-        this.deletePost(x.id)
-}
-  }
 
   render() {
       const {error, isLoaded, posts} = this.state;
@@ -328,11 +302,10 @@ export default class ProfileSettings extends React.Component {
             <Link to="/profilesettings">
                 <img id="backarrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Are you sure you want to close your account?</a>
-            <a id="ProfileHeading">This action cannot be undone and all data associated with your account will be deleted. Would you like to proceed?</a>
-                <Link to="/closeaccountfeedback"><button>Yes, Close My Account</button></Link>
+          <a id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
+            <a id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
+                <Link to="/closeaccount"><button>Yes, Delete All Posts</button></Link>
                 <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
-                       <button onClick={this.deleteAll()}></button>
 
             <Link to="/profile">
             <img id="settingslogo" src={logo}></img>
@@ -352,12 +325,12 @@ export default class ProfileSettings extends React.Component {
             <Link to="/profilesettings">
                 <img id="backarrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Are you sure you want to close your account?</a>
-            <a id="ProfileHeading">This action cannot be undone and all data associated with your account will be deleted. Would you like to proceed?</a>
-                <Link to="/closeaccountfeedback"><button>Yes, Close My Account</button></Link>
+          <a id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
+            <a id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
+                <Link to="/closeaccount"><button>Yes, Delete All Posts</button></Link>
                 <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
 
-            <Link to={"/profile/"+sessionStorage.getItem("user")}>
+            <Link to="/profile">
             <img id="settingslogo" src={logo}></img>
             </Link>
         </div>

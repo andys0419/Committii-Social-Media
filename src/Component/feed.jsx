@@ -276,7 +276,7 @@ export default class Feed extends React.Component {
           }
           </div>
           <div class="vRight">
-            <button class="feedMessages">Messages</button>
+            <Link to="/Messages"><button class="feedMessages">Messages</button></Link>
           </div>
 
           <Link to={"/profile/"+sessionStorage.getItem("user")}><button class="feedProfile">Profile</button></Link>

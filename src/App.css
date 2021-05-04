@@ -335,6 +335,8 @@ c, postButton {
   height: 200px;
 }
 
+
+
 /* The Close Button */
 .close {
   color: #aaa;
@@ -562,6 +564,70 @@ input[type=submit] {
 
 }
 
+.messageFeed {
+  margin-left: 20%;
+  width: 60%;
+  position:relative;
+}
+.messageInd {
+  border: 3px solid rgb(172, 172, 172);
+  width: 99.4%;
+  height: 125px;
+  z-index: initial;
+}
+
+.viewMessage {
+  position: absolute;
+  width: 250px;
+  height: 40px;
+  top: 20%;
+  right: 2.5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 150%;
+  cursor: pointer;
+}
+
+.viewMessage2 {
+  position: absolute;
+  width: 1000px;
+  height: 40px;
+  top: 20%;
+  left: 5%;
+  right: 2.5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 150%;
+}
+
+.messageName {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: -180%;
+  right: -40%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 250%;
+  cursor: pointer;
+
+}
+
+.messageName2 {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: -180%;
+  right: -40%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 250%;
+}
+
 .post {
   border: 2px solid rgb(255, 255, 255);
   width: 99.4%;
@@ -577,6 +643,31 @@ input[type=submit] {
   padding: 8px;
   font-size: 200%;
   cursor: pointer;
+}
+.feedSort2 {
+  position:absolute;
+  left: 10%;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 0px;
+  font-size: 100%;
+  cursor: pointer;
+  top: 1%;
+}
+
+.imagemessage {
+    flex: 1;
+    width: 50%;
+    height: 50%;
+    resizeMode: 'contain' }
+
+.messageOptions {
+  border-bottom: 3px solid rgb(172, 172, 172);
+  width: 64.3%;
+  position: relative;
+  margin-left: 14.6%;
+  background: black;
 }
 
 .feedProfile {
@@ -594,6 +685,63 @@ input[type=submit] {
   cursor: pointer;
 }
 
+.feedProfile2 {
+  position: relative;
+  width: 700px;
+  height: 40px;
+  left: 35%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+}
+
+.feedProfile6 {
+  position: relative;
+  width: 200px;
+  height: 10px;
+  left: 75%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 100%;
+  top: -1%;
+}
+
+.feedProfile3 {
+  position: relative;
+  width: 500px;
+  height: 40px;
+  left: 44%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 100%;
+}
+
+.feedProfile4 {
+  position: relative;
+  width: 500px;
+  height: 40px;
+  left: 45%;
+  margin-left: -50px; /* margin is -0.5 * dimension */
+  margin-bottom: 20px;
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 8px;
+  font-size: 200%;
+}
+
 .likeButton {
   position: absolute;
   width: fit-content;
@@ -604,6 +752,19 @@ input[type=submit] {
   border: none;
   color: white;
   font-size: 200%;
+  cursor: pointer;
+}
+
+.likeButton2 {
+  position: absolute;
+  width: 350px;
+  height: 40px;
+  left: 45%;
+  top: 5%;
+  background-color: black;
+  border: none;
+  color: white;
+  font-size: 150%;
   cursor: pointer;
 }
 
@@ -675,15 +836,26 @@ input[type=submit] {
   border-radius: 50%;
 }
 
-#searchdropdown {
+.message-content {
+	border-style: solid solid solid solid;
+    margin-left: -48.5%;
+    margin-right: 39%;
+    grid-column: 3/6;
+    padding: 1em 2em;
+	background: black;
+	color: white;
+
+}
+.searchdropdown {
   background-color: black;
   z-index: 1001;
   position: absolute;
   top: 3%
 }
 
-#search {
+.search {
   position: absolute;
   left: 40%;
   z-index: 1002
 }
+

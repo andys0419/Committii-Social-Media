@@ -385,8 +385,9 @@ export default class ProfileSettings extends React.Component {
             <div className='container'>
                 <Link to="/forgotpassword"><button>Change Password</button></Link>
                 <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
-                <button onClick={this.submitHandler} input type="submit" value="save" >Save</button>
-                <Link to="/closeaccount"><button>Close Account</button></Link>
+                <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
+                <Link to="/closeaccountposts"><button>Close Account</button></Link>
+
             </div>
 
             <Link to={"/profile/"+sessionStorage.getItem("user")}>
