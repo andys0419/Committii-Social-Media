@@ -62,7 +62,7 @@
   #new_poll_title {
       position: relative;
       color: black;
-      top: 15%;
+      top: 25%;
       text-align: center;
       font-size: 180%;
   }
@@ -70,7 +70,7 @@
   #new_poll_category {
     position: relative;
     color: black;
-    top: 15%;
+    top: 25%;
     text-align: center;
     font-size: 120%;
 }
@@ -90,7 +90,6 @@
     padding: 4px;
     font-size: 28px;
     cursor: pointer;
-<<<<<<< HEAD
   }
 
   #image1 {
@@ -103,6 +102,3 @@
     top: 60%;
     left: 1%;
   }
-=======
-  }
->>>>>>> parent of 4805e13 (Images can be displayed on posts)

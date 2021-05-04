@@ -132,6 +132,7 @@ export default class Feed extends React.Component {
                 ]
        }]
    }
+   if (JSON.parse(post['type'])["images"].length == 0){
    return (
     <div class = "feedPosts">
       <div class = "post">
@@ -144,12 +145,32 @@ export default class Feed extends React.Component {
       </div>
     </div>
    )
+ }else{
+   console.log(JSON.parse(post['type'])["images"])
+   let image1 = JSON.parse(post['type'])["images"][0]
+   let image2 = JSON.parse(post['type'])["images"][1]
+   return(
+   <div class = "feedPosts">
+     <div class = "post">
+       <p class="likeButton">{likes} Likes</p>
+       <Link to="/pollpage"><button class="commentButton">{comments} Comments</button></Link>
+       <Link to={id}><button class="postButton">View Post</button></Link>
+       <div class="chart">
+         <CanvasJSChart options = {options}></CanvasJSChart>
+       </div>
+          <img src={image1} id='image1'></img>
+          <img src={image2} id='image2'></img>
+     </div>
+   </div>
+ )
+ }
 
   }
   fieldChangeHandler(field, e) {
     var sortedPost = Array()
     for (var post in this.state.posts){
-      if (this.state.posts[post]['type'] == e.target.value){
+      var tag = JSON.parse(this.state.posts[post]['type'])
+      if (tag["tag"] == e.target.value){
         sortedPost.push(this.state.posts[post])
       }
     }
