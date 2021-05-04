@@ -16,7 +16,7 @@ import {
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-export default class Register extends React.Component {
+export default class Feed extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,8 +32,11 @@ export default class Register extends React.Component {
       poll_option_2: "",
       vote_first: 0,
       vote_second: 0,
-      redir: false
+      redir: false,
+      ShowSearch: false
     };
+    this.showMenu = this.showMenu.bind(this)
+    this.fieldChangeHandler = this.fieldChangeHandler.bind(this)
   }
 
   componentDidMount() {
@@ -49,7 +52,6 @@ export default class Register extends React.Component {
       .then(
         result => {
           if (result) {
-            console.log(result);
 
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
@@ -66,7 +68,7 @@ export default class Register extends React.Component {
         }
       );
   }
-  
+
   loadPosts() {
     let url = process.env.REACT_APP_API_PATH+"/posts?ParentID="+sessionStorage.getItem("user");
     // /posts/1
@@ -89,7 +91,6 @@ export default class Register extends React.Component {
               isLoaded: true,
               posts: result[0]
             });
-            console.log("Got Posts");
           }
         },
         error => {
@@ -124,9 +125,9 @@ export default class Register extends React.Component {
         colorSet: "gray_color",
         title: {
         text: ""
-        
+
       },
-      data: [{				
+      data: [{
                 type: "column",
                 dataPoints: [
                     { label: contentData[0].split(":")[1].trim(), y: votes1.length-1 },
@@ -148,12 +149,34 @@ export default class Register extends React.Component {
    )
 
   }
+  fieldChangeHandler(field, e) {
+    var sortedPost = Array()
+    for (var post in this.state.posts){
+      if (this.state.posts[post]['type'] == e.target.value){
+        sortedPost.push(this.state.posts[post])
+      }
+    }
+    if (sortedPost.length != 0){
+      this.setState({
+        posts: sortedPost
+      })
+  }
+  if (e.target.value == ""){
+    this.loadPosts()
+  }
+  }
+
+  showMenu(event){
+    this.setState({
+      ShowSearch: !this.state.ShowSearch
+    });
+  }
 
   render() {
     CanvasJS.addColorSet("gray_color",
     ["#acacac"]);
     return (
-      
+
       <div class = "feed">
         <Link to="/feed">
           <img id="committii-logo" src={committiilogo}></img>
@@ -161,13 +184,24 @@ export default class Register extends React.Component {
 
         <div class="feedOptions">
           <div class="vLeft">
-
-            <button class="feedSort">Sort</button>
+            <button class="feedSort" onClick={this.showMenu}>Sort</button>
+            {
+            this.state.ShowSearch
+            ? (
+              <div id="searchdropdown">
+                <input id="search"
+                    type="text"
+                    placeholder={"Enter Tag"}
+                    onChange={e => this.fieldChangeHandler("search", e)}>
+                  </input>
+                </div>
+            ): (null)
+          }
           </div>
           <div class="vRight">
             <button class="feedMessages">Messages</button>
           </div>
-          
+
           <Link to={"/profile/"+sessionStorage.getItem("user")}><button class="feedProfile">Profile</button></Link>
         </div>
 
@@ -175,7 +209,7 @@ export default class Register extends React.Component {
 
         <Link to="/createpoll"><button class="poll_button">Create Poll</button></Link>
       </div>
-      
+
     );
   }
 }
