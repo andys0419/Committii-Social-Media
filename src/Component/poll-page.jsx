@@ -271,48 +271,50 @@ export default class PollPages extends React.Component {
   }
 
   render() {
-    CanvasJS.addColorSet("gray_color",
-    ["#acacac"]);
-    const options = {
-        responsive: true,
-        maintainAspectRation: false,
-        axisY: {interval: 1, labelFontSize: 15},
-        axisX: {labelFontSize: 16},
+    CanvasJS.addColorSet("gray_color",["#acacac"]);
+    const Poll_Options = {
+      maintainAspectRatio: false,
+      responsive: false,
+      axisY: {interval: 1, labelFontSize: 15},
+      axisX: {labelFontSize: 16},
+      colorSet: "gray_color",
+      data: [{		
+        type: "column",
         colorSet: "gray_color",
-        title: {
-        text: ""
-      },
-      data: [{				
-                type: "column",
-                dataPoints: [
-                    { label: this.state.poll_option_1,  y: this.state.vote_first  },
-                    { label: this.state.poll_option_2, y: this.state.vote_second  },
-                ]
+        dataPoints: [
+          { label: this.state.poll_option_1,  y: this.state.vote_first  },
+          { label: this.state.poll_option_2, y: this.state.vote_second  },
+        ],
        }]
-   }
+}
    
    if(this.state.post) {
     return (
-      <div className="App">
-          <Link to="/feed"><img id="comiti_logo" src={committiilogo}></img></Link>
-          <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
-          <div class="prof_pic_id">
-            <Link to={"/profile/"+this.state.userid}><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
+      <div className="Poll_Page">
+        <Link to="/feed"><img id="committii-logo" src={committiilogo}></img></Link>
+        <div className="poll_page_white_box">
+          <div className="poll_page_white_box_header">
+            <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
+            <div className="poll_page_title_id">
+              <text id="poll_page_poll_title">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</text>
+            </div>
           </div>
-          <canvas id="white_box"></canvas>
-          <p id="poll_name">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</p>
-          <canvas id="poll_outline"></canvas>
-          <button id="vote1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
-          <button id="vote2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
-          <p id="like_count">Likes: {this.state.likes}</p>
-          <Link to={"/pollpage/"+ this.state.postid + "/comments"}><button id="comment_button">Comments</button></Link>
-          <div id="test">
-            <button id="like_button" onClick={()=>{this.updateLikes()}}>Like this Poll?</button>
-            <img id="heart" src={hearticon}></img>
+          <div className="poll_page_chart_box">
+              <CanvasJSChart style="width:100%;height:100%;" options = {Poll_Options}></CanvasJSChart>
+              <button className="poll_page_vote_option_1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
+              <button className="poll_page_vote_option_2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
+              <div className="like_count_id">
+                <text id="poll_page_like_count">Likes: {this.state.likes}</text>
+              </div>
           </div>
-          <div id="chart">
-            <CanvasJSChart options = {options}></CanvasJSChart>
+          <div className="poll_page_white_box_footer">
+            <Link to={"/pollpage/"+ this.state.postid + "/comments"}><button className="poll_page_comment_button">Comments</button></Link>
+            <button className="poll_page_like_button" onClick={()=>{this.updateLikes()}}>
+            <img id="poll_page_heart" src={hearticon}/>
+            <text id="like_button_text">Like this Poll?</text>
+            </button>
           </div>
+        </div>
       </div>
     );
    }
