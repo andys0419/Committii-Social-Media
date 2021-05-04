@@ -38,19 +38,8 @@ export default class ProfileSettings extends React.Component {
             privacy: false,
 
     };
-    this.handleClick = this.handleClick.bind(this)
-    this.changeCloseButton = this.changeCloseButton.bind(this);
-    this.changeCloseButtonBack = this.changeCloseButtonBack.bind(this);
-    this.fieldChangeHandler.bind(this);
 
-    this.fieldChangeHandler2.bind(this);
-    this.fieldChangeHandler3.bind(this);
-    this.fieldChangeHandler4.bind(this);
-    this.fieldChangeHandler5.bind(this);
-    this.fieldChangeHandler6.bind(this);
 
-    this.displayProfilePic = this.displayProfilePic.bind(this);
-    this.uploadProfileImage = this.uploadProfileImage.bind(this);
 
   }
 
@@ -313,29 +302,6 @@ export default class ProfileSettings extends React.Component {
 
   }
   ///////////////
-
-
-  handleClick(){
-    // Changing state
-
-
-      if(document.getElementById('blocked').value != "") {
-          if (this.state.blockedUsers[0] == "No Blocked Users"){
-              this.setState({blockedUsers: [document.getElementById('blocked').value]})
-          }else{
-              this.setState({blockedUsers: [...this.state.blockedUsers ," ", document.getElementById('blocked').value]})
-          }
-          document.getElementById('blocked').value = ''
-      }
-
-  }
-   changeCloseButton(){
-      this.setState({closebutton:"Feature Coming Soon"})
-  }
-  changeCloseButtonBack(){
-      this.setState({closebutton:"Close Account"})
-  };
-
   render() {
     const LoginFormStyle = {
       width: "96%",
@@ -385,7 +351,7 @@ export default class ProfileSettings extends React.Component {
             <div className='container'>
                 <Link to="/forgotpassword"><button>Change Password</button></Link>
                 <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
-                <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
+                <button onClick={this.submitHandler} input type="submit" value="save" >Save</button>
                 <Link to="/closeaccountposts"><button>Close Account</button></Link>
 
             </div>
