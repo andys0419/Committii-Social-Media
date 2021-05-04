@@ -365,29 +365,26 @@ export default class PostingList extends React.Component {
     sessionStorage.setItem("user", "User");
   }
 
-  displayProfilePic() {
-        fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
-          method: "get",
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+sessionStorage.getItem("token")
-          }
-        })
-       .then(res => res.json())
-       .then(
-         result => {
-           console.log(result)
-           if (result.role == ""){
-             document.getElementById("prof_pic").src = prof_pic
-           }else{
-           var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-           console.log(result.role)
-           document.getElementById("prof_pic").src = server + result.role
-         }
-         })
+  displayProfilePic(){
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+   .then(res => res.json())
+   .then(
+     result => {
+       if (result.role == ""){
+         document.getElementById("prof_pic").src = prof_pic
+       }else{
+       var server = "https://webdev.cse.buffalo.edu"
+
+       document.getElementById("prof_pic").src = server + result.role
+     }
+     })
   }
-
-
 
   render() {
     const {error, isLoaded, posts} = this.state;
@@ -406,7 +403,7 @@ export default class PostingList extends React.Component {
               <img id="committii-logo" src={committiilogo}></img>
             </Link>
             <div class="profile_pic_id">
-              <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />
+              <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="prof_pic"/>
             </div>
             <div class="welcome_id">
               <p id="welcome">
