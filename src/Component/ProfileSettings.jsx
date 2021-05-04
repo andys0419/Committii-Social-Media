@@ -356,9 +356,7 @@ export default class ProfileSettings extends React.Component {
 
             </div>
 
-            <Link to={"/profile/"+sessionStorage.getItem("user")}>
-            <img id="settingslogo" src={logo}></img>
-            </Link>
+          <Link to="/feed"><img id="committii-logo" src={logo}></img></Link>
         </div>
         {this.state.responseMessage}
       </form> );
