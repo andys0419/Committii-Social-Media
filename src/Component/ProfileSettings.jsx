@@ -333,8 +333,8 @@ export default class ProfileSettings extends React.Component {
           </div>
             <a id="ProfileHeading">Social Information</a>
             <div id="ProfileInput">
-            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.firstName} onChange={e => this.fieldChangeHandler4("firstName", e)}
-            value={this.state.firstName}/>
+            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.status} onChange={e => this.fieldChangeHandler4("status", e)}
+            value={this.state.status}/>
           </div>
           <div id="ProfileInput">
             <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.lastName} onChange={e => this.fieldChangeHandler5("lastName", e)}
