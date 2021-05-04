@@ -32,11 +32,18 @@ export default class Register extends React.Component {
       poll_option_2: "",
       vote_first: 0,
       vote_second: 0,
+      followers: [],
+      following: [],
+
       redir: false
     };
   }
 
   componentDidMount() {
+    
+    this.loadFollowers();
+    this.loadFollowing();
+
     this.loadPosts();
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
       method: "get",
@@ -49,7 +56,6 @@ export default class Register extends React.Component {
       .then(
         result => {
           if (result) {
-            console.log(result);
 
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
@@ -65,6 +71,72 @@ export default class Register extends React.Component {
           alert("error!");
         }
       );
+  }
+
+  loadFollowing() {
+    console.log("HERE")
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+sessionStorage.getItem("user")+"&type=isFollowing&status=active", {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+     })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+            var temp = []
+            for(const each of result[0]) {
+              temp.push(each.connectedUser.id.toString())
+            }
+            temp.push(sessionStorage.getItem("user"))
+            console.log(temp)
+            this.setState({
+              isLoaded: true,
+              following: temp
+            });
+            
+          }
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            following: 0
+          });
+        }
+      );
+  }
+  
+  loadFollowers() {
+      fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+sessionStorage.getItem("user")+"&type=follower&status=active", {
+        method: "get",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        }
+       })
+        .then(res => res.json())
+        .then(
+          result => {
+            var temp = []
+            for(const each of result[0]) {
+              temp.push(each.connectedUser.id.toString())
+            }
+            temp.push(sessionStorage.getItem("user"))
+            this.setState({
+              isLoaded: true,
+              followers: temp
+            });
+              
+            
+          },
+          error => {
+            this.setState({
+              followers: 0
+            });
+          }
+        ); 
   }
   
   loadPosts() {
@@ -103,6 +175,7 @@ export default class Register extends React.Component {
   }
 
   createPost(post) {
+    var privacy = true;
     let contentData = post.content.split(",");
 
     let votes1 = contentData[2].split(":")[1].split('-');
@@ -111,9 +184,13 @@ export default class Register extends React.Component {
 
     let comments = post.commentCount;
     let id = "pollpage/" + post.id.toString();
+    let userid = contentData[5].split(":")[1];
 
-    CanvasJS.addColorSet("gray_color",
-    ["#acacac"]);
+    console.log(this.state.following)
+    if (privacy && !this.state.following.includes(userid) ) return;
+
+    CanvasJS.addColorSet("black",
+    ["#ffffff"]);
     const options = {
         responsive: true,
         maintainAspectRation: false,
@@ -121,7 +198,9 @@ export default class Register extends React.Component {
         axisX: {labelFontSize: 16},
         width: window.innerWidth / 3,
         height: 245,
-        colorSet: "gray_color",
+        theme: "dark1",
+        backgroundColor: "black",
+        colorSet: "black",
         title: {
         text: ""
         
@@ -135,7 +214,7 @@ export default class Register extends React.Component {
        }]
    }
    return (
-    <div class = "feedPosts">
+    <div key={post.id} class = "feedPosts">
       <div class = "post">
         <p class="likeButton">{votes} Vote(s)</p>
         <Link to="/pollpage"><button class="commentButton">{comments} Comments</button></Link>
@@ -150,8 +229,6 @@ export default class Register extends React.Component {
   }
 
   render() {
-    CanvasJS.addColorSet("gray_color",
-    ["#acacac"]);
     return (
       
       <div class = "feed">

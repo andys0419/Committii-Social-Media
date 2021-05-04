@@ -1,3 +1,11 @@
+body, h1, h2, h3, h4, h5, h6, LoginForm, feed {
+  font-family: 'Poppins', sans-serif;
+}
+
+c, postButton {
+  font-family: 'Oswald', sans-serif;
+}
+
 .App {
   text-align: center;
   background-color: black;
@@ -510,20 +518,14 @@ input[type=submit] {
   font-size: 15px;
 }
 
-body, h1, h2, h3, h4, h5, h6, LoginForm, feed {
-  font-family: 'Poppins', sans-serif;
-}
 
-c {
-  font-family: 'Oswald', sans-serif;
-}
 
 .new-line {
 	border-bottom: 1px solid white;
 }	
 
 .vRight {
-  border-left: 3px solid rgb(172, 172, 172);
+  border-left: 3px solid rgb(255, 255, 255);
   height: 2000px;
   position: absolute;
   left: 100%;
@@ -532,7 +534,7 @@ c {
 }
 
 .vLeft {
-  border-left: 3px solid rgb(172, 172, 172);
+  border-left: 3px solid rgb(255, 255, 255);
   height: 2000px;
   position: absolute;
   right: 100%;
@@ -542,7 +544,7 @@ c {
 }
 
 .feedOptions {
-  border-bottom: 3px solid rgb(172, 172, 172);
+  border-bottom: 3px solid rgb(255, 255, 255);
   width: 60%;
   position: relative;
   margin-left: 20%;
@@ -561,7 +563,7 @@ c {
 }
 
 .post {
-  border: 3px solid rgb(172, 172, 172);
+  border: 2px solid rgb(255, 255, 255);
   width: 99.4%;
   height: 250px;
   z-index: initial;
@@ -619,15 +621,20 @@ c {
 
 .postButton {
   position: absolute;
-  width: fit-content;
-  height: fit-content;
-
+  background-color: #000000;
+  border: solid;
+  border-width: 2px;
+  border-color:white;
+  border-radius: 100px;
   top: 55%;
-  background-color: black;
-  border: none;
+  width: fit-content;
+  left: 2%;
   color: white;
   font-size: 200%;
-  cursor: pointer;
+
+  
+  
+  
 }
 
 .feedMessages {
@@ -667,3 +674,4 @@ c {
   z-index: 1;
   border-radius: 50%;
 }
+
