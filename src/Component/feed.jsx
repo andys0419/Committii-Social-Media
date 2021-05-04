@@ -216,15 +216,11 @@ export default class Feed extends React.Component {
    }
     return (
 
-
       <div class = "feed">
-      <div className="navbar">
         <Link to="/feed">
-          <cz id="MicImage">
-            <img src="Images/committii logo.JPG"></img>
-            <c>COMMITTII</c>
-          </cz>
+          <img id="committii-logo" src={committiilogo}></img>
         </Link>
+
         <div class="feedOptions">
           <div class="vLeft">
             <button class="feedSort" onClick={this.showMenu}>Sort</button>
@@ -247,11 +243,8 @@ export default class Feed extends React.Component {
 
           <Link to="/profile"><button class="feedProfile">Profile</button></Link>
         </div>
-      </div>
 
-        <div id="listposts">
-          {this.state.posts.map(post => this.createPost(post))}
-        </div>
+        {this.state.posts.map(post => this.createPost(post))}
 
         <Link to="/createpoll"><button class="poll_button">Create Poll</button></Link>
       </div>
