@@ -29,15 +29,21 @@ export default class PostingList extends React.Component {
       following: 0,
       followers: 0,
       userid: userid,
-      isCurrentUser: userid === sessionStorage.getItem("user")
+      isCurrentUser: userid === sessionStorage.getItem("user"),
+      follow_text: 'Follow Member'
     };
     this.postingList = React.createRef();
     this.loadPosts = this.loadPosts.bind(this);
     this.displayProfilePic = this.displayProfilePic.bind(this);
+    this.showUserButtons = this.showUserButtons.bind(this);
+    this.createFollow = this.createFollow.bind(this);
   }
 
   componentDidMount() {
+    this.loadFollowing();
+    this.loadFollowers();
     this.loadPosts();
+    this.checkIsFollowing();
     fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
       method: "get",
       headers: {
@@ -80,8 +86,8 @@ export default class PostingList extends React.Component {
       return (
         <header class="white_box_header">
           <div class="follow_info">
-            <p id="following">{this.state.following} Following</p>
-            <p id="followers">{this.state.followers} Followers</p>
+            <Link to={this.state.userid + "/following"}><button id="following">{this.state.following} Following</button></Link>
+            <Link to={this.state.userid + "/followers"}><button id="followers">{this.state.followers} Followers</button></Link>
           </div>
           <div class="profile_settings">
             <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
@@ -100,17 +106,224 @@ export default class PostingList extends React.Component {
       return (
         <header class="white_box_header">
           <div class="follow_info">
-            <p id="following">{this.state.following} Following</p>
-            <p id="followers">{this.state.followers} Followers</p>
+            <Link to={this.state.userid + "/following"}><button id="following">{this.state.following} Following</button></Link>
+            <Link to={this.state.userid + "/followers"}><button id="followers">{this.state.followers} Followers</button></Link>
+          </div>
+          <div class="follow_button_class">
+            <button id="follow_button" onClick={()=>this.createFollow()}>{this.state.follow_text}</button>
           </div>
         </header>   
       )
     }
 
   }
+
+  loadFollowing() {
+
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+"&type=isFollowing&status=active", {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+     })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+            this.setState({
+              isLoaded: true,
+              following: result[0].length
+            });
+          }
+        },
+        error => {
+          this.setState({
+            isLoaded: true,
+            following: 0
+          });
+        }
+      );
+  }
+  
+  loadFollowers() {
+      fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+"&type=follower&status=active", {
+        method: "get",
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+sessionStorage.getItem("token")
+        }
+       })
+        .then(res => res.json())
+        .then(
+          result => {
+            if (result) {
+              this.setState({
+                followers: result[0].length
+              });
+            }
+          },
+          error => {
+            this.setState({
+              followers: 0
+            });
+          }
+        ); 
+  }
+
+  checkIsFollowing() {
+
+    /* Check the following status - is the visiting member a follower? */
+
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+ "&connectedUserID=" +sessionStorage.getItem("user")+ "&type=follower&status=active", {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+
+          if (result[0].length > 0) {
+            console.log("There is a follow!")
+
+            this.setState({
+              follow_text: 'Unfollow Member'
+            });
+          } 
+          
+          else {
+            this.setState({
+              follow_text: 'Follow Member'
+            });
+          }
+        },
+      );
+}
+  
+  createFollow = (e) => {
+
+    /* First thing to do is check the following status - is the visiting member a follower? */
+
+    fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+this.state.userid+ "&connectedUserID=" +sessionStorage.getItem("user")+ "&type=follower&status=active", {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+
+          let isFollowing = false;
+          let followID = -1;
+
+          if (result[0].length > 0) {
+            console.log("There is a follow!")
+
+            isFollowing = true;
+            followID = result[0][0].id;
+
+            console.log(isFollowing);
+            console.log(followID);
+
+            console.log("Visiting member wants to unfollow!")
+
+            fetch(process.env.REACT_APP_API_PATH+"/connections/"+  followID, {
+              method: "PATCH",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify({
+                status: "unfollow"
+              })
+            })
+              .then(res => res.json())
+              .then(
+                result => {
+                  console.log("Successfully unfollowed!")
+                  this.setState({
+                    follow_text: 'Follow Member'
+                  });
+                  this.state.follow_text = 'Follow Member';
+                  window.location.reload();
+                },
+                _error => {
+                  alert("An errored occured while trying to unfollow!");
+                  window.location.reload();
+                }
+              );
+          }
+
+          else {
+            /* If the member visiting is not following, and wants to follow */
+            
+            console.log("Visiting member is not already following this user!")
+
+             /* Grab the userID of the member profile being viewed, and use this ID to add the follower of the visiting userID */
+            fetch(process.env.REACT_APP_API_PATH+"/connections", {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify({
+                userID: this.state.userid,
+                connectedUserID: sessionStorage.getItem("user"),
+                type: "follower",
+                status: "active"
+              })
+            })
+              .then(res => res.json())
+              .then(
+                result => {
+                  console.log("Follow created successfully!")
+                  this.setState({
+                    follow_text: 'Unfollow Member'
+                  });
+                  this.state.follow_text = 'Unfollow Member';
+                  window.location.reload();
+                },
+                _error => {
+                  alert("An errored occured while trying to follow!");
+                  window.location.reload();
+                }
+              );
+            
+            /* Update the following count of the visiting member */
+            fetch(process.env.REACT_APP_API_PATH+"/connections", {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer '+sessionStorage.getItem("token")
+              },
+              body: JSON.stringify({
+                userID: sessionStorage.getItem("user"),
+                connectedUserID: this.state.userid,
+                type: "isFollowing",
+                status: "active"
+              })
+            })
+              .then(res => res.json())
+              .then(
+                result => {
+                  console.log("Updated visiting member following!")
+                },
+                _error => {
+                  alert("An errored occured while trying to follow!");
+                }
+              );
+            }
+        },
+      ); 
+    }
+
   loadPosts() {
     let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+this.state.userid;
-    url += "&type=post";
 
     fetch(url, {
       method: "get",
@@ -152,7 +365,7 @@ export default class PostingList extends React.Component {
     sessionStorage.setItem("user", "User");
   }
 
-  displayProfilePic(){
+  displayProfilePic() {
         fetch(process.env.REACT_APP_API_PATH+"/users/"+this.state.userid, {
           method: "get",
           headers: {
@@ -172,15 +385,19 @@ export default class PostingList extends React.Component {
            document.getElementById("prof_pic").src = server + result.role
          }
          })
-      }
+  }
+
+
 
   render() {
     const {error, isLoaded, posts} = this.state;
+
     if (error) {
       return <div> Error: {error.message} </div>;
     } else if (!isLoaded) {
       return <div> Loading... </div>;
     } else if (posts) {
+      
       if (posts.length > 0){
       return (
         <div class="ProfilePage">
@@ -238,7 +455,10 @@ export default class PostingList extends React.Component {
               <p id="polls_label">Polls</p>
             </div>
             <div class="no_polls_id">
-              <p id="no_polls">You have not created any Polls yet. <br></br>Create a new Poll with the 'Create Poll' button above!</p>
+              {this.state.isCurrentUser
+                ? <p id="no_polls">You have not created any Polls yet. <br></br>Create a new Poll with the 'Create Poll' button above!</p>
+                : <p id="no_polls">This member currently does not have any Polls.</p>
+              }
             </div>
           </div>
         </div>

@@ -8,7 +8,9 @@ import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
 import prof_pic from "./prof.png"
 
-
+const Checkbox = props => (
+  <input type="checkbox" {...props} />
+)
 
 // the login form will display if there is no session token stored.  This will display
 // the login form, and call the API to authenticate the user and store the token in
@@ -33,6 +35,7 @@ export default class ProfileSettings extends React.Component {
             responseMessage: "",
             status: "",
             token: "",
+            privacy: false,
 
     };
     this.handleClick = this.handleClick.bind(this)
@@ -83,9 +86,8 @@ export default class ProfileSettings extends React.Component {
   }
 
   fieldChangeHandler6(field, e) {
-    console.log("field change");
     this.setState({
-      [field]: e.target.value
+      [field]: e.target.checked
     });
   }
 
@@ -101,11 +103,18 @@ export default class ProfileSettings extends React.Component {
         })
     };
 
+  updateToken = (e) => {
+      this.setState({
+        token: e.currentTarget.value
+      })
+  };
+
 
 
   componentDidMount() {
 
     // first fetch the user data to allow update of username
+    console.log("HERE")
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
       method: "get",
       headers: {
@@ -117,7 +126,7 @@ export default class ProfileSettings extends React.Component {
       .then(
         result => {
           if (result) {;
-
+            console.log(result.bio)
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
@@ -131,7 +140,8 @@ export default class ProfileSettings extends React.Component {
                 blockedUsers: result.blockedUsers || "",
                 email: result.email || "",
                 status: result.status || "",
-                token: result.token || ""
+                token: result.token || "",
+                privacy: result.privacy || false
 
             });
           }
@@ -153,6 +163,7 @@ export default class ProfileSettings extends React.Component {
       .then(
         result => {
           if (result) {
+            console.log(result)
             let favoritecolor = "";
 
             // read the user preferences and convert to an associative array for reference
@@ -178,7 +189,6 @@ export default class ProfileSettings extends React.Component {
    .then(res => res.json())
    .then(
      result => {
-       console.log(result)
        if (result.role == ""){
          document.getElementById("profilepic").src = prof_pic
        }else{
@@ -222,7 +232,7 @@ export default class ProfileSettings extends React.Component {
   submitHandler = async (event) =>  {
     //keep the form from actually submitting
     event.preventDefault();
-
+    console.log(this.state.privacy)
     //make the api call to the user controller
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
       method: "PATCH",
@@ -239,7 +249,8 @@ export default class ProfileSettings extends React.Component {
             lastName: this.state.lastName,
             blockedUsers: this.state.blockedUsers,
             status: this.state.status,
-            token: this.state.token
+            token: this.state.token,
+            privacy: this.state.privacy
 
       })
     })
@@ -330,6 +341,7 @@ export default class ProfileSettings extends React.Component {
       width: "96%",
       height: "3em"
     };
+    var check = false;
       return (
           <form onSubmit={this.submitHandler} className="profileform">
         <div id="Login">
@@ -362,20 +374,18 @@ export default class ProfileSettings extends React.Component {
             <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.lastName} onChange={e => this.fieldChangeHandler5("lastName", e)}
             value={this.state.lastName}/>
           </div>
-            <a id="ProfileHeading">Blocked Users</a>
-            <div id="BlockedResults">
-            <p>{this.state.status}</p>
-            </div>
-          <div id="ProfileInput">
-            <input id="blocked" style={LoginFormStyle} type="text" placeholder={"Block: Johe Doe"} onChange={e => this.fieldChangeHandler6("blockedUsers", e)}/>
-            <button onClick={e => this.setState({status:this.state.status +" | "+ this.state.blockedUsers})} input type="submit" value="blocked" >Add</button>
-
+          <a id="ProfileHeading">Privacy Settings</a>
+            <div id="ProfileInput">
+            <Checkbox id="checkA" value={this.state.privacy} onChange={e => this.fieldChangeHandler6("privacy", e)}/>
+            <a id="ProfileSub"> Only show posts from followed users?</a>
           </div>
+          
+
 
             <div className='container'>
                 <Link to="/forgotpassword"><button>Change Password</button></Link>
                 <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
-                <button onClick={this.handleClick} input type="submit" value="save" >Save</button>
+                <button onClick={this.submitHandler} input type="submit" value="save" >Save</button>
                 <Link to="/closeaccount"><button>Close Account</button></Link>
             </div>
 
