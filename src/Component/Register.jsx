@@ -13,7 +13,7 @@ export default class Register extends React.Component {
       password: "",
       confirm: "",
       alanmessage: "",
-      errormessage: "",
+      errorMessage: "",
       sessiontoken: "",
       redir: false
     };
@@ -43,43 +43,30 @@ export default class Register extends React.Component {
     //keep the form from actually submitting
     event.preventDefault();
 
-    // //Checks if user already exists.
-    // fetch(process.env.REACT_APP_API_PATH+"/users/", {
-    //   method: "GET",
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer '+sessionStorage.getItem("token")
-    //   }
-
-    // })
-    // .then(res => res.json())
-    //   .then(
-    //     result => {
-    //       if (result) {
-    //         let names = [];
-
-    //         result[0].forEach(element => {if (element.username){names.push(element)}});
-
-    //         if (names.includes(this.state.username)) {
-    //           this.setState({
-    //             errormessage: "Error: User already exists"
-    //           });  
-    //         }
-    //       }
-    //     },
-    //     error => {
-    //       alert("error!");
-    //     }
-    //   );
-
-    if (this.state.password !== this.state.confirm)
-    {
+    //check empty
+    if (this.state.username == "" || this.state.password == "" || this.state.confirm == "") {
       this.setState({
-        password: "",
-        confirm: "",
-        errormessage: "Error: Passwords do not match"
-      });
+        errorMessage: "Please fill in all required fields."
+      })
+      return;
+    }
 
+    //check email format is valid
+    var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!this.state.username.match(email_pattern)) {
+      this.setState({
+        errorMessage: "Please enter a valid email format."
+      })
+      return;
+    }
+
+    //check password fields are matching
+    if (this.state.password !== this.state.confirm){
+      this.setState({
+        errorMessage: "Error: Passwords do not match"
+      })
+      return;
     }
     //make the api call to the authentication page
     fetch(process.env.REACT_APP_API_PATH+"/auth/signup", {
@@ -133,26 +120,22 @@ export default class Register extends React.Component {
   };
 
   render() {
-    if (this.state.errormessage !== "") {
-      window.alert(this.state.errormessage);
-      this.setState({
-        errormessage: ""
-      });
-    }
     if (this.state.redir) return <Redirect to='/feed'/>
     else return (
     <div>
         <form id = "Login" onSubmit={this.submitHandler} className="profileform">
           <h1 id="LoginLabel">REGISTER</h1>
+          {this.state.errorMessage !== "" ? <a id="ForgotP">{this.state.errorMessage}</a> : <div/>}
           <div id="LoginUsername">    
-              <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
+              <input id="LoginForm" type="text" placeholder="*Email" onChange={this.myChangeHandler} />
           </div>
           <div id="LoginUsername">
-              <input id="LoginForm" type="password" placeholder="Password" onChange={this.passwordChangeHandler} />
+              <input id="LoginForm" type="password" placeholder="*Password" onChange={this.passwordChangeHandler} />
           </div>
           <div id="LoginPassword">
-              <input id="LoginForm" type="password" placeholder="Password (Confirm)" onChange={this.confirmPasswordChangeHandler} />
+              <input id="LoginForm" type="password" placeholder="*Password (Confirm)" onChange={this.confirmPasswordChangeHandler} />
           </div>
+          <a id="ForgotP">*required</a>
           <input id="SubmitButton" type="Submit" value="submit" className/>
           {this.state.responseMessage}
         </form>
