@@ -501,12 +501,14 @@ c, postButton {
   padding-top: .5%;
 }
 #Login {
+
   display: flex;
   flex-direction: column;
-  margin-top: 15%;
-  margin-left: 35%;
+  margin-top: 5%;
+  margin-left: 30%;
+
   background-color: white;
-  width: 35%;
+  width: 40%;
   height: 50%;
 }
 #LoginUsername{
@@ -853,8 +855,9 @@ input[type=submit] {
   border-width: 2px;
   border-color:white;
   border-radius: 100px;
-  top: 55%;
+  top: 60%;
   width: fit-content;
+  height: fit-content;
   left: 2%;
   color: white;
   font-size: 1.8vw;
@@ -897,6 +900,25 @@ input[type=submit] {
   font-size: 130%;
   font-weight: 600;
   left: 85%;
+
+  margin-left: -2.5%;
+  z-index: 1;
+  border-radius: 50%;
+}
+
+.user_button {
+  position: absolute;
+  top: 65%;
+  background-color: rgb(0, 0, 0);
+  border: rgb(255, 255, 255) 3px solid;
+  color: rgb(255, 255, 255);
+  width: 8vw;
+  height: 8vw;
+  text-align: center;
+  padding: 4px 3px 0 3px;
+  font-size: 1.5vw;
+  font-weight: 600;
+  left: 10%;
 
   margin-left: -2.5%;
   z-index: 1;

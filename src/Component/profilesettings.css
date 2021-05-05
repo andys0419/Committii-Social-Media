@@ -99,13 +99,17 @@ button {
 
 .bottomButton {
   position: relative;
-  background-color: #ffffff;
-  border: solid;
-  border-width: 1px;
-  border-color:rgb(0, 0, 0);
-  border-radius: 30px;
-  top: 55%;
-  width: 150px;
-  color: rgb(0, 0, 0);
-  font-size: 100%;
+  font-size: 1vw;
+  width: 10vw;
+
+  background-color: rgb(216, 216, 216);
+  border: black;
+  border-style: solid;
+  border-width: 0.1vw;
+  text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+  color: black;
+  padding: 1%;
+  cursor: pointer;
+  text-align: center;
+  line-height: 2vw;
 }
