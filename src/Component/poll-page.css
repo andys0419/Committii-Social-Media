@@ -23,6 +23,8 @@
     flex: 1;
 }
 
+
+
 #CommentBox {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
@@ -75,6 +77,7 @@
     transform: translate(-50%, 10%);
     width: 30vw;
     height: 600px;
+    top: 2vw;
     border: 1px solid black;
     padding: 0.5vw;
 }
@@ -268,6 +271,7 @@
     transform: translate(-50%, 10%);
     width: 60vw;
     height: 600px;
+    top:auto;
     border: 1px solid black;
     padding: 0.5vw;
 }
@@ -462,6 +466,7 @@
     left: 50%;
     transform: translate(-50%, 10%);
     width: 80vw;
+    top: 40vw;
     height: 600px;
     border: 1px solid black;
     padding: 0.5vw;

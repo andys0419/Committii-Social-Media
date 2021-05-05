@@ -323,7 +323,7 @@ export default class PostingList extends React.Component {
     }
 
   loadPosts() {
-    let url = process.env.REACT_APP_API_PATH+"/posts?authorID="+this.state.userid;
+    let url = process.env.REACT_APP_API_PATH+"/posts?type=post&authorID="+this.state.userid;
 
     fetch(url, {
       method: "get",

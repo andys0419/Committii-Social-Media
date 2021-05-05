@@ -43,6 +43,22 @@ export default class ProfileSettings extends React.Component {
 
   }
 
+    statusOFstatus() {
+        if(this.state.status == 'false'){
+        return false;
+        }
+        if(this.state.status == 'true'){
+        return true;
+        }
+      }
+      statusOFstatus2() {
+        if(this.state.lastName == 'false'){
+        return false;
+        }
+        if(this.state.lastName == 'true'){
+        return true;
+        }
+      }
   fieldChangeHandler(field, e) {
     this.setState({
       [field]: e.target.value
@@ -218,89 +234,90 @@ export default class ProfileSettings extends React.Component {
       })
   }
 
-  submitHandler = async (event) =>  {
-    //keep the form from actually submitting
-    event.preventDefault();
-    console.log(this.state.privacy)
-    //make the api call to the user controller
-    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-      method: "PATCH",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
-      },
-      body: JSON.stringify({
-
-            username: this.state.username,
-            email: this.state.email,
-            password: this.state.password,
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            blockedUsers: this.state.blockedUsers,
-            status: this.state.status,
-            token: this.state.token,
-            privacy: this.state.privacy
-
-      })
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          this.setState({
-            responseMessage: result.Status
-          });
-        },
-        error => {
-          alert("error!");
-        }
-      );
-
-    let url = process.env.REACT_APP_API_PATH+"/user-preferences";
-    let method = "POST";
-
-
-
-    //make the api call to the user prefs controller
-
-    const token = this.state.token;
-    const password = this.state.password;
-
-            let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
-                body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
-                headers: {
-                    'Accept': "*/*",
-                    "Content-Type": "application/json"
-                },
-                method: "POST"
-            });
-
-
-    //fetch calls for profile Image
-    if(document.getElementById("imgUpload").value != ""){
-    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
-      method: "POST",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
-      body: JSON.stringify({
-        "ownerID": sessionStorage.getItem("user"),
-        "type": "Image",
-        "url": "String",
-        "category": "profilepic"
-      })
-    })
-    .then(res => res.json())
-    .then(
-      result => {
-        var userArtifact = -1;
-        userArtifact = result.id;
-        if (userArtifact != -1){
-          this.uploadProfileImage(userArtifact);
-        }
-      })
-    }
-
-  }
+    submitHandler = async (event) =>  {
+        //keep the form from actually submitting
+        event.preventDefault();
+        console.log(this.state.status)
+        //make the api call to the user controller
+        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+          method: "PATCH",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ sessionStorage.getItem("token")
+          },
+          body: JSON.stringify({
+    
+                username: this.state.username,
+                email: this.state.email,
+                password: this.state.password,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
+                blockedUsers: this.state.blockedUsers,
+                status: this.state.status,
+                token: this.state.token,
+                status: this.state.status
+    
+          })
+        })
+          .then(res => res.json())
+          .then(
+            result => {
+              this.setState({
+                responseMessage: result.status
+              });
+              alert("Saved!");
+            },
+            error => {
+              alert("error!");
+            }
+          );
+    
+        let url = process.env.REACT_APP_API_PATH+"/user-preferences";
+        let method = "POST";
+    
+    
+    
+        //make the api call to the user prefs controller
+    
+        const token = this.state.token;
+        const password = this.state.password;
+    
+                let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+                    body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
+                    headers: {
+                        'Accept': "*/*",
+                        "Content-Type": "application/json"
+                    },
+                    method: "POST"
+                });
+    
+    
+        //fetch calls for profile Image
+        if(document.getElementById("imgUpload").value != ""){
+        fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
+          body: JSON.stringify({
+            "ownerID": sessionStorage.getItem("user"),
+            "type": "Image",
+            "url": "String",
+            "category": "profilepic"
+          })
+        })
+        .then(res => res.json())
+        .then(
+          result => {
+            var userArtifact = -1;
+            userArtifact = result.id;
+            if (userArtifact != -1){
+              this.uploadProfileImage(userArtifact);
+            }
+          })
+        }
+    
+      }
   ///////////////
   render() {
     const LoginFormStyle = {
@@ -333,26 +350,24 @@ export default class ProfileSettings extends React.Component {
           </div>
             <a id="ProfileHeading">Social Information</a>
             <div id="ProfileInput">
-            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.status} onChange={e => this.fieldChangeHandler4("status", e)}
-            value={this.state.status}/>
+            <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.firstName} onChange={e => this.fieldChangeHandler4("firstName", e)}
+            value={this.state.firstName}/>
           </div>
-          <div id="ProfileInput">
-            <input id="dob" style={LoginFormStyle} type="text" placeholder={"Date of Birth: "+this.state.lastName} onChange={e => this.fieldChangeHandler5("lastName", e)}
-            value={this.state.lastName}/>
-          </div>
+
           <a id="ProfileHeading">Privacy Settings</a>
-            <div id="ProfileInput">
-            <Checkbox id="checkA" value={this.state.privacy} onChange={e => this.fieldChangeHandler6("privacy", e)}/>
+          <div id="ProfileInput">
+            <Checkbox id="checkA" checked={this.statusOFstatus()} value={this.state.status} onChange={e => this.fieldChangeHandler6("status", e)}/>
             <a id="ProfileSub"> Only show posts from followed users?</a>
           </div>
-          
-
-
+          <div id="ProfileInput">
+            <Checkbox id="checkA" checked={this.statusOFstatus2()} value={this.state.lastName} onChange={e => this.fieldChangeHandler6("lastName", e)}/>
+            <a id="ProfileSub"> Show my posts to my followers only?</a>
+          </div>
             <div className='container'>
-                <Link to="/forgotpassword"><button>Change Password</button></Link>
-                <Link to="/privacy-settings"><button>Privacy Settings</button></Link>
-                <button onClick={this.submitHandler} input type="submit" value="save" >Save</button>
-                <Link to="/closeaccountposts"><button>Close Account</button></Link>
+                <Link to="/forgotpassword"><button className="bottomButton">Change Password</button></Link>
+                <Link to="/privacy-settings"><button className="bottomButton">Privacy Settings</button></Link>
+                <button onClick={this.submitHandler}  className="bottomButton" input type="submit" value="save" >Save Settings</button>
+                <Link to="/closeaccountposts"><button className="bottomButton">Close Account</button></Link>
 
             </div>
 

@@ -10,6 +10,7 @@ export default class Register extends React.Component {
     super(props);
     this.state = {
       username: "",
+      nickname: "",
       password: "",
       confirm: "",
       alanmessage: "",
@@ -22,6 +23,12 @@ export default class Register extends React.Component {
   myChangeHandler = event => {
     this.setState({
       username: event.target.value
+    });
+  };
+
+  userChangeHandler = event => {
+    this.setState({
+      nickname: event.target.value
     });
   };
 
@@ -43,42 +50,12 @@ export default class Register extends React.Component {
     //keep the form from actually submitting
     event.preventDefault();
 
-    // //Checks if user already exists.
-    // fetch(process.env.REACT_APP_API_PATH+"/users/", {
-    //   method: "GET",
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Authorization': 'Bearer '+sessionStorage.getItem("token")
-    //   }
-
-    // })
-    // .then(res => res.json())
-    //   .then(
-    //     result => {
-    //       if (result) {
-    //         let names = [];
-
-    //         result[0].forEach(element => {if (element.username){names.push(element)}});
-
-    //         if (names.includes(this.state.username)) {
-    //           this.setState({
-    //             errormessage: "Error: User already exists"
-    //           });  
-    //         }
-    //       }
-    //     },
-    //     error => {
-    //       alert("error!");
-    //     }
-    //   );
-
     if (this.state.password !== this.state.confirm)
     {
       this.setState({
-        password: "",
-        confirm: "",
-        errormessage: "Error: Passwords do not match"
+        errorMessage: "Error, passwords don't match!",
       });
+      return;
 
     }
     //make the api call to the authentication page
@@ -108,6 +85,8 @@ export default class Register extends React.Component {
               redir: true
             });
 
+            this.setUserName()
+
             // call refresh on the posting list
             //this.refreshPostsFromLogin();
           } else {
@@ -123,15 +102,34 @@ export default class Register extends React.Component {
           }
         },
         _error => {
-          if (this.state.errormessage !== "") {
-            this.setState({
-              errormessage: "Something has gone wrong."
-            });
-          }
+          this.setState({
+            errorMessage: "This account is already taken!",
+          });
         }
       );
   };
 
+  setUserName() {
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+            username: this.state.nickname,
+      })
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          console.log("Saved!");
+        },
+        error => {
+          console.log("error!");
+        }
+      );
+  }
   render() {
     if (this.state.errormessage !== "") {
       window.alert(this.state.errormessage);
@@ -144,15 +142,21 @@ export default class Register extends React.Component {
     <div>
         <form id = "Login" onSubmit={this.submitHandler} className="profileform">
           <h1 id="LoginLabel">REGISTER</h1>
+          {this.state.errorMessage !== "" ? <a id="ForgotP">{this.state.errorMessage}</a> : <div/>}
+          {this.state.errorMessage == ""}
           <div id="LoginUsername">    
-              <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
+              <input id="LoginForm" type="text" placeholder="*Email" onChange={this.myChangeHandler} />
+          </div>
+          <div id="LoginUsername">    
+              <input id="LoginForm" type="text" placeholder="*Username" onChange={this.userChangeHandler} />
           </div>
           <div id="LoginUsername">
-              <input id="LoginForm" type="password" placeholder="Password" onChange={this.passwordChangeHandler} />
+              <input id="LoginForm" type="password" placeholder="*Password" onChange={this.passwordChangeHandler} />
           </div>
           <div id="LoginPassword">
-              <input id="LoginForm" type="password" placeholder="Password (Confirm)" onChange={this.confirmPasswordChangeHandler} />
+              <input id="LoginForm" type="password" placeholder="*Password (Confirm)" onChange={this.confirmPasswordChangeHandler} />
           </div>
+          <a id="ForgotP">*required</a>
           <input id="SubmitButton" type="Submit" value="submit" className/>
           {this.state.responseMessage}
         </form>

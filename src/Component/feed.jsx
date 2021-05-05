@@ -35,7 +35,9 @@ export default class Feed extends React.Component {
       followers: [],
       following: [],
       ShowSearch: false,
-      redir: false
+      redir: false,
+      privacy: false,
+      theyprivate: false
     };
     this.showMenu = this.showMenu.bind(this)
     this.fieldChangeHandler = this.fieldChangeHandler.bind(this)
@@ -58,12 +60,14 @@ export default class Feed extends React.Component {
       .then(
         result => {
           if (result) {
-
+            console.log(result.status)
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
               username: result.username || "",
               email: result.email || "",
+              privacy: result.status == "true",
+              theyprivate: result.lastName == "true",
               //lastname: result.lastName || ""
 
             });
@@ -174,7 +178,6 @@ export default class Feed extends React.Component {
   }
 
   createPost(post) {
-    var privacy = false;
     let contentData = post.content.split(",");
 
     let votes1 = contentData[2].split(":")[1].split('-');
@@ -186,7 +189,8 @@ export default class Feed extends React.Component {
     let userid = contentData[5].split(":")[1];
 
     console.log(this.state.following)
-    if (privacy && !this.state.following.includes(userid) ) return;
+    if (this.state.privacy && !this.state.following.includes(userid) ) return;
+    if (this.state.theyprivate && !this.state.followers.includes(userid) ) return;
 
     CanvasJS.addColorSet("black",
     ["#ffffff"]);
@@ -215,8 +219,8 @@ export default class Feed extends React.Component {
    return (
     <div key={post.id} class = "feedPosts">
       <div class = "post">
-        <p class="likeButton">{votes} Vote(s)</p>
-        <Link to="/pollpage"><button class="commentButton">{comments} Comments</button></Link>
+        <p class="likeButton">{votes} Votes</p>
+        <p class="commentButton">{comments} Comments</p>
         <Link to={id}><button class="postButton">View Post</button></Link>
         <div class="chart">
           <CanvasJSChart options = {options}></CanvasJSChart>

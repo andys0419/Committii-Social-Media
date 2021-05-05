@@ -701,21 +701,26 @@ input[type=submit] {
 }
 .feedSort {
   position:absolute;
-  left: 20px;
+  border: solid;
+  border-width: 2px;
+  border-color:white;
+  border-radius: 10vw;
+  width: 10vw;
   background-color: black;
-  border: none;
   color: white;
   padding: 8px;
-  font-size: 200%;
+  font-size: 1.8vw;
   cursor: pointer;
 }
 .feedSort2 {
   position:absolute;
+  border-width: 2px;
+  border-color:white;
+  border-radius: 100px;
   left: 10%;
   background-color: black;
   border: none;
   color: white;
-  padding: 0px;
   font-size: 100%;
   cursor: pointer;
   top: 1%;
@@ -737,16 +742,18 @@ input[type=submit] {
 
 .feedProfile {
   position: relative;
-  width: 100px;
-  height: 40px;
-  left: 45%;
+  border: solid;
+  border-width: 2px;
+  border-color:white;
+  border-radius: 100px;
+  width: 10vw;
+  left: 28vw;
   margin-left: -50px; /* margin is -0.5 * dimension */
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   background-color: black;
-  border: none;
   color: white;
   padding: 8px;
-  font-size: 200%;
+  font-size: 1.8vw;
   cursor: pointer;
 }
 
@@ -761,7 +768,7 @@ input[type=submit] {
   border: none;
   color: white;
   padding: 8px;
-  font-size: 200%;
+  font-size: 1.8vw;
 }
 
 .feedProfile6 {
@@ -804,20 +811,19 @@ input[type=submit] {
   border: none;
   color: white;
   padding: 8px;
-  font-size: 200%;
+  font-size: 1.8vw;
 }
 
 .likeButton {
   position: absolute;
   width: fit-content;
   height: fit-content;
-  top: -1%;
+  top: -3%;
   left: 3%;
   background-color: black;
   border: none;
   color: white;
-  font-size: 200%;
-  cursor: pointer;
+  font-size: 1.8vw;
 }
 
 .likeButton2 {
@@ -830,19 +836,18 @@ input[type=submit] {
   border: none;
   color: white;
   font-size: 150%;
-  cursor: pointer;
 }
 
 .commentButton {
   position: absolute;
   width: fit-content;
   height: fit-content;
-  top: 30%;
+  top: 20%;
+  left: 3%;
   background-color: black;
   border: none;
   color: white;
-  font-size: 200%;
-  cursor: pointer;
+  font-size: 1.8vw;
 }
 
 .postButton {
@@ -856,21 +861,21 @@ input[type=submit] {
   width: fit-content;
   left: 2%;
   color: white;
-  font-size: 200%;
-
-  
-  
-  
+  font-size: 1.8vw;
 }
 
 .feedMessages {
   position:absolute;
+  border: solid;
+  border-width: 2px;
+  border-color:white;
+  border-radius: 100px;
+  width: 10vw;
   right: 20px;
   background-color: black;
-  border: none;
   color: white;
   padding: 8px;
-  font-size: 200%;
+  font-size: 1.8vw;
   cursor: pointer;
 }
 
@@ -884,7 +889,7 @@ input[type=submit] {
 }
 
 .poll_button {
-  position: relative;
+  position: absolute;
   background-color: rgb(216, 216, 216);
   border: black 1px solid;
   color: black;
