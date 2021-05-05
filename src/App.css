@@ -884,7 +884,7 @@ input[type=submit] {
 }
 
 .poll_button {
-  position: relative;
+  position: fixed;
   background-color: rgb(216, 216, 216);
   border: black 1px solid;
   color: black;
@@ -895,7 +895,7 @@ input[type=submit] {
   font-size: 130%;
   font-weight: 600;
   left: 90%;
-  top: 34%;
+  top: 85%;
   margin-left: -2.5%;
   z-index: 1;
   border-radius: 50%;
