@@ -3,6 +3,7 @@ import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import "./poll-page.css";
 import "./CommentForm.css"
+import "../App.css"
 
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
@@ -35,16 +36,25 @@ export default class PollPages extends React.Component {
       voter_list_second: [],
       likes: 0,
       userid: -1,
-      postid: postid
+      postid: postid,
+      comment: "",
+      comments: [],
     };
+    this.submitHandler = this.submitHandler.bind(this);
 
   }
+
+  myChangeHandler = event => {
+    this.setState({
+      comment: event.target.value
+    });
+  };
 
   goBack() {
     this.props.history.goBack();
   }
   updatePost(index, value) {
-    console.log(this.state.postData);
+     //console.log(this.state.postData);
     var tempData = this.state.postData[index].split(":");
     var tempPost = this.state.postData;
 
@@ -55,9 +65,9 @@ export default class PollPages extends React.Component {
       postData: tempPost
     });
     
-    console.log("This is " + value);
-    console.log("HERE" + this.state.postData + "\n");
-    console.log("HERE" + this.state.postData.join(",") + "\n");
+     //console.log("This is " + value);
+     //console.log("HERE" + this.state.postData + "\n");
+     //console.log("HERE" + this.state.postData.join(",") + "\n");
     //make the api call to patch
     fetch(process.env.REACT_APP_API_PATH+"/posts/"+this.state.postid, {
       method: "PATCH",
@@ -97,7 +107,7 @@ export default class PollPages extends React.Component {
       .then(
         result => {
           var results = result.content.split(",");
-          console.log(results)
+           //console.log(results)
           this.setState({
             isLoaded: true,
             post: result,
@@ -113,6 +123,7 @@ export default class PollPages extends React.Component {
           
           //stores the title of the poll for use with grabbing relevant comments
           sessionStorage.setItem("current_content", result.content);
+          this.loadComments(result.content);
         },
         error => {
           alert("error!"+error);
@@ -121,9 +132,6 @@ export default class PollPages extends React.Component {
   }
 
   componentDidMount() {
-    console.log("In profile");
-    console.log(this.props);
-
     this.getPost(this.state.postid);
     //this.state.poll_option_1 = this.state.post.content.substring(0, 4);
 
@@ -139,7 +147,7 @@ export default class PollPages extends React.Component {
       .then(
         result => {
           if (result) {
-            console.log(result);
+             //console.log(result);
 
             this.setState({
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
@@ -193,10 +201,10 @@ export default class PollPages extends React.Component {
           });
         }
         else {
-          console.log("yeet" + this.state.voter_list_first.length);
-          console.log("yote" + sessionStorage.getItem("user"));
+           //console.log("yeet" + this.state.voter_list_first.length);
+           //console.log("yote" + sessionStorage.getItem("user"));
           this.state.voter_list_first.push(sessionStorage.getItem("user"));
-          console.log("yeet" + this.state.voter_list_first.length);
+           //console.log("yeet" + this.state.voter_list_first.length);
           this.updatePost(2, this.state.voter_list_first.join('-'))
           this.setState({
             vote_first: this.state.vote_first+1
@@ -238,7 +246,7 @@ export default class PollPages extends React.Component {
     }
 
   updateLikes = () => {
-    console.log(this.state.postid);
+     //console.log(this.state.postid);
     this.setState({
         likes: this.state.likes+1
     });
@@ -259,28 +267,157 @@ export default class PollPages extends React.Component {
     .then(res => res.json())
     .then(
       result => {
-        console.log(result)
+         //console.log(result)
         if (result.role == ""){
           document.getElementById("prof_pic_poll_page").src = prof_pic
         }else{
         var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
-        console.log(result.role)
+         //console.log(result.role)
         document.getElementById("prof_pic_poll_page").src = server + result.role
       }
       })
   }
 
+  loadComments(postData) {
+    let url = process.env.REACT_APP_API_PATH + "/posts?content=";
+    console.log(postData)
+    url += this.state.postid
+    url += "&type=comments";
+
+    fetch(url, {
+      method: "get",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      },
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+            var temp = []
+
+            for (const comment of result[0]) temp.push(comment)
+            this.setState({
+              comments: temp,
+              isLoaded: true,
+            });
+             console.log(result)
+             //console.log("Got Posts");
+          }
+        },
+        error => {
+           //console.log("ERROR loading Posts")
+        }
+      );
+  }
+
+
+  deletePost(id) {
+    let url = process.env.REACT_APP_API_PATH + "/posts/" + id;
+
+    fetch(url, {
+      method: "delete",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      },
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          if (result) {
+
+             console.log(result)
+             //console.log("Got Posts");
+          }
+        },
+        error => {
+           console.log("ERROR deleting Posts")
+        }
+      );
+  }
+
+  createComments(comment) {
+    return (
+      <div>
+        <div className="comments_box">
+          <text className="comment_title">{comment.author.email + " says: "}</text>
+          <text className="comment_date">{"At: " + comment.createdAt}</text>
+          <text className="comment_message">{comment.thumbnailURL}</text>
+
+          <div class="commentLeft"/>
+        <div class="commentRight"/>
+        </div>
+        
+        <div id="poll_footer"/>
+      </div>
+    )
+  }
+
+  submitHandler() {
+    //keep the form from actually submitting
+
+
+    const postMsg = this.state.comment
+
+    if (postMsg == '') {
+      alert("Please enter a message.")
+      return;
+    } 
+
+    //make the api call to the authentication page
+
+    fetch(process.env.REACT_APP_API_PATH + "/posts", {
+      method: "post",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+        authorID: sessionStorage.getItem("user"),
+        parentID: this.props.parent,
+        content: this.state.postid,
+        type: "comments",
+        thumbnailURL: postMsg
+      })
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          
+          this.setState({
+            errorMessage: "Your comment has been posted!"
+          })
+
+          // update the count in the UI manually, to avoid a database hit
+          //this.props.onAddComment(this.props.commentCount + 1);
+          this.loadComments(sessionStorage.getItem("current_content"));
+          this.render();
+        },
+        error => {
+          alert("error!");
+        }
+      );
+  };
+
+  handleSubmit(event) {
+    event.preventDefault();
+  }
+
   render() {
-    CanvasJS.addColorSet("gray_color",["#acacac"]);
+    CanvasJS.addColorSet("white",["#ffffff"]);
     const Poll_Options = {
       maintainAspectRatio: false,
       responsive: false,
       axisY: {interval: 1, labelFontSize: 15},
       axisX: {labelFontSize: 16},
-      colorSet: "gray_color",
+      colorSet: "white",
+      theme: "dark1",
+      backgroundColor: "black",
       data: [{		
         type: "column",
-        colorSet: "gray_color",
+        colorSet: "white",
         dataPoints: [
           { label: this.state.poll_option_1,  y: this.state.vote_first  },
           { label: this.state.poll_option_2, y: this.state.vote_second  },
@@ -293,27 +430,35 @@ export default class PollPages extends React.Component {
       <div className="Poll_Page">
         <Link to="/feed"><img id="committii-logo" src={committiilogo}></img></Link>
         <div className="poll_page_white_box">
+          <div class="pollLeft"/>
+          <div class="pollRight"/>
           <div className="poll_page_white_box_header">
             <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
             <div className="poll_page_title_id">
               <text id="poll_page_poll_title">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</text>
+              <div id="poll_options"/>
             </div>
           </div>
           <div className="poll_page_chart_box">
               <CanvasJSChart style="width:100%;height:100%;" options = {Poll_Options}></CanvasJSChart>
               <button className="poll_page_vote_option_1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
               <button className="poll_page_vote_option_2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
-              <div className="like_count_id">
-                <text id="poll_page_like_count">Likes: {this.state.likes}</text>
-              </div>
           </div>
           <div className="poll_page_white_box_footer">
-            <Link to={"/pollpage/"+ this.state.postid + "/comments"}><button className="poll_page_comment_button">Comments</button></Link>
-            <button className="poll_page_like_button" onClick={()=>{this.updateLikes()}}>
-            <img id="poll_page_heart" src={hearticon}/>
-            <text id="like_button_text">Like this Poll?</text>
-            </button>
+            <text id="poll_page_poll_title">Comments:</text>
+            <div id="poll_footer"/>
+            <div>
+              <div className="comments_box">
+                <text className="comment_title"> Create New Comment: </text>
+              </div>
+                <input id="LoginForm" type="text" placeholder="Your comment here!" onChange={this.myChangeHandler} />
+                <button className="submit_button" onClick={()=>{this.submitHandler()}}> Submit </button>
+              <div id="poll_footer"/>
+            </div>
+            {this.state.comments.map(comment => this.createComments(comment))}
           </div>
+
+          
         </div>
       </div>
     );

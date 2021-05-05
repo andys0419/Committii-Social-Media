@@ -142,11 +142,8 @@ export default class Feed extends React.Component {
   }
   
   loadPosts() {
-    let url = process.env.REACT_APP_API_PATH+"/posts?ParentID="+sessionStorage.getItem("user");
+    let url = process.env.REACT_APP_API_PATH + "/posts?type=post";
     // /posts/1
-    if (this.props && this.props.parentid){
-      url += this.props.parentid;
-    }
     fetch(url, {
       method: "get",
       headers: {
@@ -158,6 +155,7 @@ export default class Feed extends React.Component {
       .then(res => res.json())
       .then(
         result => {
+          console.log(result)
           if (result) {
             this.setState({
               isLoaded: true,

@@ -1,17 +1,39 @@
+.Poll_Page {
+    
+}
 .poll_page_white_box {
-    background-color: white;
+    background-color: black;
     position: relative;
-    top: 8vw;
     left: 50%;
     transform: translate(-50%, 0%);
-    width: 50vw;
+    width: 59.5vw;
     height: 900px;
     margin-bottom: 15vw;
 }
 
+
 .poll_page_white_box_header {
     position: relative;
     height: 4vw;
+}
+
+.comments_box {
+    position: relative;
+    height: 8vw;
+    flex: 1;
+}
+
+#LoginForm {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-width: 4px;
+    border-color:white;
+    border-radius: 100px;
+    text-align:start;
+    position: relative;
+    bottom: 70px;
+    height: 100px;
+    
 }
 
 #backarrow-pollpage {
@@ -35,6 +57,15 @@
     font-size: 2vw;
     text-decoration: underline;
     font-weight: 700;
+    color: white;
+}
+
+#comments_title {
+    position: relative;
+    font-size: 2vw;
+    text-decoration: underline;
+    font-weight: 700;
+    color: white;
 }
 
 .poll_page_chart_box {
@@ -49,15 +80,16 @@
 
 .poll_page_vote_option_1 {
     position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 100px;
     bottom: -2vw;
     height: 3vw;
     width: 14vw;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 0.1vw;
+    background-color: black;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 1.6vw;
     cursor: pointer;
@@ -65,15 +97,16 @@
 
 .poll_page_vote_option_2 {
     position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 100px;
     bottom: -2vw;
     height: 3vw;
     width: 14vw;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 0.1vw;
+    background-color: black;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 1.6vw;
     cursor: pointer;
@@ -96,9 +129,26 @@
 
 .poll_page_white_box_footer {
     position: absolute;
+    text-align: center;
     height: 5vw;
     width: 100%;
-    bottom: 0%;
+    bottom: 5%;
+}
+.submit_button {
+    position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 50px;
+    bottom: 1vw;
+    height: 3vw;
+    width: 10vw;
+    background-color: black;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: white;
+    padding: 0.25vw;
+    font-size: 1.6vw;
+    cursor: pointer;
 }
 
 .poll_page_comment_button {
@@ -113,7 +163,7 @@
     border-style: solid;
     border-width: 0.1vw;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 1.6vw;
     cursor: pointer;
@@ -132,7 +182,7 @@
     border-style: solid;
     border-width: 0.1vw;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 1.6vw;
     cursor: pointer;
@@ -155,13 +205,31 @@
 
 @media only screen and (max-width: 1200px) {
 .poll_page_white_box {
-    background-color: white;
+    background-color: black;
     position: relative;
     left: 50%;
     transform: translate(-50%, 8%);
     width: 80vw;
     height: 1000px;
     margin-bottom: 25vw;
+}
+
+#LoginForm {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-width: 4px;
+    border-color:white;
+    border-radius: 100px;
+    text-align:start;
+    position: relative;
+    bottom: 70px;
+    height: 100px;
+    
+}
+
+.comments_box {
+    position: relative;
+    height: 20vw;
 }
 
 .poll_page_white_box_header {
@@ -203,17 +271,35 @@
     padding: 0.5vw;
 }
 
+.submit_button {
+    position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 50px;
+    bottom: 1vw;
+    height: 6vw;
+    width: 20vw;
+    background-color: black;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: white;
+    padding: 0.25vw;
+    font-size: 2.6vw;
+    cursor: pointer;
+}
+
 .poll_page_vote_option_1 {
     position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 100px;
     bottom: -2vw;
     height: 4.8vw;
     width: 25vw;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 0.1vw;
+    background-color: black;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 1.6vw;
     cursor: pointer;
@@ -221,15 +307,16 @@
 
 .poll_page_vote_option_2 {
     position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 100px;
     bottom: -2vw;
     height: 4.8vw;
     width: 25vw;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 0.1vw;
+    background-color:black;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 1.6vw;
     cursor: pointer;
@@ -252,6 +339,7 @@
 
 .poll_page_white_box_footer {
     position: absolute;
+    text-align: center;
     height: 10vw;
     width: 100%;
     bottom: 0%;
@@ -269,7 +357,7 @@
     border-style: solid;
     border-width: 0.1vw;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 2.6vw;
     cursor: pointer;
@@ -288,7 +376,7 @@
     border-style: solid;
     border-width: 0.1vw;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 2.6vw;
     cursor: pointer;
@@ -312,7 +400,7 @@
 
 @media only screen and (max-width: 650px) {
 .poll_page_white_box {
-    background-color: white;
+    background-color: black;
     position: relative;
     left: 50%;
     transform: translate(-50%, 5%);
@@ -324,6 +412,24 @@
 .poll_page_white_box_header {
     position: relative;
     height: 12vw;
+}
+
+#LoginForm {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-width: 4px;
+    border-color:white;
+    border-radius: 100px;
+    text-align:start;
+    position: relative;
+    bottom: 70px;
+    height: 100px;
+    
+}
+
+.comments_box {
+    position: relative;
+    height: 28vw;
 }
 
 #backarrow-pollpage {
@@ -360,17 +466,35 @@
     padding: 0.5vw;
 }
 
+.submit_button {
+    position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 50px;
+    bottom: 1vw;
+    height: 9vw;
+    width: 30vw;
+    background-color: black;
+    text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
+    color: white;
+    padding: 0.25vw;
+    font-size: 4.8vw;
+    cursor: pointer;
+}
+
 .poll_page_vote_option_1 {
     position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 100px;
     bottom: -2vw;
     height: 8vw;
     width: 35vw;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 0.1vw;
+    background-color: black;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 3.8vw;
     cursor: pointer;
@@ -378,15 +502,16 @@
 
 .poll_page_vote_option_2 {
     position: relative;
+    border: solid;
+    border-width: 2px;
+    border-color:white;
+    border-radius: 100px;
     bottom: -2vw;
     height: 8vw;
     width: 35vw;
-    background-color: rgb(216, 216, 216);
-    border: black;
-    border-style: solid;
-    border-width: 0.1vw;
+    background-color:black;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 3.8vw;
     cursor: pointer;
@@ -409,6 +534,7 @@
 
 .poll_page_white_box_footer {
     position: absolute;
+    text-align: center;
     height: 20vw;
     width: 100%;
     bottom: 0%;
@@ -426,7 +552,7 @@
     border-style: solid;
     border-width: 0.1vw;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 3.8vw;
     cursor: pointer;
@@ -445,7 +571,7 @@
     border-style: solid;
     border-width: 0.1vw;
     text-shadow: .1vw .2vw .3vw rgb(167, 167, 167);
-    color: black;
+    color: white;
     padding: 0.25vw;
     font-size: 3.8vw;
     cursor: pointer;
@@ -466,3 +592,107 @@
     margin-left: -10%;
 }
 }
+
+
+#poll_options {
+    border-bottom: 3px solid rgb(255, 255, 255);
+    width: 124.5%;
+    right: 32.2%;
+    position: relative;
+    margin-left: 20%;
+  
+  
+  }
+
+  #poll_footer {
+    border-bottom: 3px solid rgb(255, 255, 255);
+    width: 100%;
+    right: 20%;
+    position: relative;
+    margin-left: 20%;
+  
+  
+  }
+
+  .pollRight {
+    border-left: 3px solid rgb(255, 255, 255);
+    height: 127.5%;
+    position: absolute;
+    left: 100%;
+    margin-left: -3px;
+    top: 0;
+  }
+  
+  .pollLeft {
+    border-left: 3px solid rgb(255, 255, 255);
+    height: 127.5%;
+    position: absolute;
+    right: 100%;
+    margin-right: -3px;
+    top: 0;
+  
+  }
+
+  .commentLeft {
+    border-left: 3px solid rgb(255, 255, 255);
+    height: 157px;
+    position: absolute;
+    left: 100%;
+    margin-left: -3px;
+    margin-bottom: 100px;
+
+  }
+  
+  .commentRight {
+    border-left: 3px solid rgb(255, 255, 255);
+    height: 157px;
+    position: absolute;
+    right: 100%;
+    margin-right: -3px;
+    top: 0;
+  
+  }
+
+  .comment_title {
+    position:absolute;
+    left: 20px;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 8px;
+    font-size: 160%;
+    cursor: pointer;
+  }
+
+  .comment_date {
+    position:absolute;
+    left: 20px;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 8px;
+    font-size: 100%;
+    cursor: pointer;
+    top: 40px;
+  }
+
+  .comment_message {
+    position:absolute;
+    left: 20px;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 8px;
+    font-size: 120%;
+    cursor: pointer;
+    top: 90px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  body, h1, h2, h3, h4, h5, h6, LoginForm, feed, .comment_message {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  c, postButton {
+    font-family: 'Oswald', sans-serif;
+  }

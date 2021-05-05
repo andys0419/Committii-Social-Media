@@ -41,7 +41,9 @@ export default class PostForm extends React.Component {
     }
 
     //make the api call to post
-    fetch(process.env.REACT_APP_API_PATH+"/posts", {
+    let url = process.env.REACT_APP_API_PATH + "/posts";
+
+    fetch(url, {
       method: "post",
       headers: {
         'Content-Type': 'application/json',
@@ -52,7 +54,7 @@ export default class PostForm extends React.Component {
         content: this.state.post_text,
         parentID: this.props.parent,
         thumbnailURL: "",
-        type: this.state.poll_category
+        type: "post"
       })
     })
       .then(res => res.json())
