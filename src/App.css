@@ -28,6 +28,7 @@ c, postButton {
 
 .deletePost{
   width:100%;
+  color: white;
 }
 
 .commentPost{
@@ -162,8 +163,8 @@ c, postButton {
 
 .userlist {
   text-align: left;
-  background: black;
-  color:white;
+  background:#333138;
+  color:#FFFFFA;
   border-style: solid solid solid solid;
   border-radius: 10px;
   padding:40px;
@@ -171,7 +172,6 @@ c, postButton {
   width: 90%;
   display: table;
   font-family: 'Poppins';
-  border-bottom: 1px solid white;
 }
 
 .emptylist {
@@ -238,6 +238,72 @@ c, postButton {
   /* align-items: flex-start; */
   justify-content: flex-start;
   font-size: 13.5px;
+}
+
+.card_row{
+  margin: 0 -5px;
+  box-sizing: border-box;
+}
+
+.card_row:after {
+  content: "";
+  display: table;
+  clear: both;
+  box-sizing: border-box;
+}
+
+.card_column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.card {
+  font-family: 'Poppins', sans-serif;
+  float: left;
+  text-align: center;
+  color: #FFFFFA;
+  background-color: #333138;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  border-style: solid solid solid solid;
+  font-size: 15px;
+  box-sizing: border-box;
+  margin: 10px;
+}
+
+.img_container {
+  text-align: left;
+  width:250px;
+  height:250px;
+  min-width:100%;
+  box-sizing: border-box;
+}
+
+.profile_link {
+  color: #FFFFFA !important;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+}
+
+/* Style the counter cards */
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #333138;
 }
 
 .comment-block{
@@ -561,7 +627,6 @@ input[type=submit] {
   margin-left: 20%;
   width: 60%;
   position:relative;
-
 }
 
 .messageFeed {
@@ -838,10 +903,10 @@ input[type=submit] {
 
 .message-content {
 	border-style: solid solid solid solid;
-    margin-left: -48.5%;
-    margin-right: 39%;
-    grid-column: 3/6;
-    padding: 1em 2em;
+  margin-left: -48.5%;
+  margin-right: 39%;
+  grid-column: 3/6;
+  padding: 1em 2em;
 	background: black;
 	color: white;
 
