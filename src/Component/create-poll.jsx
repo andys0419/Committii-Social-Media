@@ -16,14 +16,14 @@ export default class PostForm extends React.Component {
     super(props);
     this.state = {
       postmessage: "",
-      poll_option_1: "Example",
-      poll_option_2: "Example",
+      poll_option_1: "",
+      poll_option_2: "",
       post_text: "",
       poll_category: "",
       vote_first: 0,
       vote_second: 0,
       likes: 0,
-      redir: false
+      redir: false,
     };
     this.postListing = React.createRef();
   }
@@ -35,10 +35,6 @@ export default class PostForm extends React.Component {
 
     //keep the form from actually submitting via HTML - we want to handle it in react
     event.preventDefault();
-
-    if(this.state.poll_category == "") {
-      
-    }
 
     //make the api call to post
     let url = process.env.REACT_APP_API_PATH + "/posts";
@@ -91,7 +87,7 @@ export default class PostForm extends React.Component {
   
   render() {
     if (this.state.redir) return <Redirect to={"/profile/"+sessionStorage.getItem("user")}/>
-    return (
+    else return (
       <div class="CreatePollPage">
         <header>
           <Link to="/"><img id="committii-logo" src={committiilogo}></img></Link>
@@ -104,6 +100,7 @@ export default class PostForm extends React.Component {
             </div>
           </header>
           <div class="poll_inputs">
+          <form onSubmit={this.submitHandler}>
             <input id="option_1_field"
                 type="text"
                 placeholder={" Option #1"}
@@ -116,14 +113,15 @@ export default class PostForm extends React.Component {
                 type="text"
                 placeholder={" Category (Ex. Animals, Photos, Classes, etc.)"}
                 onChange={e => this.fieldChangeHandler("poll_category", e)}/>
+                
+              <input id="create_poll" type="submit" value="Create Poll" />              
+            </form>
             </div>
             <div class="new_poll_data">
               <p id="new_poll_title">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</p>
               <p id="new_poll_category">Category: {this.state.poll_category}</p>
             </div>
-            <form onSubmit={this.submitHandler}>
-              <input id="create_poll" type="submit" value="Create Poll" />
-            </form>
+            
           </div>
       </div>
     );

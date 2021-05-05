@@ -17,6 +17,7 @@ export default class LoginForm extends React.Component {
       password: "",
       alanmessage: "",
       sessiontoken: "",
+      errorMessage: "",
       redir: false
     };
     //this.refreshPostsFromLogin = this.refreshPostsFromLogin.bind(this);
@@ -47,6 +48,24 @@ export default class LoginForm extends React.Component {
   submitHandler = event => {
     //keep the form from actually submitting
     event.preventDefault();
+    
+    //check fields aren't empty
+    if (this.state.username == "" || this.state.password == "") {
+        this.setState({
+          errorMessage: "Please fill in all required fields."
+        });
+        return;
+    }
+
+    //check for valid email
+    var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!this.state.username.match(email_pattern)) {
+      this.setState({
+        errorMessage: "Please enter a valid email format."
+      })
+      return;
+    }
 
     //make the api call to the authentication page
     fetch(process.env.REACT_APP_API_PATH+"/auth/login", {
@@ -90,7 +109,9 @@ export default class LoginForm extends React.Component {
           }
         },
         _error => {
-          alert("error!");
+          this.setState({
+            errorMessage: "Incorrect email or password. Please try again.",
+          });
         }
       );
   };
@@ -103,12 +124,15 @@ export default class LoginForm extends React.Component {
       return (
         <form id="Login" onSubmit={this.submitHandler}>
           <h1 id="LoginLabel">SIGN IN</h1>
+          {this.state.errorMessage !== "" ? <a id="ForgotP">{this.state.errorMessage}</a> : <div/>}
+          {this.state.errorMessage == ""}
           <div id="LoginUsername">
-            <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
+            <input id="LoginForm" type="text" placeholder="*Username" onChange={this.myChangeHandler} />
           </div>
           <div id="LoginPassword">
-            <input id="LoginForm" type="password" placeholder="Password" onChange={this.passwordChangeHandler} />
+            <input id="LoginForm" type="password" placeholder="*Password" onChange={this.passwordChangeHandler} />
           </div>
+          <a id="ForgotP">*required</a>
           <Link to="/forgotpassword"><a id="ForgotP">Forget your password? Click here.</a></Link>
           <Link to="/register" id="RegisterinLog">New? Register here.</Link>
           <input id="SubmitButton" type="submit" value="Submit" />

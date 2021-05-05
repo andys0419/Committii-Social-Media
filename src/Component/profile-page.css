@@ -6,6 +6,58 @@
   left: -3.5vw;
 }
 
+a:visited { text-decoration: none; color:black; }
+a:hover { text-decoration: none; color:black; }
+a:focus { text-decoration: none; color:black; }
+a:hover, a:active { text-decoration: none; color:black }
+
+.nav_bar {
+  position: relative;
+  margin-bottom: -2vw;
+  top: 2.6vw;
+  height: 3vw;
+}
+
+#nav_home {
+  position: relative;
+  float: right;
+  top: 50%;
+  transform: translate(0%, -50%);
+  right: 12vw;
+  color:white;
+  font-size: 1.3vw;
+}
+
+#nav_feed {
+  position: relative;
+  float: right;
+  top: 50%;
+  transform: translate(0%, -50%);
+  right: 21vw;
+  color:white;
+  font-size: 1.3vw;
+}
+
+#nav_profile {
+  position: relative;
+  float: right;
+  top: 50%;
+  transform: translate(0%, -50%);
+  right: 3vw;
+  color:white;
+  font-size: 1.3vw;
+}
+
+#nav_settings {
+  position: relative;
+  float: right;
+  top: 50%;
+  transform: translate(0%, -50%);
+  right: -8vw;
+  color:white;
+  font-size: 1.3vw;
+}
+
 .welcome_id {
   position: relative;
   top: 5.5vw;
@@ -81,7 +133,7 @@
 #following {
   position: absolute;
   top: -3%;
-  right: 3%;
+  right: 8%;
   width: 90%;
   background-color: rgb(216, 216, 216);
   border: black;
@@ -98,7 +150,7 @@
 #followers {
   position: absolute;
   bottom: -3%;
-  right: 3%;
+  right: 8%;
   width: 90%;
   background-color: rgb(216, 216, 216);
   border: black;
@@ -261,6 +313,53 @@ cursor: pointer;
     height: 7vw;
     top: 1vw;
     left: -3.5vw;
+  }
+
+  .nav_bar {
+    position: relative;
+    margin-bottom: -2vw;
+    top: 2.6vw;
+    height: 5vw;
+  }
+  
+  #nav_home {
+    position: relative;
+    float: right;
+    top: 50%;
+    transform: translate(0%, -50%);
+    right: 16vw;
+    color:white;
+    font-size: 2vw;
+  }
+  
+  #nav_feed {
+    position: relative;
+    float: right;
+    top: 50%;
+    transform: translate(0%, -50%);
+    right: 30vw;
+    color:white;
+    font-size: 2vw;
+  }
+  
+  #nav_profile {
+    position: relative;
+    float: right;
+    top: 50%;
+    transform: translate(0%, -50%);
+    right: 2vw;
+    color:white;
+    font-size: 2vw;
+  }
+  
+  #nav_settings {
+    position: relative;
+    float: right;
+    top: 50%;
+    transform: translate(0%, -50%);
+    right: -14.5vw;
+    color:white;
+    font-size: 2vw;
   }
   
   .welcome_id {
@@ -513,6 +612,50 @@ cursor: pointer;
     top: 1vw;
     left: -6.5vw;
   }
+
+  .nav_bar {
+    position: relative;
+    margin-bottom: -45vw;
+    top: 2.6vw;
+    height: 50vw;
+    text-align: right;
+  }
+  
+  #nav_home {
+    position: relative;
+    float: right;
+    top: 10vw;
+    right: -2.7vw;
+    color:white;
+    font-size: 4.5vw;
+  }
+  
+  #nav_feed {
+    position: relative;
+    float: right;
+    top: 2vw;
+    right: 8vw;
+    color:white;
+    font-size: 4.5vw;
+  }
+  
+  #nav_profile {
+    position: relative;
+    float: right;
+    top: 18vw;
+    right: -16.5vw;
+    color:white;
+    font-size: 4.5vw;
+  }
+  
+  #nav_settings {
+    position: relative;
+    float: right;
+    top: 26vw;
+    right: -34.5vw;
+    color:white;
+    font-size: 4.5vw;
+  }
   
   .welcome_id {
     position: relative;
@@ -586,6 +729,7 @@ cursor: pointer;
   #following {
     position: absolute;
     top: -1.5%;
+    right: 1%;
     height: 8.5vw;
     width: 95%;
     background-color: rgb(216, 216, 216);
@@ -603,6 +747,7 @@ cursor: pointer;
   #followers {
     position: absolute;
     bottom: 1.5%;
+    right: 1%;
     height: 8.8vw;
     width: 95%;
     background-color: rgb(216, 216, 216);

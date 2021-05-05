@@ -401,6 +401,12 @@ export default class PostingList extends React.Component {
           <header>
             <Link to="/feed">
               <img id="committii-logo" src={committiilogo}></img>
+              <div className="nav_bar">
+                <Link to="/"><text id="nav_feed">Home</text></Link>
+                <Link to="/feed"><text id="nav_home">Feed</text></Link>
+                <Link to={"/profile/"+sessionStorage.getItem("user")}><text id="nav_profile">Profile</text></Link>
+                <Link to="/profilesettings"><text id="nav_settings">Settings</text></Link>
+              </div>
             </Link>
             <div class="profile_pic_id">
               <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="prof_pic"/>
@@ -433,6 +439,12 @@ export default class PostingList extends React.Component {
           <header>
             <Link to="/feed">
               <img id="committii-logo" src={committiilogo}></img>
+              <div className="nav_bar">
+                <Link to="/"><text id="nav_feed">Home</text></Link>
+                <Link to="/feed"><text id="nav_home">Feed</text></Link>
+                <Link to={"/profile/"+sessionStorage.getItem("user")}><text id="nav_profile">Profile</text></Link>
+                <Link to="/profilesettings"><text id="nav_settings">Settings</text></Link>
+              </div>
             </Link>
             <div class="profile_pic_id">
               <img src={this.displayProfilePic()} id="prof_pic" alt="logo" />

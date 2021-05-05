@@ -141,25 +141,25 @@ export default class Followers extends React.Component {
     } 
     else {
       return (
-        <div className="posts">
+        <div className="card_row">
           <Link to={"/profile/" + this.state.userid}>
                 <img id="backarrow" src={backarrow}></img>
           </Link>
-          <ul>
-            {connections.map(connection => (
-              <div key={connection.id} className="userlist">
+          {connections.map(connection => ( 
+             <div className="card_column">  
+              <div key={connection.id} className="card">
                 {/* Only use the line below for debugging purposes */}
                 {/* {connection.connectedUser.email} - {connection.type} - {connection.status} */}
-                
-                <Link to={"/profile/" + connection.connectedUser.id}>{connection.connectedUser.email}</Link>
-                <div className="deletePost">
-                {this.conditionalAction(connection.status, connection.id)}
                 <br/>
-                <img src={this.displayProfilePic(connection.connectedUser.id)} id="prof_pic" alt="No profile picture found found." />
+                <Link to={"/profile/" + connection.connectedUser.id} className="profile_link">{connection.connectedUser.email}</Link>
+                <div className= "img_container">
+                  <img src={this.displayProfilePic(connection.connectedUser.id)} id="prof_pic" alt="Profile picture"/>
                 </div>
+                {connection.connectedUser.status}
+                {this.conditionalAction(connection.status, connection.id)}
+              </div>
               </div>
             ))}
-          </ul>
         </div>
       );
     }
