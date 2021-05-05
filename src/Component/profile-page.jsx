@@ -91,7 +91,6 @@ export default class PostingList extends React.Component {
           </div>
           <div class="profile_settings">
             <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-            <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
           </div>
           <div class="create_poll_div">
             <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
