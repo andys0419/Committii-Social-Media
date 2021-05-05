@@ -360,15 +360,14 @@ export default class ProfileSettings extends React.Component {
           <a id="ProfileHeading">Privacy Settings</a>
           <div id="ProfileInput">
             <Checkbox id="checkA" checked={this.statusOFstatus()} value={this.state.status} onChange={e => this.fieldChangeHandler6("status", e)}/>
-            <a id="ProfileSub"> Only show posts from followed users?</a>
+            <a id="ProfileSub"> Only show posts from members I follow.</a>
           </div>
           <div id="ProfileInput">
             <Checkbox id="checkA" checked={this.statusOFstatus2()} value={this.state.lastName} onChange={e => this.fieldChangeHandler6("lastName", e)}/>
-            <a id="ProfileSub"> Show my posts to my followers only?</a>
+            <a id="ProfileSub"> Only show my posts to followers.</a>
           </div>
             <div className='container'>
                 <Link to="/forgotpassword"><button className="bottomButton">Change Password</button></Link>
-                <Link to="/privacy-settings"><button className="bottomButton">Privacy Settings</button></Link>
                 <button onClick={e => this.submitHandle(e)}  className="bottomButton" input type="submit" value="save" >Save Settings</button>
                 <Link to="/closeaccountposts"><button className="bottomButton">Close Account</button></Link>
 

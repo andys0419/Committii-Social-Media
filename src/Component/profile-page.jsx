@@ -91,7 +91,6 @@ export default class PostingList extends React.Component {
           </div>
           <div class="profile_settings">
             <Link to="/profilesettings"><button id="edit_prof">Edit Profile</button></Link>
-            <Link to="/privacy-settings"><button id="edit_priv">Privacy Settings</button></Link>
           </div>
           <div class="create_poll_div">
             <Link to="/createpoll"><button class="create_poll_button">Create Poll</button></Link>
@@ -250,13 +249,54 @@ export default class PostingList extends React.Component {
                     follow_text: 'Follow Member'
                   });
                   this.state.follow_text = 'Follow Member';
-                  window.location.reload();
+                  // window.location.reload();
                 },
                 _error => {
                   alert("An errored occured while trying to unfollow!");
-                  window.location.reload();
                 }
               );
+
+              fetch(process.env.REACT_APP_API_PATH+"/connections?userID="+sessionStorage.getItem("user")+ "&connectedUserID=" +this.state.userid+ "&type=isFollowing&status=active", {
+                method: "get",
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer '+sessionStorage.getItem("token")
+                }
+              }) 
+                .then(res => res.json())
+                .then(
+                  result => {
+                    console.log("Attempting to update following count!")
+                    
+                    followID = result[0][0].id;
+
+                    fetch(process.env.REACT_APP_API_PATH+"/connections/"+  followID, {
+                      method: "PATCH",
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+                      },
+                      body: JSON.stringify({
+                        status: "not_active"
+                      })
+                    })
+                    .then(res => res.json())
+                    .then(
+                      result => {
+                        console.log("Successfully updated following count!")
+                        window.location.reload();
+                      },
+                      _error => {
+                        alert("An errored occured while updating following count!");
+                      }
+                    );
+
+                  },
+                  _error => {
+                    alert("An errored occured while trying to update following count!");
+                  }
+                );
+
           }
 
           else {

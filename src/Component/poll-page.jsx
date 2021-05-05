@@ -438,7 +438,8 @@ export default class PollPages extends React.Component {
           <div class="pollRight"/>
           <Link to={"/profile/"+this.state.userid}><button class="user_button">View Profile</button></Link>
           <div className="poll_page_white_box_header">
-            <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
+            {/* <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link> */}
+            <Link to={"/feed"}> <img id="backarrow-pollpage" src={backarrow}></img> </Link>
             <div className="poll_page_title_id">
               <text id="poll_page_poll_title">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</text>
               <div id="poll_options"/>

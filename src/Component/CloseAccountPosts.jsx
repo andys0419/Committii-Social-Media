@@ -43,11 +43,20 @@ export default class ProfileSettings extends React.Component {
     this.fieldChangeHandler.bind(this);
     this.deleteaction = this.deleteaction.bind(this);
     this.loadPosts = this.loadPosts.bind(this);
-    this.deletePost = this.deletePost.bind(this);
     this.deleteArt = this.deleteArt.bind(this);
-    this.deleteAll = this.deleteAll.bind(this);
 
 
+
+
+  }
+
+  deleteAll() {
+    //make the api call to post
+    console.log("DELETEALL STARTED")
+    for (let p of this.state.art){
+        console.log(p);
+        this.deleteArt(p);
+       }
   }
 
   fieldChangeHandler(field, e) {
@@ -55,6 +64,26 @@ export default class ProfileSettings extends React.Component {
     this.setState({
       [field]: e.target.value
     });
+  }
+
+  deleteArt(artID) {
+    //make the api call to post
+    fetch(process.env.REACT_APP_API_PATH+"/user-artifacts/"+artID, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+sessionStorage.getItem("token")
+      }
+      })
+      .then(
+        result => {
+          this.loadPosts();
+        },
+        error => {
+          alert("error!"+error);
+        }
+      );
+      console.log("DELETED" +artID)
   }
 
   loadPosts() {
@@ -78,6 +107,7 @@ export default class ProfileSettings extends React.Component {
               posts: result[0]
             });
             console.log("Got Posts");
+            console.log(this.state.posts);
           }
         },
         error => {
@@ -88,7 +118,9 @@ export default class ProfileSettings extends React.Component {
           console.log("ERROR loading Posts")
         }
       );
+  }
 
+  componentDidMount() {
 
     fetch(process.env.REACT_APP_API_PATH+"/user-artifacts?ownerID="+sessionStorage.getItem("user"), {
       method: "get",
@@ -123,9 +155,7 @@ export default class ProfileSettings extends React.Component {
           console.log("ERROR loading Posts")
         }
       );
-  }
 
-  componentDidMount() {
     this.loadPosts();
     console.log("In profile");
     console.log(this.props);
@@ -158,8 +188,6 @@ export default class ProfileSettings extends React.Component {
           alert("error!");
         }
       );
-
-
 
     //make the api call to the user API to get the user with all of their attached preferences
     fetch(process.env.REACT_APP_API_PATH+"/user-preferences?userID="+sessionStorage.getItem("user"), {
@@ -331,57 +359,7 @@ export default class ProfileSettings extends React.Component {
   };
 
 
-  deletePost(postID) {
-    //make the api call to post
-    fetch(process.env.REACT_APP_API_PATH+"/posts/"+postID, {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      }
-      })
-      .then(
-        result => {
-          this.loadPosts();
-        },
-        error => {
-          alert("error!"+error);
-        }
-      );
-  }
 
-
-  deleteArt(artID) {
-    //make the api call to post
-    fetch(process.env.REACT_APP_API_PATH+"/user-artifacts/"+artID, {
-      method: "DELETE",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      }
-      })
-      .then(
-        result => {
-          this.loadPosts();
-        },
-        error => {
-          alert("error!"+error);
-        }
-      );
-  }
-
-  deleteAll() {
-    //make the api call to post
-    for (let x of this.state.posts) {
-        console.log(x[0]);
-        console.log(x.id);
-        this.deletePost(x.id)
-}
-    for (let p of this.state.art){
-        console.log(p);
-        this.deleteArt(p);
-       }
-  }
 
   render() {
       const {error, isLoaded, posts} = this.state;
@@ -391,11 +369,10 @@ export default class ProfileSettings extends React.Component {
             <Link to="/profilesettings">
                 <img id="backarrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Are you sure you want to close your account?</a>
-            <a id="ProfileHeading">This action cannot be undone and all data associated with your account will be deleted. Would you like to proceed?</a>
-                <Link to="/closeaccountfeedback"><button>Yes, Close My Account</button></Link>
-                <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
-                       <button onClick={this.deleteAll()}></button>
+          <a id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
+            <a id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
+                <Link to="/closeaccount"><button>Yes, Delete All Posts</button></Link>
+                <Link to="/profilesettings"><button onClick={() => this.deleteAll()}>No, Take Me Back</button></Link>
 
             <Link to="/profile">
             <img id="settingslogo" src={logo}></img>
@@ -415,12 +392,12 @@ export default class ProfileSettings extends React.Component {
             <Link to="/profilesettings">
                 <img id="backarrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Are you sure you want to close your account?</a>
-            <a id="ProfileHeading">This action cannot be undone and all data associated with your account will be deleted. Would you like to proceed?</a>
-                <Link to="/closeaccountfeedback"><button>Yes, Close My Account</button></Link>
+          <a id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
+            <a id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
+                <Link to="/closeaccount"><button onClick={() => this.deleteAll()}>Yes, Delete All Posts</button></Link>
                 <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
 
-            <Link to={"/profile/"+sessionStorage.getItem("user")}>
+            <Link to="/profile">
             <img id="settingslogo" src={logo}></img>
             </Link>
         </div>
