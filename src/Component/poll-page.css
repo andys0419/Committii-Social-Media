@@ -23,7 +23,7 @@
     flex: 1;
 }
 
-#LoginForm {
+#CommentBox {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     border-width: 4px;
@@ -32,6 +32,7 @@
     text-align:start;
     position: relative;
     bottom: 70px;
+    width: 50vw;
     height: 100px;
     
 }
@@ -214,7 +215,7 @@
     margin-bottom: 25vw;
 }
 
-#LoginForm {
+#CommentBox {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     border-width: 4px;
@@ -222,7 +223,7 @@
     border-radius: 100px;
     text-align:start;
     position: relative;
-    bottom: 70px;
+    width: 70vw;
     height: 100px;
     
 }
@@ -414,7 +415,7 @@
     height: 12vw;
 }
 
-#LoginForm {
+#CommentBox {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
     border-width: 4px;
@@ -422,7 +423,7 @@
     border-radius: 100px;
     text-align:start;
     position: relative;
-    bottom: 70px;
+    width: 70vw;
     height: 100px;
     
 }
@@ -689,7 +690,7 @@
     font-family: Georgia, 'Times New Roman', Times, serif;
   }
 
-  body, h1, h2, h3, h4, h5, h6, LoginForm, feed, .comment_message {
+  body, h1, h2, h3, h4, h5, h6, CommentForm, feed, .comment_message {
     font-family: 'Poppins', sans-serif;
   }
   

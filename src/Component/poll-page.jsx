@@ -279,7 +279,7 @@ export default class PollPages extends React.Component {
   }
 
   loadComments(postData) {
-    let url = process.env.REACT_APP_API_PATH + "/posts?content=";
+    let url = process.env.REACT_APP_API_PATH + "/posts?parentID=";
     console.log(postData)
     url += this.state.postid
     url += "&type=comments";
@@ -376,8 +376,8 @@ export default class PollPages extends React.Component {
       },
       body: JSON.stringify({
         authorID: sessionStorage.getItem("user"),
-        parentID: this.props.parent,
-        content: this.state.postid,
+        parentID: this.state.postid,
+        content: sessionStorage.getItem("current_content"),
         type: "comments",
         thumbnailURL: postMsg
       })
@@ -451,7 +451,7 @@ export default class PollPages extends React.Component {
               <div className="comments_box">
                 <text className="comment_title"> Create New Comment: </text>
               </div>
-                <input id="LoginForm" type="text" placeholder="Your comment here!" onChange={this.myChangeHandler} />
+                <input id="CommentBox" type="text" placeholder="Your comment here!" onChange={this.myChangeHandler} />
                 <button className="submit_button" onClick={()=>{this.submitHandler()}}> Submit </button>
               <div id="poll_footer"/>
             </div>
