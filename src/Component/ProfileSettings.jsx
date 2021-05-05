@@ -266,6 +266,7 @@ export default class ProfileSettings extends React.Component {
             responseMessage: result.Status
           });
           window.location.reload();
+          alert("Profile Settings Saved!")
         },
         error => {
           alert("error!");

@@ -183,7 +183,7 @@ export default class CommentForm extends React.Component {
 
 
                 <form onSubmit={this.submitHandler}>
-                    <button className="submit_button" type="submit">Send Message</button>
+                    <button className="submit_button2" type="submit">Send Message</button>
                     <br/>
                     {this.state.errorMessage !== "" ? this.state.errorMessage : <div/>}
                     <br />

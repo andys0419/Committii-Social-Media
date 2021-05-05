@@ -133,7 +133,7 @@ export default class Register extends React.Component {
             <div className="vRight">
                 <p className="feedProfile6"> Compose New Message  </p>
                 <button className="feedSort2"><Link to="/createmessage">
-                    <img id="create_message" src={create_message}></img>
+                    <img alt="Send Message" id="create_message" src={create_message}></img>
                 </Link></button>
             </div>
 

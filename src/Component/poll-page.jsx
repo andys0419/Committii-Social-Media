@@ -9,6 +9,7 @@ import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
 import prof_pic from "../assets/profile-picture-holder.png";
 import hearticon from "../assets/heart-icon.svg";
+import profile from "../assets/profile-picture-holder.png";
 import CommentForm from "./CommentForm.jsx";
 import helpIcon from "../assets/delete.png";
 import commentIcon from "../assets/comment.svg";
@@ -36,9 +37,11 @@ export default class PollPages extends React.Component {
       voter_list_second: [],
       likes: 0,
       userid: -1,
+      otheruser: -1,
       postid: postid,
       comment: "",
       comments: [],
+      nickname: ""
     };
     this.submitHandler = this.submitHandler.bind(this);
 
@@ -153,6 +156,7 @@ export default class PollPages extends React.Component {
               // IMPORTANT!  You need to guard against any of these values being null.  If they are, it will
               // try and make the form component uncontrolled, which plays havoc with react
               username: result.email || "",
+              nickname: result.username || "",
               //firstname: result.firstName || "",
               //lastname: result.lastName || ""
 
@@ -432,6 +436,7 @@ export default class PollPages extends React.Component {
         <div className="poll_page_white_box">
           <div class="pollLeft"/>
           <div class="pollRight"/>
+          <Link to={"/profile/"+this.state.userid}><button class="user_button">View Profile</button></Link>
           <div className="poll_page_white_box_header">
             <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
             <div className="poll_page_title_id">
