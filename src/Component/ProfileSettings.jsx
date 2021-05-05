@@ -205,6 +205,7 @@ export default class ProfileSettings extends React.Component {
   }
 
   uploadProfileImage(userArtifact){
+    console.log("HERE???")
     const formData = new FormData();
     const fileInput = document.querySelector('input[type="file"]');
     formData.append("file", fileInput.files[0]);
@@ -234,10 +235,10 @@ export default class ProfileSettings extends React.Component {
       })
   }
 
-  submitHandler = async (event) =>  {
+  submitHandle(e) {
     //keep the form from actually submitting
-    event.preventDefault();
     console.log(this.state.privacy)
+    e.preventDefault();
     //make the api call to the user controller
     fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
       method: "PATCH",
@@ -265,7 +266,6 @@ export default class ProfileSettings extends React.Component {
           this.setState({
             responseMessage: result.Status
           });
-          window.location.reload();
           alert("Profile Settings Saved!")
         },
         error => {
@@ -282,8 +282,9 @@ export default class ProfileSettings extends React.Component {
 
     const token = this.state.token;
     const password = this.state.password;
+    console.log("Here?")
 
-            let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+            let res = fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
                 body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
                 headers: {
                     'Accept': "*/*",
@@ -311,6 +312,7 @@ export default class ProfileSettings extends React.Component {
     .then(
       result => {
         var userArtifact = -1;
+        console.log("Yeet")
         userArtifact = result.id;
         if (userArtifact != -1){
           this.uploadProfileImage(userArtifact);
@@ -367,7 +369,7 @@ export default class ProfileSettings extends React.Component {
             <div className='container'>
                 <Link to="/forgotpassword"><button className="bottomButton">Change Password</button></Link>
                 <Link to="/privacy-settings"><button className="bottomButton">Privacy Settings</button></Link>
-                <button onClick={this.submitHandler}  className="bottomButton" input type="submit" value="save" >Save Settings</button>
+                <button onClick={e => this.submitHandle(e)}  className="bottomButton" input type="submit" value="save" >Save Settings</button>
                 <Link to="/closeaccountposts"><button className="bottomButton">Close Account</button></Link>
 
             </div>
