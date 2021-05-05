@@ -249,6 +249,7 @@ export default class ProfileSettings extends React.Component {
           this.setState({
             responseMessage: result.Status
           });
+          window.location.reload();
         },
         error => {
           alert("error!");
