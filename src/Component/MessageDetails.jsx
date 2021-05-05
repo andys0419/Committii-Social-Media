@@ -40,7 +40,6 @@ export default class Register extends React.Component {
   }
 
   componentDidMount() {
-      this.loadPosts();
       fetch(process.env.REACT_APP_API_PATH + "/messages?recipientUserID=" + sessionStorage.getItem("user"), {
           method: "get",
           headers: {
@@ -49,6 +48,11 @@ export default class Register extends React.Component {
           }
       })
           .then(res => res.json())
+          .then(
+            result => {
+              this.loadPosts();
+            }
+          )
       ;
   }
   loadPosts() {
@@ -67,7 +71,7 @@ export default class Register extends React.Component {
       .then(res => res.json())
       .then(
         result => {
-          if (result) {
+          if (result[0]) {
             let resultarr = result[0].map(a => a.content);
             let uniqueItems = [...new Set(resultarr)]
             console.log(uniqueItems)
@@ -75,7 +79,7 @@ export default class Register extends React.Component {
               isLoaded: true,
               authors: uniqueItems
             });
-            ;
+            this.render()
             console.log("Got SPECIFIC");
             console.log(result[0]);
           }
@@ -112,6 +116,8 @@ export default class Register extends React.Component {
 
   render() {
     const {authors, currentauthor} = this.state;
+
+    if (this.state.authors.length == 0) this.loadPosts()
     return (
       <div class = "feed">
         <Link to="/feed">
@@ -120,7 +126,7 @@ export default class Register extends React.Component {
 
         <div class="feedOptions">
           <div class="vLeft">
-            <button class="feedSort"><Link to="/messages">
+            <button class="feedSort2"><Link to="/messages">
                     <img id="backarrow" src={backarrow}></img>
             </Link></button>
           </div>
@@ -132,7 +138,6 @@ export default class Register extends React.Component {
             </div>
 
           <p class="feedProfile2"> Messages from {sessionStorage.getItem("currentauthor")} </p>
-            <p className="feedProfile3"> Refresh page for latest messages </p>
 
         </div>
 

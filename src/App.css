@@ -594,7 +594,7 @@ input[type=submit] {
 
 .vRight {
   border-left: 3px solid rgb(255, 255, 255);
-  height: 2000px;
+  height: 100%;
   position: absolute;
   left: 100%;
   margin-left: -3px;
@@ -603,7 +603,7 @@ input[type=submit] {
 
 .vLeft {
   border-left: 3px solid rgb(255, 255, 255);
-  height: 2000px;
+  height: 100%;
   position: absolute;
   right: 100%;
   margin-right: -3px;
@@ -635,7 +635,7 @@ input[type=submit] {
   position:relative;
 }
 .messageInd {
-  border: 3px solid rgb(172, 172, 172);
+  border: 2px solid rgb(255, 255, 255);
   width: 99.4%;
   height: 125px;
   z-index: initial;
@@ -714,16 +714,12 @@ input[type=submit] {
 }
 .feedSort2 {
   position:absolute;
-  border-width: 2px;
-  border-color:white;
-  border-radius: 100px;
-  left: 10%;
+  width: 10vw;
   background-color: black;
-  border: none;
   color: white;
-  font-size: 100%;
+  padding: 8px;
+  font-size: 1.8vw;
   cursor: pointer;
-  top: 1%;
 }
 
 .imagemessage {
@@ -889,18 +885,19 @@ input[type=submit] {
 }
 
 .poll_button {
-  position: absolute;
-  background-color: rgb(216, 216, 216);
-  border: black 1px solid;
-  color: black;
-  width: 5%;
-  height: 9.5%;
+  position: fixed;
+  top: 10%;
+  background-color: rgb(255, 255, 255);
+  border: rgb(0, 0, 0) 3px solid;
+  color: rgb(0, 0, 0);
+  width: 7.5%;
+  height: 15%;
   text-align: center;
   padding: 4px 3px 0 3px;
   font-size: 130%;
   font-weight: 600;
-  left: 90%;
-  top: 34%;
+  left: 85%;
+
   margin-left: -2.5%;
   z-index: 1;
   border-radius: 50%;

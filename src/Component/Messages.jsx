@@ -40,7 +40,6 @@ export default class Register extends React.Component {
   }
 
   componentDidMount() {
-    this.loadPosts();
     fetch(process.env.REACT_APP_API_PATH + "/messages?recipientUserID="+sessionStorage.getItem("user"), {
       method: "get",
       headers: {
@@ -49,7 +48,11 @@ export default class Register extends React.Component {
       }
     })
       .then(res => res.json())
-      ;
+      .then(
+        result => {
+          this.loadPosts();
+        }
+      )
   }
 
   loadPosts() {
@@ -79,6 +82,7 @@ export default class Register extends React.Component {
             ;
             console.log("Got Messages");
             console.log(result[0]);
+            this.render()
           }
         },
         error => {
@@ -149,7 +153,7 @@ export default class Register extends React.Component {
 
         <div class="feedOptions">
           <div class="vLeft">
-            <button class="feedSort"><Link to="/feed">
+            <button class="feedSort2"><Link to="/feed">
                     <img id="backarrow" src={backarrow}></img>
             </Link></button>
           </div>

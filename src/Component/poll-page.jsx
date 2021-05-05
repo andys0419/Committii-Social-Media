@@ -432,7 +432,6 @@ export default class PollPages extends React.Component {
         <div className="poll_page_white_box">
           <div class="pollLeft"/>
           <div class="pollRight"/>
-          <button class="feedMessages">Messages</button>
           <div className="poll_page_white_box_header">
             <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link>
             <div className="poll_page_title_id">

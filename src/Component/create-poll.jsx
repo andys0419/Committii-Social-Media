@@ -90,7 +90,7 @@ export default class PostForm extends React.Component {
     else return (
       <div class="CreatePollPage">
         <header>
-          <Link to="/"><img id="committii-logo" src={committiilogo}></img></Link>
+          <Link to="/feed"><img id="committii-logo" src={committiilogo}></img></Link>
         </header>
         <div class="create_poll_white_box">
           <header class="create_poll_white_box_header">

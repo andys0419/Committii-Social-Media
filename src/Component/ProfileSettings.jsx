@@ -234,90 +234,90 @@ export default class ProfileSettings extends React.Component {
       })
   }
 
-    submitHandler = async (event) =>  {
-        //keep the form from actually submitting
-        event.preventDefault();
-        console.log(this.state.status)
-        //make the api call to the user controller
-        fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
-          method: "PATCH",
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ sessionStorage.getItem("token")
-          },
-          body: JSON.stringify({
-    
-                username: this.state.username,
-                email: this.state.email,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                blockedUsers: this.state.blockedUsers,
-                status: this.state.status,
-                token: this.state.token,
-                status: this.state.status
-    
-          })
-        })
-          .then(res => res.json())
-          .then(
-            result => {
-              this.setState({
-                responseMessage: result.status
-              });
-              alert("Saved!");
-            },
-            error => {
-              alert("error!");
-            }
-          );
-    
-        let url = process.env.REACT_APP_API_PATH+"/user-preferences";
-        let method = "POST";
-    
-    
-    
-        //make the api call to the user prefs controller
-    
-        const token = this.state.token;
-        const password = this.state.password;
-    
-                let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
-                    body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
-                    headers: {
-                        'Accept': "*/*",
-                        "Content-Type": "application/json"
-                    },
-                    method: "POST"
-                });
-    
-    
-        //fetch calls for profile Image
-        if(document.getElementById("imgUpload").value != ""){
-        fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
-          body: JSON.stringify({
-            "ownerID": sessionStorage.getItem("user"),
-            "type": "Image",
-            "url": "String",
-            "category": "profilepic"
-          })
-        })
-        .then(res => res.json())
-        .then(
-          result => {
-            var userArtifact = -1;
-            userArtifact = result.id;
-            if (userArtifact != -1){
-              this.uploadProfileImage(userArtifact);
-            }
-          })
-        }
-    
-      }
+  submitHandler = async (event) =>  {
+    //keep the form from actually submitting
+    event.preventDefault();
+    console.log(this.state.privacy)
+    //make the api call to the user controller
+    fetch(process.env.REACT_APP_API_PATH+"/users/"+sessionStorage.getItem("user"), {
+      method: "PATCH",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")
+      },
+      body: JSON.stringify({
+
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            blockedUsers: this.state.blockedUsers,
+            status: this.state.status,
+            token: this.state.token,
+            privacy: this.state.privacy
+
+      })
+    })
+      .then(res => res.json())
+      .then(
+        result => {
+          this.setState({
+            responseMessage: result.Status
+          });
+          window.location.reload();
+        },
+        error => {
+          alert("error!");
+        }
+      );
+
+    let url = process.env.REACT_APP_API_PATH+"/user-preferences";
+    let method = "POST";
+
+
+
+    //make the api call to the user prefs controller
+
+    const token = this.state.token;
+    const password = this.state.password;
+
+            let res = await fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+                body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
+                headers: {
+                    'Accept': "*/*",
+                    "Content-Type": "application/json"
+                },
+                method: "POST"
+            });
+
+
+    //fetch calls for profile Image
+    if(document.getElementById("imgUpload").value != ""){
+    fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+ sessionStorage.getItem("token")},
+      body: JSON.stringify({
+        "ownerID": sessionStorage.getItem("user"),
+        "type": "Image",
+        "url": "String",
+        "category": "profilepic"
+      })
+    })
+    .then(res => res.json())
+    .then(
+      result => {
+        var userArtifact = -1;
+        userArtifact = result.id;
+        if (userArtifact != -1){
+          this.uploadProfileImage(userArtifact);
+        }
+      })
+    }
+
+  }
   ///////////////
   render() {
     const LoginFormStyle = {

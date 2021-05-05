@@ -23,8 +23,6 @@
     flex: 1;
 }
 
-
-
 #CommentBox {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
@@ -39,6 +37,9 @@
     
 }
 
+#create_message{
+    left: 20%;
+}
 #backarrow-pollpage {
     position: relative;
     top: 0.5vw;
@@ -77,7 +78,6 @@
     transform: translate(-50%, 10%);
     width: 30vw;
     height: 600px;
-    top: 2vw;
     border: 1px solid black;
     padding: 0.5vw;
 }
@@ -271,7 +271,6 @@
     transform: translate(-50%, 10%);
     width: 60vw;
     height: 600px;
-    top:auto;
     border: 1px solid black;
     padding: 0.5vw;
 }
@@ -466,7 +465,6 @@
     left: 50%;
     transform: translate(-50%, 10%);
     width: 80vw;
-    top: 40vw;
     height: 600px;
     border: 1px solid black;
     padding: 0.5vw;
@@ -622,7 +620,7 @@
 
   .pollRight {
     border-left: 3px solid rgb(255, 255, 255);
-    height: 127.5%;
+    height: 140%;
     position: absolute;
     left: 100%;
     margin-left: -3px;
@@ -631,7 +629,7 @@
   
   .pollLeft {
     border-left: 3px solid rgb(255, 255, 255);
-    height: 127.5%;
+    height: 140%;
     position: absolute;
     right: 100%;
     margin-right: -3px;
@@ -641,7 +639,7 @@
 
   .commentLeft {
     border-left: 3px solid rgb(255, 255, 255);
-    height: 157px;
+    height: 100%;
     position: absolute;
     left: 100%;
     margin-left: -3px;
@@ -651,7 +649,7 @@
   
   .commentRight {
     border-left: 3px solid rgb(255, 255, 255);
-    height: 157px;
+    height: 100%;
     position: absolute;
     right: 100%;
     margin-right: -3px;

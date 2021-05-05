@@ -14,7 +14,7 @@ export default class Register extends React.Component {
       password: "",
       confirm: "",
       alanmessage: "",
-      errormessage: "",
+      errorMessage: "",
       sessiontoken: "",
       redir: false
     };
@@ -56,7 +56,31 @@ export default class Register extends React.Component {
         errorMessage: "Error, passwords don't match!",
       });
       return;
+    }
+    //check empty
+    if (this.state.username == "" || this.state.password == "" || this.state.nickname == ""  || this.state.confirm == "") {
+      this.setState({
+        errorMessage: "Please fill in all required fields."
+      })
+      return;
+    }
 
+    //check email format is valid
+    var email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!this.state.username.match(email_pattern)) {
+      this.setState({
+        errorMessage: "Please enter a valid email format."
+      })
+      return;
+    }
+
+    //check password fields are matching
+    if (this.state.password !== this.state.confirm){
+      this.setState({
+        errorMessage: "Error: Passwords do not match"
+      })
+      return;
     }
     //make the api call to the authentication page
     fetch(process.env.REACT_APP_API_PATH+"/auth/signup", {
@@ -131,12 +155,6 @@ export default class Register extends React.Component {
       );
   }
   render() {
-    if (this.state.errormessage !== "") {
-      window.alert(this.state.errormessage);
-      this.setState({
-        errormessage: ""
-      });
-    }
     if (this.state.redir) return <Redirect to='/feed'/>
     else return (
     <div>
