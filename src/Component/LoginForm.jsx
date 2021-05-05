@@ -17,6 +17,7 @@ export default class LoginForm extends React.Component {
       password: "",
       alanmessage: "",
       sessiontoken: "",
+      errorMessage: "",
       redir: false
     };
     //this.refreshPostsFromLogin = this.refreshPostsFromLogin.bind(this);
@@ -90,7 +91,9 @@ export default class LoginForm extends React.Component {
           }
         },
         _error => {
-          alert("error!");
+          this.setState({
+            errorMessage: "Incorrect email or password. Please try again.",
+          });
         }
       );
   };
@@ -103,6 +106,8 @@ export default class LoginForm extends React.Component {
       return (
         <form id="Login" onSubmit={this.submitHandler}>
           <h1 id="LoginLabel">SIGN IN</h1>
+          {this.state.errorMessage !== "" ? <a id="ForgotP">{this.state.errorMessage}</a> : <div/>}
+          {this.state.errorMessage == ""}
           <div id="LoginUsername">
             <input id="LoginForm" type="text" placeholder="Username" onChange={this.myChangeHandler} />
           </div>
