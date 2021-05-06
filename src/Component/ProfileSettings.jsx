@@ -44,18 +44,18 @@ export default class ProfileSettings extends React.Component {
   }
 
     statusOFstatus() {
-        if(this.state.status == 'false'){
+        if(this.state.status === 'false'){
         return false;
         }
-        if(this.state.status == 'true'){
+        if(this.state.status === 'true'){
         return true;
         }
       }
       statusOFstatus2() {
-        if(this.state.lastName == 'false'){
+        if(this.state.lastName === 'false'){
         return false;
         }
-        if(this.state.lastName == 'true'){
+        if(this.state.lastName === 'true'){
         return true;
         }
       }
@@ -155,31 +155,6 @@ export default class ProfileSettings extends React.Component {
           alert("error!");
         }
       );
-
-    //make the api call to the user API to get the user with all of their attached preferences
-    fetch(process.env.REACT_APP_API_PATH+"/user-preferences?userID="+sessionStorage.getItem("user"), {
-      method: "get",
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer '+sessionStorage.getItem("token")
-      }
-    })
-      .then(res => res.json())
-      .then(
-        result => {
-          if (result) {
-            console.log(result)
-            let favoritecolor = "";
-
-            // read the user preferences and convert to an associative array for reference
-
-
-          }
-        },
-        error => {
-          alert("error!");
-        }
-      );
   }
 
 
@@ -194,7 +169,7 @@ export default class ProfileSettings extends React.Component {
    .then(res => res.json())
    .then(
      result => {
-       if (result.role == ""){
+       if (result.role === ""){
          document.getElementById("profilepic").src = prof_pic
        }else{
        var server = "https://webdev.cse.buffalo.edu"
@@ -273,29 +248,18 @@ export default class ProfileSettings extends React.Component {
         }
       );
 
-    let url = process.env.REACT_APP_API_PATH+"/user-preferences";
-    let method = "POST";
-
-
-
-    //make the api call to the user prefs controller
-
-    const token = this.state.token;
-    const password = this.state.password;
-    console.log("Here?")
-
-            let res = fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
-                body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
-                headers: {
-                    'Accept': "*/*",
-                    "Content-Type": "application/json"
-                },
-                method: "POST"
-            });
+      fetch("https://webdev.cse.buffalo.edu/hci/elmas/api/api/auth/reset-password", {
+        body: JSON.stringify({'token': this.state.token, 'password': this.state.password}),
+        headers: {
+            'Accept': "*/*",
+            "Content-Type": "application/json"
+        },
+        method: "POST"
+      });
 
 
     //fetch calls for profile Image
-    if(document.getElementById("imgUpload").value != ""){
+    if(document.getElementById("imgUpload").value !== ""){
     fetch(process.env.REACT_APP_API_PATH + "/user-artifacts", {
       method: "POST",
       headers: {
@@ -314,7 +278,7 @@ export default class ProfileSettings extends React.Component {
         var userArtifact = -1;
         console.log("Yeet")
         userArtifact = result.id;
-        if (userArtifact != -1){
+        if (userArtifact !== -1){
           this.uploadProfileImage(userArtifact);
         }
       })
@@ -327,22 +291,21 @@ export default class ProfileSettings extends React.Component {
       width: "96%",
       height: "3em"
     };
-    var check = false;
       return (
           <form onSubmit={this.submitHandler} className="profileform">
         <div id="Login">
              <Link to={"/profile/"+sessionStorage.getItem("user")}>
-                <img id="backarrow" src={backarrow}></img>
+                <img id="backarrow" alt="Back arrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Hello, {this.state.username}</a>
+          <a href="/#" id="HeaderLabel">Hello, {this.state.username}</a>
             <div className='container'>
-                <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="profilepic"/>
+                <img src={this.displayProfilePic()} className="prof_pic" alt="Profile" id="profilepic"/>
                 <form action="/action_page.php" id="avatarbutton">
                   <label for="img1">Select Image:</label>
                   <input type="file" id="imgUpload" name="img" accept="image/*"></input>
                 </form>
             </div>
-            <a id="ProfileHeading">Account Information</a>
+            <a href="/#" id="ProfileHeading">Account Information</a>
           <div id="ProfileInput">
             <input id="username" style={LoginFormStyle} type="text" placeholder={"Username: "+this.state.username} onChange={e => this.fieldChangeHandler("username", e)}
             value={this.state.username} />
@@ -351,20 +314,20 @@ export default class ProfileSettings extends React.Component {
             <input id="email" style={LoginFormStyle} type="text" placeholder={"Email: "+this.state.email} onChange={e => this.fieldChangeHandler2("email", e)}
             value={this.state.email}/>
           </div>
-            <a id="ProfileHeading">Social Information</a>
+            <a href="/#" id="ProfileHeading">Social Information</a>
             <div id="ProfileInput">
             <input id="bio" style={LoginFormStyle} type="text" placeholder={"Short Bio: "+this.state.firstName} onChange={e => this.fieldChangeHandler4("firstName", e)}
             value={this.state.firstName}/>
           </div>
 
-          <a id="ProfileHeading">Privacy Settings</a>
+          <a href="/#" id="ProfileHeading">Privacy Settings</a>
           <div id="ProfileInput">
             <Checkbox id="checkA" checked={this.statusOFstatus()} value={this.state.status} onChange={e => this.fieldChangeHandler6("status", e)}/>
-            <a id="ProfileSub"> Only show posts from members I follow.</a>
+            <a href="/#"id="ProfileSub"> Only show posts from members I follow.</a>
           </div>
           <div id="ProfileInput">
             <Checkbox id="checkA" checked={this.statusOFstatus2()} value={this.state.lastName} onChange={e => this.fieldChangeHandler6("lastName", e)}/>
-            <a id="ProfileSub"> Only show my posts to followers.</a>
+            <a id="ProfileSub" href="/#"> Only show my posts to followers.</a>
           </div>
             <div className='container'>
                 <Link to="/forgotpassword"><button className="bottomButton">Change Password</button></Link>
@@ -373,7 +336,7 @@ export default class ProfileSettings extends React.Component {
 
             </div>
 
-          <Link to="/feed"><img id="committii-logo" src={logo}></img></Link>
+          <Link to="/feed"><img id="committii-logo" alt="Committii Logo" src={logo}></img></Link>
         </div>
         {this.state.responseMessage}
       </form> );

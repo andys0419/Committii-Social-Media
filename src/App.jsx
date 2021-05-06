@@ -10,8 +10,6 @@ import PostForm from "./Component/PostForm.jsx";
 import PostingList from "./Component/PostingList.jsx";
 import Post from "./Component/Post.jsx";
 import LoginForm from "./Component/LoginForm.jsx";
-import FriendForm from "./Component/FriendForm.jsx";
-import Modal from "./Component/Modal.jsx";
 import Feed from "./Component/feed.jsx";
 import Profile from "./Component/profile-page.jsx";
 import Followers from "./Component/MyFollowers";
@@ -97,7 +95,7 @@ class App extends React.Component {
               <div className="navbar">
                 <Link to="/">
                   <cz id="MicImage">
-                    <img src="Images/committii logo.JPG"></img>
+                    <img alt="Committii Logo" src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -122,7 +120,7 @@ class App extends React.Component {
               <div id="navbar" className="navbar">
                 <Link to="/">
                   <cz>
-                    <img src="Images/committii logo.JPG"></img>
+                    <img alt="Committii Logo" src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -151,7 +149,7 @@ class App extends React.Component {
             <div id="navbar" className="navbar">
                 <Link to="/">
                   <cz>
-                    <img src="Images/committii logo.JPG"></img>
+                    <img alt="Committii Logo" src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -164,7 +162,7 @@ class App extends React.Component {
             <div id="navbar" className="navbar">
                 <Link to="/">
                   <cz>
-                    <img src="Images/committii logo.JPG"></img>
+                    <img alt="Committii Logo" src="Images/committii logo.JPG"></img>
                     <c>COMMITTII</c>
                   </cz>
                 </Link>
@@ -202,7 +200,7 @@ class App extends React.Component {
           <div id="navbar" className="navbar">
             <Link to="/">
               <cz>
-                <img src="Images/committii logo.JPG"></img>
+                <img alt="Committii Logo" src="Images/committii logo.JPG"></img>
                 <c>COMMITTII</c>
               </cz>
             </Link>
@@ -213,7 +211,7 @@ class App extends React.Component {
           <Route exact path="/">
             <homepage>
               <div id="navbar" className="navbar">
-                <img src="Images/committii logo.JPG"></img>
+                <img alt="Committii Logo" src="Images/committii logo.JPG"></img>
                 <c>COMMITTII</c>
                 <Link to="/login"><ld>Login</ld></Link>
                 <Link to="/styleguide"><ld>Style Guide</ld></Link>
@@ -223,7 +221,7 @@ class App extends React.Component {
                   <t>LIFE, BY COMMITTII.</t>
                   <b>Create your own polls, View other user polls, and Vote on a Poll of your choice.</b>
               </div>
-                <img src="Images/graphs.JPG"></img>
+                <img alt="Committii Logo"src="Images/graphs.JPG"></img>
               </div>
             </homepage>
           </Route>

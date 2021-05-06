@@ -77,7 +77,7 @@ export default class Followers extends React.Component {
   }
 
   conditionalAction(status, id){
-    if (status == "active"){
+    if (status === "active"){
       return(
 
       <img
@@ -113,7 +113,7 @@ export default class Followers extends React.Component {
    .then(
      result => {
        console.log(result)
-       if (result.role == ""){
+       if (result.role === ""){
          document.getElementById("prof_pic").src = prof_pic
        }
        else{
@@ -132,7 +132,7 @@ export default class Followers extends React.Component {
     } else if (!isLoaded) {
       return <div> Loading... </div>;
     }
-    else if (connections.length == 0) {
+    else if (connections.length === 0) {
       return (
         <div className="emptylist">
             You currently do not have any followers.
@@ -143,7 +143,7 @@ export default class Followers extends React.Component {
       return (
         <div className="card_row">
           <Link to={"/profile/" + this.state.userid}>
-                <img id="backarrow" src={backarrow}></img>
+                <img id="backarrow" alt="Back arrow" src={backarrow}></img>
           </Link>
           {connections.map(connection => ( 
              <div className="card_column">  
@@ -153,7 +153,7 @@ export default class Followers extends React.Component {
                 <br/>
                 <Link to={"/profile/" + connection.connectedUser.id} className="profile_link">{connection.connectedUser.email}</Link>
                 <div className= "img_container">
-                  <img src={this.displayProfilePic(connection.connectedUser.id)} id="prof_pic" alt="Profile picture"/>
+                  <img src={this.displayProfilePic(connection.connectedUser.id)} id="prof_pic" alt="Profile"/>
                 </div>
                 {connection.connectedUser.status}
                 {this.conditionalAction(connection.status, connection.id)}

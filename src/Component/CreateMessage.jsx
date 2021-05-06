@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
-import CommentsList from "./CommentsList.jsx";
 import "./CommentForm.css"
 import backarrow from "../assets/back_arrow.svg";
 import "../App.css";
@@ -24,12 +23,12 @@ export default class CommentForm extends React.Component {
 
     const postMsg = this.state.post_text;
 
-    if (postMsg == '') {
+    if (postMsg === '') {
         this.setState({
             errorMessage: "Please enter a message."
         })
         return;
-    } else if (this.state.recipientUserID == ''){
+    } else if (this.state.recipientUserID === ''){
 
         this.setState({
             errorMessage: "Please enter a recipient."
@@ -153,10 +152,10 @@ export default class CommentForm extends React.Component {
 
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <header class="masthead">
-              <Link to="/feed"><img id="committi_logo" src={committiilogo}></img></Link>
+              <Link to="/feed"><img id="committi_logo" alt="Committii Logo" src={committiilogo}></img></Link>
                 <div className="messageOptions">
                     <Link to="/messages">
-                        <img id="backarrow" src={backarrow}></img>
+                        <img href="/#" id="backarrow" alt="Back arrow" src={backarrow}></img>
                     </Link>
                     <h2 className="messageName2">Send Message</h2>
                     </div>

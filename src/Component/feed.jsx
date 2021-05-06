@@ -3,15 +3,7 @@ import "../App.css";
 import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
-import backarrow from "../assets/back_arrow.svg";
-import prof_pic from "../assets/profile-picture-holder.png";
-import hearticon from "../assets/heart-icon.svg";
-import Post from "./Post.jsx";
 
-import {
-    Redirect, useHistory
-} from 'react-router';
-//import Autocomplete from "./Autocomplete.jsx";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -66,8 +58,8 @@ export default class Feed extends React.Component {
               // try and make the form component uncontrolled, which plays havoc with react
               username: result.username || "",
               email: result.email || "",
-              privacy: result.status == "true",
-              theyprivate: result.lastName == "true",
+              privacy: result.status === "true",
+              theyprivate: result.lastName === "true",
               //lastname: result.lastName || ""
 
             });
@@ -223,7 +215,7 @@ export default class Feed extends React.Component {
         <p class="commentButton">{comments} Comments</p>
         <Link to={id}><button class="postButton">View Post</button></Link>
         <div class="chart">
-          <CanvasJSChart options = {options}></CanvasJSChart>
+          <CanvasJSChart alt="Poll Graph" options = {options}></CanvasJSChart>
         </div>
       </div>
     </div>
@@ -231,18 +223,18 @@ export default class Feed extends React.Component {
 
   }
   fieldChangeHandler(field, e) {
-    var sortedPost = Array()
+    var sortedPost = []
     for (var post in this.state.posts){
-      if (this.state.posts[post]['type'] == e.target.value){
+      if (this.state.posts[post]['type'] === e.target.value){
         sortedPost.push(this.state.posts[post])
       }
     }
-    if (sortedPost.length != 0){
+    if (sortedPost.length !== 0){
       this.setState({
         posts: sortedPost
       })
   }
-  if (e.target.value == ""){
+  if (e.target.value === ""){
     this.loadPosts()
   }
   }
@@ -258,7 +250,7 @@ export default class Feed extends React.Component {
 
       <div class = "feed">
         <Link to="/feed">
-          <img id="committii-logo" src={committiilogo}></img>
+          <img id="committii-logo" alt="Committii Logo" src={committiilogo}></img>
         </Link>
 
         <div class="feedOptions">
