@@ -3,15 +3,8 @@ import "./styleguide.css";
 import logo from "../assets/logo.svg";
 import icon from "../assets/icon.svg";
 import color from "../assets/color_palette.png";
-import backarrow from "../assets/back_arrow.svg";
-import { 
-  Link
-} from 'react-router-dom';
 
 export default class StyleGuide extends React.Component {
-  constructor() {
-    super();
-  }
   render() {
     return (
           <div id="GeneralLayout">
@@ -27,6 +20,7 @@ export default class StyleGuide extends React.Component {
               <img
                 src={logo}
                 id="genImage"
+                alt="Committii Logo"
               />
             </div>
             
@@ -40,6 +34,7 @@ export default class StyleGuide extends React.Component {
               <img
                 src={icon}
                 id="genIcon"
+                alt="Committii Icon"
               />
             </div>
             
@@ -59,6 +54,7 @@ export default class StyleGuide extends React.Component {
               <img
                 src={color}
                 id="genPallete"
+                alt="Color pallete"
               />
             </div>
 

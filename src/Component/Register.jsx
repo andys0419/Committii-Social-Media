@@ -58,7 +58,7 @@ export default class Register extends React.Component {
       return;
     }
     //check empty
-    if (this.state.username == "" || this.state.password == "" || this.state.nickname == ""  || this.state.confirm == "") {
+    if (this.state.username === "" || this.state.password === "" || this.state.nickname === ""  || this.state.confirm === "") {
       this.setState({
         errorMessage: "Please fill in all required fields."
       })
@@ -160,8 +160,8 @@ export default class Register extends React.Component {
     <div>
         <form id = "Login" onSubmit={this.submitHandler} className="profileform">
           <h1 id="LoginLabel">REGISTER</h1>
-          {this.state.errorMessage !== "" ? <a id="ForgotP">{this.state.errorMessage}</a> : <div/>}
-          {this.state.errorMessage == ""}
+          {this.state.errorMessage !== "" ? <a id="ForgotP" href="/#">{this.state.errorMessage}</a> : <div/>}
+          {this.state.errorMessage === ""}
           <div id="LoginUsername">    
               <input id="LoginForm" type="text" placeholder="*Email" onChange={this.myChangeHandler} />
           </div>
@@ -174,7 +174,7 @@ export default class Register extends React.Component {
           <div id="LoginPassword">
               <input id="LoginForm" type="password" placeholder="*Password (Confirm)" onChange={this.confirmPasswordChangeHandler} />
           </div>
-          <a id="ForgotP">*required</a>
+          <a id="ForgotP" href="/#">*required</a>
           <input id="SubmitButton" type="Submit" value="submit" className/>
           {this.state.responseMessage}
         </form>

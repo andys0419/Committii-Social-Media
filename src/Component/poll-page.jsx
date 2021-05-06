@@ -1,6 +1,6 @@
 import React from "react";
 import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
-import { Link, useHistory, useParams } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import "./poll-page.css";
 import "./CommentForm.css"
 import "../App.css"
@@ -8,12 +8,6 @@ import "../App.css"
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
 import prof_pic from "../assets/profile-picture-holder.png";
-import hearticon from "../assets/heart-icon.svg";
-import profile from "../assets/profile-picture-holder.png";
-import CommentForm from "./CommentForm.jsx";
-import helpIcon from "../assets/delete.png";
-import commentIcon from "../assets/comment.svg";
-import profilepage from "../Component/profile-page.jsx"
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -272,7 +266,7 @@ export default class PollPages extends React.Component {
     .then(
       result => {
          //console.log(result)
-        if (result.role == ""){
+        if (result.role === ""){
           document.getElementById("prof_pic_poll_page").src = prof_pic
         }else{
         var server = process.env.REACT_APP_API_PATH.slice(0, -4) + "/";
@@ -365,7 +359,7 @@ export default class PollPages extends React.Component {
 
     const postMsg = this.state.comment
 
-    if (postMsg == '') {
+    if (postMsg === '') {
       alert("Please enter a message.")
       return;
     } 
@@ -432,21 +426,21 @@ export default class PollPages extends React.Component {
    if(this.state.post) {
     return (
       <div className="Poll_Page">
-        <Link to="/feed"><img id="committii-logo" src={committiilogo}></img></Link>
+        <Link to="/feed"><img id="committii-logo" alt="Committii Logo" src={committiilogo}></img></Link>
         <div className="poll_page_white_box">
           <div class="pollLeft"/>
           <div class="pollRight"/>
           <Link to={"/profile/"+this.state.userid}><button class="user_button">View Profile</button></Link>
           <div className="poll_page_white_box_header">
             {/* <Link> <img id="backarrow-pollpage" onClick={this.goBack} src={backarrow}></img> </Link> */}
-            <Link to={"/feed"}> <img id="backarrow-pollpage" src={backarrow}></img> </Link>
+            <Link to={"/feed"}> <img id="backarrow-pollpage" alt="Back Arrow" src={backarrow}></img> </Link>
             <div className="poll_page_title_id">
               <text id="poll_page_poll_title">{this.state.poll_option_1 + " vs. " + this.state.poll_option_2}</text>
               <div id="poll_options"/>
             </div>
           </div>
           <div className="poll_page_chart_box">
-              <CanvasJSChart style="width:100%;height:100%;" options = {Poll_Options}></CanvasJSChart>
+              <CanvasJSChart alt="Poll Graph" options = {Poll_Options}></CanvasJSChart>
               <button className="poll_page_vote_option_1" onClick={()=>{this.updateVoteFirst()}}>{this.state.poll_option_1}</button>
               <button className="poll_page_vote_option_2" onClick={()=>{this.updateVoteSecond()}}>{this.state.poll_option_2}</button>
           </div>

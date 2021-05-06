@@ -1,23 +1,11 @@
 import React from "react";
 import "../App.css";
-import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
 import create_message from "../assets/compose.png";
-import prof_pic from "../assets/profile-picture-holder.png";
-import hearticon from "../assets/heart-icon.svg";
-import Post from "./Post.jsx";
 
-import {
-    Redirect
-} from 'react-router';
-import CommentLayout from "./CommentLayout";
-//import Autocomplete from "./Autocomplete.jsx";
 
-var CanvasJS = CanvasJSReact.CanvasJS;
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-var i = -1;
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -95,8 +83,6 @@ export default class Register extends React.Component {
   }
 
   createPost(post) {
-      i += 1;
-      console.log(this.state.currentauthor)
    return (
     <div class = "messageFeed">
       <div class = "messageInd">
@@ -115,25 +101,23 @@ export default class Register extends React.Component {
 
 
   render() {
-    const {authors, currentauthor} = this.state;
-
-    if (this.state.authors.length == 0) this.loadPosts()
+    if (this.state.authors.length === 0) this.loadPosts()
     return (
       <div class = "feed">
         <Link to="/feed">
-          <img id="committii-logo" src={committiilogo}></img>
+          <img id="committii-logo" alt="Committii Logo" src={committiilogo}></img>
         </Link>
 
         <div class="feedOptions">
           <div class="vLeft">
             <button class="feedSort2"><Link to="/messages">
-                    <img id="backarrow" src={backarrow}></img>
+                    <img id="backarrow" alt="Back arrow" src={backarrow}></img>
             </Link></button>
           </div>
             <div className="vRight">
                 <p className="feedProfile6"> Compose New Message  </p>
                 <button className="feedSort2"><Link to="/createmessage">
-                    <img alt="Send Message" id="create_message" src={create_message}></img>
+                    <img alt="Send Message" id="create_message"  src={create_message}></img>
                 </Link></button>
             </div>
 

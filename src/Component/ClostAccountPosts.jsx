@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 import "../App.css";
 import "./profile-page.css";
 import "./profilesettings.css";
-import prof from "./prof.png";
 import logo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
-import Post from "./Post";
-import committiilogo from "../assets/logo.svg";
 
 
 
@@ -181,15 +178,6 @@ export default class ProfileSettings extends React.Component {
         }
       );
 
-    let url = process.env.REACT_APP_API_PATH+"/user-preferences";
-    let method = "POST";
-
-
-
-    //make the api call to the user prefs controller
-
-
-
   }
   ///////////////
 
@@ -218,14 +206,6 @@ export default class ProfileSettings extends React.Component {
           alert("error!");
         }
       );
-
-    let url = process.env.REACT_APP_API_PATH+"/user-preferences";
-    let method = "POST";
-
-
-
-    //make the api call to the user prefs controller
-
   }
 
 
@@ -247,29 +227,29 @@ export default class ProfileSettings extends React.Component {
 
   handleClick(){
     // Changing state
-      if(document.getElementById('username').value != "") {
+      if(document.getElementById('username').value !== "") {
           this.setState({username: document.getElementById('username').value});
           document.getElementById('username').value = '';
       }
-      if(document.getElementById('password').value != "") {
+      if(document.getElementById('password').value !== "") {
           this.setState({password: document.getElementById('password').value})
           document.getElementById('password').value = ''
       }
-      if(document.getElementById('email').value != "") {
+      if(document.getElementById('email').value !== "") {
           this.setState({email: document.getElementById('email').value});
           document.getElementById('email').value = '';
       }
-      if(document.getElementById('bio').value != "") {
+      if(document.getElementById('bio').value !== "") {
           this.setState({bio: document.getElementById('bio').value})
           document.getElementById('bio').value = ''
       }
-      if(document.getElementById('dob').value != "") {
+      if(document.getElementById('dob').value !== "") {
           this.setState({dob: document.getElementById('dob').value})
           document.getElementById('dob').value = ''
       }
 
-      if(document.getElementById('blocked').value != "") {
-          if (this.state.blockedUsers[0] == "No Blocked Users"){
+      if(document.getElementById('blocked').value !== "") {
+          if (this.state.blockedUsers[0] === "No Blocked Users"){
               this.setState({blockedUsers: [document.getElementById('blocked').value]})
           }else{
               this.setState({blockedUsers: [...this.state.blockedUsers ," ", document.getElementById('blocked').value]})
@@ -295,20 +275,20 @@ export default class ProfileSettings extends React.Component {
 
 
   render() {
-      const {error, isLoaded, posts} = this.state;
+      const {posts} = this.state;
       if (posts.length > 0){
       return (
                    <div id="Login">
             <Link to="/profilesettings">
-                <img id="backarrow" src={backarrow}></img>
+                <img id="backarrow" alt="Back arrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
-            <a id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
+          <a href="/#" id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
+            <a href="/#"id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
                 <Link to="/closeaccount"><button>Yes, Delete All Posts</button></Link>
                 <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
 
             <Link to="/profile">
-            <img id="settingslogo" src={logo}></img>
+            <img id="settingslogo" alt="Settings logo" src={logo}></img>
             </Link>
 
 
@@ -323,22 +303,18 @@ export default class ProfileSettings extends React.Component {
       return (
            <div id="Login">
             <Link to="/profilesettings">
-                <img id="backarrow" src={backarrow}></img>
+                <img id="backarrow" alt="Back arrow" src={backarrow}></img>
             </Link>
-          <a id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
-            <a id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
+          <a href="/#" id="HeaderLabel">Are you sure you want to Delete All Posts from this account?</a>
+            <a href="/#" id="ProfileHeading">This action cannot be undone and all posts associated with your account will be deleted. Would you like to proceed?</a>
                 <Link to="/closeaccount"><button>Yes, Delete All Posts</button></Link>
                 <Link to="/profilesettings"><button>No, Take Me Back</button></Link>
 
             <Link to="/profile">
-            <img id="settingslogo" src={logo}></img>
+            <img id="settingslogo" alt="Settings logo" src={logo}></img>
             </Link>
         </div>
       )}
-    const LoginFormStyle = {
-      width: "96%",
-      height: "3em"
-    };
 
   }
 }
