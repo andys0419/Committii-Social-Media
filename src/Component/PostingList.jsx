@@ -7,6 +7,9 @@ import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
 import prof_pic from "../assets/profile-picture-holder.png";
 import hearticon from "../assets/heart-icon.svg";
+import CommentForm from "./CommentForm.jsx";
+import helpIcon from "../assets/delete.png";
+import commentIcon from "../assets/comment.svg";
 import "./PostingList.css"
 
 var CanvasJS = CanvasJSReact.CanvasJS;
@@ -148,9 +151,9 @@ export default class PostingList extends React.Component {
           {posts.map(post => (
             <Post key={post.id} post={post} type={this.props.type} loadPosts={this.loadPosts}/>
           ))}
-          <Link to="/"><img id="comiti_logo" alt="Committii Logo" src={committiilogo}></img></Link>
-          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="backarrow" alt="Back arrow" src={backarrow}></img></Link>
-          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="prof_pic_poll_page" alt="Profile" src={prof_pic}></img></Link>
+          <Link to="/"><img id="comiti_logo" src={committiilogo}></img></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="backarrow" src={backarrow}></img></Link>
+          <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="prof_pic_poll_page" src={prof_pic}></img></Link>
           <canvas id="white_box"></canvas>
           <p id="poll_name">{this.props.post}Test</p>
           <canvas id="poll_outline"></canvas>
@@ -160,10 +163,10 @@ export default class PostingList extends React.Component {
           <button id="comment_button" onClick={()=>{}}>Comments</button>
           <div id="test">
             <button id="like_button" onClick={()=>{this.updateLikes()}}>Like this Poll?</button>
-            <img id="heart" alt="Heart icon" src={hearticon}></img>
+            <img id="heart" src={hearticon}></img>
           </div>
           <div id="chart">
-            <CanvasJSChart alt="Poll Graph" options = {options}></CanvasJSChart>
+            <CanvasJSChart options = {options}></CanvasJSChart>
           </div>
       </div>
       );

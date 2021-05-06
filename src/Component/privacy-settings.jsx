@@ -10,6 +10,9 @@ const Checkbox = props => (
 )
 
 export default class PrivacySettings extends React.Component {
+    constructor() {
+        super();
+      }
       render() {
         return (
           <div className="App">
@@ -18,7 +21,6 @@ export default class PrivacySettings extends React.Component {
             <Link to={"/profile/"+sessionStorage.getItem("user")}>
             <img id="back"
               src={backarrow}
-              alt="Back arrow"
               className="back-arrow"
             />
             </Link>

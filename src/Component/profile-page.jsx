@@ -1,10 +1,19 @@
 import React from "react";
 import Post from "./Post.jsx";
-import {Link} from 'react-router-dom';
+import CanvasJSReact from '../canvasjs-3.2.11/canvasjs.react';
+import { Link, useHistory, useParams  } from 'react-router-dom';
 import "./poll-page.css";
 import committiilogo from "../assets/logo.svg";
+import backarrow from "../assets/back_arrow.svg";
 import prof_pic from "../assets/profile-picture-holder.png";
+import hearticon from "../assets/heart-icon.svg";
+import CommentForm from "./CommentForm.jsx";
+import helpIcon from "../assets/delete.png";
+import commentIcon from "../assets/comment.svg";
 import "./PostingList.css";
+
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class PostingList extends React.Component {
   constructor(props) {
@@ -239,6 +248,7 @@ export default class PostingList extends React.Component {
                   this.setState({
                     follow_text: 'Follow Member'
                   });
+                  this.state.follow_text = 'Follow Member';
                   // window.location.reload();
                 },
                 _error => {
@@ -315,6 +325,7 @@ export default class PostingList extends React.Component {
                   this.setState({
                     follow_text: 'Unfollow Member'
                   });
+                  this.state.follow_text = 'Unfollow Member';
                   window.location.reload();
                 },
                 _error => {
@@ -405,7 +416,7 @@ export default class PostingList extends React.Component {
    .then(res => res.json())
    .then(
      result => {
-       if (result.role === ""){
+       if (result.role == ""){
          document.getElementById("prof_pic").src = prof_pic
        }else{
        var server = "https://webdev.cse.buffalo.edu"
@@ -429,7 +440,7 @@ export default class PostingList extends React.Component {
         <div class="ProfilePage">
           <header>
             <Link to="/feed">
-              <img id="committii-logo" alt="Committii Logo" src={committiilogo}></img>
+              <img id="committii-logo" src={committiilogo}></img>
               <div className="nav_bar">
                 <Link to="/"><text id="nav_feed">Home</text></Link>
                 <Link to="/feed"><text id="nav_home">Feed</text></Link>
@@ -438,7 +449,7 @@ export default class PostingList extends React.Component {
               </div>
             </Link>
             <div class="profile_pic_id">
-              <img src={this.displayProfilePic()} className="prof_pic" alt="Profile" id="prof_pic"/>
+              <img src={this.displayProfilePic()} className="prof_pic" alt="Profile Picture" id="prof_pic"/>
             </div>
             <div class="welcome_id">
               <p id="welcome">
@@ -467,7 +478,7 @@ export default class PostingList extends React.Component {
         <div class="ProfilePage">
           <header>
             <Link to="/feed">
-              <img id="committii-logo" alt="Committii Logo" src={committiilogo}></img>
+              <img id="committii-logo" src={committiilogo}></img>
               <div className="nav_bar">
                 <Link to="/"><text id="nav_feed">Home</text></Link>
                 <Link to="/feed"><text id="nav_home">Feed</text></Link>

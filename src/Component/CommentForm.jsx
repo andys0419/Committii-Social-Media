@@ -21,7 +21,7 @@ export default class CommentForm extends React.Component {
 
     const postMsg = this.state.post_text;
 
-    if (postMsg === '') {
+    if (postMsg == '') {
       this.setState({
         errorMessage: "Please enter a message."
       })
@@ -90,7 +90,7 @@ export default class CommentForm extends React.Component {
           
             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
             <header class="masthead">
-              <Link to="/feed"><img id="committi_logo" alt="Committii Logo" src={committiilogo}></img></Link>
+              <Link to="/feed"><img id="committi_logo" src={committiilogo}></img></Link>
             </header>
 
             <main id="content" class="main-content">

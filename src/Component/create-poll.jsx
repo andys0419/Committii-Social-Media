@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import PostingList from "./PostingList.jsx";
 import { Link } from 'react-router-dom';
 import committiilogo from "../assets/logo.svg";
 import backarrow from "../assets/back_arrow.svg";
@@ -89,11 +90,11 @@ export default class PostForm extends React.Component {
     else return (
       <div class="CreatePollPage">
         <header>
-          <Link to="/feed"><img id="committii-logo" alt="Committii Logo" src={committiilogo}></img></Link>
+          <Link to="/feed"><img id="committii-logo" src={committiilogo}></img></Link>
         </header>
         <div class="create_poll_white_box">
           <header class="create_poll_white_box_header">
-            <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="create_backarrow" alt="Back arrow" src={backarrow}></img></Link>
+            <Link to={"/profile/"+sessionStorage.getItem("user")}><img id="create_backarrow" src={backarrow}></img></Link>
             <div class="create_id">
               <p id="create_label">Create Poll</p>
             </div>
