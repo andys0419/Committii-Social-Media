@@ -255,16 +255,17 @@ export default class Feed extends React.Component {
 
         <div class="feedOptions">
           <div class="vLeft">
-            <button class="feedSort" onClick={this.showMenu}>Sort</button>
+            <button class="feedSort">Sort</button>
+            {/* <button class="feedSort" onClick={this.showMenu}>Sort</button> */}
             {
             this.state.ShowSearch
             ? (
-              <div id="searchdropdown">
-                <input id="search"
+              <div className="searchdropdown">
+                <input className="searchContent"
                     type="text"
                     placeholder={"Enter Tag"}
                     onChange={e => this.fieldChangeHandler("search", e)}>
-                  </input>
+                </input>
                 </div>
             ): (null)
           }
