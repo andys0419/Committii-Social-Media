@@ -7,7 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Step 1. Ensure that the backend code is up and running.
 
-### https://github.com/andys0419/Committii-Social-Media-Backend
+### https://github.com/CSE410HCI/hci-social-backend
 
 Step 2. In the project directory, you can run:
 
