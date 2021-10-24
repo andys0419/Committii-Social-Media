@@ -1,7 +1,10 @@
 # HCI-Social Frontend
 Frontend development for the 'Committii' social media clone.
 
+[LINK TO ZENHUB SCRUM BOARD](https://app.zenhub.com/workspaces/committii-polling-app-6025432490ef4c000e1daa47/board).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Instructions:
 
